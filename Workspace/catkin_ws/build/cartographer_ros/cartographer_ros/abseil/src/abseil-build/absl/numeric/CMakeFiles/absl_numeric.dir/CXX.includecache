@@ -1,0 +1,10 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/hunter/Workspace/catkin_ws/build/cartographer_ros/cartographer_ros/abseil/src/abseil-build/absl/numeric/absl_numeric_header_only_dummy.cc
+

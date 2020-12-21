@@ -1,0 +1,8 @@
+prefix=/home/hunter/Workspace/catkin_ws/devel
+
+Name: wrp_sdk
+Description: Description of wrp_sdk
+Version: 0.3.3
+Cflags: -I/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include
+Libs: -L${prefix}/lib -lwrp_sdk
+Requires: 
