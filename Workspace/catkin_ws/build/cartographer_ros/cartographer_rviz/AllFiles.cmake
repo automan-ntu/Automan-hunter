@@ -1,4 +1,6 @@
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/
+#/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/CHANGELOG.rst
+#/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/CMakeLists.txt
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/cartographer_rviz
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/cartographer_rviz/.clang-format
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/cartographer_rviz/drawable_submap.cc
@@ -7,8 +9,6 @@
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/cartographer_rviz/ogre_slice.h
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/cartographer_rviz/submaps_display.cc
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/cartographer_rviz/submaps_display.h
-#/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/CHANGELOG.rst
-#/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/CMakeLists.txt
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/ogre_media
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/ogre_media/materials
 #/home/hunter/Workspace/catkin_ws/src/cartographer_ros/cartographer_rviz/ogre_media/materials/glsl120
