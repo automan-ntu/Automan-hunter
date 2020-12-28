@@ -5,7 +5,6 @@ navigation/hunter_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_no
  /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TebLocalPlannerReconfigureConfig.h
  /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TrajectoryMsg.h
  /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TrajectoryPointMsg.h
- /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TebLocalPlannerReconfigureConfig.h
  /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/distance_calculations.h
  /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/equivalence_relations.h
  /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/g2o_types/vertex_pose.h

@@ -1025,7 +1025,8 @@ void TebOptimalPlanner::AddEdgesVelocityObstacleRatio()
 }
 
 void TebOptimalPlanner::computeCurrentCost(double obst_cost_scale, double viapoint_cost_scale, bool alternative_time_cost)
-{ 
+{
+  ROS_WARN("Oscar::Hunter is figuring out the cost, shut up and wait pls."); 
   // check if graph is empty/exist  -> important if function is called between buildGraph and optimizeGraph/clearGraph
   bool graph_exist_flag(false);
   if (optimizer_->edges().empty() && optimizer_->vertices().empty())

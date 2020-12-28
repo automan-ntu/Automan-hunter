@@ -2066,7 +2066,6 @@ navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_conf
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TebLocalPlannerReconfigureConfig.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TrajectoryMsg.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TrajectoryPointMsg.h
-navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TebLocalPlannerReconfigureConfig.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/distance_calculations.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/equivalence_relations.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/g2o_types/vertex_pose.h

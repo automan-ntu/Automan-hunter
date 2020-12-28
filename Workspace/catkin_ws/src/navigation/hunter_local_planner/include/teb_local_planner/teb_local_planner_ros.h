@@ -73,7 +73,7 @@
 
 
 // dynamic reconfigure
-#include <teb_local_planner/TebLocalPlannerReconfigureConfig.h>
+#include <hunter_local_planner/TebLocalPlannerReconfigureConfig.h>
 #include <dynamic_reconfigure/server.h>
 
 // boost classes
