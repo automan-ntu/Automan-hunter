@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -O3 -DNDEBUG
 
 CXX_DEFINES = -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\"hunter_local_planner\"
 
-CXX_INCLUDES = -I/home/hunter/Workspace/catkin_ws/devel/include -I/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include -isystem /usr/include/suitesparse -isystem /opt/ros/melodic/include/g2o -isystem /opt/ros/melodic/include -isystem /opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /opt/ros/melodic/share/orocos_kdl/cmake/../../../include -isystem /usr/include/eigen3 -I/usr/src/googletest/googletest/include 
+CXX_INCLUDES = -isystem /home/hunter/Workspace/catkin_ws/devel/include -I/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include -isystem /usr/include/suitesparse -isystem /opt/ros/melodic/include/g2o -isystem /opt/ros/melodic/include -isystem /opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /opt/ros/melodic/share/orocos_kdl/cmake/../../../include -isystem /usr/include/eigen3 -I/usr/src/googletest/googletest/include 
 
