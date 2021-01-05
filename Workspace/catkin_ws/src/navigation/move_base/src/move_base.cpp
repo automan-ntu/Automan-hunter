@@ -574,10 +574,13 @@ namespace move_base {
     boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
     while(n.ok()){
       //check if we should run the planner (the mutex is locked)
+      ROS_WARN("Oscar///////the runPlanner_ is:%d", runPlanner_);
       while(wait_for_wake || !runPlanner_){
+      ROS_WARN("Oscar///////the runPlanner_ isss:%d", runPlanner_);
         //if we should not be running the planner then suspend this thread
         ROS_DEBUG_NAMED("move_base_plan_thread","Planner thread is suspending");
         planner_cond_.wait(lock);
+        ROS_WARN("Oscar///////the runPlanner_ issssss:%d", runPlanner_);
         wait_for_wake = false;
       }
       ros::Time start_time = ros::Time::now();

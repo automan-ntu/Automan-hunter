@@ -34,6 +34,7 @@ d5c8a95fb4920b019af69907c7a2cb5c /home/hunter/Workspace/catkin_ws/devel/include/
 08162c336cbdca5ddd2af7733e3d49b2 /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TebLocalPlannerReconfigureConfig.h
 89ddbc485dd4ff9ccdd30d20d7843fed /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TrajectoryMsg.h
 c8d581db382e946c3b3ca93a1d2a3e53 /home/hunter/Workspace/catkin_ws/devel/include/hunter_local_planner/TrajectoryPointMsg.h
+caa87201d465269947e33b016a9bcab0 /home/hunter/Workspace/catkin_ws/devel/include/hunter_move_base/MoveBaseConfig.h
 8a32ced6d3db98ee157ba66df712c227 /home/hunter/Workspace/catkin_ws/devel/include/hunter_msgs/HunterMotorState.h
 2d111f40efcef846ba6a9f9bb82bdc18 /home/hunter/Workspace/catkin_ws/devel/include/hunter_msgs/HunterStatus.h
 a4500f318274e6af6dde20f6b73a1039 /home/hunter/Workspace/catkin_ws/devel/include/move_base/MoveBaseConfig.h
@@ -248,4 +249,4 @@ a3687e5437d88653c622dc03fb9dbb91 darknet_ros/darknet_ros/CMakeFiles/darknet_ros_
 a881f1741afb8e357ffaa52f9fc12358 darknet_ros/darknet_ros/CMakeFiles/darknet_ros_lib.dir/__/darknet/src/darknet_ros_lib_generated_dropout_layer_kernels.cu.o
 3ace327cb1c20a2959b4fc7cd96f4bc2 darknet_ros/darknet_ros/CMakeFiles/darknet_ros_lib.dir/__/darknet/src/darknet_ros_lib_generated_im2col_kernels.cu.o
 ff02dad7285de8d9a9765a22d4dfe828 darknet_ros/darknet_ros/CMakeFiles/darknet_ros_lib.dir/__/darknet/src/darknet_ros_lib_generated_maxpool_layer_kernels.cu.o
-0205b3525e4c50b58f96c568936664f2 navigation/move_base/CMakeFiles/move_base_gencfg
+bb6f3aae5581d7b37f0374e499d828b1 navigation/hunter_move_base/CMakeFiles/hunter_move_base_gencfg

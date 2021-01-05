@@ -131,7 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/hunter/Workspace/catkin_ws/build/gtest/cmake_install.cmake")
-  include("/home/hunter/Workspace/catkin_ws/build/navigation/move_base/cmake_install.cmake")
+  include("/home/hunter/Workspace/catkin_ws/build/navigation/hunter_move_base/cmake_install.cmake")
 
 endif()
 

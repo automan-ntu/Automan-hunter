@@ -307,32 +307,6 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
-# Target rules for targets named move_base_node
-
-# Build rule for target.
-move_base_node: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 move_base_node
-.PHONY : move_base_node
-
-# fast build rule for target.
-move_base_node/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_node.dir/build.make navigation/move_base/CMakeFiles/move_base_node.dir/build
-.PHONY : move_base_node/fast
-
-#=============================================================================
-# Target rules for targets named move_base
-
-# Build rule for target.
-move_base: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 move_base
-.PHONY : move_base
-
-# fast build rule for target.
-move_base/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base.dir/build.make navigation/move_base/CMakeFiles/move_base.dir/build
-.PHONY : move_base/fast
-
-#=============================================================================
 # Target rules for targets named std_srvs_generate_messages_nodejs
 
 # Build rule for target.
@@ -342,7 +316,7 @@ std_srvs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
 .PHONY : std_srvs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -355,8 +329,21 @@ navfn_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 navfn_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/navfn_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/navfn_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_py.dir/build
 .PHONY : navfn_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named hunter_move_base_node
+
+# Build rule for target.
+hunter_move_base_node: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hunter_move_base_node
+.PHONY : hunter_move_base_node
+
+# fast build rule for target.
+hunter_move_base_node/fast:
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base_node.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base_node.dir/build
+.PHONY : hunter_move_base_node/fast
 
 #=============================================================================
 # Target rules for targets named navfn_generate_messages_nodejs
@@ -368,7 +355,7 @@ navfn_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 navfn_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/navfn_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/navfn_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_nodejs.dir/build
 .PHONY : navfn_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -381,7 +368,7 @@ navfn_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 navfn_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/navfn_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/navfn_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_lisp.dir/build
 .PHONY : navfn_generate_messages_lisp/fast
 
 #=============================================================================
@@ -394,7 +381,7 @@ navfn_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 navfn_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/navfn_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/navfn_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_eus.dir/build
 .PHONY : navfn_generate_messages_eus/fast
 
 #=============================================================================
@@ -407,7 +394,7 @@ navfn_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 navfn_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/navfn_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/navfn_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/navfn_generate_messages_cpp.dir/build
 .PHONY : navfn_generate_messages_cpp/fast
 
 #=============================================================================
@@ -420,7 +407,7 @@ move_base_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 move_base_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_py.dir/build
 .PHONY : move_base_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -433,7 +420,7 @@ std_srvs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_cpp.dir/build
 .PHONY : std_srvs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -446,7 +433,7 @@ move_base_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 move_base_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_nodejs.dir/build
 .PHONY : move_base_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -459,7 +446,7 @@ move_base_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 move_base_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_lisp.dir/build
 .PHONY : move_base_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -472,7 +459,7 @@ visualization_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 visualization_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_py.dir/build
 .PHONY : visualization_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -485,7 +472,7 @@ costmap_2d_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 costmap_2d_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/costmap_2d_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/costmap_2d_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_nodejs.dir/build
 .PHONY : costmap_2d_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -498,7 +485,7 @@ std_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_cpp.dir/build
 .PHONY : std_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -511,7 +498,7 @@ move_base_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 move_base_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_cpp.dir/build
 .PHONY : move_base_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -524,7 +511,7 @@ map_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 map_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/map_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/map_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_lisp.dir/build
 .PHONY : map_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -537,21 +524,8 @@ visualization_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 visualization_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_nodejs.dir/build
 .PHONY : visualization_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named move_base_gencfg
-
-# Build rule for target.
-move_base_gencfg: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 move_base_gencfg
-.PHONY : move_base_gencfg
-
-# fast build rule for target.
-move_base_gencfg/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_gencfg.dir/build.make navigation/move_base/CMakeFiles/move_base_gencfg.dir/build
-.PHONY : move_base_gencfg/fast
 
 #=============================================================================
 # Target rules for targets named base_local_planner_gencfg
@@ -563,7 +537,7 @@ base_local_planner_gencfg: cmake_check_build_system
 
 # fast build rule for target.
 base_local_planner_gencfg/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/base_local_planner_gencfg.dir/build.make navigation/move_base/CMakeFiles/base_local_planner_gencfg.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/base_local_planner_gencfg.dir/build.make navigation/hunter_move_base/CMakeFiles/base_local_planner_gencfg.dir/build
 .PHONY : base_local_planner_gencfg/fast
 
 #=============================================================================
@@ -576,7 +550,7 @@ base_local_planner_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 base_local_planner_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/base_local_planner_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/base_local_planner_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_nodejs.dir/build
 .PHONY : base_local_planner_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -589,7 +563,7 @@ sensor_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 sensor_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
 .PHONY : sensor_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -602,7 +576,7 @@ costmap_2d_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 costmap_2d_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/costmap_2d_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/costmap_2d_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_cpp.dir/build
 .PHONY : costmap_2d_generate_messages_cpp/fast
 
 #=============================================================================
@@ -615,7 +589,7 @@ base_local_planner_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 base_local_planner_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/base_local_planner_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/base_local_planner_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_eus.dir/build
 .PHONY : base_local_planner_generate_messages_eus/fast
 
 #=============================================================================
@@ -628,7 +602,7 @@ roscpp_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/roscpp_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/roscpp_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_py.dir/build
 .PHONY : roscpp_generate_messages_py/fast
 
 #=============================================================================
@@ -641,7 +615,7 @@ std_srvs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/std_srvs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_eus.dir/build
 .PHONY : std_srvs_generate_messages_eus/fast
 
 #=============================================================================
@@ -654,7 +628,7 @@ roscpp_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/roscpp_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_lisp.dir/build
 .PHONY : roscpp_generate_messages_lisp/fast
 
 #=============================================================================
@@ -667,7 +641,7 @@ costmap_2d_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 costmap_2d_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/costmap_2d_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/costmap_2d_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_lisp.dir/build
 .PHONY : costmap_2d_generate_messages_lisp/fast
 
 #=============================================================================
@@ -680,8 +654,21 @@ geometry_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_eus.dir/build
 .PHONY : geometry_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named hunter_move_base_gencfg
+
+# Build rule for target.
+hunter_move_base_gencfg: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hunter_move_base_gencfg
+.PHONY : hunter_move_base_gencfg
+
+# fast build rule for target.
+hunter_move_base_gencfg/fast:
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base_gencfg.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base_gencfg.dir/build
+.PHONY : hunter_move_base_gencfg/fast
 
 #=============================================================================
 # Target rules for targets named roscpp_generate_messages_cpp
@@ -693,7 +680,7 @@ roscpp_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/roscpp_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_cpp.dir/build
 .PHONY : roscpp_generate_messages_cpp/fast
 
 #=============================================================================
@@ -706,7 +693,7 @@ actionlib_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/actionlib_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_cpp.dir/build
 .PHONY : actionlib_generate_messages_cpp/fast
 
 #=============================================================================
@@ -719,7 +706,7 @@ sensor_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 sensor_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
 .PHONY : sensor_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -732,7 +719,7 @@ std_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_nodejs.dir/build
 .PHONY : std_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -745,7 +732,7 @@ costmap_2d_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 costmap_2d_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/costmap_2d_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/costmap_2d_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_py.dir/build
 .PHONY : costmap_2d_generate_messages_py/fast
 
 #=============================================================================
@@ -758,7 +745,7 @@ std_srvs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_srvs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/std_srvs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_py.dir/build
 .PHONY : std_srvs_generate_messages_py/fast
 
 #=============================================================================
@@ -771,7 +758,7 @@ base_local_planner_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 base_local_planner_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/base_local_planner_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/base_local_planner_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_lisp.dir/build
 .PHONY : base_local_planner_generate_messages_lisp/fast
 
 #=============================================================================
@@ -784,7 +771,7 @@ base_local_planner_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 base_local_planner_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/base_local_planner_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/base_local_planner_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_cpp.dir/build
 .PHONY : base_local_planner_generate_messages_cpp/fast
 
 #=============================================================================
@@ -797,7 +784,7 @@ actionlib_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_nodejs.dir/build
 .PHONY : actionlib_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -810,7 +797,7 @@ tf_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 tf_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/tf_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/tf_generate_messages_cpp.dir/build
 .PHONY : tf_generate_messages_cpp/fast
 
 #=============================================================================
@@ -823,7 +810,7 @@ map_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 map_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/map_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/map_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_py.dir/build
 .PHONY : map_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -836,7 +823,7 @@ rosgraph_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_lisp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -849,7 +836,7 @@ rosgraph_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_eus.dir/build
 .PHONY : rosgraph_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -862,7 +849,7 @@ actionlib_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/actionlib_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_eus.dir/build
 .PHONY : actionlib_generate_messages_eus/fast
 
 #=============================================================================
@@ -875,7 +862,7 @@ actionlib_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_lisp.dir/build
 .PHONY : actionlib_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -888,7 +875,7 @@ actionlib_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
 .PHONY : actionlib_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -901,7 +888,7 @@ base_local_planner_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 base_local_planner_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/base_local_planner_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/base_local_planner_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/base_local_planner_generate_messages_py.dir/build
 .PHONY : base_local_planner_generate_messages_py/fast
 
 #=============================================================================
@@ -914,7 +901,7 @@ dynamic_reconfigure_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 dynamic_reconfigure_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_eus.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_eus/fast
 
 #=============================================================================
@@ -927,7 +914,7 @@ roscpp_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/roscpp_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/roscpp_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_eus.dir/build
 .PHONY : roscpp_generate_messages_eus/fast
 
 #=============================================================================
@@ -940,7 +927,7 @@ actionlib_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_eus.dir/build
 .PHONY : actionlib_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -953,7 +940,7 @@ rosgraph_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_py.dir/build
 .PHONY : rosgraph_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -966,7 +953,7 @@ rosgraph_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/build
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -979,7 +966,7 @@ visualization_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 visualization_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_lisp.dir/build
 .PHONY : visualization_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -992,7 +979,7 @@ std_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/std_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_eus.dir/build
 .PHONY : std_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1005,7 +992,7 @@ rosgraph_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 rosgraph_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/rosgraph_msgs_generate_messages_cpp.dir/build
 .PHONY : rosgraph_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1018,7 +1005,7 @@ tf_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 tf_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/tf_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/tf_generate_messages_py.dir/build
 .PHONY : tf_generate_messages_py/fast
 
 #=============================================================================
@@ -1031,7 +1018,7 @@ dynamic_reconfigure_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 dynamic_reconfigure_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_cpp.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1044,7 +1031,7 @@ std_srvs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_srvs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/std_srvs_generate_messages_lisp.dir/build
 .PHONY : std_srvs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1057,7 +1044,7 @@ _catkin_empty_exported_target: cmake_check_build_system
 
 # fast build rule for target.
 _catkin_empty_exported_target/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/_catkin_empty_exported_target.dir/build.make navigation/move_base/CMakeFiles/_catkin_empty_exported_target.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/_catkin_empty_exported_target.dir/build.make navigation/hunter_move_base/CMakeFiles/_catkin_empty_exported_target.dir/build
 .PHONY : _catkin_empty_exported_target/fast
 
 #=============================================================================
@@ -1070,7 +1057,7 @@ sensor_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 sensor_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
 .PHONY : sensor_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1083,7 +1070,7 @@ roscpp_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 roscpp_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/roscpp_generate_messages_nodejs.dir/build
 .PHONY : roscpp_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1096,7 +1083,7 @@ std_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_lisp.dir/build
 .PHONY : std_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1109,7 +1096,7 @@ std_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 std_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/std_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/std_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/std_msgs_generate_messages_py.dir/build
 .PHONY : std_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -1122,7 +1109,7 @@ costmap_2d_gencfg: cmake_check_build_system
 
 # fast build rule for target.
 costmap_2d_gencfg/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/costmap_2d_gencfg.dir/build.make navigation/move_base/CMakeFiles/costmap_2d_gencfg.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/costmap_2d_gencfg.dir/build.make navigation/hunter_move_base/CMakeFiles/costmap_2d_gencfg.dir/build
 .PHONY : costmap_2d_gencfg/fast
 
 #=============================================================================
@@ -1135,7 +1122,7 @@ costmap_2d_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 costmap_2d_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/costmap_2d_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/costmap_2d_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/costmap_2d_generate_messages_eus.dir/build
 .PHONY : costmap_2d_generate_messages_eus/fast
 
 #=============================================================================
@@ -1148,7 +1135,7 @@ dynamic_reconfigure_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 dynamic_reconfigure_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1161,7 +1148,7 @@ map_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 map_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/map_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/map_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_eus.dir/build
 .PHONY : map_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1174,7 +1161,7 @@ dynamic_reconfigure_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 dynamic_reconfigure_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_nodejs.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1187,7 +1174,7 @@ dynamic_reconfigure_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 dynamic_reconfigure_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_generate_messages_py.dir/build
 .PHONY : dynamic_reconfigure_generate_messages_py/fast
 
 #=============================================================================
@@ -1200,7 +1187,7 @@ actionlib_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/actionlib_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_lisp.dir/build
 .PHONY : actionlib_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1213,7 +1200,7 @@ geometry_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_cpp.dir/build
 .PHONY : geometry_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1226,7 +1213,7 @@ geometry_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
 .PHONY : geometry_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1239,7 +1226,7 @@ geometry_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_nodejs.dir/build
 .PHONY : geometry_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1252,7 +1239,7 @@ geometry_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 geometry_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/geometry_msgs_generate_messages_py.dir/build
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -1265,7 +1252,7 @@ actionlib_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_cpp.dir/build
 .PHONY : actionlib_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1278,7 +1265,7 @@ tf_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 tf_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/tf_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/tf_generate_messages_eus.dir/build
 .PHONY : tf_generate_messages_eus/fast
 
 #=============================================================================
@@ -1291,7 +1278,7 @@ actionlib_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_msgs_generate_messages_nodejs.dir/build
 .PHONY : actionlib_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1304,7 +1291,7 @@ map_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 map_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_nodejs.dir/build
 .PHONY : map_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1317,7 +1304,7 @@ tf_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 tf_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/tf_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/tf_generate_messages_lisp.dir/build
 .PHONY : tf_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1330,7 +1317,7 @@ tf_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 tf_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/tf_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/tf_generate_messages_nodejs.dir/build
 .PHONY : tf_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1343,7 +1330,7 @@ sensor_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 sensor_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
 .PHONY : sensor_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1356,7 +1343,7 @@ tf2_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 tf2_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_cpp.dir/build
 .PHONY : tf2_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1369,7 +1356,7 @@ actionlib_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 actionlib_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/actionlib_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/actionlib_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/actionlib_generate_messages_py.dir/build
 .PHONY : actionlib_generate_messages_py/fast
 
 #=============================================================================
@@ -1382,7 +1369,7 @@ map_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 map_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/map_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/map_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/map_msgs_generate_messages_cpp.dir/build
 .PHONY : map_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1395,7 +1382,7 @@ tf2_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 tf2_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
 .PHONY : tf2_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -1408,7 +1395,7 @@ tf2_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 tf2_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
 .PHONY : tf2_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1421,7 +1408,7 @@ move_base_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 move_base_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/move_base_msgs_generate_messages_eus.dir/build
 .PHONY : move_base_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1434,7 +1421,7 @@ sensor_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 sensor_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
 .PHONY : sensor_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1447,8 +1434,21 @@ nav_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_cpp.dir/build
 .PHONY : nav_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named hunter_move_base
+
+# Build rule for target.
+hunter_move_base: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hunter_move_base
+.PHONY : hunter_move_base
+
+# fast build rule for target.
+hunter_move_base/fast:
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build
+.PHONY : hunter_move_base/fast
 
 #=============================================================================
 # Target rules for targets named nav_msgs_generate_messages_lisp
@@ -1460,7 +1460,7 @@ nav_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_lisp.dir/build
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1473,7 +1473,7 @@ nav_msgs_generate_messages_nodejs: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make navigation/move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build.make navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_nodejs.dir/build
 .PHONY : nav_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
@@ -1486,7 +1486,7 @@ dynamic_reconfigure_gencfg: cmake_check_build_system
 
 # fast build rule for target.
 dynamic_reconfigure_gencfg/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/dynamic_reconfigure_gencfg.dir/build.make navigation/move_base/CMakeFiles/dynamic_reconfigure_gencfg.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_gencfg.dir/build.make navigation/hunter_move_base/CMakeFiles/dynamic_reconfigure_gencfg.dir/build
 .PHONY : dynamic_reconfigure_gencfg/fast
 
 #=============================================================================
@@ -1499,7 +1499,7 @@ tf2_msgs_generate_messages_lisp: cmake_check_build_system
 
 # fast build rule for target.
 tf2_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
 .PHONY : tf2_msgs_generate_messages_lisp/fast
 
 #=============================================================================
@@ -1512,7 +1512,7 @@ nav_msgs_generate_messages_py: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_py/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make navigation/move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build.make navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_py.dir/build
 .PHONY : nav_msgs_generate_messages_py/fast
 
 #=============================================================================
@@ -1525,7 +1525,7 @@ tf2_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 tf2_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
 .PHONY : tf2_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1538,7 +1538,7 @@ nav_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 nav_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/nav_msgs_generate_messages_eus.dir/build
 .PHONY : nav_msgs_generate_messages_eus/fast
 
 #=============================================================================
@@ -1551,7 +1551,7 @@ visualization_msgs_generate_messages_cpp: cmake_check_build_system
 
 # fast build rule for target.
 visualization_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
 .PHONY : visualization_msgs_generate_messages_cpp/fast
 
 #=============================================================================
@@ -1564,7 +1564,7 @@ visualization_msgs_generate_messages_eus: cmake_check_build_system
 
 # fast build rule for target.
 visualization_msgs_generate_messages_eus/fast:
-	$(MAKE) -f navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make navigation/move_base/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
+	$(MAKE) -f navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
 .PHONY : visualization_msgs_generate_messages_eus/fast
 
 # Help Target
@@ -1591,10 +1591,9 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... move_base_node"
-	@echo "... move_base"
 	@echo "... std_srvs_generate_messages_nodejs"
 	@echo "... navfn_generate_messages_py"
+	@echo "... hunter_move_base_node"
 	@echo "... navfn_generate_messages_nodejs"
 	@echo "... navfn_generate_messages_lisp"
 	@echo "... navfn_generate_messages_eus"
@@ -1609,7 +1608,6 @@ help:
 	@echo "... move_base_msgs_generate_messages_cpp"
 	@echo "... map_msgs_generate_messages_lisp"
 	@echo "... visualization_msgs_generate_messages_nodejs"
-	@echo "... move_base_gencfg"
 	@echo "... base_local_planner_gencfg"
 	@echo "... base_local_planner_generate_messages_nodejs"
 	@echo "... sensor_msgs_generate_messages_py"
@@ -1620,6 +1618,7 @@ help:
 	@echo "... roscpp_generate_messages_lisp"
 	@echo "... costmap_2d_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_eus"
+	@echo "... hunter_move_base_gencfg"
 	@echo "... roscpp_generate_messages_cpp"
 	@echo "... actionlib_generate_messages_cpp"
 	@echo "... sensor_msgs_generate_messages_nodejs"
@@ -1679,6 +1678,7 @@ help:
 	@echo "... move_base_msgs_generate_messages_eus"
 	@echo "... sensor_msgs_generate_messages_lisp"
 	@echo "... nav_msgs_generate_messages_cpp"
+	@echo "... hunter_move_base"
 	@echo "... nav_msgs_generate_messages_lisp"
 	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... dynamic_reconfigure_gencfg"
