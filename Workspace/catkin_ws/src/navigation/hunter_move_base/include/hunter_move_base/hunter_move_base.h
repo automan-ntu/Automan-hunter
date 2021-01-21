@@ -222,6 +222,8 @@ namespace hunter_move_base {
       geometry_msgs::PoseStamped planner_goal_;
       boost::thread* planner_thread_;
 
+      //user interface flag
+      bool user_goal_reached_;
 
       boost::recursive_mutex configuration_mutex_;
       dynamic_reconfigure::Server<hunter_move_base::MoveBaseConfig> *dsrv_;

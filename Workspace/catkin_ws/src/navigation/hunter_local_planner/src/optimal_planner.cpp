@@ -344,8 +344,8 @@ bool TebOptimalPlanner::buildGraph(double weight_multiplier)
     AddEdgesObstacles(weight_multiplier);
 
   if (cfg_->obstacles.include_dynamic_obstacles)
-    AddEdgesDynamicObstacles();
-  
+    AddEdgesDynamicObstacles(); 
+
   AddEdgesViaPoints();
   
   AddEdgesVelocity();

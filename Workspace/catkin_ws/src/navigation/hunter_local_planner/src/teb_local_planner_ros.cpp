@@ -294,7 +294,9 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
     && fabs(delta_orient) < cfg_.goal_tolerance.yaw_goal_tolerance
     && (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0))
   {
+    ROS_WARN("Oscar*goal_reached_ is:%d", goal_reached_);
     goal_reached_ = true;
+    ROS_WARN("Oscar***goal_reached_ is:%d", goal_reached_);
     return mbf_msgs::ExePathResult::SUCCESS;
   }
   
@@ -317,6 +319,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   // Overwrite goal orientation if needed
   if (cfg_.trajectory.global_plan_overwrite_orientation)
   {
+    ROS_WARN("Oscar::Global plan overwrite orientation is True.");
     robot_goal_.theta() = estimateLocalGoalOrientation(global_plan_, transformed_plan.back(), goal_idx, tf_plan_to_global);
     // overwrite/update goal orientation of the transformed plan with the actual goal (enable using the plan as initialization)
     tf2::Quaternion q;
@@ -325,6 +328,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   }  
   else
   {
+    ROS_WARN("Oscar::Global plan overwrite orientation is False.");
     robot_goal_.theta() = tf2::getYaw(transformed_plan.back().pose.orientation);
   }
 
@@ -444,6 +448,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
 
 bool TebLocalPlannerROS::isGoalReached()
 {
+  ROS_WARN("Oscar///goal_reached_ is:%d", goal_reached_);
   if (goal_reached_)
   {
     ROS_INFO("GOAL Reached!");

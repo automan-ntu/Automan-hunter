@@ -245,7 +245,7 @@ public:
     trajectory.dt_hysteresis = 0.1;
     trajectory.min_samples = 3;
     trajectory.max_samples = 500;
-    trajectory.global_plan_overwrite_orientation = true;
+    trajectory.global_plan_overwrite_orientation = false;
     trajectory.allow_init_with_backwards_motion = false;
     trajectory.global_plan_viapoint_sep = -1;
     trajectory.via_points_ordered = false;

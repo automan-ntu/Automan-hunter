@@ -56,7 +56,8 @@ namespace hunter_move_base {
     blp_loader_("nav_core", "nav_core::BaseLocalPlanner"),
     recovery_loader_("nav_core", "nav_core::RecoveryBehavior"),
     planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
-    runPlanner_(false), setup_(false), p_freq_change_(false), c_freq_change_(false), new_global_plan_(false) {
+    runPlanner_(false), user_goal_reached_(true),setup_(false), p_freq_change_(false), c_freq_change_(false),
+    new_global_plan_(false) {
 
     as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
 
@@ -574,13 +575,20 @@ namespace hunter_move_base {
     boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
     while(n.ok()){
       //check if we should run the planner (the mutex is locked)
-      ROS_WARN("Oscar///////the runPlanner_ is:%d", runPlanner_);
       while(wait_for_wake || !runPlanner_){
-      ROS_WARN("Oscar///////the runPlanner_ isss:%d", runPlanner_);
+        
+	if (user_goal_reached_)
+        {
+	  ROS_WARN("Oscar***We are here when no user goal."); 
+        }
+	else
+	{
+	  ROS_WARN("Oscar***User goal havent's reached."); 
+	};
+
         //if we should not be running the planner then suspend this thread
         ROS_DEBUG_NAMED("move_base_plan_thread","Planner thread is suspending");
         planner_cond_.wait(lock);
-        ROS_WARN("Oscar///////the runPlanner_ issssss:%d", runPlanner_);
         wait_for_wake = false;
       }
       ros::Time start_time = ros::Time::now();
@@ -592,9 +600,9 @@ namespace hunter_move_base {
 
       //run planner
       planner_plan_->clear();
+      bool n_ok = n.ok();
+      bool makePlann = makePlan(temp_goal, *planner_plan_);
       bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
-      
-      ROS_WARN("Oscar///////We have got the plan:%d", gotPlan);
 
       if(gotPlan){
         ROS_DEBUG_NAMED("move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
@@ -635,7 +643,6 @@ namespace hunter_move_base {
           publishZeroVelocity();
           recovery_trigger_ = PLANNING_R;
         }
-
         lock.unlock();
       }
 
@@ -655,7 +662,6 @@ namespace hunter_move_base {
 
   void MoveBase::executeCb(const move_base_msgs::MoveBaseGoalConstPtr& move_base_goal)
   {
-    ROS_WARN("Oscar//////Execute Planning and Control.");
     if(!isQuaternionValid(move_base_goal->target_pose.pose.orientation)){
       as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on goal because it was sent with an invalid quaternion");
       return;
@@ -668,6 +674,7 @@ namespace hunter_move_base {
     boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
     planner_goal_ = goal;
     runPlanner_ = true;
+    user_goal_reached_ = false;
     planner_cond_.notify_one();
     lock.unlock();
 
@@ -768,8 +775,6 @@ namespace hunter_move_base {
         planning_retries_ = 0;
       }
 
-      ROS_WARN("Oscar+++++++New Target Point");
-
       //for timing that gives real time even in simulation
       ros::WallTime start = ros::WallTime::now();
 
@@ -842,7 +847,6 @@ namespace hunter_move_base {
 
     //if we have a new plan then grab it and give it to the controller
     if(new_global_plan_){
-      ROS_WARN("Oscar///////We have a new global plan.");
       //make sure to set the new plan flag to false
       new_global_plan_ = false;
 
@@ -885,6 +889,7 @@ namespace hunter_move_base {
       //if we are in a planning state, then we'll attempt to make a plan
       case PLANNING:
         {
+          ROS_INFO("Oscar//////////executeCycle,We are in Planning case.");
           boost::recursive_mutex::scoped_lock lock(planner_mutex_);
           runPlanner_ = true;
           planner_cond_.notify_one();
@@ -894,6 +899,7 @@ namespace hunter_move_base {
 
       //if we're controlling, we'll attempt to find valid velocity commands
       case CONTROLLING:
+        ROS_INFO("Oscar//////////executeCycle,We are in Controlling case.");
         ROS_DEBUG_NAMED("move_base","In controlling state.");
 
         //check to see if we've reached our goal
@@ -904,6 +910,7 @@ namespace hunter_move_base {
           //disable the planner thread
           boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
           runPlanner_ = false;
+          user_goal_reached_ = true;
           lock.unlock();
 
           as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Goal reached.");
@@ -957,11 +964,11 @@ namespace hunter_move_base {
           }
         }
         }
-
         break;
 
       //we'll try to clear out space with any user-provided recovery behaviors
       case CLEARING:
+        ROS_INFO("Oscar///////executeCycle, we are in clearing case");
         ROS_DEBUG_NAMED("move_base","In clearing/recovery state");
         //we'll invoke whatever recovery behavior we're currently on if they're enabled
         if(recovery_behavior_enabled_ && recovery_index_ < recovery_behaviors_.size()){
