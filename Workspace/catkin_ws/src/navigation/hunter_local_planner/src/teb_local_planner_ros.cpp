@@ -263,7 +263,8 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   robot_vel_.linear.y = robot_vel_tf.pose.position.y;
   robot_vel_.angular.z = tf2::getYaw(robot_vel_tf.pose.orientation);
 
-  ROS_WARN("Oscar----------Let's get it."); 
+  ROS_WARN("Oscar::Teb__ robot pose is:%.3lf,%.3lf,%.3lf", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+  ROS_WARN("Oscar::Teb__ velo is:%.3lf,%.3lf,%.3lf", robot_vel_.linear.x, robot_vel_.linear.y, robot_vel_.angular.z);
   
   // prune global plan to cut off parts of the past (spatially before the robot)
   pruneGlobalPlan(*tf_, robot_pose, global_plan_, cfg_.trajectory.global_plan_prune_distance);
@@ -294,6 +295,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
     && fabs(delta_orient) < cfg_.goal_tolerance.yaw_goal_tolerance
     && (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0))
   {
+    std::lock_guard<std::mutex> my_lock_guard(goal_reached_mutex_);
     ROS_WARN("Oscar*goal_reached_ is:%d", goal_reached_);
     goal_reached_ = true;
     ROS_WARN("Oscar***goal_reached_ is:%d", goal_reached_);

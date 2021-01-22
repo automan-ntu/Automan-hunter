@@ -79,7 +79,10 @@
 // boost classes
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/thread/mutex.hpp>
 
+//mutex
+#include <mutex>
 
 namespace hunter_local_planner
 {
@@ -443,6 +446,9 @@ private:
     
   // flags
   bool initialized_; //!< Keeps track about the correct initialization of this class
+
+  // goal_reached_mutex
+  std::mutex goal_reached_mutex_;
 
 public:
   EIGEN_MAKE_ALIGNED_OPERATOR_NEW

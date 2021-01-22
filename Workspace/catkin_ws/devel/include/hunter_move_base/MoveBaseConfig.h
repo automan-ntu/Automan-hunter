@@ -475,7 +475,7 @@ MoveBaseConfig::GroupDescription<MoveBaseConfig::DEFAULT, MoveBaseConfig> Defaul
 //#line 291 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __max__.planner_frequency = 100.0;
 //#line 291 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
-      __default__.planner_frequency = 0.0;
+      __default__.planner_frequency = 20.0;
 //#line 291 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Default.abstract_parameters.push_back(MoveBaseConfig::AbstractParamDescriptionConstPtr(new MoveBaseConfig::ParamDescription<double>("planner_frequency", "double", 0, "The rate in Hz at which to run the planning loop.", "", &MoveBaseConfig::planner_frequency)));
 //#line 291 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

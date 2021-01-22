@@ -57,7 +57,9 @@
 #include <std_srvs/Empty.h>
 
 #include <dynamic_reconfigure/server.h>
+#include <base_local_planner/odometry_helper_ros.h>
 #include "hunter_move_base/MoveBaseConfig.h"
+#include "hunter_move_base/pose_se2.h"
 
 namespace hunter_move_base {
   //typedefs to help us out with the action server so that we don't hace to type so much
@@ -234,6 +236,11 @@ namespace hunter_move_base {
       hunter_move_base::MoveBaseConfig default_config_;
       bool setup_, p_freq_change_, c_freq_change_;
       bool new_global_plan_;
+
+      // elements employed by ADAS
+      geometry_msgs::Twist robot_velo_;
+      PoseSE2 robot_pose_;
+      base_local_planner::OdometryHelperRos odom_helper_;
   };
 };
 #endif

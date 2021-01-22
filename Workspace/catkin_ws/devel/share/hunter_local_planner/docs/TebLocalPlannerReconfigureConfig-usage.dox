@@ -4,7 +4,7 @@
   <param name="teb_autosize" type="bool" value="True" />
   <param name="dt_ref" type="double" value="0.3" />
   <param name="dt_hysteresis" type="double" value="0.1" />
-  <param name="global_plan_overwrite_orientation" type="bool" value="True" />
+  <param name="global_plan_overwrite_orientation" type="bool" value="False" />
   <param name="allow_init_with_backwards_motion" type="bool" value="False" />
   <param name="max_global_plan_lookahead_dist" type="double" value="3.0" />
   <param name="force_reinit_new_goal_dist" type="double" value="1.0" />

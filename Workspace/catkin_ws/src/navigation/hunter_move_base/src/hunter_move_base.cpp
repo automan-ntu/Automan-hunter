@@ -45,6 +45,7 @@
 #include <geometry_msgs/Twist.h>
 
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <tf2/utils.h>
 
 namespace hunter_move_base {
 
@@ -72,7 +73,7 @@ namespace hunter_move_base {
     private_nh.param("base_local_planner", local_planner, std::string("base_local_planner/TrajectoryPlannerROS"));
     private_nh.param("global_costmap/robot_base_frame", robot_base_frame_, std::string("base_link"));
     private_nh.param("global_costmap/global_frame", global_frame_, std::string("map"));
-    private_nh.param("planner_frequency", planner_frequency_, 0.0);
+    private_nh.param("planner_frequency", planner_frequency_, 20.0);
     private_nh.param("controller_frequency", controller_frequency_, 20.0);
     private_nh.param("planner_patience", planner_patience_, 5.0);
     private_nh.param("controller_patience", controller_patience_, 15.0);
@@ -92,6 +93,8 @@ namespace hunter_move_base {
 
     //set up the planner's thread
     planner_thread_ = new boost::thread(boost::bind(&MoveBase::planThread, this));
+
+    odom_helper_.setOdomTopic("odom");
 
     //for commanding the base
     vel_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
@@ -576,15 +579,36 @@ namespace hunter_move_base {
     while(n.ok()){
       //check if we should run the planner (the mutex is locked)
       while(wait_for_wake || !runPlanner_){
-        
+        ros::Time start_time_ = ros::Time::now();
 	if (user_goal_reached_)
         {
 	  ROS_WARN("Oscar***We are here when no user goal."); 
+          if (!planner_costmap_ros_)
+            {
+              ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
+              ros::Duration(1).sleep();
+              continue;
+            };
+
+          ROS_WARN("Oscar::Planner_costmap_ros has been built.");
+
+	  double time_interval = ros::Time::now().toSec() - start_time_.toSec();
+	  ROS_WARN("Oscar::The time of sleep is:%.9f", time_interval);
+          //geometry_msgs::PoseStamped current_robot_pose;
+          //planner_costmap_ros_->getRobotPose(current_robot_pose);
+          //robot_pose_ = PoseSE2(current_robot_pose.pose);
+          //ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+
+          //geometry_msgs::PoseStamped robot_velo_tf;
+          //odom_helper_.getRobotVel(robot_velo_tf);
+          //robot_velo_.linear.x = robot_velo_tf.pose.position.x;
+          //robot_velo_.linear.y = robot_velo_tf.pose.position.y;
+          //robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
+          //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
+          //continue;
         }
-	else
-	{
-	  ROS_WARN("Oscar***User goal havent's reached."); 
-	};
+
+	ROS_WARN("Oscar***User goal haven't reached."); 
 
         //if we should not be running the planner then suspend this thread
         ROS_DEBUG_NAMED("move_base_plan_thread","Planner thread is suspending");
@@ -603,6 +627,18 @@ namespace hunter_move_base {
       bool n_ok = n.ok();
       bool makePlann = makePlan(temp_goal, *planner_plan_);
       bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
+
+      geometry_msgs::PoseStamped current_robot_pose;
+      planner_costmap_ros_->getRobotPose(current_robot_pose);
+      robot_pose_ = PoseSE2(current_robot_pose.pose);
+      ROS_WARN("Oscar::Teb robot pose is:%.3lf,%.3lf,%.3lf", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+
+      geometry_msgs::PoseStamped robot_velo_tf;
+      odom_helper_.getRobotVel(robot_velo_tf);
+      robot_velo_.linear.x = robot_velo_tf.pose.position.x;
+      robot_velo_.linear.y = robot_velo_tf.pose.position.y;
+      robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
+      ROS_WARN("Oscar::Teb velo is:%.3lf,%.3lf,%.3lf", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
 
       if(gotPlan){
         ROS_DEBUG_NAMED("move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
@@ -651,7 +687,10 @@ namespace hunter_move_base {
 
       //setup sleep interface if needed
       if(planner_frequency_ > 0){
+	double time_interval = ros::Time::now().toSec() - start_time.toSec();
+	ROS_WARN("Oscar::The time of planthread is:%.9f", time_interval);
         ros::Duration sleep_time = (start_time + ros::Duration(1.0/planner_frequency_)) - ros::Time::now();
+	ROS_WARN("OScar::The planner frequency and sleep_time is:, %.3lf, %.9f", planner_frequency_, sleep_time.toSec());
         if (sleep_time > ros::Duration(0.0)){
           wait_for_wake = true;
           timer = n.createTimer(sleep_time, &MoveBase::wakePlanner, this);
@@ -702,6 +741,8 @@ namespace hunter_move_base {
         r = ros::Rate(controller_frequency_);
         c_freq_change_ = false;
       }
+
+      ROS_WARN("Oscar::Control frequency is : %.9f", controller_frequency_);
 
       if(as_->isPreemptRequested()){
         if(as_->isNewGoalAvailable()){
@@ -788,6 +829,7 @@ namespace hunter_move_base {
       //check if execution of the goal has completed in some way
 
       ros::WallDuration t_diff = ros::WallTime::now() - start;
+      ROS_WARN("Oscar::Full control cycle time: %.9f\n", t_diff.toSec());
       ROS_DEBUG_NAMED("move_base","Full control cycle time: %.9f\n", t_diff.toSec());
 
       r.sleep();
@@ -932,6 +974,10 @@ namespace hunter_move_base {
         if(tc_->computeVelocityCommands(cmd_vel)){
           ROS_DEBUG_NAMED( "move_base", "Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
                            cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z );
+
+          ROS_WARN("Oscar::Teb_ the velocity is:%.3lf, %.3lf, %.3lf",
+                           cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
+
           last_valid_control_ = ros::Time::now();
           //make sure that we send the velocity command to the base
           vel_pub_.publish(cmd_vel);

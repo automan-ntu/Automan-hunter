@@ -377,6 +377,10 @@ boost/bind.hpp
 -
 boost/shared_ptr.hpp
 -
+boost/thread/mutex.hpp
+-
+mutex
+-
 
 /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/timed_elastic_band.h
 ros/ros.h

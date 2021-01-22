@@ -9,11 +9,11 @@
         <rosparam file="$(find hunter_navigation)/cfg/hunter_local_planner_params.yaml" command="load" />
 
         <param name="base_global_planner" value="global_planner/GlobalPlanner" />
-        <param name="planner_frequency" value="1.0" />
-        <param name="planner_patience" value="5.0" />
+        <param name="planner_frequency" value="5.0" />
+        <param name="planner_patience" value="10.0" />
 
         <param name="base_local_planner" value="hunter_local_planner/TebLocalPlannerROS" />
-        <param name="controller_frequency" value="5.0" />
+        <param name="controller_frequency" value="6.0" />
         <param name="controller_patience" value="15.0" />
 
         <param name="clearing_rotation_allowed" value="false" />

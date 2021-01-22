@@ -1055,7 +1055,7 @@ TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureCon
 //#line 35 "/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.global_plan_overwrite_orientation = 1;
 //#line 35 "/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      __default__.global_plan_overwrite_orientation = 1;
+      __default__.global_plan_overwrite_orientation = 0;
 //#line 35 "/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Trajectory.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("global_plan_overwrite_orientation", "bool", 0, "Some global planners are not considering the orientation at local subgoals between start and global goal, therefore determine it automatically", "", &TebLocalPlannerReconfigureConfig::global_plan_overwrite_orientation)));
 //#line 35 "/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
