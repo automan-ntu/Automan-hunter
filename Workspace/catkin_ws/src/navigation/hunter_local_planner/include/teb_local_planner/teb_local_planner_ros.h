@@ -224,7 +224,7 @@ public:
   static double getNumberFromXMLRPC(XmlRpc::XmlRpcValue& value, const std::string& full_param_name);
   
   //@}
-  
+
 protected:
 
   /**

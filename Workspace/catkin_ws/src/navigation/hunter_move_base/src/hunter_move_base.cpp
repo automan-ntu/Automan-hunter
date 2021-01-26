@@ -584,28 +584,116 @@ namespace hunter_move_base {
         {
 	  ROS_WARN("Oscar***We are here when no user goal."); 
           if (!planner_costmap_ros_)
-            {
-              ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
-              ros::Duration(1).sleep();
-              continue;
-            };
+          {
+            ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
+            ros::Duration(3).sleep();
+            continue;
+          };
 
-          ROS_WARN("Oscar::Planner_costmap_ros has been built.");
+          ROS_WARN("Oscar::Planner_costmap_ros and Teb planner are ready.");
 
-	  double time_interval = ros::Time::now().toSec() - start_time_.toSec();
-	  ROS_WARN("Oscar::The time of sleep is:%.9f", time_interval);
-          //geometry_msgs::PoseStamped current_robot_pose;
-          //planner_costmap_ros_->getRobotPose(current_robot_pose);
-          //robot_pose_ = PoseSE2(current_robot_pose.pose);
-          //ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+	  state_ = CONTROLLING;
 
-          //geometry_msgs::PoseStamped robot_velo_tf;
-          //odom_helper_.getRobotVel(robot_velo_tf);
-          //robot_velo_.linear.x = robot_velo_tf.pose.position.x;
-          //robot_velo_.linear.y = robot_velo_tf.pose.position.y;
-          //robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
+          geometry_msgs::PoseStamped current_robot_pose;
+          planner_costmap_ros_->getRobotPose(current_robot_pose);
+          robot_pose_ = PoseSE2(current_robot_pose.pose);
+          ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+
+          geometry_msgs::PoseStamped robot_velo_tf;
+          odom_helper_.getRobotVel(robot_velo_tf);
+          robot_velo_.linear.x = robot_velo_tf.pose.position.x;
+          robot_velo_.linear.y = robot_velo_tf.pose.position.y;
+          robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
           //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
-          //continue;
+
+          current_robot_pose.pose.position.x += 0.2;
+          planner_goal_ = current_robot_pose;
+          //geometry_msgs::PoseStamped goal = current_robot_pose;
+          //current_goal_pub_.publish(goal);
+
+          if(shutdown_costmaps_){
+            ROS_DEBUG_NAMED("move_base","Starting up costmaps that were shut down previously");
+            planner_costmap_ros_->start();
+            controller_costmap_ros_->start();
+          }
+
+          last_valid_control_ = ros::Time::now();
+          last_valid_plan_ = ros::Time::now();
+          last_oscillation_reset_ = ros::Time::now();
+          planning_retries_ = 0;
+
+          ros::Time start_time_ADAS = ros::Time::now();
+
+          geometry_msgs::PoseStamped temp_goal = planner_goal_;
+          ROS_WARN("Oscar::ADAS Start to Plan.");
+
+          //run planner
+          planner_plan_->clear();
+          bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
+
+          if(gotPlan){
+            ROS_WARN("Oscar::move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
+            //pointer swap the plans under mutex (the controller will pull from latest_plan_)
+            std::vector<geometry_msgs::PoseStamped>* temp_plan = planner_plan_;
+
+            planner_plan_ = latest_plan_;
+            latest_plan_ = temp_plan;
+            last_valid_plan_ = ros::Time::now();
+            planning_retries_ = 0;
+            new_global_plan_ = true;
+
+            ROS_WARN("Oscar::move_base_plan_thread","Generated a plan from the base_global_planner");
+          }
+          //if we didn't get a plan and we are in the planning state (the robot isn't moving)
+          else{
+            ROS_WARN("Oscar::move_base_plan_thread","No Plan...");
+            ros::Time attempt_end = last_valid_plan_ + ros::Duration(planner_patience_);
+
+            //check if we've tried to make a plan for over our time limit or our maximum number of retries
+            //issue #496: we stop planning when one of the conditions is true, but if max_planning_retries_
+            //is negative (the default), it is just ignored and we have the same behavior as ever
+            planning_retries_++;
+            if(ros::Time::now() > attempt_end || planning_retries_ > uint32_t(max_planning_retries_)){
+              //we'll move into our obstacle clearing mode
+              state_ = CLEARING;
+              publishZeroVelocity();
+              recovery_trigger_ = PLANNING_R;
+            }
+          }
+
+          //for timing that gives real time even in simulation
+          ros::WallTime start = ros::WallTime::now();
+
+          //the real work on pursuing a goal is done here
+          bool done = executeCycle();
+
+          if (done)
+            ROS_WARN("Oscar::Goal Reached, waiting for next Goal.");
+          else
+          {
+            ROS_WARN("Oscar::Moving toward the Goal.");
+          }
+        
+          //check if execution of the goal has completed in some way
+
+          ros::WallDuration t_diff = ros::WallTime::now() - start;
+          ROS_WARN("Oscar::move_base","Full control cycle time: %.9f\n", t_diff.toSec());
+
+          //setup sleep interface if needed
+          if(planner_frequency_ > 0){
+            ros::Duration sleep_time = (start_time_ADAS + ros::Duration(1.0/planner_frequency_)) - ros::Time::now();
+            if (sleep_time > ros::Duration(0.0)){
+              timer = n.createTimer(sleep_time, &MoveBase::wakePlanner, this);
+              planner_cond_.wait(lock);
+            }
+            else{
+              ros::Duration cycle_time = ros::Time::now() - start_time_ADAS;
+              ROS_WARN("Oscar::ADAS loop missed its desired rate of %.4fHz... the loop actually took %.4f seconds", planner_frequency_, cycle_time.toSec());
+            }
+          }
+
+          // Plan next cycle for Virtual Goal
+          continue;
         }
 
 	ROS_WARN("Oscar***User goal haven't reached."); 
@@ -1269,5 +1357,172 @@ namespace hunter_move_base {
     }
 
     return true;
+  }
+
+  bool MoveBase::executeCycle(){
+    boost::recursive_mutex::scoped_lock ecl(configuration_mutex_);
+    //we need to be able to publish velocity commands
+    geometry_msgs::Twist cmd_vel;
+
+    //update feedback to correspond to our curent position
+    geometry_msgs::PoseStamped global_pose;
+    getRobotPose(global_pose, planner_costmap_ros_);
+    const geometry_msgs::PoseStamped& current_position = global_pose;
+
+    //check to see if we've moved far enough to reset our oscillation timeout
+    if(distance(current_position, oscillation_pose_) >= oscillation_distance_)
+    {
+      last_oscillation_reset_ = ros::Time::now();
+      oscillation_pose_ = current_position;
+
+      //if our last recovery was caused by oscillation, we want to reset the recovery index
+      if(recovery_trigger_ == OSCILLATION_R)
+        recovery_index_ = 0;
+    }
+
+    //check that the observation buffers for the costmap are current, we don't want to drive blind
+    if(!controller_costmap_ros_->isCurrent()){
+      ROS_WARN("[%s]:Sensor data is out of date, we're not going to allow commanding of the base for safety",ros::this_node::getName().c_str());
+      publishZeroVelocity();
+      return false;
+    }
+
+    //if we have a new plan then grab it and give it to the controller
+    if(new_global_plan_){
+      //make sure to set the new plan flag to false
+      new_global_plan_ = false;
+
+      ROS_DEBUG_NAMED("move_base","Got a new plan...swap pointers");
+
+      //do a pointer swap under mutex
+      std::vector<geometry_msgs::PoseStamped>* temp_plan = controller_plan_;
+
+      controller_plan_ = latest_plan_;
+      latest_plan_ = temp_plan;
+
+      if(!tc_->setPlan(*controller_plan_)){
+        //ABORT and SHUTDOWN COSTMAPS
+        ROS_ERROR("Failed to pass global plan to the controller, aborting.");
+        resetState();
+        return true;
+      }
+
+      //make sure to reset recovery_index_ since we were able to find a valid plan
+      if(recovery_trigger_ == PLANNING_R)
+        recovery_index_ = 0;
+    }
+
+    //the move_base state machine, handles the control logic for navigation
+    switch(state_){
+      //if we're controlling, we'll attempt to find valid velocity commands
+      case CONTROLLING:
+        ROS_DEBUG_NAMED("move_base","In controlling state.");
+
+        //check to see if we've reached our goal
+        if(tc_->isGoalReached()){
+          ROS_DEBUG_NAMED("move_base","Goal reached!");
+          resetState();
+          return true;
+        }
+
+        //check for an oscillation condition
+        if(oscillation_timeout_ > 0.0 &&
+            last_oscillation_reset_ + ros::Duration(oscillation_timeout_) < ros::Time::now())
+        {
+          publishZeroVelocity();
+          state_ = CLEARING;
+          recovery_trigger_ = OSCILLATION_R;
+        }
+
+        {
+         boost::unique_lock<costmap_2d::Costmap2D::mutex_t> lock(*(controller_costmap_ros_->getCostmap()->getMutex()));
+
+        if(tc_->computeVelocityCommands(cmd_vel)){
+          ROS_WARN( "Oscar::move_base:Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
+                           cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z );
+          last_valid_control_ = ros::Time::now();
+          //make sure that we send the velocity command to the base
+          vel_pub_.publish(cmd_vel);
+          if(recovery_trigger_ == CONTROLLING_R)
+            recovery_index_ = 0;
+        }
+        else {
+          ROS_WARN("Oscar::move_base, The local planner could not find a valid plan.");
+          ros::Time attempt_end = last_valid_control_ + ros::Duration(planner_patience_);
+
+          //check if we've tried to find a valid control for longer than our time limit
+          if(ros::Time::now() > attempt_end){
+            //we'll move into our obstacle clearing mode
+            publishZeroVelocity();
+            state_ = CLEARING;
+            recovery_trigger_ = CONTROLLING_R;
+            ROS_WARN("Oscar::Turn to CLEARING mode.");
+          }
+          else{
+            //otherwise, if we can't find a valid control, we'll go back to planning
+            last_valid_plan_ = ros::Time::now();
+            planning_retries_ = 0;
+            publishZeroVelocity();
+            ROS_WARN("Oscar::Cannot find a valid control.");
+          }
+        }
+        }
+
+        break;
+
+      //we'll try to clear out space with any user-provided recovery behaviors
+      case CLEARING:
+        ROS_DEBUG_NAMED("move_base","In clearing/recovery state");
+        //we'll invoke whatever recovery behavior we're currently on if they're enabled
+        if(recovery_behavior_enabled_ && recovery_index_ < recovery_behaviors_.size()){
+          ROS_DEBUG_NAMED("move_base_recovery","Executing behavior %u of %zu", recovery_index_+1, recovery_behaviors_.size());
+
+          move_base_msgs::RecoveryStatus msg;
+          msg.pose_stamped = current_position;
+          msg.current_recovery_number = recovery_index_;
+          msg.total_number_of_recoveries = recovery_behaviors_.size();
+          msg.recovery_behavior_name =  recovery_behavior_names_[recovery_index_];
+
+          recovery_status_pub_.publish(msg);
+
+          recovery_behaviors_[recovery_index_]->runBehavior();
+
+          //we at least want to give the robot some time to stop oscillating after executing the behavior
+          last_oscillation_reset_ = ros::Time::now();
+
+          //we'll check if the recovery behavior actually worked
+          ROS_DEBUG_NAMED("move_base_recovery","Going back to planning state");
+          last_valid_plan_ = ros::Time::now();
+          planning_retries_ = 0;
+
+          //update the index of the next recovery behavior that we'll try
+          recovery_index_++;
+        }
+        else{
+          ROS_DEBUG_NAMED("move_base_recovery","All recovery behaviors have failed, locking the planner and disabling it.");
+
+          ROS_DEBUG_NAMED("move_base_recovery","Something should abort after this.");
+
+          if(recovery_trigger_ == CONTROLLING_R){
+            ROS_ERROR("Aborting because a valid control could not be found. Even after executing all recovery behaviors");
+          }
+          else if(recovery_trigger_ == PLANNING_R){
+            ROS_ERROR("Aborting because a valid plan could not be found. Even after executing all recovery behaviors");
+          }
+          else if(recovery_trigger_ == OSCILLATION_R){
+            ROS_ERROR("Aborting because the robot appears to be oscillating over and over. Even after executing all recovery behaviors");
+          }
+          resetState();
+          return true;
+        }
+        break;
+      default:
+        ROS_ERROR("This case should never be reached, something is wrong, aborting");
+        resetState();
+        return true;
+    }
+
+    //we aren't done yet
+    return false;
   }
 };

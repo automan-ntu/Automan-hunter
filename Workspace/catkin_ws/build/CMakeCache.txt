@@ -130,7 +130,7 @@ CATKIN_SKIP_TESTING:BOOL=OFF
 CATKIN_SYMLINK_INSTALL:BOOL=OFF
 
 //List of ';' separated packages to build
-CATKIN_WHITELIST_PACKAGES:STRING=hunter_local_planner
+CATKIN_WHITELIST_PACKAGES:STRING=hunter_move_base
 
 //Path to a file.
 CHOLMOD_INCLUDE_DIR:PATH=/usr/include/suitesparse
@@ -1502,7 +1502,7 @@ interactive_markers_DIR:PATH=/opt/ros/melodic/share/interactive_markers/cmake
 laser_geometry_DIR:PATH=/opt/ros/melodic/share/laser_geometry/cmake
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/melodic/lib/libmbf_utility.so
+lib:FILEPATH=/opt/ros/melodic/lib/librotate_recovery.so
 
 //Value Computed by CMake
 map_msgs_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/navigation_msgs/map_msgs

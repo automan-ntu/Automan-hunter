@@ -103,6 +103,7 @@ namespace hunter_move_base {
        */
       bool executeCycle(geometry_msgs::PoseStamped& goal);
 
+      bool executeCycle();
     private:
       /**
        * @brief  A service call that clears the costmaps of obstacles
