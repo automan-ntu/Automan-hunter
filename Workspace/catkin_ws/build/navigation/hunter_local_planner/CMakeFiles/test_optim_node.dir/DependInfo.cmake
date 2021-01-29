@@ -21,6 +21,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include"
   "/usr/include/suitesparse"
   "/opt/ros/melodic/include/g2o"
+  "/home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/opt/ros/melodic/share/orocos_kdl/cmake/../../../include"

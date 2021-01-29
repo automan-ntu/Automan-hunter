@@ -2089,6 +2089,7 @@ navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_loca
  /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/visualization.h
  /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/visualization.hpp
  /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/src/teb_local_planner_ros.cpp
+ /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
  /opt/ros/melodic/include/angles/angles.h
  /opt/ros/melodic/include/base_local_planner/costmap_model.h
  /opt/ros/melodic/include/base_local_planner/goal_functions.h
@@ -2203,7 +2204,6 @@ navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_loca
  /opt/ros/melodic/include/mbf_costmap_core/costmap_controller.h
  /opt/ros/melodic/include/mbf_msgs/ExePathResult.h
  /opt/ros/melodic/include/mbf_utility/types.h
- /opt/ros/melodic/include/nav_core/base_local_planner.h
  /opt/ros/melodic/include/nav_msgs/MapMetaData.h
  /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
  /opt/ros/melodic/include/nav_msgs/Odometry.h

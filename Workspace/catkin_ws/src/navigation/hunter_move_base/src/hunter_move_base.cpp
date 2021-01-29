@@ -585,29 +585,95 @@ namespace hunter_move_base {
 	  ROS_WARN("Oscar***We are here when no user goal."); 
           if (!planner_costmap_ros_)
           {
-            ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
+            //ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
             ros::Duration(3).sleep();
             continue;
           };
 
-          ROS_WARN("Oscar::Planner_costmap_ros and Teb planner are ready.");
+          //ROS_WARN("Oscar::Planner_costmap_ros and Teb planner are ready.");
 
 	  state_ = CONTROLLING;
 
           geometry_msgs::PoseStamped current_robot_pose;
           planner_costmap_ros_->getRobotPose(current_robot_pose);
           robot_pose_ = PoseSE2(current_robot_pose.pose);
-          ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+          ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.y(), robot_pose_.theta());
 
           geometry_msgs::PoseStamped robot_velo_tf;
           odom_helper_.getRobotVel(robot_velo_tf);
+          // to avoid the sensor error
+	  if ((robot_velo_tf.pose.position.x < 0) && (robot_velo_.linear.x > 0))
+	  {
+	    robot_velo_tf.pose.position.x = 0;
+	    ROS_WARN("Oscar::The direction has been changed.");
+	  }
           robot_velo_.linear.x = robot_velo_tf.pose.position.x;
           robot_velo_.linear.y = robot_velo_tf.pose.position.y;
           robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
-          //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
+          ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
 
-          current_robot_pose.pose.position.x += 0.2;
-          planner_goal_ = current_robot_pose;
+          geometry_msgs::PoseStamped temp_goal_pose = current_robot_pose;
+	  geometry_msgs::PoseStamped predicted_goal_pose;
+          std::vector<geometry_msgs::PoseStamped> pose_list;
+
+          bool assistant_driving = false;
+	  int  time_interval = 2 * planner_frequency_;
+
+          // predict 2 seconds ahead
+          for (int i = 0; i < time_interval; ++i)
+          {
+            temp_goal_pose = ComputeNewPosition(temp_goal_pose, robot_velo_tf, 1/planner_frequency_);
+            pose_list.push_back(temp_goal_pose);
+          }
+
+          for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
+          {
+              double px = (*it).pose.position.x;
+              double py = (*it).pose.position.y;
+              //ROS_WARN("Oscar::Px and Py is:%f, %f", px, py);
+              unsigned int cell_x, cell_y;
+
+              if (!planner_costmap_ros_->getCostmap()->worldToMap(px, py, cell_x, cell_y)) {
+                //we're off the map
+                ROS_WARN("Oscar::Off Map %f, %f", px, py);
+                continue;
+              }
+
+              float cell_cost = planner_costmap_ros_->getCostmap()->getCost(cell_x, cell_y);
+	      ROS_WARN("Oscar::The cell cost is:%f", cell_cost);
+              if (cell_cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE)
+              {
+                ROS_WARN("Oscar::the goal is not valid, need driving assistance.");
+		if (it != pose_list.begin())
+		{
+		  advance(it, -1);
+                  predicted_goal_pose = *(it);
+		  ROS_WARN("Oscar::Select previous point as virtual goal.");
+                }
+		else
+		{
+		  predicted_goal_pose = current_robot_pose;
+		  ROS_WARN("Oscar::Select current point as virtual goal.");
+		}		
+		assistant_driving = true;
+                break;
+              }
+          }
+
+          if (!assistant_driving)
+          {
+            ROS_WARN("Oscar::Driver is doing good, well play.");
+            planner_goal_ = pose_list.back();
+            //continue;
+          }
+	  else
+	  {
+	    planner_goal_ = predicted_goal_pose;
+	  }
+
+          //current_robot_pose.pose.position.x += 0.2;
+	  //planner_goal_ = pose_list.back();
+          //planner_goal_ = predicted_goal_pose;
           //geometry_msgs::PoseStamped goal = current_robot_pose;
           //current_goal_pub_.publish(goal);
 
@@ -677,7 +743,7 @@ namespace hunter_move_base {
           //check if execution of the goal has completed in some way
 
           ros::WallDuration t_diff = ros::WallTime::now() - start;
-          ROS_WARN("Oscar::move_base","Full control cycle time: %.9f\n", t_diff.toSec());
+          ROS_WARN("Oscar::move_base, Full control cycle time: %.9f\n", t_diff.toSec());
 
           //setup sleep interface if needed
           if(planner_frequency_ > 0){
@@ -1399,7 +1465,7 @@ namespace hunter_move_base {
 
       controller_plan_ = latest_plan_;
       latest_plan_ = temp_plan;
-
+    
       if(!tc_->setPlan(*controller_plan_)){
         //ABORT and SHUTDOWN COSTMAPS
         ROS_ERROR("Failed to pass global plan to the controller, aborting.");
@@ -1441,6 +1507,8 @@ namespace hunter_move_base {
           ROS_WARN( "Oscar::move_base:Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
                            cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z );
           last_valid_control_ = ros::Time::now();
+	  tc_->SetGoalNotReached();
+	  ROS_WARN("Oscar::Set the goal_reached_ flag back, this should be never true within virtual plan.");
           //make sure that we send the velocity command to the base
           vel_pub_.publish(cmd_vel);
           if(recovery_trigger_ == CONTROLLING_R)
@@ -1524,5 +1592,28 @@ namespace hunter_move_base {
 
     //we aren't done yet
     return false;
+  }
+
+  geometry_msgs::PoseStamped MoveBase::ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::PoseStamped& vel, double dt)
+  {
+    geometry_msgs::PoseStamped new_pos;
+    std::string global_frame = planner_costmap_ros_->getGlobalFrameID();
+    new_pos.header.stamp = ros::Time();
+    new_pos.header.frame_id = global_frame;
+
+    double pos_x = pos.pose.position.x;
+    double pos_y = pos.pose.position.y;
+    double pos_theta = tf2::getYaw(pos.pose.orientation);
+    double vel_x = vel.pose.position.x;
+    double vel_y = vel.pose.position.y;
+    double vel_theta = tf2::getYaw(vel.pose.orientation);
+
+    new_pos.pose.position.x = pos_x + (vel_x * cos(pos_theta) + vel_y * cos(M_PI_2 + pos_theta)) * dt;
+    new_pos.pose.position.y = pos_y + (vel_x * sin(pos_theta) + vel_y * sin(M_PI_2 + pos_theta)) * dt;
+    new_pos.pose.orientation = tf::createQuaternionMsgFromYaw(pos_theta + vel_theta * dt);
+
+    ROS_WARN("Oscar::The new predicted robot pose is:%f,%f,%f,%f", new_pos.pose.position.x, new_pos.pose.position.y, pos_theta + vel_theta * dt,tf2::getYaw(new_pos.pose.orientation));
+
+    return new_pos;
   }
 };

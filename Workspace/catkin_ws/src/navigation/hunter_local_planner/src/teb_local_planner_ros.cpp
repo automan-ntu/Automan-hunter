@@ -1190,6 +1190,12 @@ double TebLocalPlannerROS::getNumberFromXMLRPC(XmlRpc::XmlRpcValue& value, const
    }
    return value.getType() == XmlRpc::XmlRpcValue::TypeInt ? (int)(value) : (double)(value);
 }
+
+void TebLocalPlannerROS::SetGoalNotReached()
+{
+  goal_reached_ = false;
+}
+
 } // end namespace hunter_local_planner
 
 

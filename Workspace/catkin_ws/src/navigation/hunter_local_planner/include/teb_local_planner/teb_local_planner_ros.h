@@ -225,6 +225,7 @@ public:
   
   //@}
 
+  void SetGoalNotReached();
 protected:
 
   /**

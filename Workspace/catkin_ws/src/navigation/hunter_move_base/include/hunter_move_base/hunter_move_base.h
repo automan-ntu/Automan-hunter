@@ -102,8 +102,21 @@ namespace hunter_move_base {
        * @return True if processing of the goal is done, false otherwise
        */
       bool executeCycle(geometry_msgs::PoseStamped& goal);
-
+      
+      /**
+       * @brief  Performs a plan cycle of ADAS
+       * @return True if processing of the goal is done, false otherwise
+       */      
       bool executeCycle();
+
+      /**
+       * @brief  Computes a new position
+       * @param  pos  Start position
+       * @param  vel  Current velocity
+       * @param  dt   Time interval 
+       * @return New Pose
+       */
+      geometry_msgs::PoseStamped ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::PoseStamped& vel, double dt);
     private:
       /**
        * @brief  A service call that clears the costmaps of obstacles

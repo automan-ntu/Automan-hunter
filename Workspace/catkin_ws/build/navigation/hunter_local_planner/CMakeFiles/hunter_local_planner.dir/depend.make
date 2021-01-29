@@ -2088,6 +2088,7 @@ navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_loca
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/visualization.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/include/teb_local_planner/visualization.hpp
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/hunter_local_planner/src/teb_local_planner_ros.cpp
+navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/angles/angles.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/base_local_planner/costmap_model.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/base_local_planner/goal_functions.h
@@ -2202,7 +2203,6 @@ navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_loca
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/mbf_costmap_core/costmap_controller.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/mbf_msgs/ExePathResult.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/mbf_utility/types.h
-navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/nav_core/base_local_planner.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/nav_msgs/MapMetaData.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
 navigation/hunter_local_planner/CMakeFiles/hunter_local_planner.dir/src/teb_local_planner_ros.cpp.o: /opt/ros/melodic/include/nav_msgs/Odometry.h

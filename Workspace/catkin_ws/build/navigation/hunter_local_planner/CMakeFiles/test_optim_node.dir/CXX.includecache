@@ -464,6 +464,16 @@ boost/shared_ptr.hpp
 boost/make_shared.hpp
 -
 
+/home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
+geometry_msgs/PoseStamped.h
+-
+geometry_msgs/Twist.h
+-
+costmap_2d/costmap_2d_ros.h
+-
+tf2_ros/buffer.h
+-
+
 /opt/ros/melodic/include/angles/angles.h
 algorithm
 -
@@ -1990,16 +2000,6 @@ boost/shared_ptr.hpp
 tf2_ros/buffer.h
 -
 tf/transform_listener.h
--
-
-/opt/ros/melodic/include/nav_core/base_local_planner.h
-geometry_msgs/PoseStamped.h
--
-geometry_msgs/Twist.h
--
-costmap_2d/costmap_2d_ros.h
--
-tf2_ros/buffer.h
 -
 
 /opt/ros/melodic/include/nav_msgs/MapMetaData.h

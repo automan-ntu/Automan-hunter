@@ -1557,8 +1557,14 @@ move_base_msgs_DIR:PATH=/home/hunter/Workspace/catkin_ws/devel/share/move_base_m
 //Value Computed by CMake
 move_base_msgs_SOURCE_DIR:STATIC=/home/hunter/Workspace/catkin_ws/src/navigation/navigation_msgs/move_base_msgs
 
+//Value Computed by CMake
+nav_core_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/nav_core
+
 //The directory containing a CMake configuration file for nav_core.
-nav_core_DIR:PATH=/opt/ros/melodic/share/nav_core/cmake
+nav_core_DIR:PATH=/home/hunter/Workspace/catkin_ws/devel/share/nav_core/cmake
+
+//Value Computed by CMake
+nav_core_SOURCE_DIR:STATIC=/home/hunter/Workspace/catkin_ws/src/navigation/nav_core
 
 //The directory containing a CMake configuration file for nav_msgs.
 nav_msgs_DIR:PATH=/opt/ros/melodic/share/nav_msgs/cmake
