@@ -35,6 +35,7 @@
 * Author: Eitan Marder-Eppstein
 *         Mike Phillips (put the planner in its own thread)
 *********************************************************************/
+#include <angles/angles.h>
 #include <hunter_move_base/hunter_move_base.h>
 #include <move_base_msgs/RecoveryStatus.h>
 #include <cmath>
@@ -58,9 +59,14 @@ namespace hunter_move_base {
     recovery_loader_("nav_core", "nav_core::RecoveryBehavior"),
     planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
     runPlanner_(false), user_goal_reached_(true),setup_(false), p_freq_change_(false), c_freq_change_(false),
-    new_global_plan_(false) {
+    new_global_plan_(false), adas_trigger_(false), prev_plan_flag_(false), step_size_(50), predict_time_(4.0),
+    target_margin_(80), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0){
 
+    /* we dont want the hunter drive automatically
     as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
+    */
+
+    as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
 
     ros::NodeHandle private_nh("~");
     ros::NodeHandle nh;
@@ -97,8 +103,10 @@ namespace hunter_move_base {
     odom_helper_.setOdomTopic("odom");
 
     //for commanding the base
+    vel_to_sim_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel_adas", 1);
     vel_pub_ = nh.advertise<geometry_msgs::Twist>("cmd_vel", 1);
     current_goal_pub_ = private_nh.advertise<geometry_msgs::PoseStamped>("current_goal", 0 );
+    global_goal_pub_ = private_nh.advertise<geometry_msgs::PoseStamped>("global_goal", 0);
 
     ros::NodeHandle action_nh("move_base");
     action_goal_pub_ = action_nh.advertise<move_base_msgs::MoveBaseActionGoal>("goal", 1);
@@ -110,6 +118,10 @@ namespace hunter_move_base {
     ros::NodeHandle simple_nh("move_base_simple");
     goal_sub_ = simple_nh.subscribe<geometry_msgs::PoseStamped>("goal", 1, boost::bind(&MoveBase::goalCB, this, _1));
 
+    //ros::NodeHandle adas_trigger_nh("adas_trigger");
+    //cmd_vel_driver_sub_ = nh.subscribe<sensor_msgs::Joy>("joy", 1, boost::bind(&MoveBase::triggerCB, this, _1));
+    cmd_vel_driver_sub_ = nh.subscribe<geometry_msgs::Twist>("cmd_vel_driver", 1, boost::bind(&MoveBase::triggerCB, this, _1));
+    
     //we'll assume the radius of the robot to be consistent with what's specified for the costmaps
     private_nh.param("local_costmap/inscribed_radius", inscribed_radius_, 0.325);
     private_nh.param("local_costmap/circumscribed_radius", circumscribed_radius_, 0.46);
@@ -181,6 +193,8 @@ namespace hunter_move_base {
     dsrv_ = new dynamic_reconfigure::Server<hunter_move_base::MoveBaseConfig>(ros::NodeHandle("~"));
     dynamic_reconfigure::Server<hunter_move_base::MoveBaseConfig>::CallbackType cb = boost::bind(&MoveBase::reconfigureCB, this, _1, _2);
     dsrv_->setCallback(cb);
+
+    costmap_model_ = std::make_shared<base_local_planner::CostmapModel>(*planner_costmap_ros_->getCostmap());
   }
 
   void MoveBase::reconfigureCB(hunter_move_base::MoveBaseConfig &config, uint32_t level){
@@ -283,6 +297,27 @@ namespace hunter_move_base {
     action_goal.goal.target_pose = *goal;
 
     action_goal_pub_.publish(action_goal);
+  }
+
+  void MoveBase::triggerCB(const geometry_msgs::Twist::ConstPtr& twist_ptr)
+  {
+    if (twist_ptr == NULL ||
+        (std::fabs(twist_ptr->linear.x) < DBL_EPSILON &&
+         std::fabs(twist_ptr->angular.z) < DBL_EPSILON) ||
+        twist_ptr->linear.x < DBL_EPSILON)
+    {
+      //ROS_WARN("Oscar::The joy singal is: %f, %f", twist_ptr->linear.x, twist_ptr->angular.z);
+      adas_trigger_ = false;
+    }
+    else
+    {
+      //ROS_WARN("Oscar::THE joy singal is: %f, %f", twist_ptr->linear.x, twist_ptr->angular.z);
+      adas_trigger_ = true;
+    }
+
+    driver_cmd_.linear.x  = twist_ptr->linear.x;
+    driver_cmd_.linear.y  = twist_ptr->linear.y; 
+    driver_cmd_.angular.z = twist_ptr->angular.z;
   }
 
   void MoveBase::clearCostmapWindows(double size_x, double size_y){
@@ -513,6 +548,24 @@ namespace hunter_move_base {
     vel_pub_.publish(cmd_vel);
   }
 
+  void  MoveBase::publishDefaultVelocityToSimulator()
+  {
+    geometry_msgs::Twist cmd_vel;
+    cmd_vel.linear.x = 999.0;
+    cmd_vel.linear.y = 999.0;
+    cmd_vel.angular.z = 999.0;
+    vel_to_sim_pub_.publish(cmd_vel);
+  }
+
+  void  MoveBase::publishZeroVelocityToSimulator()
+  {
+    geometry_msgs::Twist cmd_vel;
+    cmd_vel.linear.x = 0.0;
+    cmd_vel.linear.y = 0.0;
+    cmd_vel.angular.z = 0.0;
+    vel_to_sim_pub_.publish(cmd_vel);
+  }
+
   bool MoveBase::isQuaternionValid(const geometry_msgs::Quaternion& q){
     //first we need to check if the quaternion has nan's or infs
     if(!std::isfinite(q.x) || !std::isfinite(q.y) || !std::isfinite(q.z) || !std::isfinite(q.w)){
@@ -576,21 +629,33 @@ namespace hunter_move_base {
     ros::Timer timer;
     bool wait_for_wake = false;
     boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
+    ROS_WARN("Oscar::Start Move Base.");
     while(n.ok()){
       //check if we should run the planner (the mutex is locked)
       while(wait_for_wake || !runPlanner_){
         ros::Time start_time_ = ros::Time::now();
 	if (user_goal_reached_)
         {
-	  ROS_WARN("Oscar***We are here when no user goal."); 
-          if (!planner_costmap_ros_)
+	  //ROS_WARN("Oscar***We are here when no user goal."); 
+          if (!planner_costmap_ros_ || !costmap_model_)
           {
             //ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
             ros::Duration(3).sleep();
             continue;
           };
 
-          //ROS_WARN("Oscar::Planner_costmap_ros and Teb planner are ready.");
+          ros::Time start_time_ADAS = ros::Time::now();
+
+	  if (!adas_trigger_)
+	  {
+	    ROS_WARN("Oscar::Waiting for Human Driver.");
+            publishDefaultVelocityToSimulator();
+            if(planner_frequency_ > 0)
+   	    {
+	    	sleepPlanner(n, timer, start_time_ADAS, lock);
+            }
+	    continue;
+	  }
 
 	  state_ = CONTROLLING;
 
@@ -601,28 +666,30 @@ namespace hunter_move_base {
 
           geometry_msgs::PoseStamped robot_velo_tf;
           odom_helper_.getRobotVel(robot_velo_tf);
+
           // to avoid the sensor error
-	  if ((robot_velo_tf.pose.position.x < 0) && (robot_velo_.linear.x > 0))
+	  /*if ((robot_velo_tf.pose.position.x < 0) && (robot_velo_.linear.x > 0))
 	  {
 	    robot_velo_tf.pose.position.x = 0;
 	    ROS_WARN("Oscar::The direction has been changed.");
-	  }
+	  }*/
+
           robot_velo_.linear.x = robot_velo_tf.pose.position.x;
           robot_velo_.linear.y = robot_velo_tf.pose.position.y;
           robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
-          ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
+          ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", driver_cmd_.linear.x, driver_cmd_.linear.y, driver_cmd_.angular.z);
 
           geometry_msgs::PoseStamped temp_goal_pose = current_robot_pose;
 	  geometry_msgs::PoseStamped predicted_goal_pose;
           std::vector<geometry_msgs::PoseStamped> pose_list;
 
           bool assistant_driving = false;
-	  int  time_interval = 2 * planner_frequency_;
+	  int  time_interval = step_size_ * predict_time_;
 
           // predict 2 seconds ahead
           for (int i = 0; i < time_interval; ++i)
           {
-            temp_goal_pose = ComputeNewPosition(temp_goal_pose, robot_velo_tf, 1/planner_frequency_);
+            temp_goal_pose = ComputeNewPosition(temp_goal_pose, driver_cmd_, 1.0/step_size_);
             pose_list.push_back(temp_goal_pose);
           }
 
@@ -630,52 +697,141 @@ namespace hunter_move_base {
           {
               double px = (*it).pose.position.x;
               double py = (*it).pose.position.y;
-              //ROS_WARN("Oscar::Px and Py is:%f, %f", px, py);
-              unsigned int cell_x, cell_y;
-
-              if (!planner_costmap_ros_->getCostmap()->worldToMap(px, py, cell_x, cell_y)) {
-                //we're off the map
-                ROS_WARN("Oscar::Off Map %f, %f", px, py);
-                continue;
+	      double theta = angles::normalize_angle(tf2::getYaw((*it).pose.orientation));
+	      double central_cost = -255.0;
+	      double footprint_cost = 255.0;
+	      if (px == robot_pose_.x() && py == robot_pose_.y())
+              {
+	        ROS_WARN("Oscar::there is no velocity at all, skip the prediction.");
+	        break;
               }
 
-              float cell_cost = planner_costmap_ros_->getCostmap()->getCost(cell_x, cell_y);
-	      ROS_WARN("Oscar::The cell cost is:%f", cell_cost);
-              if (cell_cost >= costmap_2d::INSCRIBED_INFLATED_OBSTACLE)
-              {
-                ROS_WARN("Oscar::the goal is not valid, need driving assistance.");
-		if (it != pose_list.begin())
+	      std::vector<geometry_msgs::Point> footprint = planner_costmap_ros_->getRobotFootprint();
+	      if (footprint.size() < 3)
+	      {
+                unsigned int cell_x, cell_y;
+                if (!planner_costmap_ros_->getCostmap()->worldToMap(px, py, cell_x, cell_y))
 		{
-		  advance(it, -1);
-                  predicted_goal_pose = *(it);
-		  ROS_WARN("Oscar::Select previous point as virtual goal.");
+                  //we're off the map
+                  ROS_WARN("Oscar::Off Map %f, %f", px, py);
+                  central_cost = costmap_2d::NO_INFORMATION;
+		  //continue;
                 }
+		central_cost = planner_costmap_ros_->getCostmap()->getCost(cell_x, cell_y);		
+	      }
+	      else
+	      {
+        	/*double cos_th = cos(theta);
+        	double sin_th = sin(theta);
+        	std::vector<geometry_msgs::Point> oriented_footprint;
+        	for(unsigned int i = 0; i < footprint.size(); ++i){
+          	  geometry_msgs::Point new_pt;
+          	  new_pt.x = px + (footprint[i].x * cos_th - footprint[i].y * sin_th);
+          	  new_pt.y = py + (footprint[i].x * sin_th + footprint[i].y * cos_th);
+          	  oriented_footprint.push_back(new_pt);
+        	}
+
+        	geometry_msgs::Point robot_position;
+        	robot_position.x = px;
+        	robot_position.y = py;
+
+  		double robot_inscribed_radius = 0.0; 
+  		double robot_circumscribed_radius = 0.0;
+   		costmap_2d::calculateMinAndMaxDistances(footprint, robot_inscribed_radius, robot_circumscribed_radius);*/
+		footprint_cost = costmap_model_->footprintCost(px, py, theta, footprint);				
+	      }
+
+	      double critical_cost = 1.0;//1.0 * costmap_2d::INSCRIBED_INFLATED_OBSTACLE;
+
+              //ROS_WARN("Oscar::The new predicted robot pose is: %f, %f", px, py);
+              //ROS_WARN("Oscar::The cell cost and critical cost is:  %f, %f", cell_cost, critical_cost);
+
+	      if (robot_velo_.linear.x > 1.0)
+	      {
+	        double delta_dist = LinearInterpolation(robot_velo_.linear.x);
+                critical_cost = ComputeCost(delta_dist);
+	      }
+
+	      bool plan_flag = false;
+              if (central_cost >= critical_cost || footprint_cost < 0.0)
+              {
+                //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
+                //ROS_WARN("Oscar::Px and Py is:%f, %f", px, py);
+	        //ROS_WARN("Oscar:::::::The cell cost and critical cost is:%f, %f", cell_cost, critical_cost);
+                //ROS_WARN("Oscar::the goal is not valid, need driving assistance.");
+		prev_plan_flag_ = true;
+		plan_flag = true;
+              }
+	      else if (it == pose_list.end() - 1)
+	      {
+		if (prev_plan_flag_ )
+		{
+		  plan_flag = true;
+		}
 		else
 		{
-		  predicted_goal_pose = current_robot_pose;
-		  ROS_WARN("Oscar::Select current point as virtual goal.");
-		}		
-		assistant_driving = true;
+		  plan_flag = false;
+		}
+		prev_plan_flag_ = false;
+	      }
+
+	      if (plan_flag)
+	      {
+		ROS_WARN("Oscar::candidate goal and previous target pose is:%f,%f", it->pose.position.x, prev_goal_pose_.pose.position.x);
+	        if (it - pose_list.begin() > target_margin_)//if (it != pose_list.begin())
+	        {
+		  if (prev_plan_flag_)
+		  {
+		    if (UpdateGoalPose(*it))
+		    {
+	              advance(it, -target_margin_);
+                      predicted_goal_pose = *(it);
+		      ROS_WARN("Oscar::Select semi-last point as virtual goal.");
+	            }
+		    else
+		    {
+		      predicted_goal_pose = prev_goal_pose_;
+		      ROS_WARN("Oscar::Select PREVIOUS point as virtual goal.");
+		    }
+		  }
+		  else
+		  {
+		    predicted_goal_pose = prev_goal_pose_;
+		    ROS_WARN("Oscar::Select previous point as virtual goal.");
+		  }
+                }
+	        else
+	        {
+	          predicted_goal_pose = current_robot_pose;
+	          ROS_WARN("Oscar::Select current point as virtual goal.");
+	        }
+		prev_goal_pose_ = predicted_goal_pose;		        
+		//ROS_WARN("Oscar::predicted goal pose is:%f,%f", predicted_goal_pose.pose.position.x, predicted_goal_pose.pose.position.y);
+	        assistant_driving = true;
                 break;
-              }
+	      }
           }
 
           if (!assistant_driving)
           {
-            ROS_WARN("Oscar::Driver is doing good, well play.");
-            planner_goal_ = pose_list.back();
-            //continue;
+            ROS_WARN("Oscar::Driver is doing good, well play, the final pose is:%f,%f", pose_list.back().pose.position.x, pose_list.back().pose.position.y);
+            publishDefaultVelocityToSimulator();
+            //adas_trigger_ = false;
+                      
+            if(planner_frequency_ > 0)
+   	    {
+	      sleepPlanner(n, timer, start_time_ADAS, lock);
+            }
+
+            continue;
           }
 	  else
 	  {
+	    ROS_WARN("Oscar::predicted goal pose is:%f,%f", predicted_goal_pose.pose.position.x, predicted_goal_pose.pose.position.y);
 	    planner_goal_ = predicted_goal_pose;
 	  }
 
-          //current_robot_pose.pose.position.x += 0.2;
-	  //planner_goal_ = pose_list.back();
-          //planner_goal_ = predicted_goal_pose;
-          //geometry_msgs::PoseStamped goal = current_robot_pose;
-          //current_goal_pub_.publish(goal);
+          ROS_WARN("Oscar::Start Plan.");
 
           if(shutdown_costmaps_){
             ROS_DEBUG_NAMED("move_base","Starting up costmaps that were shut down previously");
@@ -688,17 +844,15 @@ namespace hunter_move_base {
           last_oscillation_reset_ = ros::Time::now();
           planning_retries_ = 0;
 
-          ros::Time start_time_ADAS = ros::Time::now();
-
           geometry_msgs::PoseStamped temp_goal = planner_goal_;
-          ROS_WARN("Oscar::ADAS Start to Plan.");
+          //ROS_WARN("Oscar::ADAS Start to Plan.");
 
           //run planner
           planner_plan_->clear();
           bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
 
           if(gotPlan){
-            ROS_WARN("Oscar::move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
+            //ROS_WARN("Oscar::move_base_plan_thread, Got Plan with %zu points!", planner_plan_->size());
             //pointer swap the plans under mutex (the controller will pull from latest_plan_)
             std::vector<geometry_msgs::PoseStamped>* temp_plan = planner_plan_;
 
@@ -708,11 +862,11 @@ namespace hunter_move_base {
             planning_retries_ = 0;
             new_global_plan_ = true;
 
-            ROS_WARN("Oscar::move_base_plan_thread","Generated a plan from the base_global_planner");
+            //ROS_WARN("Oscar::move_base_plan_thread, Generated a plan from the base_global_planner");
           }
           //if we didn't get a plan and we are in the planning state (the robot isn't moving)
           else{
-            ROS_WARN("Oscar::move_base_plan_thread","No Plan...");
+            ROS_WARN("Oscar::move_base_plan_thread, No Plan...");
             ros::Time attempt_end = last_valid_plan_ + ros::Duration(planner_patience_);
 
             //check if we've tried to make a plan for over our time limit or our maximum number of retries
@@ -722,7 +876,7 @@ namespace hunter_move_base {
             if(ros::Time::now() > attempt_end || planning_retries_ > uint32_t(max_planning_retries_)){
               //we'll move into our obstacle clearing mode
               state_ = CLEARING;
-              publishZeroVelocity();
+              publishZeroVelocityToSimulator();
               recovery_trigger_ = PLANNING_R;
             }
           }
@@ -733,12 +887,12 @@ namespace hunter_move_base {
           //the real work on pursuing a goal is done here
           bool done = executeCycle();
 
-          if (done)
-            ROS_WARN("Oscar::Goal Reached, waiting for next Goal.");
-          else
-          {
-            ROS_WARN("Oscar::Moving toward the Goal.");
-          }
+          //if (done)
+          //  ROS_WARN("Oscar::Goal Reached, waiting for next Goal.");
+          //else
+          //{
+          //  ROS_WARN("Oscar::Moving toward the Goal.");
+          //}
         
           //check if execution of the goal has completed in some way
 
@@ -746,19 +900,13 @@ namespace hunter_move_base {
           ROS_WARN("Oscar::move_base, Full control cycle time: %.9f\n", t_diff.toSec());
 
           //setup sleep interface if needed
-          if(planner_frequency_ > 0){
-            ros::Duration sleep_time = (start_time_ADAS + ros::Duration(1.0/planner_frequency_)) - ros::Time::now();
-            if (sleep_time > ros::Duration(0.0)){
-              timer = n.createTimer(sleep_time, &MoveBase::wakePlanner, this);
-              planner_cond_.wait(lock);
-            }
-            else{
-              ros::Duration cycle_time = ros::Time::now() - start_time_ADAS;
-              ROS_WARN("Oscar::ADAS loop missed its desired rate of %.4fHz... the loop actually took %.4f seconds", planner_frequency_, cycle_time.toSec());
-            }
+          if(planner_frequency_ > 0)
+	  {
+	     sleepPlanner(n, timer, start_time_ADAS, lock);
           }
 
           // Plan next cycle for Virtual Goal
+          //adas_trigger_ = false;
           continue;
         }
 
@@ -782,17 +930,17 @@ namespace hunter_move_base {
       bool makePlann = makePlan(temp_goal, *planner_plan_);
       bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
 
-      geometry_msgs::PoseStamped current_robot_pose;
-      planner_costmap_ros_->getRobotPose(current_robot_pose);
-      robot_pose_ = PoseSE2(current_robot_pose.pose);
-      ROS_WARN("Oscar::Teb robot pose is:%.3lf,%.3lf,%.3lf", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+      //geometry_msgs::PoseStamped current_robot_pose;
+      //planner_costmap_ros_->getRobotPose(current_robot_pose);
+      //robot_pose_ = PoseSE2(current_robot_pose.pose);
+      //ROS_WARN("Oscar::Teb robot pose is:%.3lf,%.3lf,%.3lf", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
 
-      geometry_msgs::PoseStamped robot_velo_tf;
-      odom_helper_.getRobotVel(robot_velo_tf);
-      robot_velo_.linear.x = robot_velo_tf.pose.position.x;
-      robot_velo_.linear.y = robot_velo_tf.pose.position.y;
-      robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
-      ROS_WARN("Oscar::Teb velo is:%.3lf,%.3lf,%.3lf", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
+      //geometry_msgs::PoseStamped robot_velo_tf;
+      //odom_helper_.getRobotVel(robot_velo_tf);
+      //robot_velo_.linear.x = robot_velo_tf.pose.position.x;
+      //robot_velo_.linear.y = robot_velo_tf.pose.position.y;
+      //robot_velo_.angular.z = tf2::getYaw(robot_velo_tf.pose.orientation);
+      //ROS_WARN("Oscar::Teb velo is:%.3lf,%.3lf,%.3lf", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
 
       if(gotPlan){
         ROS_DEBUG_NAMED("move_base_plan_thread","Got Plan with %zu points!", planner_plan_->size());
@@ -840,17 +988,30 @@ namespace hunter_move_base {
       lock.lock();
 
       //setup sleep interface if needed
-      if(planner_frequency_ > 0){
+      if(planner_frequency_ > 0)
+      {
 	double time_interval = ros::Time::now().toSec() - start_time.toSec();
 	ROS_WARN("Oscar::The time of planthread is:%.9f", time_interval);
         ros::Duration sleep_time = (start_time + ros::Duration(1.0/planner_frequency_)) - ros::Time::now();
-	ROS_WARN("OScar::The planner frequency and sleep_time is:, %.3lf, %.9f", planner_frequency_, sleep_time.toSec());
+	//ROS_WARN("OScar::The planner frequency and sleep_time is:, %.3lf, %.9f", planner_frequency_, sleep_time.toSec());
         if (sleep_time > ros::Duration(0.0)){
           wait_for_wake = true;
           timer = n.createTimer(sleep_time, &MoveBase::wakePlanner, this);
         }
       }
     }
+  }
+
+  void MoveBase::SetGoalPoint(const move_base_msgs::MoveBaseGoalConstPtr& move_base_goal)
+  {
+    if(!isQuaternionValid(move_base_goal->target_pose.pose.orientation)){
+      as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on goal because it was sent with an invalid quaternion");
+      return;
+    }
+
+    global_goal_ = goalToGlobalFrame(move_base_goal->target_pose);
+    global_goal_pub_.publish(global_goal_);
+    as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Set Global Goal.");
   }
 
   void MoveBase::executeCb(const move_base_msgs::MoveBaseGoalConstPtr& move_base_goal)
@@ -896,7 +1057,7 @@ namespace hunter_move_base {
         c_freq_change_ = false;
       }
 
-      ROS_WARN("Oscar::Control frequency is : %.9f", controller_frequency_);
+      //ROS_WARN("Oscar::Control frequency is : %.9f", controller_frequency_);
 
       if(as_->isPreemptRequested()){
         if(as_->isNewGoalAvailable()){
@@ -1383,6 +1544,21 @@ namespace hunter_move_base {
     }
   }
 
+  void MoveBase::resetStateOfADAS()
+  {
+    state_ = CONTROLLING;
+    recovery_index_ = 0;
+    recovery_trigger_ = PLANNING_R;
+    publishZeroVelocityToSimulator();
+
+    //if we shutdown our costmaps when we're deactivated... we'll do that now
+    if(shutdown_costmaps_){
+      ROS_DEBUG_NAMED("move_base","Stopping costmaps");
+      planner_costmap_ros_->stop();
+      controller_costmap_ros_->stop();
+    }
+}
+
   bool MoveBase::getRobotPose(geometry_msgs::PoseStamped& global_pose, costmap_2d::Costmap2DROS* costmap)
   {
     tf2::toMsg(tf2::Transform::getIdentity(), global_pose.pose);
@@ -1449,7 +1625,7 @@ namespace hunter_move_base {
     //check that the observation buffers for the costmap are current, we don't want to drive blind
     if(!controller_costmap_ros_->isCurrent()){
       ROS_WARN("[%s]:Sensor data is out of date, we're not going to allow commanding of the base for safety",ros::this_node::getName().c_str());
-      publishZeroVelocity();
+      publishZeroVelocityToSimulator();
       return false;
     }
 
@@ -1469,7 +1645,7 @@ namespace hunter_move_base {
       if(!tc_->setPlan(*controller_plan_)){
         //ABORT and SHUTDOWN COSTMAPS
         ROS_ERROR("Failed to pass global plan to the controller, aborting.");
-        resetState();
+        resetStateOfADAS();
         return true;
       }
 
@@ -1487,7 +1663,7 @@ namespace hunter_move_base {
         //check to see if we've reached our goal
         if(tc_->isGoalReached()){
           ROS_DEBUG_NAMED("move_base","Goal reached!");
-          resetState();
+          resetStateOfADAS();
           return true;
         }
 
@@ -1495,7 +1671,7 @@ namespace hunter_move_base {
         if(oscillation_timeout_ > 0.0 &&
             last_oscillation_reset_ + ros::Duration(oscillation_timeout_) < ros::Time::now())
         {
-          publishZeroVelocity();
+          publishZeroVelocityToSimulator();
           state_ = CLEARING;
           recovery_trigger_ = OSCILLATION_R;
         }
@@ -1504,13 +1680,43 @@ namespace hunter_move_base {
          boost::unique_lock<costmap_2d::Costmap2D::mutex_t> lock(*(controller_costmap_ros_->getCostmap()->getMutex()));
 
         if(tc_->computeVelocityCommands(cmd_vel)){
-          ROS_WARN( "Oscar::move_base:Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
+          ROS_WARN("Oscar::move_base:Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
                            cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z );
           last_valid_control_ = ros::Time::now();
 	  tc_->SetGoalNotReached();
-	  ROS_WARN("Oscar::Set the goal_reached_ flag back, this should be never true within virtual plan.");
-          //make sure that we send the velocity command to the base
-          vel_pub_.publish(cmd_vel);
+
+	  cmd_buffer_.push_back(cmd_vel);
+          if (cmd_buffer_.size() > 3)
+          {
+	    cmd_buffer_.pop_front();
+	  }
+
+	  /*double sum_lon = 0.0;
+	  double sum_rot = 0.0;
+          for (auto it = cmd_buffer_.begin(); it != cmd_buffer_.end(); ++it)
+          {
+	    sum_lon += it->linear.x;
+            sum_rot += it->angular.z;
+	  }*/
+
+	  //double ave_lon = sum_lon / cmd_buffer_.size();
+
+	  //if (ave_lon <= 0)
+	  //{
+	  //cmd_vel.linear.x = sum_lon / cmd_buffer_.size();
+          //}
+	  //else
+	  //{
+	  //  cmd_vel.linear.x = 0.0;
+	  //}
+
+	  //cmd_vel.angular.z = sum_rot / cmd_buffer_.size();
+
+          ROS_WARN("Oscar::move_base:Got a new command from the local planner: %.3lf, %.3lf, %.3lf",
+                           cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z );
+
+          //make sure that we send the velocity command to simulator
+          vel_to_sim_pub_.publish(cmd_vel);
           if(recovery_trigger_ == CONTROLLING_R)
             recovery_index_ = 0;
         }
@@ -1521,7 +1727,7 @@ namespace hunter_move_base {
           //check if we've tried to find a valid control for longer than our time limit
           if(ros::Time::now() > attempt_end){
             //we'll move into our obstacle clearing mode
-            publishZeroVelocity();
+            publishZeroVelocityToSimulator();
             state_ = CLEARING;
             recovery_trigger_ = CONTROLLING_R;
             ROS_WARN("Oscar::Turn to CLEARING mode.");
@@ -1530,7 +1736,7 @@ namespace hunter_move_base {
             //otherwise, if we can't find a valid control, we'll go back to planning
             last_valid_plan_ = ros::Time::now();
             planning_retries_ = 0;
-            publishZeroVelocity();
+            publishZeroVelocityToSimulator();
             ROS_WARN("Oscar::Cannot find a valid control.");
           }
         }
@@ -1580,13 +1786,13 @@ namespace hunter_move_base {
           else if(recovery_trigger_ == OSCILLATION_R){
             ROS_ERROR("Aborting because the robot appears to be oscillating over and over. Even after executing all recovery behaviors");
           }
-          resetState();
+          resetStateOfADAS();
           return true;
         }
         break;
       default:
         ROS_ERROR("This case should never be reached, something is wrong, aborting");
-        resetState();
+        resetStateOfADAS();
         return true;
     }
 
@@ -1594,7 +1800,7 @@ namespace hunter_move_base {
     return false;
   }
 
-  geometry_msgs::PoseStamped MoveBase::ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::PoseStamped& vel, double dt)
+  geometry_msgs::PoseStamped MoveBase::ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::Twist& vel, double dt)
   {
     geometry_msgs::PoseStamped new_pos;
     std::string global_frame = planner_costmap_ros_->getGlobalFrameID();
@@ -1604,16 +1810,52 @@ namespace hunter_move_base {
     double pos_x = pos.pose.position.x;
     double pos_y = pos.pose.position.y;
     double pos_theta = tf2::getYaw(pos.pose.orientation);
-    double vel_x = vel.pose.position.x;
-    double vel_y = vel.pose.position.y;
-    double vel_theta = tf2::getYaw(vel.pose.orientation);
+    double vel_x = vel.linear.x;
+    double vel_y = vel.linear.y;
+    double vel_theta = vel.angular.z;
 
     new_pos.pose.position.x = pos_x + (vel_x * cos(pos_theta) + vel_y * cos(M_PI_2 + pos_theta)) * dt;
     new_pos.pose.position.y = pos_y + (vel_x * sin(pos_theta) + vel_y * sin(M_PI_2 + pos_theta)) * dt;
     new_pos.pose.orientation = tf::createQuaternionMsgFromYaw(pos_theta + vel_theta * dt);
 
-    ROS_WARN("Oscar::The new predicted robot pose is:%f,%f,%f,%f", new_pos.pose.position.x, new_pos.pose.position.y, pos_theta + vel_theta * dt,tf2::getYaw(new_pos.pose.orientation));
-
     return new_pos;
   }
+
+ void MoveBase::sleepPlanner(ros::NodeHandle& n, ros::Timer& timer, ros::Time& start_time_ADAS, boost::unique_lock<boost::recursive_mutex>& lock)
+ {
+    ros::Duration sleep_time = (start_time_ADAS + ros::Duration(1.0/planner_frequency_)) - ros::Time::now();
+    if (sleep_time > ros::Duration(0.0))
+    {
+      timer = n.createTimer(sleep_time, &MoveBase::wakePlanner, this);
+      planner_cond_.wait(lock);
+    }
+    else
+    {
+      ros::Duration cycle_time = ros::Time::now() - start_time_ADAS;
+      ROS_WARN("Oscar::ADAS loop missed its desired rate of %.4fHz... the loop actually took %.4f seconds", planner_frequency_, cycle_time.toSec());
+    }
+ }
+
+ double MoveBase::LinearInterpolation(const double xp)
+ {
+   double yp = y0_ + ((y1_ - y0_)/(x1_ - x0_)) * (xp - x0_);
+   return yp;
+ }
+
+ double MoveBase::ComputeCost(const double delta_dist)
+ {
+   double cost = exp(-1.0 * weight_ * delta_dist) * (costmap_2d::INSCRIBED_INFLATED_OBSTACLE - 1.0);
+   return cost;
+ }
+
+ bool MoveBase::UpdateGoalPose(const geometry_msgs::PoseStamped& pose)
+ {
+   bool update_x = std::fabs(pose.pose.position.x - prev_goal_pose_.pose.position.x) > (0.15 + driver_cmd_.linear.x*target_margin_/step_size_);
+   bool update_y = std::fabs(pose.pose.position.y - prev_goal_pose_.pose.position.y) > (0.1 + driver_cmd_.linear.y*target_margin_/step_size_);
+   if (update_x || update_y)
+   {
+     return true;
+   }
+   return false;
+ }
 };

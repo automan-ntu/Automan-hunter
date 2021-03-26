@@ -55,11 +55,12 @@
 
 #include <pluginlib/class_loader.hpp>
 #include <std_srvs/Empty.h>
-
 #include <dynamic_reconfigure/server.h>
+#include <base_local_planner/costmap_model.h>
 #include <base_local_planner/odometry_helper_ros.h>
 #include "hunter_move_base/MoveBaseConfig.h"
 #include "hunter_move_base/pose_se2.h"
+#include <sensor_msgs/Joy.h>
 
 namespace hunter_move_base {
   //typedefs to help us out with the action server so that we don't hace to type so much
@@ -116,7 +117,7 @@ namespace hunter_move_base {
        * @param  dt   Time interval 
        * @return New Pose
        */
-      geometry_msgs::PoseStamped ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::PoseStamped& vel, double dt);
+      geometry_msgs::PoseStamped ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::Twist& vel, double dt);
     private:
       /**
        * @brief  A service call that clears the costmaps of obstacles
@@ -165,13 +166,21 @@ namespace hunter_move_base {
        * @brief  Publishes a velocity command of zero to the base
        */
       void publishZeroVelocity();
+      void publishZeroVelocityToSimulator();
+      void publishDefaultVelocityToSimulator();
 
       /**
        * @brief  Reset the state of the move_base action and send a zero velocity command to the base
        */
       void resetState();
 
+      void resetStateOfADAS();
+
       void goalCB(const geometry_msgs::PoseStamped::ConstPtr& goal);
+
+      //void triggerCB(const sensor_msgs::Joy::ConstPtr& joy_ptr);
+
+      void triggerCB(const geometry_msgs::Twist::ConstPtr& twist_ptr);
 
       void planThread();
 
@@ -189,6 +198,38 @@ namespace hunter_move_base {
        * @brief This is used to wake the planner at periodic intervals.
        */
       void wakePlanner(const ros::TimerEvent& event);
+
+      /**
+       * @brief This is used to sleep the planner thread
+       */
+      void sleepPlanner(ros::NodeHandle& n, ros::Timer& timer, ros::Time& start_time_ADAS, boost::unique_lock<boost::recursive_mutex>& lock);
+
+      /**
+       * @brief  Linear Interpolation
+       * @param  Target point
+       * @return Interpolated Value.
+       */
+      double LinearInterpolation(const double xp);
+
+      /**
+       * @brief  Cost computation
+       * @param  relative distance
+       * @return Cost
+       */
+      double ComputeCost(const double delta_dist); 
+
+      /**
+       * @brief Update Goal Pose
+       * @param Target Pose
+       * @return True if need to update, false otherwise.
+       */
+      bool UpdateGoalPose(const geometry_msgs::PoseStamped& pose);
+
+      /**
+       * @brief Set Global goal pose
+       * @param Goal Point from actionlib
+       */
+      void SetGoalPoint(const move_base_msgs::MoveBaseGoalConstPtr& move_base_goal);
 
       tf2_ros::Buffer& tf_;
 
@@ -210,8 +251,8 @@ namespace hunter_move_base {
       int32_t max_planning_retries_;
       uint32_t planning_retries_;
       double conservative_reset_dist_, clearing_radius_;
-      ros::Publisher current_goal_pub_, vel_pub_, action_goal_pub_, recovery_status_pub_;
-      ros::Subscriber goal_sub_;
+      ros::Publisher current_goal_pub_, global_goal_pub_, vel_pub_, vel_to_sim_pub_,action_goal_pub_, recovery_status_pub_;
+      ros::Subscriber goal_sub_, cmd_vel_driver_sub_;
       ros::ServiceServer make_plan_srv_, clear_costmaps_srv_;
       bool shutdown_costmaps_, clearing_rotation_allowed_, recovery_behavior_enabled_;
       bool make_plan_clear_costmap_, make_plan_add_unreachable_goal_;
@@ -235,6 +276,7 @@ namespace hunter_move_base {
       bool runPlanner_;
       boost::recursive_mutex planner_mutex_;
       boost::condition_variable_any planner_cond_;
+      geometry_msgs::PoseStamped global_goal_;
       geometry_msgs::PoseStamped planner_goal_;
       boost::thread* planner_thread_;
 
@@ -252,9 +294,23 @@ namespace hunter_move_base {
       bool new_global_plan_;
 
       // elements employed by ADAS
-      geometry_msgs::Twist robot_velo_;
+      geometry_msgs::Twist robot_velo_, driver_cmd_;
+      geometry_msgs::PoseStamped prev_goal_pose_;
       PoseSE2 robot_pose_;
       base_local_planner::OdometryHelperRos odom_helper_;
+      double predict_time_;
+      bool adas_trigger_;
+      bool prev_plan_flag_;
+      int target_margin_;
+      int step_size_;
+      std::list<geometry_msgs::Twist> cmd_buffer_;
+      std::shared_ptr<base_local_planner::CostmapModel> costmap_model_;
+
+      //Interpolation upper and lower bound
+      double x0_, x1_, y0_, y1_;
+
+      //parameters of potential function
+      double weight_;
   };
 };
 #endif

@@ -263,8 +263,8 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   robot_vel_.linear.y = robot_vel_tf.pose.position.y;
   robot_vel_.angular.z = tf2::getYaw(robot_vel_tf.pose.orientation);
 
-  ROS_WARN("Oscar::Teb__ robot pose is:%.3lf,%.3lf,%.3lf", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
-  ROS_WARN("Oscar::Teb__ velo is:%.3lf,%.3lf,%.3lf", robot_vel_.linear.x, robot_vel_.linear.y, robot_vel_.angular.z);
+  //ROS_WARN("Oscar::Teb__ robot pose is:%.3lf,%.3lf,%.3lf", robot_pose_.x(), robot_pose_.x(), robot_pose_.theta());
+  //ROS_WARN("Oscar::Teb__ velo is:%.3lf,%.3lf,%.3lf", robot_vel_.linear.x, robot_vel_.linear.y, robot_vel_.angular.z);
   
   // prune global plan to cut off parts of the past (spatially before the robot)
   pruneGlobalPlan(*tf_, robot_pose, global_plan_, cfg_.trajectory.global_plan_prune_distance);
@@ -291,18 +291,26 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   double dx = global_goal.pose.position.x - robot_pose_.x();
   double dy = global_goal.pose.position.y - robot_pose_.y();
   double delta_orient = g2o::normalize_theta( tf2::getYaw(global_goal.pose.orientation) - robot_pose_.theta() );
+
+  bool flag1 = fabs(std::sqrt(dx*dx+dy*dy)) < cfg_.goal_tolerance.xy_goal_tolerance;
+  bool flag2 = fabs(delta_orient) < cfg_.goal_tolerance.yaw_goal_tolerance;
+  bool flag3 = (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0);
+
   if(fabs(std::sqrt(dx*dx+dy*dy)) < cfg_.goal_tolerance.xy_goal_tolerance
     && fabs(delta_orient) < cfg_.goal_tolerance.yaw_goal_tolerance
     && (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0))
   {
     std::lock_guard<std::mutex> my_lock_guard(goal_reached_mutex_);
-    ROS_WARN("Oscar*goal_reached_ is:%d", goal_reached_);
     goal_reached_ = true;
-    ROS_WARN("Oscar***goal_reached_ is:%d", goal_reached_);
+    ROS_WARN("Oscar::goal reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
+    ROS_WARN("Oscar::goal reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());
     return mbf_msgs::ExePathResult::SUCCESS;
   }
   
-  
+    ROS_WARN("Oscar::goal not reached, the flag is: %d,%d,%d", flag1, flag2, flag3);
+    ROS_WARN("Oscar::goal not reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
+    ROS_WARN("Oscar::goal not reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());  
+
   // check if we should enter any backup mode and apply settings
   configureBackupModes(transformed_plan, goal_idx);
   
@@ -330,7 +338,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   }  
   else
   {
-    ROS_WARN("Oscar::Global plan overwrite orientation is False.");
+    //ROS_WARN("Oscar::Global plan overwrite orientation is False.");
     robot_goal_.theta() = tf2::getYaw(transformed_plan.back().pose.orientation);
   }
 
