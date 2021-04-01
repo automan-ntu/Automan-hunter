@@ -328,12 +328,10 @@ namespace hunter_move_base
              std::fabs(twist_ptr->angular.z) < DBL_EPSILON) ||
             twist_ptr->linear.x < DBL_EPSILON)
         {
-            //ROS_WARN("Oscar::The joy singal is: %f, %f", twist_ptr->linear.x, twist_ptr->angular.z);
             adas_trigger_ = false;
         }
         else
         {
-            //ROS_WARN("Oscar::THE joy singal is: %f, %f", twist_ptr->linear.x, twist_ptr->angular.z);
             adas_trigger_ = true;
         }
 
