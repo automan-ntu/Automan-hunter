@@ -44,6 +44,7 @@ options = {
 }
 
 TRAJECTORY_BUILDER_3D.num_accumulated_range_data = 1
+TRAJECTORY_BUILDER_3D.use_online_correlative_scan_matching = false
 
 MAP_BUILDER.use_trajectory_builder_3d = true
 MAP_BUILDER.num_background_threads = 6

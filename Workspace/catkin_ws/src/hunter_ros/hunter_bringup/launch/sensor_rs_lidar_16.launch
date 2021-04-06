@@ -27,8 +27,8 @@
   </node>
 
   <include file="$(find hunter_bringup)/launch/sensor_pointcloud_filter.launch" />
-  <!-- <include file="$(find hunter_bringup)/launch/sensor_pointcloud_to_laserscan.launch" /> -->
-	<remap from="rslidar_points" to="points_raw"/>
+  <include file="$(find hunter_bringup)/launch/sensor_pointcloud_to_laserscan.launch" />
+	<!--<remap from="rslidar_points" to="points_raw"/>-->
 
   <!-- <node name="rviz" pkg="rviz" type="rviz"  args="-d $(find rslidar_pointcloud)/rviz_cfg/rslidar.rviz" /> -->
 

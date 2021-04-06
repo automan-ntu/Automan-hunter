@@ -1,0 +1,8 @@
+prefix=/home/hunter/Workspace/catkin_ws/devel
+
+Name: hunter_move_base
+Description: Description of hunter_move_base
+Version: 1.17.1
+Cflags: -I/home/hunter/Workspace/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: dynamic_reconfigure geometry_msgs move_base_msgs nav_msgs roscpp
