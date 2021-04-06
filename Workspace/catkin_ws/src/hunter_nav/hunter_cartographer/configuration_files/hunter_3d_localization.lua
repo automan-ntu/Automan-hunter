@@ -18,5 +18,6 @@ TRAJECTORY_BUILDER.pure_localization_trimmer = {
   max_submaps_to_keep = 2,
 }
 POSE_GRAPH.optimize_every_n_nodes = 2
-
+TRAJECTORY_BUILDER_2D.min_z = -0.5
+TRAJECTORY_BUILDER_2D.max_z = 1.5
 return options

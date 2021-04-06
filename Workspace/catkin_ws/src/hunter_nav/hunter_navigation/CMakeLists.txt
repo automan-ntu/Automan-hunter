@@ -14,7 +14,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   std_msgs
-  teb_local_planner
+  hunter_local_planner
   tf2
   tf2_ros
   pcl_ros

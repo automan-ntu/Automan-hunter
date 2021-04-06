@@ -1,0 +1,2 @@
+A-LOAM:loam_velodyne
+-DCATKIN_DEVEL_PREFIX=/home/hunter/Workspace/slam_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hunter/Workspace/slam_ws/install -G Unix Makefiles
