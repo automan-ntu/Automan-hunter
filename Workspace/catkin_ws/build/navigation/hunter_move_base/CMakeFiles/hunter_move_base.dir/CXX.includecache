@@ -24,6 +24,40 @@ dynamic_reconfigure/config_init_mutex.h
 boost/any.hpp
 -
 
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/Obstacle.h
+Eigen/Core
+-
+Eigen/StdVector
+-
+hunter_move_base/distance_calculations.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/Obstacle_Line.h
+hunter_move_base/Obstacle.h
+-
+hunter_move_base/distance_calculations.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/Obstacle_Point.h
+hunter_move_base/Obstacle.h
+-
+hunter_move_base/distance_calculations.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/Obstacle_Polygon.h
+geometry_msgs/Polygon.h
+-
+hunter_move_base/Obstacle.h
+-
+hunter_move_base/distance_calculations.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/distance_calculations.h
+Eigen/Core
+-
+hunter_move_base/misc.h
+-
+
 /home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/hunter_move_base.h
 vector
 -
@@ -66,6 +100,14 @@ hunter_move_base/pose_se2.h
 sensor_msgs/Joy.h
 -
 
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/misc.h
+Eigen/Core
+-
+boost/utility.hpp
+-
+boost/type_traits.hpp
+-
+
 /home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/include/hunter_move_base/pose_se2.h
 g2o/stuff/misc.h
 -
@@ -76,6 +118,30 @@ teb_local_planner/misc.h
 geometry_msgs/Pose.h
 -
 tf/transform_datatypes.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/src/Obstacle_Line.cpp
+ros/console.h
+-
+ros/assert.h
+-
+hunter_move_base/Obstacle_Line.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/src/Obstacle_Point.cpp
+ros/console.h
+-
+ros/assert.h
+-
+hunter_move_base/Obstacle_Point.h
+-
+
+/home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/src/Obstacle_Polygon.cpp
+ros/console.h
+-
+ros/assert.h
+-
+hunter_move_base/Obstacle_Polygon.h
 -
 
 /home/hunter/Workspace/catkin_ws/src/navigation/hunter_move_base/src/hunter_move_base.cpp
@@ -3230,6 +3296,14 @@ src/SVD/JacobiSVD_LAPACKE.h
 src/Core/util/ReenableStupidWarnings.h
 /usr/include/eigen3/Eigen/src/Core/util/ReenableStupidWarnings.h
 
+/usr/include/eigen3/Eigen/StdVector
+Core
+/usr/include/eigen3/Eigen/Core
+vector
+-
+src/StlSupport/StdVector.h
+/usr/include/eigen3/Eigen/src/StlSupport/StdVector.h
+
 /usr/include/eigen3/Eigen/src/Cholesky/LDLT.h
 
 /usr/include/eigen3/Eigen/src/Cholesky/LLT.h
@@ -3607,6 +3681,12 @@ cstdint
 /usr/include/eigen3/Eigen/src/SVD/SVDBase.h
 
 /usr/include/eigen3/Eigen/src/SVD/UpperBidiagonalization.h
+
+/usr/include/eigen3/Eigen/src/StlSupport/StdVector.h
+details.h
+/usr/include/eigen3/Eigen/src/StlSupport/details.h
+
+/usr/include/eigen3/Eigen/src/StlSupport/details.h
 
 /usr/include/eigen3/Eigen/src/misc/Image.h
 

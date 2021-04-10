@@ -44,7 +44,6 @@
 #include <boost/thread.hpp>
 
 #include <geometry_msgs/Twist.h>
-
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <tf2/utils.h>
 
@@ -743,6 +742,34 @@ namespace hunter_move_base
                         pose_list.push_back(temp_goal_pose);
                     }
 
+					//boundary of interest of obstacles
+					unsigned int x_max, x_min, y_max, y_min;
+					for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
+					{
+						double px = (*it).pose.position.x;
+                        double py = (*it).pose.position.y;
+                        double central_cost = -255.0;
+						unsigned int cell_x, cell_y;
+                        if (!planner_costmap_ros_->getCostmap()->worldToMap(px, py, cell_x, cell_y))
+                        {
+                            //we're off the map
+                            ROS_WARN("Oscar::Off Map %f, %f", px, py);
+                            central_cost = costmap_2d::NO_INFORMATION;
+                        }
+
+						if (it == pose_list.begin())
+						{
+							x_max = cell_x;
+							x_min = cell_x;
+							y_max = cell_y;
+							y_min = cell_y;
+						}
+						
+						SetBoundary(cell_x, cell_y, x_max, x_min, y_max, y_min);
+					}
+
+					ROS_WARN("Oscar::the boundaries are %d, %d, %d, %d", x_min, x_max, y_min, y_max);
+
                     for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
                     {
                         double px = (*it).pose.position.x;
@@ -752,7 +779,7 @@ namespace hunter_move_base
                         double footprint_cost = 255.0;
                         if (px == robot_pose_.x() && py == robot_pose_.y())
                         {
-                            ROS_WARN("Oscar::there is no velocity at all, skip the prediction.");
+                            ROS_WARN("Oscar::there is no velocity at all, skip safety check.");
                             break;
                         }
 
@@ -1928,6 +1955,28 @@ namespace hunter_move_base
 
         return new_pos;
     }
+
+	void MoveBase::SetBoundary(const unsigned int cell_x, const unsigned int cell_y, unsigned int &x_max, unsigned int &x_min,
+				   				  unsigned int &y_max, unsigned int &y_min)
+	{
+		if (cell_x > x_max)
+		{
+			x_max = cell_x;
+		}
+		else if (cell_x < x_min)
+		{
+			x_min = cell_x;
+		}
+
+		if (cell_y > y_max)
+		{
+			y_max = cell_y;
+		}
+		else if (cell_y < y_min)
+		{
+			y_min = cell_y;
+		}
+	}
 
     void MoveBase::sleepPlanner(ros::NodeHandle &n, ros::Timer &timer, ros::Time &start_time_ADAS, boost::unique_lock<boost::recursive_mutex> &lock)
     {
