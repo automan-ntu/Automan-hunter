@@ -118,6 +118,18 @@ namespace hunter_move_base {
        * @return New Pose
        */
       geometry_msgs::PoseStamped ComputeNewPosition(const geometry_msgs::PoseStamped& pos, const geometry_msgs::Twist& vel, double dt);
+
+      /**
+       * @brief  Set boundary of interest of obstacle region
+       * @param  cell_x  Current cell x
+       * @param  cell_y  Current cell y
+       * @param  x_max   Max boundary x
+       * @param  x_min   Min boundary x
+       * @param  y_max   Max boundary y
+       * @param  y_min   Min boundary y
+       */	  
+	  void SetBoundary(const unsigned int cell_x, const unsigned int cell_y, unsigned int& x_max, unsigned int& x_min,
+				   				 unsigned int& y_max, unsigned int& y_min);
     private:
       /**
        * @brief  A service call that clears the costmaps of obstacles
