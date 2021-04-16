@@ -10,7 +10,43 @@
 
 namespace hunter_move_base
 {
-  Eigen::Vector2d PolygonObstacle::getClosestPoint(const Eigen::Vector2d &position) const
+  double PolygonObstacle::GetMinDistance(const Eigen::Vector2d &position) const
+  {
+    return distance_point_to_polygon_2d(position, vertices_);
+  }
+
+  double PolygonObstacle::GetMinDistance(const Eigen::Vector2d &line_start, const Eigen::Vector2d &line_end) const
+  {
+    return distance_segment_to_polygon_2d(line_start, line_end, vertices_);
+  }
+
+  double PolygonObstacle::GetMinDistance(const Point2dContainer &polygon) const
+  {
+    return distance_polygon_to_polygon_2d(polygon, vertices_);
+  }
+
+  double PolygonObstacle::GetPredictedMinDistance(const Eigen::Vector2d &position, double t) const
+  {
+    Point2dContainer pred_vertices;
+    predictVertices(t, pred_vertices);
+    return distance_point_to_polygon_2d(position, pred_vertices);
+  }
+
+  double PolygonObstacle::GetPredictedMinDistance(const Eigen::Vector2d &line_start, const Eigen::Vector2d &line_end, double t) const
+  {
+    Point2dContainer pred_vertices;
+    predictVertices(t, pred_vertices);
+    return distance_segment_to_polygon_2d(line_start, line_end, pred_vertices);
+  }
+
+  double PolygonObstacle::GetPredictedMinDistance(const Point2dContainer &polygon, double t) const
+  {
+    Point2dContainer pred_vertices;
+    predictVertices(t, pred_vertices);
+    return distance_polygon_to_polygon_2d(polygon, pred_vertices);
+  }
+
+  Eigen::Vector2d PolygonObstacle::GetClosestPoint(const Eigen::Vector2d &position) const
   {
     // the polygon is a point
     if (noVertices() == 1)
@@ -135,42 +171,6 @@ namespace hunter_move_base
       // calc centroid of that line
       centroid_ = 0.5 * (vertices_[i_cand] + vertices_[j_cand]);
     }
-  }
-
-  double PolygonObstacle::GetMinDistance(const Eigen::Vector2d &position) const
-  {
-    return distance_point_to_polygon_2d(position, vertices_);
-  }
-
-  double PolygonObstacle::GetMinDistance(const Eigen::Vector2d &line_start, const Eigen::Vector2d &line_end) const
-  {
-    return distance_segment_to_polygon_2d(line_start, line_end, vertices_);
-  }
-
-  double PolygonObstacle::GetMinDistance(const Point2dContainer &polygon) const
-  {
-    return distance_polygon_to_polygon_2d(polygon, vertices_);
-  }
-
-  double PolygonObstacle::GetPredictedMinDistance(const Eigen::Vector2d &position, double t) const
-  {
-    Point2dContainer pred_vertices;
-    predictVertices(t, pred_vertices);
-    return distance_point_to_polygon_2d(position, pred_vertices);
-  }
-
-  double PolygonObstacle::GetPredictedMinDistance(const Eigen::Vector2d &line_start, const Eigen::Vector2d &line_end, double t) const
-  {
-    Point2dContainer pred_vertices;
-    predictVertices(t, pred_vertices);
-    return distance_segment_to_polygon_2d(line_start, line_end, pred_vertices);
-  }
-
-  double PolygonObstacle::GetPredictedMinDistance(const Point2dContainer &polygon, double t) const
-  {
-    Point2dContainer pred_vertices;
-    predictVertices(t, pred_vertices);
-    return distance_polygon_to_polygon_2d(polygon, pred_vertices);
   }
 
 }

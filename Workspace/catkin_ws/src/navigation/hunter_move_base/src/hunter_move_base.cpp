@@ -35,9 +35,10 @@
 * Author: Eitan Marder-Eppstein
 *         Mike Phillips (put the planner in its own thread)
 *********************************************************************/
-#include <angles/angles.h>
 #include <hunter_move_base/hunter_move_base.h>
 #include <move_base_msgs/RecoveryStatus.h>
+
+#include <angles/angles.h>
 #include <cmath>
 
 #include <boost/algorithm/string.hpp>
@@ -56,6 +57,7 @@ namespace hunter_move_base
                                               bgp_loader_("nav_core", "nav_core::BaseGlobalPlanner"),
                                               blp_loader_("nav_core", "nav_core::BaseLocalPlanner"),
                                               recovery_loader_("nav_core", "nav_core::RecoveryBehavior"),
+                                              costmap_converter_loader_("costmap_converter", "costmap_converter::BaseCostmapToPolygons"),
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
                                               new_global_plan_(false), adas_trigger_(false), prev_plan_flag_(false), step_size_(50), predict_time_(4.0),
@@ -63,8 +65,7 @@ namespace hunter_move_base
     {
 
         /* we dont want the hunter drive automatically
-    as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
-    */
+    	  as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);*/
 
         as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
 
@@ -203,6 +204,45 @@ namespace hunter_move_base
         dsrv_->setCallback(cb);
 
         costmap_model_ = std::make_shared<base_local_planner::CostmapModel>(*planner_costmap_ros_->getCostmap());
+
+        // load costmap converter for obstacle classifying
+        ros::NodeHandle nh_("~/" + blp_loader_.getName(local_planner));
+
+        nh_.param("costmap_converter_plugin", costmap_converter_plugin_, costmap_converter_plugin_);
+        nh_.param("odom_topic", odom_topic_, odom_topic_);
+        nh_.param("costmap_converter_spin_thread", costmap_converter_spin_thread_, costmap_converter_spin_thread_);
+        costmap_ = controller_costmap_ros_->getCostmap();
+
+        //Initialize a costmap to polygon converter
+        if (!costmap_converter_plugin_.empty())
+        {
+            try
+            {
+                costmap_converter_ = costmap_converter_loader_.createInstance(costmap_converter_plugin_);
+                std::string converter_name = costmap_converter_loader_.getName(costmap_converter_plugin_);
+                // replace '::' by '/' to convert the c++ namespace to a NodeHandle namespace
+                boost::replace_all(converter_name, "::", "/");
+                costmap_converter_->setOdomTopic(odom_topic_);
+                costmap_converter_->initialize(ros::NodeHandle(nh, "costmap_converter/" + converter_name));
+                costmap_converter_->setCostmap2D(costmap_);
+
+                costmap_converter_->startWorker(ros::Rate(costmap_converter_rate_), costmap_, costmap_converter_spin_thread_);
+                ROS_INFO_STREAM("Costmap conversion plugin " << costmap_converter_plugin_ << " loaded.");
+            }
+            catch (pluginlib::PluginlibException &ex)
+            {
+                ROS_WARN("The specified costmap converter plugin cannot be loaded. All occupied costmap cells are treaten as point obstacles. Error message: %s", ex.what());
+                costmap_converter_.reset();
+            }
+        }
+        else
+        {
+            ROS_INFO("No costmap conversion plugin specified. All occupied costmap cells are treaten as point obstacles.");
+        }
+
+        // load visualization tool
+        ros::NodeHandle nh_hunter("~/" + std::string("hunter_move_base"));
+        vis_ = HunterVisualizationPtr(new HunterVisualization(nh_hunter));
     }
 
     void MoveBase::reconfigureCB(hunter_move_base::MoveBaseConfig &config, uint32_t level)
@@ -702,6 +742,15 @@ namespace hunter_move_base
 
                     ros::Time start_time_ADAS = ros::Time::now();
 
+                    // classify and visualize the obstacles
+                    Obstacles_.clear();
+                    if (costmap_converter_)
+                    {
+                        ClassifyObstacles();
+                    }
+
+                    vis_->publishObstacles(Obstacles_, ALL);
+
                     if (!adas_trigger_)
                     {
                         ROS_WARN("Oscar::Waiting for Human Driver.");
@@ -742,33 +791,43 @@ namespace hunter_move_base
                         pose_list.push_back(temp_goal_pose);
                     }
 
-					//boundary of interest of obstacles
-					unsigned int x_max, x_min, y_max, y_min;
-					for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
-					{
-						double px = (*it).pose.position.x;
+                    //boundary of interest of obstacles
+                    unsigned int x_max, x_min, y_max, y_min;
+                    for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
+                    {
+                        double px = (*it).pose.position.x;
                         double py = (*it).pose.position.y;
                         double central_cost = -255.0;
-						unsigned int cell_x, cell_y;
-                        if (!planner_costmap_ros_->getCostmap()->worldToMap(px, py, cell_x, cell_y))
+                        unsigned int cell_x, cell_y;
+                        if (!costmap_->worldToMap(px, py, cell_x, cell_y))
                         {
                             //we're off the map
                             ROS_WARN("Oscar::Off Map %f, %f", px, py);
                             central_cost = costmap_2d::NO_INFORMATION;
                         }
 
-						if (it == pose_list.begin())
-						{
-							x_max = cell_x;
-							x_min = cell_x;
-							y_max = cell_y;
-							y_min = cell_y;
-						}
-						
-						SetBoundary(cell_x, cell_y, x_max, x_min, y_max, y_min);
-					}
+                        if (it == pose_list.begin())
+                        {
+                            x_max = cell_x;
+                            x_min = cell_x;
+                            y_max = cell_y;
+                            y_min = cell_y;
+                        }
+                        SetBoundary(cell_x, cell_y, x_max, x_min, y_max, y_min);
+                    }
 
-					ROS_WARN("Oscar::the boundaries are %d, %d, %d, %d", x_min, x_max, y_min, y_max);
+                    Padding(x_max, x_min, y_max, y_min);
+
+                    ROS_WARN("Oscar::the boundaries are %d, %d, %d, %d", x_min, x_max, y_min, y_max);
+
+					Obstacles_human_path_.clear();
+                    if (!ObstaclesOfInterest(x_max, x_min, y_max, y_min))
+                    {
+                        ROS_WARN("Oscar::Next Cycle.");
+                        continue;
+                    }
+
+					vis_->publishObstacles(Obstacles_human_path_, HUMAN);
 
                     for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
                     {
@@ -1956,27 +2015,27 @@ namespace hunter_move_base
         return new_pos;
     }
 
-	void MoveBase::SetBoundary(const unsigned int cell_x, const unsigned int cell_y, unsigned int &x_max, unsigned int &x_min,
-				   				  unsigned int &y_max, unsigned int &y_min)
-	{
-		if (cell_x > x_max)
-		{
-			x_max = cell_x;
-		}
-		else if (cell_x < x_min)
-		{
-			x_min = cell_x;
-		}
+    void MoveBase::SetBoundary(const unsigned int cell_x, const unsigned int cell_y, unsigned int &x_max, unsigned int &x_min,
+                               unsigned int &y_max, unsigned int &y_min)
+    {
+        if (cell_x > x_max)
+        {
+            x_max = cell_x;
+        }
+        else if (cell_x < x_min)
+        {
+            x_min = cell_x;
+        }
 
-		if (cell_y > y_max)
-		{
-			y_max = cell_y;
-		}
-		else if (cell_y < y_min)
-		{
-			y_min = cell_y;
-		}
-	}
+        if (cell_y > y_max)
+        {
+            y_max = cell_y;
+        }
+        else if (cell_y < y_min)
+        {
+            y_min = cell_y;
+        }
+    }
 
     void MoveBase::sleepPlanner(ros::NodeHandle &n, ros::Timer &timer, ros::Time &start_time_ADAS, boost::unique_lock<boost::recursive_mutex> &lock)
     {
@@ -2014,5 +2073,78 @@ namespace hunter_move_base
             return true;
         }
         return false;
+    }
+
+    void MoveBase::ClassifyObstacles()
+    {
+        if (!costmap_converter_)
+            return;
+
+        //Get obstacles from costmap converter
+        costmap_converter::ObstacleArrayConstPtr obstacles = costmap_converter_->getObstacles();
+        if (!obstacles)
+            return;
+
+        for (std::size_t i = 0; i < obstacles->obstacles.size(); ++i)
+        {
+            const costmap_converter::ObstacleMsg *obstacle = &obstacles->obstacles.at(i);
+            const geometry_msgs::Polygon *polygon = &obstacle->polygon;
+            if (polygon->points.size() == 1) // Point
+            {
+                continue;
+                //Obstacles_.push_back(ObstaclePtr(new PointObstacle(polygon->points[0].x, polygon->points[0].y)));
+            }
+            else if (polygon->points.size() == 2) // Line
+            {
+                Obstacles_.push_back(ObstaclePtr(new LineObstacle(polygon->points[0].x, polygon->points[0].y,
+                                                                  polygon->points[1].x, polygon->points[1].y)));
+            }
+            else if (polygon->points.size() > 2) // Real polygon
+            {
+                PolygonObstacle *polyobst = new PolygonObstacle();
+                for (std::size_t j = 0; j < polygon->points.size(); ++j)
+                {
+                    polyobst->pushBackVertex(polygon->points[j].x, polygon->points[j].y);
+                }
+                polyobst->finalizePolygon();
+                Obstacles_.push_back(ObstaclePtr(polyobst));
+            }
+
+            // Set velocity, if obstacle is moving
+            if (!Obstacles_.empty())
+                Obstacles_.back()->setCentroidVelocity(obstacles->obstacles[i].velocities, obstacles->obstacles[i].orientation);
+        }
+    }
+
+    void MoveBase::Padding(unsigned int &x_max, unsigned int &x_min, unsigned int &y_max, unsigned int &y_min)
+    {
+        // padding from x and y directions, notice that the obstacles at back are not interested
+        x_max = std::min((x_max + padding_size_x_), (costmap_->getSizeInCellsX() - 1));
+        x_min = std::max(x_min, (unsigned int)0);
+        y_max = std::min((y_max + padding_size_y_), (costmap_->getSizeInCellsY() - 1));
+        y_min = std::max((y_min - padding_size_y_), (unsigned int)0);
+    }
+
+    bool MoveBase::ObstaclesOfInterest(const unsigned int x_max, const unsigned int x_min, const unsigned int y_max, const unsigned int y_min)
+    {
+        if (!Obstacles_.size())
+        {
+            ROS_WARN("Oscar::No Obstacles at all, either driver is doing good or something wrong with costmap converter.");
+            return false;
+        }
+
+        for (ObstContainer::const_iterator obs = Obstacles_.begin(); obs != Obstacles_.end(); ++obs)
+        {
+            const Eigen::Vector2d pose = robot_pose_.position();
+            Eigen::Vector2d closest_pt = (*obs)->GetClosestPoint(pose);
+            unsigned int cell_x, cell_y;
+            costmap_->worldToMap(closest_pt.x(), closest_pt.y(), cell_x, cell_y);
+            if ((cell_x >= x_min && cell_x <= x_max) && (cell_y >= y_min && cell_y <= y_max))
+            {
+                Obstacles_human_path_.push_back(*obs);
+            }
+        }
+        ROS_WARN("Oscar::there are %d obstacles need to be considered.", (int)Obstacles_human_path_.size());
+        return true;
     }
 };

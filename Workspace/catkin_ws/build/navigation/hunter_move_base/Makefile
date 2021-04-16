@@ -1779,6 +1779,33 @@ src/hunter_move_base_node.cpp.s:
 	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base_node.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base_node.dir/src/hunter_move_base_node.cpp.s
 .PHONY : src/hunter_move_base_node.cpp.s
 
+src/visualization.o: src/visualization.cpp.o
+
+.PHONY : src/visualization.o
+
+# target to build an object file
+src/visualization.cpp.o:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/visualization.cpp.o
+.PHONY : src/visualization.cpp.o
+
+src/visualization.i: src/visualization.cpp.i
+
+.PHONY : src/visualization.i
+
+# target to preprocess a source file
+src/visualization.cpp.i:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/visualization.cpp.i
+.PHONY : src/visualization.cpp.i
+
+src/visualization.s: src/visualization.cpp.s
+
+.PHONY : src/visualization.s
+
+# target to generate assembly for a file
+src/visualization.cpp.s:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/visualization.cpp.s
+.PHONY : src/visualization.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -1906,6 +1933,9 @@ help:
 	@echo "... src/hunter_move_base_node.o"
 	@echo "... src/hunter_move_base_node.i"
 	@echo "... src/hunter_move_base_node.s"
+	@echo "... src/visualization.o"
+	@echo "... src/visualization.i"
+	@echo "... src/visualization.s"
 .PHONY : help
 
 

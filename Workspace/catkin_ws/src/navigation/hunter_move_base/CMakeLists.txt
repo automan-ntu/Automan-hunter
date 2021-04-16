@@ -52,6 +52,7 @@ add_library(hunter_move_base
   src/Obstacle_Point.cpp
   src/Obstacle_Line.cpp
   src/Obstacle_Polygon.cpp
+  src/visualization.cpp
 )
 target_link_libraries(hunter_move_base
     ${Boost_LIBRARIES}
