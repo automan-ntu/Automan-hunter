@@ -1120,6 +1120,17 @@ void TebOptimalPlanner::extractVelocity(const PoseSE2& pose1, const PoseSE2& pos
 
 bool TebOptimalPlanner::getVelocityCommand(double& vx, double& vy, double& omega, int look_ahead_poses) const
 {
+  double t = 0.0;
+  for (int i = 0; i < teb_.sizePoses(); ++i)
+  {
+	if (i >= teb_.sizeTimeDiffs())
+	{
+	  break;
+	}
+	t += teb_.TimeDiff(i);
+  }
+  ROS_WARN("Oscar::The size of local path and time horizon are: %d, %f", int(teb_.sizePoses()), t);
+
   if (teb_.sizePoses()<2)
   {
     ROS_ERROR("TebOptimalPlanner::getVelocityCommand(): The trajectory contains less than 2 poses. Make sure to init and optimize/plan the trajectory fist.");

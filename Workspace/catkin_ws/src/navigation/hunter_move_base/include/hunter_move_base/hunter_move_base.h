@@ -339,10 +339,12 @@ namespace hunter_move_base
         base_local_planner::OdometryHelperRos odom_helper_;
         double predict_time_;
         bool adas_trigger_;
-        bool prev_plan_flag_;
         int target_margin_;
         int step_size_;
+		int buffer_size_;
         std::list<geometry_msgs::Twist> cmd_buffer_;
+		std::list<bool> safe_stop_vec_;
+		std::list<bool> power_steering_vec_;
         std::shared_ptr<base_local_planner::CostmapModel> costmap_model_;
 
         //Interpolation upper and lower bound
@@ -368,6 +370,10 @@ namespace hunter_move_base
         HunterVisualizationPtr vis_;
         unsigned int padding_size_x_ = 10;
         unsigned int padding_size_y_ = 10;
+
+		// APF
+		double sigma_ = 15.0;
+		double force_max_ = 10.0;
     };
 };
 #endif
