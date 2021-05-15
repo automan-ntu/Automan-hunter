@@ -131,7 +131,7 @@ g2o/stuff/misc.h
 -
 Eigen/Core
 -
-teb_local_planner/misc.h
+hunter_move_base/misc.h
 -
 geometry_msgs/Pose.h
 -
@@ -2708,14 +2708,6 @@ ros/serialization.h
 ros/builtin_message_traits.h
 -
 ros/message_operations.h
--
-
-/opt/ros/melodic/include/teb_local_planner/misc.h
-Eigen/Core
--
-boost/utility.hpp
--
-boost/type_traits.hpp
 -
 
 /opt/ros/melodic/include/tf/LinearMath/Matrix3x3.h

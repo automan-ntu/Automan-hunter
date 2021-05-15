@@ -355,6 +355,7 @@ namespace hunter_move_base
         pluginlib::ClassLoader<costmap_converter::BaseCostmapToPolygons> costmap_converter_loader_;
         boost::shared_ptr<costmap_converter::BaseCostmapToPolygons> costmap_converter_;
         std::string costmap_converter_plugin_ = "costmap_converter::CostmapToPolygonsDBSMCCH";
+		std::string name_ = "MoveBase";
         std::string odom_topic_ = "odom";
         int costmap_converter_rate_ = 5;
         bool costmap_converter_spin_thread_ = true;

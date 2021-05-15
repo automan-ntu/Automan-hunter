@@ -60,14 +60,14 @@ namespace hunter_move_base
                                               costmap_converter_loader_("costmap_converter", "costmap_converter::BaseCostmapToPolygons"),
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
-                                              new_global_plan_(false), adas_trigger_(false), prev_plan_flag_(false), step_size_(50), predict_time_(4.0),
-                                              target_margin_(80), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
+                                              new_global_plan_(false), adas_trigger_(false), prev_plan_flag_(false), step_size_(5), predict_time_(4.0),
+                                              target_margin_(8), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
     {
 
-        /* we dont want the hunter drive automatically
-    	  as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);*/
+        /* we dont want the hunter drive automatically*/
+    	as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
 
-        as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
+        //as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
 
         ros::NodeHandle private_nh("~");
         ros::NodeHandle nh;
@@ -206,7 +206,7 @@ namespace hunter_move_base
         costmap_model_ = std::make_shared<base_local_planner::CostmapModel>(*planner_costmap_ros_->getCostmap());
 
         // load costmap converter for obstacle classifying
-        ros::NodeHandle nh_("~/" + blp_loader_.getName(local_planner));
+        ros::NodeHandle nh_("~/" + name_);
 
         nh_.param("costmap_converter_plugin", costmap_converter_plugin_, costmap_converter_plugin_);
         nh_.param("odom_topic", odom_topic_, odom_topic_);
@@ -220,10 +220,8 @@ namespace hunter_move_base
             {
                 costmap_converter_ = costmap_converter_loader_.createInstance(costmap_converter_plugin_);
                 std::string converter_name = costmap_converter_loader_.getName(costmap_converter_plugin_);
-                // replace '::' by '/' to convert the c++ namespace to a NodeHandle namespace
-                boost::replace_all(converter_name, "::", "/");
                 costmap_converter_->setOdomTopic(odom_topic_);
-                costmap_converter_->initialize(ros::NodeHandle(nh, "costmap_converter/" + converter_name));
+                costmap_converter_->initialize(ros::NodeHandle(nh_, "costmap_converter/" + converter_name));
                 costmap_converter_->setCostmap2D(costmap_);
 
                 costmap_converter_->startWorker(ros::Rate(costmap_converter_rate_), costmap_, costmap_converter_spin_thread_);
@@ -241,8 +239,8 @@ namespace hunter_move_base
         }
 
         // load visualization tool
-        ros::NodeHandle nh_hunter("~/" + std::string("hunter_move_base"));
-        vis_ = HunterVisualizationPtr(new HunterVisualization(nh_hunter));
+        //ros::NodeHandle nh_hunter("~/" + std::string("hunter_move_base"));
+        //vis_ = HunterVisualizationPtr(new HunterVisualization(nh_hunter));
     }
 
     void MoveBase::reconfigureCB(hunter_move_base::MoveBaseConfig &config, uint32_t level)
@@ -749,7 +747,7 @@ namespace hunter_move_base
                         ClassifyObstacles();
                     }
 
-                    vis_->publishObstacles(Obstacles_, ALL);
+                    //vis_->publishObstacles(Obstacles_, ALL);
 
                     if (!adas_trigger_)
                     {
@@ -783,6 +781,7 @@ namespace hunter_move_base
 
                     bool assistant_driving = false;
                     int time_interval = step_size_ * predict_time_;
+					ROS_WARN("Oscar::time interval is:%d", time_interval);
 
                     // predict 2 seconds ahead
                     for (int i = 0; i < time_interval; ++i)
@@ -827,7 +826,7 @@ namespace hunter_move_base
                         continue;
                     }
 
-					vis_->publishObstacles(Obstacles_human_path_, HUMAN);
+					//vis_->publishObstacles(Obstacles_human_path_, HUMAN);
 
                     for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
                     {
@@ -892,8 +891,8 @@ namespace hunter_move_base
                         if (central_cost >= critical_cost || footprint_cost < 0.0)
                         {
                             //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
-                            //ROS_WARN("Oscar::Px and Py is:%f, %f", px, py);
-                            //ROS_WARN("Oscar:::::::The cell cost and critical cost is:%f, %f", cell_cost, critical_cost);
+                            ROS_WARN("Oscar::Px and Py and Index is:%f, %f, %d", px, py, (int)(it - pose_list.begin()));
+                            ROS_WARN("Oscar:::::::The cell cost and critical cost is:%f, %f", footprint_cost, critical_cost);
                             //ROS_WARN("Oscar::the goal is not valid, need driving assistance.");
                             prev_plan_flag_ = true;
                             plan_flag = true;
@@ -918,9 +917,9 @@ namespace hunter_move_base
                             {
                                 if (prev_plan_flag_)
                                 {
+                                    advance(it, -target_margin_);
                                     if (UpdateGoalPose(*it))
                                     {
-                                        advance(it, -target_margin_);
                                         predicted_goal_pose = *(it);
                                         ROS_WARN("Oscar::Select semi-last point as virtual goal.");
                                     }
@@ -2066,8 +2065,9 @@ namespace hunter_move_base
 
     bool MoveBase::UpdateGoalPose(const geometry_msgs::PoseStamped &pose)
     {
-        bool update_x = std::fabs(pose.pose.position.x - prev_goal_pose_.pose.position.x) > (0.15 + driver_cmd_.linear.x * target_margin_ / step_size_);
-        bool update_y = std::fabs(pose.pose.position.y - prev_goal_pose_.pose.position.y) > (0.1 + driver_cmd_.linear.y * target_margin_ / step_size_);
+		ROS_WARN("Oscar::the pose difference is:%f, the driver_cmd_is:%f, the total is:%f", std::fabs(pose.pose.position.x - prev_goal_pose_.pose.position.x), driver_cmd_.linear.x, driver_cmd_.linear.x * target_margin_ / step_size_);
+        bool update_x = std::fabs(pose.pose.position.x - prev_goal_pose_.pose.position.x) > 0.15; //(0.15 + driver_cmd_.linear.x * target_margin_ / step_size_);
+        bool update_y = std::fabs(pose.pose.position.y - prev_goal_pose_.pose.position.y) > 0.1; //(0.1 + driver_cmd_.linear.y * target_margin_ / step_size_);
         if (update_x || update_y)
         {
             return true;

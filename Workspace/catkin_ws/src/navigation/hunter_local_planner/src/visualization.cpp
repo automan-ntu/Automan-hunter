@@ -89,7 +89,7 @@ void TebVisualization::publishLocalPlanAndPoses(const TimedElasticBand& teb) con
 {
   if ( printErrorWhenNotInitialized() )
     return;
-  
+    ROS_WARN("Oscar::We are here.");
     // create path msg
     nav_msgs::Path teb_path;
     teb_path.header.frame_id = cfg_->map_frame;
