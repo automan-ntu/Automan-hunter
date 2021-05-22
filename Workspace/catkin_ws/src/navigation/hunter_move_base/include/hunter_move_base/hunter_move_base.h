@@ -95,6 +95,13 @@ namespace hunter_move_base
 		AUTO 	= 2
 	};
 
+	enum SharedControl
+	{
+		DEFAULT = 0,
+		LONG    = 9,
+		LAT     = 99
+	};
+
     /**
    * @class MoveBase
    * @brief A class that uses the actionlib::ActionServer interface that moves the robot base to a goal location.
@@ -125,7 +132,7 @@ namespace hunter_move_base
        * @brief  Performs a plan cycle of ADAS
        * @return True if processing of the goal is done, false otherwise
        */
-        bool executeCycle();
+        bool executeCycle(std::vector<geometry_msgs::Pose>& local_path, const std::vector<double> force_human_vec, double time, const double long_flag, const double lat_flag);
 
         /**
        * @brief  Computes a new position
@@ -270,6 +277,9 @@ namespace hunter_move_base
 
         bool ObstaclesOfInterest(const unsigned int x_max, const unsigned int x_min, const unsigned int y_max, const unsigned int y_min);
 
+   		void CalculateAPF(const geometry_msgs::Pose pose, double& force_rej);
+
+		// variables	
         tf2_ros::Buffer &tf_;
 
         MoveBaseActionServer *as_;
@@ -372,8 +382,9 @@ namespace hunter_move_base
         unsigned int padding_size_y_ = 10;
 
 		// APF
-		double sigma_ = 15.0;
+		double sigma_ = 30.0;
 		double force_max_ = 10.0;
+		double decay_rate_ = 0.95;
     };
 };
 #endif

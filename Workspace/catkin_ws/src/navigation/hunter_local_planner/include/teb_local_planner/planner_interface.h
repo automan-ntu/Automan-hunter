@@ -191,6 +191,8 @@ public:
   virtual void computeCurrentCost(std::vector<double>& cost, double obst_cost_scale=1.0, bool alternative_time_cost=false)
   {
   }      
+
+  virtual void getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt) = 0;
                 
 };
 

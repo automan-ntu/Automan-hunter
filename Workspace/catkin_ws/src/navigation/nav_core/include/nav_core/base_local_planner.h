@@ -87,6 +87,8 @@ namespace nav_core {
        */
       virtual ~BaseLocalPlanner(){}
 
+      virtual void getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt) = 0;
+
     protected:
       BaseLocalPlanner(){}
   };

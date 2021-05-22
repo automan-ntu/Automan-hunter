@@ -201,6 +201,8 @@ angles/angles.h
 -
 cmath
 -
+numeric
+-
 boost/algorithm/string.hpp
 -
 boost/thread.hpp

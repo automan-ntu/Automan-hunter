@@ -501,6 +501,8 @@ public:
    */
   void randomlyDropTebs();
 
+  void getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt);
+
 protected:
 
   /** @name Explore new paths and keep only a single one for each homotopy class */

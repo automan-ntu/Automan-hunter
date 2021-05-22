@@ -501,9 +501,10 @@ public:
    */
   virtual bool isTrajectoryFeasible(base_local_planner::CostmapModel* costmap_model, const std::vector<geometry_msgs::Point>& footprint_spec, double inscribed_radius = 0.0,
           double circumscribed_radius=0.0, int look_ahead_idx=-1);
-  
   //@}
-  
+ 
+  void getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt);
+
 protected:
   
   /** @name Hyper-Graph creation and optimization */

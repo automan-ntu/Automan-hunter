@@ -40,6 +40,7 @@
 
 #include <angles/angles.h>
 #include <cmath>
+#include <numeric>
 
 #include <boost/algorithm/string.hpp>
 #include <boost/thread.hpp>
@@ -60,14 +61,14 @@ namespace hunter_move_base
                                               costmap_converter_loader_("costmap_converter", "costmap_converter::BaseCostmapToPolygons"),
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
-                                              new_global_plan_(false), adas_trigger_(false), step_size_(5), buffer_size_(2), predict_time_(3.0), 
-											  target_margin_(8), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
+                                              new_global_plan_(false), adas_trigger_(false), step_size_(3), buffer_size_(2), predict_time_(4.0), 
+											  target_margin_(5), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
     {
 
         /* we dont want the hunter drive automatically*/
-    	as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
+    	//as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
 
-        //as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
+        as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
 
         ros::NodeHandle private_nh("~");
         ros::NodeHandle nh;
@@ -239,8 +240,8 @@ namespace hunter_move_base
         }
 
         // load visualization tool
-        //ros::NodeHandle nh_hunter("~/" + std::string("hunter_move_base"));
-        //vis_ = HunterVisualizationPtr(new HunterVisualization(nh_hunter));
+        ros::NodeHandle nh_hunter("~/" + std::string("hunter_move_base"));
+        vis_ = HunterVisualizationPtr(new HunterVisualization(nh_hunter));
     }
 
     void MoveBase::reconfigureCB(hunter_move_base::MoveBaseConfig &config, uint32_t level)
@@ -790,7 +791,10 @@ namespace hunter_move_base
                         pose_list.push_back(temp_goal_pose);
                     }
 
-					ROS_WARN("Oscar::The path size is: %d", pose_list.size());
+					// to be deledted
+					const PoseSE2 predict_pose = PoseSE2(pose_list.back().pose);
+                    ROS_WARN("Oscar::The predicted pose is:%f,%f,%f", predict_pose.x(), predict_pose.y(), predict_pose.theta());
+					//
 
                     //boundary of interest of obstacles
                     unsigned int x_max, x_min, y_max, y_min;
@@ -828,7 +832,7 @@ namespace hunter_move_base
                         continue;
                     }
 
-					//vis_->publishObstacles(Obstacles_human_path_, HUMAN);
+					vis_->publishObstacles(Obstacles_human_path_, HUMAN);
 
 					std::vector<double> force_rej;
 					bool safe_stop = false;
@@ -843,6 +847,8 @@ namespace hunter_move_base
 					{
 						power_steering_vec_.pop_front();
 					}
+
+					std::vector<double> force_human_vec;
 
                     for (auto it = pose_list.begin(); it != pose_list.end(); ++it)
                     {
@@ -942,124 +948,20 @@ namespace hunter_move_base
 		                    }
 						}
 
-						// Calculate APF
-					    /*for (int i = 0; i < Obstacles_.size(); ++i)
-					    {
-							ObstaclePtr obs_ptr = Obstacles_.at(i);
-							std::vector<double> x_pts;
-							std::vector<double> y_pts;
-							if (typeid(*obs_ptr) == typeid(LineObstacle))
-							{
-							  //ROS_WARN("It's a line obstacle, skip it.");
-							  continue;
-							}
-							else if (typeid(*obs_ptr) == typeid(PolygonObstacle))
-							{
-							  Point2dContainer points_vec = boost::dynamic_pointer_cast<move_base::PolygonObstacle>(obs_ptr)->vertices();
-							  for (int j = 0; j < points_vec.size(); ++j)
-							  {
-								x_pts.push_back(points_vec.at(j).coeffRef(0));
-								y_pts.push_back(points_vec.at(j).coeffRef(1));
-							  }
-							}
-							else
-							{
-							  ROS_WARN("What hell is it?");
-							  continue;
-							}
+						double force_rej = 0.0;
+						CalculateAPF((*it).pose, force_rej);
 
-							const int len = x_pts.size();
-							double x_mean = std::accumulate(x_pts.begin(), x_pts.end(), 0.0)/len;
-							double y_mean = std::accumulate(y_pts.begin(), y_pts.end(), 0.0)/len;
+						// need to start power steering process
+						if (std::fabs(force_rej) > 1.0 && !power_steering)
+						{
+							power_steering = true;
+							ROS_WARN("Oscar::Need power steering.");
+						}
 
-							std::vector<double> x_var_vec(len);
-							std::vector<double> y_var_vec(len);
-							std::transform(x_pts.begin(), x_pts.end(), x_var_vec.begin(), [x_mean](double x){return x - x_mean;});
-							std::transform(y_pts.begin(), y_pts.end(), y_var_vec.begin(), [y_mean](double y){return y - y_mean;});
+						double force_rej_weighted = force_rej * std::pow(decay_rate_, int(it - pose_list.begin()));
+						ROS_WARN("Oscar::force_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - pose_list.begin())));
+						force_human_vec.push_back(force_rej_weighted);
 
-							double xy_cov = std::inner_product(x_var_vec.begin(), x_var_vec.end(), y_var_vec.begin(), 0.0)/(len - 1);
-							double x_var  = std::inner_product(x_var_vec.begin(), x_var_vec.end(), x_var_vec.begin(), 0.0)/(len - 1);
-							double y_var  = std::inner_product(y_var_vec.begin(), y_var_vec.end(), y_var_vec.begin(), 0.0)/(len - 1);
-							double dist_mh = 0.0;
-							double dist_critical = 0.0;
-
-							const PoseSE2 predict_pose = PoseSE2(*(it).pose)
-							const Eigen::Vector2d robot_position = predict_pose.position();
-							const Eigen::Vector2d closest_pt = obs_ptr->GetClosestPoint(robot_position);
-
-							if (std::fabs(xy_cov) > DBL_EPSILON)
-							{
-							  double x_var_inv = y_var / (x_var * y_var - std::pow(xy_cov, 2));
-							  double y_var_inv = x_var / (x_var * y_var - std::pow(xy_cov, 2));
-							  double xy_cov_inv = - xy_cov / (x_var * y_var - std::pow(xy_cov, 2));
-
-							  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2) * x_var_inv + 
-										2 * (predict_pose.x() - x_mean) * (predict_pose.y() - y_mean) * xy_cov_inv +
-										std::pow(predict_pose.y() - y_mean, 2) * y_var_inv);
-
-							  dist_critical = std::sqrt(std::pow(closest_pt.coeffRef(0) - x_mean, 2) * x_var_inv + 
-										      2 * (closest_pt.coeffRef(0) - x_mean) * (closest_pt.coeffRef(1) - y_mean) * xy_cov_inv +
-										      std::pow(closest_pt.coeffRef(1) - y_mean, 2) * y_var_inv);
-							}
-							else
-							{
-							  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2)/x_var + std::pow(predict_pose.y() - y_mean, 2)/y_var);
-
-							  dist_critical = std::sqrt(std::pow(closest_pt.coeffRef(0) - x_mean, 2)/x_var + std::pow(closest_pt.coeffRef(1) - y_mean, 2)/y_var);
-							}
-							ROS_WARN("Oscar::The variance is %f, %f", x_var, y_var);
-							ROS_WARN("Oscar::The mahalanobis distance is :%f ,%f", dist_mh, dist_critical);
-
-							unsigned int cell_x_obs, cell_y_obs;
-							if (costmap_ != NULL)
-							{
-							  if (!costmap_->worldToMap(x_mean, y_mean, cell_x_obs, cell_y_obs))
-							  {
-								  //we're off the map
-								  ROS_WARN("Oscar::Off Map %f, %f", x_mean, y_mean);
-							  }
-							}
-
-							ROS_WARN("Oscar::The obstacle locates at %f, %f", x_mean, y_mean);
-							ROS_WARN("Oscar::The obstacle cell is %d, %d", cell_x_obs, cell_y_obs);
-
-							//Mahalanobis distance based APF
-							/* 
-							Using Costmap, not very precise however, we use coordinates instead
-							double sin_theta = (static_cast<int>(cell_x_robot) - static_cast<int>(cell_x_obs)) / std::sqrt((std::pow(static_cast<int>(cell_x_robot) - static_cast<int>(cell_x_obs), 2) 													+ std::pow(static_cast<int>(cell_y_robot) - static_cast<int>(cell_y_obs), 2)));
-							double cos_theta = (static_cast<int>(cell_y_robot) - static_cast<int>(cell_y_obs)) / std::sqrt((std::pow(static_cast<int>(cell_x_robot) - static_cast<int>(cell_x_obs), 2) 													+ std::pow(static_cast<int>(cell_y_robot) - static_cast<int>(cell_y_obs), 2)));
-							
-							double x_mean_local = cos(predict_pose.theta()) * (x_mean - predict_pose.x()) + sin(predict_pose.theta()) * (y_mean - predict_pose.y());
-							double y_mean_local = - sin(predict_pose.theta()) * (x_mean - predict_pose.x()) + cos(predict_pose.theta()) * (y_mean - predict_pose.y());
-							double sin_theta = (0.0 - y_mean_local) / (std::sqrt(std::pow(y_mean_local, 2) + std::pow(x_mean_local, 2)));
-							double cos_theta = (0.0 - x_mean_local) / (std::sqrt(std::pow(y_mean_local, 2) + std::pow(x_mean_local, 2)));
-							//ROS_WARN("Oscar::The angle is:%f", theta);
-							//ROS_WARN("Oscar::The sine theta is:%f", sin_theta);
-							//ROS_WARN("Oscar::The cosine theta is:%f", cos_theta);
-
-							//APF
-							double force_x = 0.0;
-							double force_y = 0.0;
-							if (dist_mh <= dist_critical)
-							{
-							  force_x = force_max_;
-							  force_y = force_max_;
-							}
-							else
-							{
-							  double force = sigma_ / std::pow(dist_mh, 3);
-							  if (force <= force_max_)
-							  {
-								force_x = force * cos_theta;
-								force_y = force * sin_theta;
-							  }
-							  else{
-								force_x = force_max_ * cos_theta;
-								force_y = force_max_ * sin_theta;
-							  }
-							}
-							ROS_WARN("Oscar::::::The force in each direction is: %f, %f", force_x, force_y);
-					  	}*/
 						// APF calculated
 
 						if (it == (pose_list.end() - 1))
@@ -1108,16 +1010,12 @@ namespace hunter_move_base
 						{
 							planner_goal_ = prev_goal_pose_;
 						}
-                        ROS_WARN("Oscar::The predicted goal pose is:%f,%f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
+                        ROS_WARN("Oscar::LONG->The planner goal pose is:%f,%f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
 					}
 					else if (lat_index > 0)
 					{
 						planner_goal_ = global_goal_;
-                        if (planner_frequency_ > 0)
-                        {
-                            sleepPlanner(n, timer, start_time_ADAS, lock);
-                        }
-						continue;
+						ROS_WARN("Oscar::LAT->The planner goal pose is:%f, %f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
 					}
 					else
 					{
@@ -1188,7 +1086,8 @@ namespace hunter_move_base
                     ros::WallTime start = ros::WallTime::now();
 
                     //the real work on pursuing a goal is done here
-                    bool done = executeCycle();
+					std::vector<geometry_msgs::Pose> local_path;
+                    bool done = executeCycle(local_path, force_human_vec,predict_time_, long_index, lat_index);
 
                     //check if execution of the goal has completed in some way
 
@@ -1942,7 +1841,7 @@ namespace hunter_move_base
         return true;
     }
 
-    bool MoveBase::executeCycle()
+    bool MoveBase::executeCycle(std::vector<geometry_msgs::Pose>& local_path, const std::vector<double> force_human_vec, double time, double long_flag, double lat_flag)
     {
         boost::recursive_mutex::scoped_lock ecl(configuration_mutex_);
         //we need to be able to publish velocity commands
@@ -2028,8 +1927,11 @@ namespace hunter_move_base
 
                 if (tc_->computeVelocityCommands(cmd_vel))
                 {
-                    //ROS_WARN("Oscar::move_base:Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
-                             //cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
+					double dt = 0.0;
+          			tc_->getLocalPath(local_path, time, dt);
+
+					ROS_WARN("Oscar::The size of local path is:%d, the period of local path is:%f, the last pose is:%f", local_path.size(), dt, local_path.back().position.x);
+
                     last_valid_control_ = ros::Time::now();
                     tc_->SetGoalNotReached();
 
@@ -2039,7 +1941,8 @@ namespace hunter_move_base
                         cmd_buffer_.pop_front();
                     }
 
-                    /*double sum_lon = 0.0;
+                    /*
+					double sum_lon = 0.0;
                     double sum_rot = 0.0;
                     for (auto it = cmd_buffer_.begin(); it != cmd_buffer_.end(); ++it)
                     {
@@ -2064,8 +1967,56 @@ namespace hunter_move_base
                     ROS_WARN("Oscar::move_base:Got a new command from the local planner: %.3lf, %.3lf, %.3lf",
                              cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
 
-                    //make sure that we send the velocity command to simulator
-                    vel_to_sim_pub_.publish(cmd_vel);
+					if (long_flag)
+					{
+						cmd_vel.linear.z = LONG;
+						vel_to_sim_pub_.publish(cmd_vel);
+					}
+					else if (lat_flag)
+					{
+						std::vector<double> force_auto_vec;
+		                for (auto it = local_path.begin(); it != local_path.end(); ++it)
+		                {
+							double force_rej = 0.0;
+							CalculateAPF(*it, force_rej);
+							double force_rej_weighted = force_rej * std::pow(decay_rate_, int(it - local_path.begin()));
+							ROS_WARN("Oscar::autoforce_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - local_path.begin())));
+							force_auto_vec.push_back(force_rej_weighted);
+						}
+
+						double apf_human = 0.0;
+						double apf_auto  = 0.0;
+						if (dt < predict_time_)
+						{
+							double pose_number = std::ceil(dt) * step_size_;
+							for (int i = 0; i < pose_number; ++i)
+							{
+								apf_human += std::fabs(force_human_vec[i]);
+							}
+						}
+						else
+						{
+							for (int i = 0; i < force_human_vec.size(); ++i)
+							{
+								apf_human += std::fabs(force_human_vec[i]);
+							}
+						}
+
+						for (int i = 0; i < force_auto_vec.size(); ++i)
+						{
+							apf_auto += std::fabs(force_auto_vec[i]);
+						}
+
+						apf_human = apf_human / force_human_vec.size();
+						apf_auto  = apf_auto / force_auto_vec.size();
+						ROS_WARN("Oscar::apf_human:%f, apf_auto:%f", apf_human, apf_auto);
+						cmd_vel.linear.z = double(LAT);
+						ROS_WARN("Oscar::cmd_vel.linear.z is:%f, and automation is:%f", cmd_vel.linear.z, double(LAT));
+						cmd_vel.angular.x = apf_human;
+						cmd_vel.angular.y = apf_auto;
+						vel_to_sim_pub_.publish(cmd_vel);
+					}
+
                     if (recovery_trigger_ == CONTROLLING_R)
                         recovery_index_ = 0;
                 }
@@ -2307,7 +2258,161 @@ namespace hunter_move_base
                 Obstacles_human_path_.push_back(*obs);
             }
         }
-        //ROS_WARN("Oscar::there are %d obstacles need to be considered.", (int)Obstacles_human_path_.size());
+        ROS_WARN("Oscar::there are %d obstacles need to be considered.", (int)Obstacles_human_path_.size());
+		if (Obstacles_human_path_.size() < 1)
+		{
+			return false;
+		}
         return true;
-    }
+   }
+
+   void MoveBase::CalculateAPF(const geometry_msgs::Pose pose, double& force_rej)
+   {
+		double force_rej_x = 0.0;
+		double force_rej_y = 0.0;
+		for (int i = 0; i < Obstacles_human_path_.size(); ++i)
+		{
+			ObstaclePtr obs_ptr = Obstacles_human_path_.at(i);
+			std::vector<double> x_pts;
+			std::vector<double> y_pts;
+			if (typeid(*obs_ptr) == typeid(LineObstacle))
+			{
+			  continue;
+			}
+			else if (typeid(*obs_ptr) == typeid(PolygonObstacle))
+			{
+			  Point2dContainer points_vec = boost::dynamic_pointer_cast<hunter_move_base::PolygonObstacle>(obs_ptr)->vertices();
+			  for (int j = 0; j < points_vec.size(); ++j)
+			  {
+				x_pts.push_back(points_vec.at(j).coeffRef(0));
+				y_pts.push_back(points_vec.at(j).coeffRef(1));
+			  }
+			}
+			else
+			{
+			  ROS_WARN("What hell is it?");
+			  continue;
+			}
+
+			const int len = x_pts.size();
+			double x_mean = std::accumulate(x_pts.begin(), x_pts.end(), 0.0)/len;
+			double y_mean = std::accumulate(y_pts.begin(), y_pts.end(), 0.0)/len;
+
+			std::vector<double> x_var_vec(len);
+			std::vector<double> y_var_vec(len);
+			std::transform(x_pts.begin(), x_pts.end(), x_var_vec.begin(), [x_mean](double x){return x - x_mean;});
+			std::transform(y_pts.begin(), y_pts.end(), y_var_vec.begin(), [y_mean](double y){return y - y_mean;});
+
+			double xy_cov = std::inner_product(x_var_vec.begin(), x_var_vec.end(), y_var_vec.begin(), 0.0)/(len - 1);
+			double x_var  = std::inner_product(x_var_vec.begin(), x_var_vec.end(), x_var_vec.begin(), 0.0)/(len - 1);
+			double y_var  = std::inner_product(y_var_vec.begin(), y_var_vec.end(), y_var_vec.begin(), 0.0)/(len - 1);
+			double cov_det  = x_var * y_var - std::pow(xy_cov, 2);
+			double dist_mh = 0.0;
+			double dist_critical = 0.0;
+
+			const PoseSE2 predict_pose = PoseSE2(pose);
+			const Eigen::Vector2d robot_position = predict_pose.position();
+			const Eigen::Vector2d closest_pt = obs_ptr->GetClosestPoint(robot_position);
+
+			if (x_var < 0.01 && y_var < 0.01)
+			{
+			  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2) + std::pow(predict_pose.y() - y_mean, 2));
+			  dist_critical = std::sqrt(std::pow(closest_pt.coeffRef(0) - x_mean, 2) + std::pow(closest_pt.coeffRef(1) - y_mean, 2));
+			  ROS_WARN("Oscar::Circle obstacle");
+			}
+			else if (std::fabs(xy_cov) > 0.01 && std::fabs(cov_det) > 0.01) //make sure determinant of covarience matrix is non-zero.
+			{
+			  double x_var_inv = y_var / (x_var * y_var - std::pow(xy_cov, 2));
+			  double y_var_inv = x_var / (x_var * y_var - std::pow(xy_cov, 2));
+			  double xy_cov_inv = - xy_cov / (x_var * y_var - std::pow(xy_cov, 2));
+
+			  ROS_WARN("Oscar::x_var_inv:%f, y_var_inv:%f, xy_cov_inv:%f", x_var_inv, y_var_inv, xy_cov_inv);
+
+			  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2) * x_var_inv + 
+						2 * (predict_pose.x() - x_mean) * (predict_pose.y() - y_mean) * xy_cov_inv +
+						std::pow(predict_pose.y() - y_mean, 2) * y_var_inv);
+
+			  dist_critical = std::sqrt(std::pow(closest_pt.coeffRef(0) - x_mean, 2) * x_var_inv + 
+							  2 * (closest_pt.coeffRef(0) - x_mean) * (closest_pt.coeffRef(1) - y_mean) * xy_cov_inv +
+							  std::pow(closest_pt.coeffRef(1) - y_mean, 2) * y_var_inv);
+			}
+			else
+			{
+			  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2)/x_var + std::pow(predict_pose.y() - y_mean, 2)/y_var);
+			  dist_critical = std::sqrt(std::pow(closest_pt.coeffRef(0) - x_mean, 2)/x_var + std::pow(closest_pt.coeffRef(1) - y_mean, 2)/y_var);
+			  ROS_WARN("Oscar::Standard Ellipse Obstacle.");
+			}
+
+			unsigned int cell_x_obs, cell_y_obs;
+			if (costmap_ != NULL)
+			{
+			  if (!costmap_->worldToMap(x_mean, y_mean, cell_x_obs, cell_y_obs))
+			  {
+				  //we're off the map
+				  ROS_WARN("Oscar::Off Map %f, %f", x_mean, y_mean);
+			  }
+			}
+
+			ROS_WARN("Oscar::The obstacle locates at %f, %f, pose are:%f, %f, x_var:%f, y_var:%f, xy_cov:%f, cov_det:%f, mahal:%f, critical:%f",
+					x_mean, y_mean, predict_pose.x(), predict_pose.y(), x_var, y_var, xy_cov, cov_det, dist_mh, dist_critical);
+			//ROS_WARN("Oscar::The obstacle cell is %d, %d", cell_x_obs, cell_y_obs);
+
+			//Mahalanobis distance based APF
+			/* 
+			Using Costmap, not very precise however, we use coordinates instead
+			double sin_theta = (static_cast<int>(cell_x_robot) - static_cast<int>(cell_x_obs)) / std::sqrt((std::pow(static_cast<int>(cell_x_robot) - static_cast<int>(cell_x_obs), 2) 													+ std::pow(static_cast<int>(cell_y_robot) - static_cast<int>(cell_y_obs), 2)));
+			double cos_theta = (static_cast<int>(cell_y_robot) - static_cast<int>(cell_y_obs)) / std::sqrt((std::pow(static_cast<int>(cell_x_robot) - static_cast<int>(cell_x_obs), 2) 													+ std::pow(static_cast<int>(cell_y_robot) - static_cast<int>(cell_y_obs), 2)));
+			*/
+
+			double x_mean_local = cos(predict_pose.theta()) * (x_mean - predict_pose.x()) + sin(predict_pose.theta()) * (y_mean - predict_pose.y());
+			double y_mean_local = - sin(predict_pose.theta()) * (x_mean - predict_pose.x()) + cos(predict_pose.theta()) * (y_mean - predict_pose.y());
+			double cos_theta = (0.0 - x_mean_local) / (std::sqrt(std::pow(y_mean_local, 2) + std::pow(x_mean_local, 2)));
+			double sin_theta = (0.0 - y_mean_local) / (std::sqrt(std::pow(y_mean_local, 2) + std::pow(x_mean_local, 2)));
+			//ROS_WARN("Oscar::The angle is:%f", theta);
+			//ROS_WARN("Oscar::The sine theta is:%f", sin_theta);
+			//ROS_WARN("Oscar::The cosine theta is:%f", cos_theta);
+
+			if (cos_theta > 0)
+			{
+				ROS_WARN("Oscar::The obstacle is already passed, next one.");
+				continue;
+			}
+
+			//APF
+		    double force_x = 0.0;
+		    double force_y = 0.0;
+		    if (dist_mh <= dist_critical && sin_theta <= 0)
+		    {
+		      force_x = -force_max_;
+		      force_y = -force_max_;
+		    }
+			else if(dist_mh <= dist_critical && sin_theta > 0)
+			{
+		      force_x = force_max_;
+		      force_y = force_max_;
+			}
+		    else
+		    {
+		      double force = std::min(sigma_ / std::pow(dist_mh, 3), force_max_);
+		      if (force <= force_max_)
+		      {
+		        force_x = force * cos_theta;
+		        force_y = force * sin_theta;
+		      }
+		      else
+			  {
+		        force_x = force_max_ * cos_theta;
+		        force_y = force_max_ * sin_theta;
+		      }
+		    }
+
+			force_rej_x += force_x;
+			force_rej_y += force_y;
+
+			ROS_WARN("Oscar::::::The force in each direction is: %f, %f", force_rej_x, force_rej_y);
+   		}
+
+		// make sure force max in case of multiple obstacles
+		force_rej = std::min(std::sqrt(std::pow(force_rej_x,2) + std::pow(force_rej_y, 2)), force_max_);
+   }
 };

@@ -1204,6 +1204,11 @@ void TebLocalPlannerROS::SetGoalNotReached()
   goal_reached_ = false;
 }
 
+void TebLocalPlannerROS::getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt)
+{
+  planner_->getLocalPath(path, time, dt);
+}
+
 } // end namespace hunter_local_planner
 
 

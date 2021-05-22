@@ -1129,7 +1129,7 @@ bool TebOptimalPlanner::getVelocityCommand(double& vx, double& vy, double& omega
 	}
 	t += teb_.TimeDiff(i);
   }
-  ROS_WARN("Oscar::The size of local path and time horizon are: %d, %f", int(teb_.sizePoses()), t);
+  ROS_WARN("Oscar::The size of local path and time horizon and last pose are: %d, %f, %f", int(teb_.sizePoses()), t, teb_.BackPose().x());
 
   if (teb_.sizePoses()<2)
   {
@@ -1292,6 +1292,31 @@ bool TebOptimalPlanner::isTrajectoryFeasible(base_local_planner::CostmapModel* c
     }
   }
   return true;
+}
+
+void TebOptimalPlanner::getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt)
+{
+  //ROS_WARN("Oscar::the pose is:%f, %f", teb_.BackPose().x(), teb_.BackPose().y());
+  int counter = 0;
+  for(counter; counter < teb_.sizePoses(); ++counter)
+  { 
+    if (counter >= teb_.sizeTimeDiffs())
+    {
+	  geometry_msgs::Pose pose;
+	  teb_.Pose(counter).toPoseMsg(pose);
+	  path.push_back(pose);
+      break;
+    }
+    if (dt > time)
+    { 
+      break;
+    }
+    dt += teb_.TimeDiff(counter);
+
+    geometry_msgs::Pose pose;
+    teb_.Pose(counter).toPoseMsg(pose);
+    path.push_back(pose);
+  }
 }
 
 } // namespace hunter_local_planner
