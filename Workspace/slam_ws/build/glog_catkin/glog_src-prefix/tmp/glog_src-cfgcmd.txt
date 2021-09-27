@@ -1,0 +1,1 @@
+cmd='cd;../glog_src/;&&;autoreconf;-fi;&&;./configure;--with-pic;--with-gflags=/home/hunter/Workspace/slam_ws/devel;--prefix=/home/hunter/Workspace/slam_ws/devel'

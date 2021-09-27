@@ -1,0 +1,8 @@
+prefix=/home/hunter/Workspace/slam_ws/devel
+
+Name: voxblox
+Description: Description of voxblox
+Version: 0.0.0
+Cflags: -I/home/hunter/Workspace/slam_ws/src/voxblox/voxblox/include -I/home/hunter/Workspace/slam_ws/devel/include
+Libs: -L${prefix}/lib -lvoxblox_proto -lvoxblox
+Requires: eigen_catkin eigen_checks gflags_catkin glog_catkin minkindr protobuf_catkin

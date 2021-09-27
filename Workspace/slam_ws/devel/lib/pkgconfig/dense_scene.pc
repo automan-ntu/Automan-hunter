@@ -1,0 +1,8 @@
+prefix=/home/hunter/Workspace/slam_ws/devel
+
+Name: dense_scene
+Description: Description of dense_scene
+Version: 0.0.0
+Cflags: -I/home/hunter/Workspace/slam_ws/src/dense_scene/include
+Libs: -L${prefix}/lib 
+Requires: 

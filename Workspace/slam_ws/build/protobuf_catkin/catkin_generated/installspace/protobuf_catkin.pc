@@ -1,0 +1,8 @@
+prefix=/home/hunter/Workspace/slam_ws/install
+
+Name: protobuf_catkin
+Description: Description of protobuf_catkin
+Version: 3.0.0
+Cflags: -I/usr/local/include
+Libs: -L${prefix}/lib /usr/local/lib/libprotobuf.a -lpthread
+Requires: 

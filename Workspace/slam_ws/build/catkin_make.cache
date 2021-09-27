@@ -1,2 +1,2 @@
-A-LOAM:loam_velodyne
--DCATKIN_DEVEL_PREFIX=/home/hunter/Workspace/slam_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hunter/Workspace/slam_ws/install -G Unix Makefiles
+catkin_simple:dense_scene:eigen_catkin:eigen_checks:gflags_catkin:glog_catkin:minkindr/minkindr:minkindr/minkindr_python:minkindr_ros/minkindr_conversions:protobuf_catkin:voxblox/voxblox:voxblox/voxblox_msgs:voxblox/voxblox_ros:voxblox/voxblox_rviz_plugin
+-DCATKIN_WHITELIST_PACKAGES=dense_scene -DCATKIN_DEVEL_PREFIX=/home/hunter/Workspace/slam_ws/devel -DCMAKE_INSTALL_PREFIX=/home/hunter/Workspace/slam_ws/install -G Unix Makefiles
