@@ -31,6 +31,8 @@
   <param name="xy_goal_tolerance" type="double" value="0.2" />
   <param name="yaw_goal_tolerance" type="double" value="0.1" />
   <param name="free_goal_vel" type="bool" value="False" />
+  <param name="trans_stopped_vel" type="double" value="0.1" />
+  <param name="theta_stopped_vel" type="double" value="0.1" />
   <param name="min_obstacle_dist" type="double" value="0.5" />
   <param name="inflation_dist" type="double" value="0.6" />
   <param name="dynamic_obstacle_inflation_dist" type="double" value="0.6" />
@@ -88,6 +90,8 @@
   <param name="visualize_hc_graph" type="bool" value="False" />
   <param name="shrink_horizon_backup" type="bool" value="True" />
   <param name="oscillation_recovery" type="bool" value="True" />
+  <param name="divergence_detection_enable" type="bool" value="False" />
+  <param name="divergence_detection_max_chi_squared" type="double" value="10.0" />
 </node>
 \endverbatim
 

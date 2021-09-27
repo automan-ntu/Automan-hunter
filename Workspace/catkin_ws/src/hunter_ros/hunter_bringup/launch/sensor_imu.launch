@@ -8,8 +8,8 @@
     <arg name="imu_frame"       default="imu_link" /> 
     <arg name="mag_frame"       default="mag_frame" />    
     <!-- pub topic -->
-    <arg name="imu_topic"       default="imu" />
-    <arg name="mag_topic"       default="mag" />
+    <arg name="imu_topic"       default="imu/" />
+    <arg name="mag_topic"       default="imu/mag" />
     <!-- topic freq -->
     <arg name="imu_freq"       default="200" />
     <arg name="mag_freq"       default="70" />

@@ -350,6 +350,7 @@ namespace hunter_move_base
         double predict_time_;
         bool adas_trigger_;
         int target_margin_;
+		int critical_margin_;
         int step_size_;
 		int buffer_size_;
         std::list<geometry_msgs::Twist> cmd_buffer_;
@@ -382,9 +383,9 @@ namespace hunter_move_base
         unsigned int padding_size_y_ = 10;
 
 		// APF
-		double sigma_ = 30.0;
-		double force_max_ = 10.0;
-		double decay_rate_ = 0.95;
+		double sigma_ = 300.0;
+		double force_max_ = 5.0;
+		double decay_rate_ = 0.97;
     };
 };
 #endif

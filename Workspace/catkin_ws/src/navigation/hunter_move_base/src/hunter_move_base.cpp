@@ -61,8 +61,8 @@ namespace hunter_move_base
                                               costmap_converter_loader_("costmap_converter", "costmap_converter::BaseCostmapToPolygons"),
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
-                                              new_global_plan_(false), adas_trigger_(false), step_size_(3), buffer_size_(2), predict_time_(4.0), 
-											  target_margin_(5), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
+                                              new_global_plan_(false), adas_trigger_(false), step_size_(5), buffer_size_(2), predict_time_(4.0), 
+											  target_margin_(8), critical_margin_(5), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
     {
 
         /* we dont want the hunter drive automatically*/
@@ -905,7 +905,7 @@ namespace hunter_move_base
 		                    //ROS_WARN("Oscar::The new predicted robot pose is: %f, %f", px, py);
 		                    //ROS_WARN("Oscar::The cell cost and critical cost is:  %f, %f", cell_cost, critical_cost);
 
-		                    if (robot_velo_.linear.x > 1.0)
+		                    if (robot_velo_.linear.x > 10.0)
 		                    {
 		                        double delta_dist = LinearInterpolation(robot_velo_.linear.x);
 		                        critical_cost = ComputeCost(delta_dist);
@@ -919,15 +919,15 @@ namespace hunter_move_base
 		                        //ROS_WARN("Oscar:::::::The cell cost and critical cost is:%f, %f", footprint_cost, critical_cost);
 		                        //ROS_WARN("Oscar::the goal is not valid, need driving assistance.");
 		                        safe_stop_vec_.push_back(true);
-								power_steering_vec_.push_back(true);
-								if ((it - pose_list.begin()) <= 5)
+								//power_steering_vec_.push_back(true);
+								if ((it - pose_list.begin()) <= critical_margin_)
 								{
 									predicted_goal_pose = current_robot_pose;
 		                            ROS_WARN("Oscar::Too close! Stop at current position.");
 								}
 								else
 								{
-									int margin = it - pose_list.begin() - 5;
+									int margin = it - pose_list.begin() - critical_margin_;
 									std::advance(it, -std::min(margin, 2));
 									bool initial_flag = (std::fabs(prev_goal_pose_.pose.position.x) < DBL_EPSILON) && (std::fabs(prev_goal_pose_.pose.position.y) < DBL_EPSILON);
 									if (UpdateGoalPose(*it) || initial_flag)
@@ -952,18 +952,25 @@ namespace hunter_move_base
 						CalculateAPF((*it).pose, force_rej);
 
 						// need to start power steering process
-						if (std::fabs(force_rej) > 1.0 && !power_steering)
+						/*if (std::fabs(force_rej) > 1.0 && !power_steering)
 						{
 							power_steering = true;
 							ROS_WARN("Oscar::Need power steering.");
 						}
+						*/
 
 						double force_rej_weighted = force_rej * std::pow(decay_rate_, int(it - pose_list.begin()));
 						ROS_WARN("Oscar::force_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - pose_list.begin())));
 						force_human_vec.push_back(force_rej_weighted);
-
 						// APF calculated
 
+						// if the loop does not break, then safe stop is not needed.
+						if (it == (pose_list.end() - 1))
+						{
+							safe_stop_vec_.push_back(false);
+						}
+
+						/* we change the rule of triggering power steering.Do it outside of the loop.
 						if (it == (pose_list.end() - 1))
 						{
 							safe_stop_vec_.push_back(false);
@@ -976,8 +983,29 @@ namespace hunter_move_base
 								power_steering_vec_.push_back(false);
 							}
 						}
+						*/
                     }
 
+					// calculate average apf value of human path
+					double force_human_sum = 0.0;
+					double force_human_avg = 0.0;					
+					if (int(force_human_vec.size()) > 0)
+					{		            
+						for (auto it = force_human_vec.begin(); it != force_human_vec.end(); ++it)
+						{
+							force_human_sum += *it;
+						}
+						force_human_avg = force_human_sum / force_human_vec.size();		
+					}
+
+					if (std::fabs(force_human_avg) > 1.0)
+					{
+						power_steering = true;
+					}
+
+					power_steering_vec_.push_back(power_steering);
+
+					// Start to evaluate whether ADAS is needed.
 					int long_index = 0;
 					int lat_index = 0;
 					
@@ -2007,8 +2035,8 @@ namespace hunter_move_base
 							apf_auto += std::fabs(force_auto_vec[i]);
 						}
 
-						apf_human = apf_human / force_human_vec.size();
-						apf_auto  = apf_auto / force_auto_vec.size();
+						apf_human = std::min(std::fabs(apf_human / force_human_vec.size()), force_max_);
+						apf_auto  = std::min(std::fabs(apf_auto / force_auto_vec.size()), force_max_);
 						ROS_WARN("Oscar::apf_human:%f, apf_auto:%f", apf_human, apf_auto);
 						cmd_vel.linear.z = double(LAT);
 						ROS_WARN("Oscar::cmd_vel.linear.z is:%f, and automation is:%f", cmd_vel.linear.z, double(LAT));

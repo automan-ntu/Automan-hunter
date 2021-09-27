@@ -15,10 +15,10 @@
 -->
 
 <launch>
-  <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" output="screen" />
+  <node pkg="nodelet" type="nodelet" name="pcl_manager" args="manager" output="screen" respawn="true"/>
 
   <!-- Run a passthrough filter on the z axis -->
-  <node pkg="nodelet" type="nodelet" name="passthrough_z" args="load pcl/PassThrough pcl_manager" output="screen">
+  <node pkg="nodelet" type="nodelet" name="passthrough_z" args="load pcl/PassThrough pcl_manager" output="screen" respawn="true" >
     <remap from="~input" to="/rslidar_points" />
     <remap from="~output" to="/points2" />
     <rosparam>
