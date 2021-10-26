@@ -281,6 +281,9 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   if (!custom_via_points_active_)
     updateViaPointsContainer(transformed_plan, cfg_.trajectory.global_plan_viapoint_sep);
 
+  nav_msgs::Odometry base_odom;
+  odom_helper_.getOdom(base_odom);
+
   // check if global goal is reached
   geometry_msgs::PoseStamped global_goal;
   tf2::doTransform(global_plan_.back(), global_goal, tf_plan_to_global);
@@ -289,13 +292,14 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   double delta_orient = g2o::normalize_theta( tf2::getYaw(global_goal.pose.orientation) - robot_pose_.theta() );
   if(fabs(std::sqrt(dx*dx+dy*dy)) < cfg_.goal_tolerance.xy_goal_tolerance
     && fabs(delta_orient) < cfg_.goal_tolerance.yaw_goal_tolerance
-    && (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0))
+    && (!cfg_.goal_tolerance.complete_global_plan || via_points_.size() == 0)
+    && (base_local_planner::stopped(base_odom, cfg_.goal_tolerance.theta_stopped_vel, cfg_.goal_tolerance.trans_stopped_vel)
+        || cfg_.goal_tolerance.free_goal_vel))
   {
     goal_reached_ = true;
     return mbf_msgs::ExePathResult::SUCCESS;
   }
-  
-  
+
   // check if we should enter any backup mode and apply settings
   configureBackupModes(transformed_plan, goal_idx);
   
@@ -360,6 +364,21 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
     time_last_infeasible_plan_ = ros::Time::now();
     last_cmd_ = cmd_vel.twist;
     message = "teb_local_planner was not able to obtain a local plan";
+    return mbf_msgs::ExePathResult::NO_VALID_CMD;
+  }
+
+  // Check for divergence
+  if (planner_->hasDiverged())
+  {
+    cmd_vel.twist.linear.x = cmd_vel.twist.linear.y = cmd_vel.twist.angular.z = 0;
+
+    // Reset everything to start again with the initialization of new trajectories.
+    planner_->clearPlanner();
+    ROS_WARN_THROTTLE(1.0, "TebLocalPlannerROS: the trajectory has diverged. Resetting planner...");
+
+    ++no_infeasible_plans_; // increase number of infeasible solutions in a row
+    time_last_infeasible_plan_ = ros::Time::now();
+    last_cmd_ = cmd_vel.twist;
     return mbf_msgs::ExePathResult::NO_VALID_CMD;
   }
          
@@ -714,6 +733,7 @@ bool TebLocalPlannerROS::transformGlobalPlan(const tf2_ros::Buffer& tf, const st
     double sq_dist = 1e10;
     
     //we need to loop to a point on the plan that is within a certain distance of the robot
+    bool robot_reached = false;
     for(int j=0; j < (int)global_plan.size(); ++j)
     {
       double x_diff = robot_pose.pose.position.x - global_plan[j].pose.position.x;
@@ -722,10 +742,15 @@ bool TebLocalPlannerROS::transformGlobalPlan(const tf2_ros::Buffer& tf, const st
       if (new_sq_dist > sq_dist_threshold)
         break;  // force stop if we have reached the costmap border
 
+      if (robot_reached && new_sq_dist > sq_dist)
+        break;
+
       if (new_sq_dist < sq_dist) // find closest distance
       {
         sq_dist = new_sq_dist;
         i = j;
+        if (sq_dist < 0.05)      // 2.5 cm to the robot; take the immediate local minima; if it's not the global
+          robot_reached = true;  // minima, probably means that there's a loop in the path, and so we prefer this
       }
     }
     
@@ -980,7 +1005,6 @@ void TebLocalPlannerROS::configureBackupModes(std::vector<geometry_msgs::PoseSta
     }
 
 }
-     
      
 void TebLocalPlannerROS::customObstacleCB(const costmap_converter::ObstacleArrayMsg::ConstPtr& obst_msg)
 {

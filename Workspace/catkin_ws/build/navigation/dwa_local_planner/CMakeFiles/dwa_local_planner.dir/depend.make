@@ -4,6 +4,7 @@
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/dwa_local_planner/DWAPlannerConfig.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include/dwa_local_planner/dwa_planner.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/src/dwa_planner.cpp
+navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/angles/angles.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/base_local_planner/costmap_model.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/base_local_planner/goal_functions.h
@@ -80,7 +81,6 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cp
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/kdl/utilities/kdl-config.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/kdl/utilities/utility.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/nav_core/base_local_planner.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/nav_msgs/MapMetaData.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cpp.o: /opt/ros/melodic/include/nav_msgs/Odometry.h
@@ -323,6 +323,8 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ro
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include/dwa_local_planner/dwa_planner.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include/dwa_local_planner/dwa_planner_ros.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/src/dwa_planner_ros.cpp
+navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
+navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/parameter_magic.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/angles/angles.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/base_local_planner/costmap_model.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/base_local_planner/goal_functions.h
@@ -401,8 +403,6 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ro
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/kdl/utilities/kdl-config.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/kdl/utilities/utility.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/nav_core/base_local_planner.h
-navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/nav_core/parameter_magic.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/nav_msgs/MapMetaData.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
 navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ros.cpp.o: /opt/ros/melodic/include/nav_msgs/Odometry.h

@@ -4,6 +4,9 @@
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/move_base/MoveBaseConfig.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/move_base/include/move_base/move_base.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/move_base/src/move_base.cpp
+navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
+navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
+navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/recovery_behavior.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/actionlib/action_definition.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/actionlib/decl.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/actionlib/destruction_guard.h
@@ -84,9 +87,6 @@ navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melo
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/move_base_msgs/MoveBaseGoal.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/move_base_msgs/MoveBaseResult.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/move_base_msgs/RecoveryStatus.h
-navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/nav_core/base_global_planner.h
-navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/nav_core/base_local_planner.h
-navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/nav_core/recovery_behavior.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlan.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanRequest.h
 navigation/move_base/CMakeFiles/move_base.dir/src/move_base.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanResponse.h

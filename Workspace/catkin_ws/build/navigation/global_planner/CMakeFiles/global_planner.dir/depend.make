@@ -9,6 +9,7 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /home/h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/potential_calculator.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/traceback.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/src/astar.cpp
+navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/class_loader/class_loader.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/class_loader/class_loader_core.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/class_loader/exceptions.hpp
@@ -50,7 +51,6 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ro
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/geometry_msgs/TransformStamped.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/geometry_msgs/Vector3.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlan.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanRequest.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/astar.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanResponse.h
@@ -150,6 +150,7 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /hom
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/potential_calculator.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/traceback.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/src/dijkstra.cpp
+navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/class_loader/class_loader.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/class_loader/class_loader_core.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/class_loader/exceptions.hpp
@@ -191,7 +192,6 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/geometry_msgs/TransformStamped.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/geometry_msgs/Vector3.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlan.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanRequest.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/dijkstra.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanResponse.h
@@ -291,6 +291,7 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o:
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/potential_calculator.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/traceback.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/src/gradient_path.cpp
+navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/class_loader/class_loader.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/class_loader/class_loader_core.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/class_loader/exceptions.hpp
@@ -332,7 +333,6 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o:
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/geometry_msgs/TransformStamped.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/geometry_msgs/Vector3.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlan.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanRequest.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/gradient_path.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanResponse.h
@@ -494,6 +494,7 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: 
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/quadratic_calculator.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/traceback.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/src/planner_core.cpp
+navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/class_loader/class_loader.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/class_loader/class_loader_core.hpp
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/class_loader/exceptions.hpp
@@ -535,7 +536,6 @@ navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: 
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/geometry_msgs/TransformStamped.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/geometry_msgs/Vector3.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlan.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanRequest.h
 navigation/global_planner/CMakeFiles/global_planner.dir/src/planner_core.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanResponse.h

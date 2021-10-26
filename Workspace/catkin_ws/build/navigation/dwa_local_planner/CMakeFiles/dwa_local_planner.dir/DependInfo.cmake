@@ -20,6 +20,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/home/hunter/Workspace/catkin_ws/devel/include"
   "/home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include"
+  "/home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include"
   "/opt/ros/melodic/include"
   "/opt/ros/melodic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp"
   "/opt/ros/melodic/share/orocos_kdl/cmake/../../../include"

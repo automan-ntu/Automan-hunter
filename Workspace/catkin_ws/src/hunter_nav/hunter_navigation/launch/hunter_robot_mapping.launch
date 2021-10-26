@@ -5,7 +5,7 @@
 
     <!-- mapping -->
     <!-- <include file="$(find hunter_navigation)/launch/config_gmapping.launch" /> -->
-    <include file="$(find hunter_cartographer)/launch/hunter_3d_mapping.launch" />
+    <include file="$(find hunter_cartographer)/launch/hunter_2d_mapping.launch" />
 
     <!-- visualization -->
     <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find hunter_navigation)/cfg/rviz_navigation.rviz"/> -->

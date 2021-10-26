@@ -4,6 +4,7 @@
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TebLocalPlannerReconfigureConfig.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TrajectoryMsg.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TrajectoryPointMsg.h
+navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/distance_calculations.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/equivalence_relations.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/g2o_types/vertex_pose.h
@@ -141,7 +142,6 @@ navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/mbf_abstract_core/abstract_controller.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/mbf_costmap_core/costmap_controller.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/mbf_utility/types.h
-navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/nav_core/base_local_planner.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/nav_msgs/MapMetaData.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
 navigation/teb_local_planner/CMakeFiles/test_optim_node.dir/src/test_optim_node.cpp.o: /opt/ros/melodic/include/nav_msgs/Odometry.h

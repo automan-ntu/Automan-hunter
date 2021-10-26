@@ -447,12 +447,16 @@ class GOALTOLERANCE
         if("xy_goal_tolerance"==(*_i)->name){xy_goal_tolerance = boost::any_cast<double>(val);}
         if("yaw_goal_tolerance"==(*_i)->name){yaw_goal_tolerance = boost::any_cast<double>(val);}
         if("free_goal_vel"==(*_i)->name){free_goal_vel = boost::any_cast<bool>(val);}
+        if("trans_stopped_vel"==(*_i)->name){trans_stopped_vel = boost::any_cast<double>(val);}
+        if("theta_stopped_vel"==(*_i)->name){theta_stopped_vel = boost::any_cast<double>(val);}
       }
     }
 
     double xy_goal_tolerance;
 double yaw_goal_tolerance;
 bool free_goal_vel;
+double trans_stopped_vel;
+double theta_stopped_vel;
 
     bool state;
     std::string name;
@@ -700,7 +704,36 @@ bool oscillation_recovery;
     bool state;
     std::string name;
 
+    class DIVERGENCE_DETECTION
+{
+  public:
+    DIVERGENCE_DETECTION()
+    {
+      state = true;
+      name = "Divergence_Detection";
+    }
+
+    void setParams(TebLocalPlannerReconfigureConfig &config, const std::vector<AbstractParamDescriptionConstPtr> params)
+    {
+      for (std::vector<AbstractParamDescriptionConstPtr>::const_iterator _i = params.begin(); _i != params.end(); ++_i)
+      {
+        boost::any val;
+        (*_i)->getValue(config, val);
+
+        if("divergence_detection_enable"==(*_i)->name){divergence_detection_enable = boost::any_cast<bool>(val);}
+        if("divergence_detection_max_chi_squared"==(*_i)->name){divergence_detection_max_chi_squared = boost::any_cast<double>(val);}
+      }
+    }
+
+    bool divergence_detection_enable;
+double divergence_detection_max_chi_squared;
+
+    bool state;
+    std::string name;
+
     
+}divergence_detection;
+
 }recovery;
 
 }groups;
@@ -767,120 +800,128 @@ bool oscillation_recovery;
       double yaw_goal_tolerance;
 //#line 155 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       bool free_goal_vel;
-//#line 162 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double min_obstacle_dist;
-//#line 166 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double inflation_dist;
+//#line 159 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double trans_stopped_vel;
+//#line 163 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double theta_stopped_vel;
 //#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double dynamic_obstacle_inflation_dist;
+      double min_obstacle_dist;
 //#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool include_dynamic_obstacles;
+      double inflation_dist;
 //#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool include_costmap_obstacles;
+      double dynamic_obstacle_inflation_dist;
 //#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool legacy_obstacle_association;
+      bool include_dynamic_obstacles;
 //#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double obstacle_association_force_inclusion_factor;
+      bool include_costmap_obstacles;
 //#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double obstacle_association_cutoff_factor;
+      bool legacy_obstacle_association;
 //#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double costmap_obstacles_behind_robot_dist;
+      double obstacle_association_force_inclusion_factor;
 //#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double obstacle_association_cutoff_factor;
+//#line 202 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double costmap_obstacles_behind_robot_dist;
+//#line 206 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       int obstacle_poses_affected;
-//#line 205 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double obstacle_proximity_ratio_max_vel;
-//#line 209 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double obstacle_proximity_lower_bound;
 //#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double obstacle_proximity_ratio_max_vel;
+//#line 217 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double obstacle_proximity_lower_bound;
+//#line 221 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       double obstacle_proximity_upper_bound;
-//#line 220 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      int no_inner_iterations;
-//#line 224 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      int no_outer_iterations;
 //#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool optimization_activate;
+      int no_inner_iterations;
 //#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool optimization_verbose;
+      int no_outer_iterations;
 //#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double penalty_epsilon;
+      bool optimization_activate;
 //#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_max_vel_x;
+      bool optimization_verbose;
 //#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_max_vel_y;
+      double penalty_epsilon;
 //#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_max_vel_theta;
+      double weight_max_vel_x;
 //#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_acc_lim_x;
+      double weight_max_vel_y;
 //#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_acc_lim_y;
+      double weight_max_vel_theta;
 //#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_acc_lim_theta;
+      double weight_acc_lim_x;
 //#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_kinematics_nh;
+      double weight_acc_lim_y;
 //#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_kinematics_forward_drive;
+      double weight_acc_lim_theta;
 //#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_kinematics_turning_radius;
+      double weight_kinematics_nh;
 //#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_optimaltime;
+      double weight_kinematics_forward_drive;
 //#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_shortest_path;
+      double weight_kinematics_turning_radius;
 //#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_obstacle;
+      double weight_optimaltime;
 //#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_inflation;
+      double weight_shortest_path;
 //#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_dynamic_obstacle;
+      double weight_obstacle;
 //#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_dynamic_obstacle_inflation;
+      double weight_inflation;
 //#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_velocity_obstacle_ratio;
+      double weight_dynamic_obstacle;
 //#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_viapoint;
+      double weight_dynamic_obstacle_inflation;
 //#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double weight_adapt_factor;
+      double weight_velocity_obstacle_ratio;
 //#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double weight_viapoint;
+//#line 316 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double weight_adapt_factor;
+//#line 320 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       double obstacle_cost_exponent;
-//#line 321 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool enable_multithreading;
-//#line 325 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      int max_number_classes;
 //#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      int max_number_plans_in_current_class;
+      bool enable_multithreading;
 //#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      int max_number_classes;
+//#line 337 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      int max_number_plans_in_current_class;
+//#line 341 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       double selection_cost_hysteresis;
-//#line 338 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double selection_prefer_initial_plan;
-//#line 342 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double selection_obst_cost_scale;
 //#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double selection_viapoint_cost_scale;
+      double selection_prefer_initial_plan;
 //#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool selection_alternative_time_cost;
+      double selection_obst_cost_scale;
 //#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double selection_dropping_probability;
+      double selection_viapoint_cost_scale;
 //#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double switching_blocking_period;
+      bool selection_alternative_time_cost;
 //#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      int roadmap_graph_no_samples;
+      double selection_dropping_probability;
 //#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double roadmap_graph_area_width;
+      double switching_blocking_period;
 //#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double roadmap_graph_area_length_scale;
+      int roadmap_graph_no_samples;
 //#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double h_signature_prescaler;
+      double roadmap_graph_area_width;
 //#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double h_signature_threshold;
+      double roadmap_graph_area_length_scale;
 //#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      double obstacle_heading_threshold;
+      double h_signature_prescaler;
 //#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool viapoints_all_candidates;
+      double h_signature_threshold;
 //#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
-      bool visualize_hc_graph;
+      double obstacle_heading_threshold;
+//#line 394 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      bool viapoints_all_candidates;
 //#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      bool visualize_hc_graph;
+//#line 406 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       bool shrink_horizon_backup;
-//#line 402 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 410 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       bool oscillation_recovery;
+//#line 419 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      bool divergence_detection_enable;
+//#line 429 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      double divergence_detection_max_chi_squared;
 //#line 228 "/opt/ros/melodic/share/dynamic_reconfigure/cmake/../templates/ConfigType.h.template"
 
     bool __fromMessage__(dynamic_reconfigure::Config &msg)
@@ -1355,6 +1396,26 @@ TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureCon
       GoalTolerance.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("free_goal_vel", "bool", 0, "Allow the robot's velocity to be nonzero for planning purposes (the robot can arrive at the goal with max speed)", "", &TebLocalPlannerReconfigureConfig::free_goal_vel)));
 //#line 155 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("free_goal_vel", "bool", 0, "Allow the robot's velocity to be nonzero for planning purposes (the robot can arrive at the goal with max speed)", "", &TebLocalPlannerReconfigureConfig::free_goal_vel)));
+//#line 159 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __min__.trans_stopped_vel = 0.0;
+//#line 159 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __max__.trans_stopped_vel = std::numeric_limits<double>::infinity();
+//#line 159 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __default__.trans_stopped_vel = 0.1;
+//#line 159 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      GoalTolerance.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("trans_stopped_vel", "double", 0, "Below what maximum velocity we consider the robot to be stopped in translation", "", &TebLocalPlannerReconfigureConfig::trans_stopped_vel)));
+//#line 159 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("trans_stopped_vel", "double", 0, "Below what maximum velocity we consider the robot to be stopped in translation", "", &TebLocalPlannerReconfigureConfig::trans_stopped_vel)));
+//#line 163 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __min__.theta_stopped_vel = 0.0;
+//#line 163 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __max__.theta_stopped_vel = std::numeric_limits<double>::infinity();
+//#line 163 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __default__.theta_stopped_vel = 0.1;
+//#line 163 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      GoalTolerance.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("theta_stopped_vel", "double", 0, "Below what maximum rotation velocity we consider the robot to be stopped in rotation", "", &TebLocalPlannerReconfigureConfig::theta_stopped_vel)));
+//#line 163 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("theta_stopped_vel", "double", 0, "Below what maximum rotation velocity we consider the robot to be stopped in rotation", "", &TebLocalPlannerReconfigureConfig::theta_stopped_vel)));
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       GoalTolerance.convertParams();
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
@@ -1362,136 +1423,136 @@ TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureCon
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __group_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractGroupDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::GOALTOLERANCE, TebLocalPlannerReconfigureConfig::DEFAULT>(GoalTolerance)));
 TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::OBSTACLES, TebLocalPlannerReconfigureConfig::DEFAULT> Obstacles("Obstacles", "tab", 0, 7, true, &TebLocalPlannerReconfigureConfig::DEFAULT::obstacles);
-//#line 162 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.min_obstacle_dist = 0.0;
-//#line 162 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.min_obstacle_dist = 10.0;
-//#line 162 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.min_obstacle_dist = 0.5;
-//#line 162 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("min_obstacle_dist", "double", 0, "Minimum desired separation from obstacles", "", &TebLocalPlannerReconfigureConfig::min_obstacle_dist)));
-//#line 162 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("min_obstacle_dist", "double", 0, "Minimum desired separation from obstacles", "", &TebLocalPlannerReconfigureConfig::min_obstacle_dist)));
-//#line 166 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.inflation_dist = 0.0;
-//#line 166 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.inflation_dist = 15.0;
-//#line 166 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.inflation_dist = 0.6;
-//#line 166 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("inflation_dist", "double", 0, "Buffer zone around obstacles with non-zero penalty costs (should be larger than min_obstacle_dist in order to take effect)", "", &TebLocalPlannerReconfigureConfig::inflation_dist)));
-//#line 166 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("inflation_dist", "double", 0, "Buffer zone around obstacles with non-zero penalty costs (should be larger than min_obstacle_dist in order to take effect)", "", &TebLocalPlannerReconfigureConfig::inflation_dist)));
-//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.dynamic_obstacle_inflation_dist = 0.0;
-//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.dynamic_obstacle_inflation_dist = 15.0;
-//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.dynamic_obstacle_inflation_dist = 0.6;
-//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("dynamic_obstacle_inflation_dist", "double", 0, "Buffer zone around predicted locations of dynamic obstacles with non-zero penalty costs (should be larger than min_obstacle_dist in order to take effect)", "", &TebLocalPlannerReconfigureConfig::dynamic_obstacle_inflation_dist)));
-//#line 170 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("dynamic_obstacle_inflation_dist", "double", 0, "Buffer zone around predicted locations of dynamic obstacles with non-zero penalty costs (should be larger than min_obstacle_dist in order to take effect)", "", &TebLocalPlannerReconfigureConfig::dynamic_obstacle_inflation_dist)));
-//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.include_dynamic_obstacles = 0;
-//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.include_dynamic_obstacles = 1;
-//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.include_dynamic_obstacles = 0;
-//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("include_dynamic_obstacles", "bool", 0, "Specify whether the movement of dynamic obstacles should be predicted by a constant velocity model (this also changes the homotopy class search). If false, all obstacles are considered to be static.", "", &TebLocalPlannerReconfigureConfig::include_dynamic_obstacles)));
-//#line 174 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("include_dynamic_obstacles", "bool", 0, "Specify whether the movement of dynamic obstacles should be predicted by a constant velocity model (this also changes the homotopy class search). If false, all obstacles are considered to be static.", "", &TebLocalPlannerReconfigureConfig::include_dynamic_obstacles)));
-//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.include_costmap_obstacles = 0;
-//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.include_costmap_obstacles = 1;
-//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.include_costmap_obstacles = 1;
-//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("include_costmap_obstacles", "bool", 0, "Specify whether the obstacles in the costmap should be taken into account directly (this is necessary if no seperate clustering and detection is implemented)", "", &TebLocalPlannerReconfigureConfig::include_costmap_obstacles)));
-//#line 178 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("include_costmap_obstacles", "bool", 0, "Specify whether the obstacles in the costmap should be taken into account directly (this is necessary if no seperate clustering and detection is implemented)", "", &TebLocalPlannerReconfigureConfig::include_costmap_obstacles)));
-//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.legacy_obstacle_association = 0;
-//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.legacy_obstacle_association = 1;
-//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.legacy_obstacle_association = 0;
-//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("legacy_obstacle_association", "bool", 0, "If true, the old association strategy is used (for each obstacle, find the nearest TEB pose), otherwise the new one (for each teb pose, find only 'relevant' obstacles).", "", &TebLocalPlannerReconfigureConfig::legacy_obstacle_association)));
-//#line 182 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("legacy_obstacle_association", "bool", 0, "If true, the old association strategy is used (for each obstacle, find the nearest TEB pose), otherwise the new one (for each teb pose, find only 'relevant' obstacles).", "", &TebLocalPlannerReconfigureConfig::legacy_obstacle_association)));
-//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_association_force_inclusion_factor = 0.0;
-//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_association_force_inclusion_factor = 100.0;
-//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_association_force_inclusion_factor = 1.5;
-//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_association_force_inclusion_factor", "double", 0, "The non-legacy obstacle association technique tries to connect only relevant obstacles with the discretized trajectory during optimization, all obstacles within a specifed distance are forced to be included (as a multiple of min_obstacle_dist), e.g. choose 2.0 in order to consider obstacles within a radius of 2.0*min_obstacle_dist.", "", &TebLocalPlannerReconfigureConfig::obstacle_association_force_inclusion_factor)));
-//#line 186 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_association_force_inclusion_factor", "double", 0, "The non-legacy obstacle association technique tries to connect only relevant obstacles with the discretized trajectory during optimization, all obstacles within a specifed distance are forced to be included (as a multiple of min_obstacle_dist), e.g. choose 2.0 in order to consider obstacles within a radius of 2.0*min_obstacle_dist.", "", &TebLocalPlannerReconfigureConfig::obstacle_association_force_inclusion_factor)));
-//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_association_cutoff_factor = 1.0;
-//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_association_cutoff_factor = 100.0;
-//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_association_cutoff_factor = 5.0;
-//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_association_cutoff_factor", "double", 0, "See obstacle_association_force_inclusion_factor, but beyond a multiple of [value]*min_obstacle_dist all obstacles are ignored during optimization. obstacle_association_force_inclusion_factor is processed first.", "", &TebLocalPlannerReconfigureConfig::obstacle_association_cutoff_factor)));
-//#line 190 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_association_cutoff_factor", "double", 0, "See obstacle_association_force_inclusion_factor, but beyond a multiple of [value]*min_obstacle_dist all obstacles are ignored during optimization. obstacle_association_force_inclusion_factor is processed first.", "", &TebLocalPlannerReconfigureConfig::obstacle_association_cutoff_factor)));
-//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 202 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.costmap_obstacles_behind_robot_dist = 0.0;
-//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 202 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.costmap_obstacles_behind_robot_dist = 20.0;
-//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 202 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.costmap_obstacles_behind_robot_dist = 1.5;
-//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 202 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("costmap_obstacles_behind_robot_dist", "double", 0, "Limit the occupied local costmap obstacles taken into account for planning behind the robot (specify distance in meters)", "", &TebLocalPlannerReconfigureConfig::costmap_obstacles_behind_robot_dist)));
-//#line 194 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 202 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("costmap_obstacles_behind_robot_dist", "double", 0, "Limit the occupied local costmap obstacles taken into account for planning behind the robot (specify distance in meters)", "", &TebLocalPlannerReconfigureConfig::costmap_obstacles_behind_robot_dist)));
-//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 206 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_poses_affected = 0;
-//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 206 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_poses_affected = 200;
-//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 206 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_poses_affected = 30;
-//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 206 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("obstacle_poses_affected", "int", 0, "The obstacle position is attached to the closest pose on the trajectory to reduce computational effort, but take a number of neighbors into account as well", "", &TebLocalPlannerReconfigureConfig::obstacle_poses_affected)));
-//#line 198 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 206 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("obstacle_poses_affected", "int", 0, "The obstacle position is attached to the closest pose on the trajectory to reduce computational effort, but take a number of neighbors into account as well", "", &TebLocalPlannerReconfigureConfig::obstacle_poses_affected)));
 TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::OBSTACLES::REDUCE_VELOCITY_NEAR_OBSTACLES, TebLocalPlannerReconfigureConfig::DEFAULT::OBSTACLES> Reduce_velocity_near_obstacles("Reduce_velocity_near_obstacles", "", 7, 8, true, &TebLocalPlannerReconfigureConfig::DEFAULT::OBSTACLES::reduce_velocity_near_obstacles);
-//#line 205 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_proximity_ratio_max_vel = 0.0;
-//#line 205 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_proximity_ratio_max_vel = 1.0;
-//#line 205 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_proximity_ratio_max_vel = 1.0;
-//#line 205 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Reduce_velocity_near_obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_proximity_ratio_max_vel", "double", 0, "Ratio of the maximum velocities used as an upper bound when reducing the speed due to the proximity to static obstacles", "", &TebLocalPlannerReconfigureConfig::obstacle_proximity_ratio_max_vel)));
-//#line 205 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_proximity_ratio_max_vel", "double", 0, "Ratio of the maximum velocities used as an upper bound when reducing the speed due to the proximity to static obstacles", "", &TebLocalPlannerReconfigureConfig::obstacle_proximity_ratio_max_vel)));
-//#line 209 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 217 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_proximity_lower_bound = 0.0;
-//#line 209 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 217 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_proximity_lower_bound = 10.0;
-//#line 209 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 217 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_proximity_lower_bound = 0.0;
-//#line 209 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 217 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Reduce_velocity_near_obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_proximity_lower_bound", "double", 0, "Distance to a static obstacle for which the velocity should be lower", "", &TebLocalPlannerReconfigureConfig::obstacle_proximity_lower_bound)));
-//#line 209 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 217 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_proximity_lower_bound", "double", 0, "Distance to a static obstacle for which the velocity should be lower", "", &TebLocalPlannerReconfigureConfig::obstacle_proximity_lower_bound)));
-//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 221 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_proximity_upper_bound = 0.0;
-//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 221 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_proximity_upper_bound = 10.0;
-//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 221 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_proximity_upper_bound = 0.5;
-//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 221 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Reduce_velocity_near_obstacles.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_proximity_upper_bound", "double", 0, "Distance to a static obstacle for which the velocity should be higher", "", &TebLocalPlannerReconfigureConfig::obstacle_proximity_upper_bound)));
-//#line 213 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 221 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_proximity_upper_bound", "double", 0, "Distance to a static obstacle for which the velocity should be higher", "", &TebLocalPlannerReconfigureConfig::obstacle_proximity_upper_bound)));
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Reduce_velocity_near_obstacles.convertParams();
@@ -1506,245 +1567,245 @@ TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureCon
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __group_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractGroupDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::OBSTACLES, TebLocalPlannerReconfigureConfig::DEFAULT>(Obstacles)));
 TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::OPTIMIZATION, TebLocalPlannerReconfigureConfig::DEFAULT> Optimization("Optimization", "tab", 0, 9, true, &TebLocalPlannerReconfigureConfig::DEFAULT::optimization);
-//#line 220 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.no_inner_iterations = 1;
-//#line 220 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.no_inner_iterations = 100;
-//#line 220 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.no_inner_iterations = 5;
-//#line 220 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("no_inner_iterations", "int", 0, "Number of solver iterations called in each outerloop iteration", "", &TebLocalPlannerReconfigureConfig::no_inner_iterations)));
-//#line 220 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("no_inner_iterations", "int", 0, "Number of solver iterations called in each outerloop iteration", "", &TebLocalPlannerReconfigureConfig::no_inner_iterations)));
-//#line 224 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.no_outer_iterations = 1;
-//#line 224 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.no_outer_iterations = 100;
-//#line 224 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.no_outer_iterations = 4;
-//#line 224 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("no_outer_iterations", "int", 0, "Each outerloop iteration automatically resizes the trajectory and invokes the internal optimizer with no_inner_iterations", "", &TebLocalPlannerReconfigureConfig::no_outer_iterations)));
-//#line 224 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("no_outer_iterations", "int", 0, "Each outerloop iteration automatically resizes the trajectory and invokes the internal optimizer with no_inner_iterations", "", &TebLocalPlannerReconfigureConfig::no_outer_iterations)));
-//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.optimization_activate = 0;
-//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.optimization_activate = 1;
-//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.optimization_activate = 1;
-//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("optimization_activate", "bool", 0, "Activate the optimization", "", &TebLocalPlannerReconfigureConfig::optimization_activate)));
-//#line 228 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("optimization_activate", "bool", 0, "Activate the optimization", "", &TebLocalPlannerReconfigureConfig::optimization_activate)));
-//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.optimization_verbose = 0;
-//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.optimization_verbose = 1;
-//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.optimization_verbose = 0;
-//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("optimization_verbose", "bool", 0, "Print verbose information", "", &TebLocalPlannerReconfigureConfig::optimization_verbose)));
-//#line 232 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("optimization_verbose", "bool", 0, "Print verbose information", "", &TebLocalPlannerReconfigureConfig::optimization_verbose)));
-//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.penalty_epsilon = 0.0;
-//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.penalty_epsilon = 1.0;
-//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.penalty_epsilon = 0.1;
-//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("penalty_epsilon", "double", 0, "Add a small safty margin to penalty functions for hard-constraint approximations", "", &TebLocalPlannerReconfigureConfig::penalty_epsilon)));
-//#line 236 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("penalty_epsilon", "double", 0, "Add a small safty margin to penalty functions for hard-constraint approximations", "", &TebLocalPlannerReconfigureConfig::penalty_epsilon)));
-//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_max_vel_x = 0.0;
-//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_max_vel_x = 1000.0;
-//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_max_vel_x = 2.0;
-//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_max_vel_x", "double", 0, "Optimization weight for satisfying the maximum allowed translational velocity", "", &TebLocalPlannerReconfigureConfig::weight_max_vel_x)));
-//#line 240 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_max_vel_x", "double", 0, "Optimization weight for satisfying the maximum allowed translational velocity", "", &TebLocalPlannerReconfigureConfig::weight_max_vel_x)));
-//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_max_vel_y = 0.0;
-//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_max_vel_y = 1000.0;
-//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_max_vel_y = 2.0;
-//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_max_vel_y", "double", 0, "Optimization weight for satisfying the maximum allowed strafing velocity (in use only for holonomic robots)", "", &TebLocalPlannerReconfigureConfig::weight_max_vel_y)));
-//#line 244 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_max_vel_y", "double", 0, "Optimization weight for satisfying the maximum allowed strafing velocity (in use only for holonomic robots)", "", &TebLocalPlannerReconfigureConfig::weight_max_vel_y)));
-//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_max_vel_theta = 0.0;
-//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_max_vel_theta = 1000.0;
-//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_max_vel_theta = 1.0;
-//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_max_vel_theta", "double", 0, "Optimization weight for satisfying the maximum allowed angular velocity", "", &TebLocalPlannerReconfigureConfig::weight_max_vel_theta)));
-//#line 248 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_max_vel_theta", "double", 0, "Optimization weight for satisfying the maximum allowed angular velocity", "", &TebLocalPlannerReconfigureConfig::weight_max_vel_theta)));
-//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_acc_lim_x = 0.0;
-//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_acc_lim_x = 1000.0;
-//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_acc_lim_x = 1.0;
-//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_acc_lim_x", "double", 0, "Optimization weight for satisfying the maximum allowed translational acceleration", "", &TebLocalPlannerReconfigureConfig::weight_acc_lim_x)));
-//#line 252 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_acc_lim_x", "double", 0, "Optimization weight for satisfying the maximum allowed translational acceleration", "", &TebLocalPlannerReconfigureConfig::weight_acc_lim_x)));
-//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_acc_lim_y = 0.0;
-//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_acc_lim_y = 1000.0;
-//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_acc_lim_y = 1.0;
-//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_acc_lim_y", "double", 0, "Optimization weight for satisfying the maximum allowed strafing acceleration (in use only for holonomic robots)", "", &TebLocalPlannerReconfigureConfig::weight_acc_lim_y)));
-//#line 256 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_acc_lim_y", "double", 0, "Optimization weight for satisfying the maximum allowed strafing acceleration (in use only for holonomic robots)", "", &TebLocalPlannerReconfigureConfig::weight_acc_lim_y)));
-//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_acc_lim_theta = 0.0;
-//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_acc_lim_theta = 1000.0;
-//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_acc_lim_theta = 1.0;
-//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_acc_lim_theta", "double", 0, "Optimization weight for satisfying the maximum allowed angular acceleration", "", &TebLocalPlannerReconfigureConfig::weight_acc_lim_theta)));
-//#line 260 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_acc_lim_theta", "double", 0, "Optimization weight for satisfying the maximum allowed angular acceleration", "", &TebLocalPlannerReconfigureConfig::weight_acc_lim_theta)));
-//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_kinematics_nh = 0.0;
-//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_kinematics_nh = 10000.0;
-//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_kinematics_nh = 1000.0;
-//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_kinematics_nh", "double", 0, "Optimization weight for satisfying the non-holonomic kinematics", "", &TebLocalPlannerReconfigureConfig::weight_kinematics_nh)));
-//#line 264 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_kinematics_nh", "double", 0, "Optimization weight for satisfying the non-holonomic kinematics", "", &TebLocalPlannerReconfigureConfig::weight_kinematics_nh)));
-//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_kinematics_forward_drive = 0.0;
-//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_kinematics_forward_drive = 1000.0;
-//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_kinematics_forward_drive = 1.0;
-//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_kinematics_forward_drive", "double", 0, "Optimization weight for forcing the robot to choose only forward directions (positive transl. velocities, only diffdrive robot)", "", &TebLocalPlannerReconfigureConfig::weight_kinematics_forward_drive)));
-//#line 268 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_kinematics_forward_drive", "double", 0, "Optimization weight for forcing the robot to choose only forward directions (positive transl. velocities, only diffdrive robot)", "", &TebLocalPlannerReconfigureConfig::weight_kinematics_forward_drive)));
-//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_kinematics_turning_radius = 0.0;
-//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_kinematics_turning_radius = 1000.0;
-//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_kinematics_turning_radius = 1.0;
-//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_kinematics_turning_radius", "double", 0, "Optimization weight for enforcing a minimum turning radius (carlike robots)", "", &TebLocalPlannerReconfigureConfig::weight_kinematics_turning_radius)));
-//#line 272 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_kinematics_turning_radius", "double", 0, "Optimization weight for enforcing a minimum turning radius (carlike robots)", "", &TebLocalPlannerReconfigureConfig::weight_kinematics_turning_radius)));
-//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_optimaltime = 0.0;
-//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_optimaltime = 1000.0;
-//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_optimaltime = 1.0;
-//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_optimaltime", "double", 0, "Optimization weight for contracting the trajectory w.r.t. transition time", "", &TebLocalPlannerReconfigureConfig::weight_optimaltime)));
-//#line 276 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_optimaltime", "double", 0, "Optimization weight for contracting the trajectory w.r.t. transition time", "", &TebLocalPlannerReconfigureConfig::weight_optimaltime)));
-//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_shortest_path = 0.0;
-//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_shortest_path = 100.0;
-//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_shortest_path = 0.0;
-//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_shortest_path", "double", 0, "Optimization weight for contracting the trajectory w.r.t. path length", "", &TebLocalPlannerReconfigureConfig::weight_shortest_path)));
-//#line 280 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_shortest_path", "double", 0, "Optimization weight for contracting the trajectory w.r.t. path length", "", &TebLocalPlannerReconfigureConfig::weight_shortest_path)));
-//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_obstacle = 0.0;
-//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_obstacle = 1000.0;
-//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_obstacle = 50.0;
-//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_obstacle", "double", 0, "Optimization weight for satisfying a minimum seperation from obstacles", "", &TebLocalPlannerReconfigureConfig::weight_obstacle)));
-//#line 284 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_obstacle", "double", 0, "Optimization weight for satisfying a minimum seperation from obstacles", "", &TebLocalPlannerReconfigureConfig::weight_obstacle)));
-//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_inflation = 0.0;
-//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_inflation = 10.0;
-//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_inflation = 0.1;
-//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_inflation", "double", 0, "Optimization weight for the inflation penalty (should be small)", "", &TebLocalPlannerReconfigureConfig::weight_inflation)));
-//#line 288 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_inflation", "double", 0, "Optimization weight for the inflation penalty (should be small)", "", &TebLocalPlannerReconfigureConfig::weight_inflation)));
-//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_dynamic_obstacle = 0.0;
-//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_dynamic_obstacle = 1000.0;
-//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_dynamic_obstacle = 50.0;
-//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_dynamic_obstacle", "double", 0, "Optimization weight for satisfying a minimum seperation from dynamic obstacles", "", &TebLocalPlannerReconfigureConfig::weight_dynamic_obstacle)));
-//#line 292 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_dynamic_obstacle", "double", 0, "Optimization weight for satisfying a minimum seperation from dynamic obstacles", "", &TebLocalPlannerReconfigureConfig::weight_dynamic_obstacle)));
-//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_dynamic_obstacle_inflation = 0.0;
-//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_dynamic_obstacle_inflation = 10.0;
-//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_dynamic_obstacle_inflation = 0.1;
-//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_dynamic_obstacle_inflation", "double", 0, "Optimization weight for the inflation penalty of dynamic obstacles (should be small)", "", &TebLocalPlannerReconfigureConfig::weight_dynamic_obstacle_inflation)));
-//#line 296 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_dynamic_obstacle_inflation", "double", 0, "Optimization weight for the inflation penalty of dynamic obstacles (should be small)", "", &TebLocalPlannerReconfigureConfig::weight_dynamic_obstacle_inflation)));
-//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_velocity_obstacle_ratio = 0.0;
-//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_velocity_obstacle_ratio = 1000.0;
-//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_velocity_obstacle_ratio = 0.0;
-//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_velocity_obstacle_ratio", "double", 0, "Optimization weight for satisfying a maximum allowed velocity with respect to the distance to a static obstacle", "", &TebLocalPlannerReconfigureConfig::weight_velocity_obstacle_ratio)));
-//#line 300 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_velocity_obstacle_ratio", "double", 0, "Optimization weight for satisfying a maximum allowed velocity with respect to the distance to a static obstacle", "", &TebLocalPlannerReconfigureConfig::weight_velocity_obstacle_ratio)));
-//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_viapoint = 0.0;
-//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_viapoint = 1000.0;
-//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_viapoint = 1.0;
-//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_viapoint", "double", 0, "Optimization weight for minimizing the distance to via-points", "", &TebLocalPlannerReconfigureConfig::weight_viapoint)));
-//#line 304 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_viapoint", "double", 0, "Optimization weight for minimizing the distance to via-points", "", &TebLocalPlannerReconfigureConfig::weight_viapoint)));
-//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 316 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.weight_adapt_factor = 1.0;
-//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 316 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.weight_adapt_factor = 100.0;
-//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 316 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.weight_adapt_factor = 2.0;
-//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 316 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_adapt_factor", "double", 0, "Some special weights (currently 'weight_obstacle') are repeatedly scaled by this factor in each outer TEB iteration (weight_new: weight_old * factor); Increasing weights iteratively instead of setting a huge value a-priori leads to better numerical conditions of the underlying optimization problem.", "", &TebLocalPlannerReconfigureConfig::weight_adapt_factor)));
-//#line 308 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 316 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("weight_adapt_factor", "double", 0, "Some special weights (currently 'weight_obstacle') are repeatedly scaled by this factor in each outer TEB iteration (weight_new: weight_old * factor); Increasing weights iteratively instead of setting a huge value a-priori leads to better numerical conditions of the underlying optimization problem.", "", &TebLocalPlannerReconfigureConfig::weight_adapt_factor)));
-//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 320 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_cost_exponent = 0.01;
-//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 320 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_cost_exponent = 100.0;
-//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 320 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_cost_exponent = 1.0;
-//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 320 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Optimization.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_cost_exponent", "double", 0, "Exponent for nonlinear obstacle cost (cost = linear_cost * obstacle_cost_exponent). Set to 1 to disable nonlinear cost (default)", "", &TebLocalPlannerReconfigureConfig::obstacle_cost_exponent)));
-//#line 312 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 320 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_cost_exponent", "double", 0, "Exponent for nonlinear obstacle cost (cost = linear_cost * obstacle_cost_exponent). Set to 1 to disable nonlinear cost (default)", "", &TebLocalPlannerReconfigureConfig::obstacle_cost_exponent)));
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Optimization.convertParams();
@@ -1753,185 +1814,185 @@ TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureCon
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __group_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractGroupDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::OPTIMIZATION, TebLocalPlannerReconfigureConfig::DEFAULT>(Optimization)));
 TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::HCPLANNING, TebLocalPlannerReconfigureConfig::DEFAULT> HCPlanning("HCPlanning", "tab", 0, 10, true, &TebLocalPlannerReconfigureConfig::DEFAULT::hcplanning);
-//#line 321 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.enable_multithreading = 0;
-//#line 321 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.enable_multithreading = 1;
-//#line 321 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.enable_multithreading = 1;
-//#line 321 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("enable_multithreading", "bool", 0, "Activate multiple threading for planning multiple trajectories in parallel", "", &TebLocalPlannerReconfigureConfig::enable_multithreading)));
-//#line 321 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("enable_multithreading", "bool", 0, "Activate multiple threading for planning multiple trajectories in parallel", "", &TebLocalPlannerReconfigureConfig::enable_multithreading)));
-//#line 325 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.max_number_classes = 1;
-//#line 325 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.max_number_classes = 100;
-//#line 325 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.max_number_classes = 5;
-//#line 325 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("max_number_classes", "int", 0, "Specify the maximum number of allowed alternative homotopy classes (limits computational effort)", "", &TebLocalPlannerReconfigureConfig::max_number_classes)));
-//#line 325 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("max_number_classes", "int", 0, "Specify the maximum number of allowed alternative homotopy classes (limits computational effort)", "", &TebLocalPlannerReconfigureConfig::max_number_classes)));
-//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 337 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.max_number_plans_in_current_class = 1;
-//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 337 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.max_number_plans_in_current_class = 10;
-//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 337 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.max_number_plans_in_current_class = 1;
-//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 337 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("max_number_plans_in_current_class", "int", 0, "Max number of trajectories to try that are in the same homotopy class as the current best trajectory (setting this to 2 or more helps avoid local minima). Must be <= max_number_classes", "", &TebLocalPlannerReconfigureConfig::max_number_plans_in_current_class)));
-//#line 329 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 337 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("max_number_plans_in_current_class", "int", 0, "Max number of trajectories to try that are in the same homotopy class as the current best trajectory (setting this to 2 or more helps avoid local minima). Must be <= max_number_classes", "", &TebLocalPlannerReconfigureConfig::max_number_plans_in_current_class)));
-//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 341 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.selection_cost_hysteresis = 0.0;
-//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 341 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.selection_cost_hysteresis = 2.0;
-//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 341 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.selection_cost_hysteresis = 1.0;
-//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 341 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_cost_hysteresis", "double", 0, "Specify how much trajectory cost must a new candidate have w.r.t. a previously selected trajectory in order to be selected (selection if new_cost < old_cost*factor)", "", &TebLocalPlannerReconfigureConfig::selection_cost_hysteresis)));
-//#line 333 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 341 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_cost_hysteresis", "double", 0, "Specify how much trajectory cost must a new candidate have w.r.t. a previously selected trajectory in order to be selected (selection if new_cost < old_cost*factor)", "", &TebLocalPlannerReconfigureConfig::selection_cost_hysteresis)));
-//#line 338 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.selection_prefer_initial_plan = 0.0;
-//#line 338 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.selection_prefer_initial_plan = 1.0;
-//#line 338 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.selection_prefer_initial_plan = 0.95;
-//#line 338 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_prefer_initial_plan", "double", 0, "Specify a cost reduction in the interval (0,1) for the trajectory in the equivalence class of the initial plan.)", "", &TebLocalPlannerReconfigureConfig::selection_prefer_initial_plan)));
-//#line 338 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_prefer_initial_plan", "double", 0, "Specify a cost reduction in the interval (0,1) for the trajectory in the equivalence class of the initial plan.)", "", &TebLocalPlannerReconfigureConfig::selection_prefer_initial_plan)));
-//#line 342 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.selection_obst_cost_scale = 0.0;
-//#line 342 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.selection_obst_cost_scale = 1000.0;
-//#line 342 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.selection_obst_cost_scale = 2.0;
-//#line 342 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_obst_cost_scale", "double", 0, "Extra scaling of obstacle cost terms just for selecting the 'best' candidate (new_obst_cost: obst_cost*factor)", "", &TebLocalPlannerReconfigureConfig::selection_obst_cost_scale)));
-//#line 342 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_obst_cost_scale", "double", 0, "Extra scaling of obstacle cost terms just for selecting the 'best' candidate (new_obst_cost: obst_cost*factor)", "", &TebLocalPlannerReconfigureConfig::selection_obst_cost_scale)));
-//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.selection_viapoint_cost_scale = 0.0;
-//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.selection_viapoint_cost_scale = 100.0;
-//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.selection_viapoint_cost_scale = 1.0;
-//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_viapoint_cost_scale", "double", 0, "Extra scaling of via-point cost terms just for selecting the 'best' candidate. (new_viapt_cost: viapt_cost*factor)", "", &TebLocalPlannerReconfigureConfig::selection_viapoint_cost_scale)));
-//#line 346 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_viapoint_cost_scale", "double", 0, "Extra scaling of via-point cost terms just for selecting the 'best' candidate. (new_viapt_cost: viapt_cost*factor)", "", &TebLocalPlannerReconfigureConfig::selection_viapoint_cost_scale)));
-//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.selection_alternative_time_cost = 0;
-//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.selection_alternative_time_cost = 1;
-//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.selection_alternative_time_cost = 0;
-//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("selection_alternative_time_cost", "bool", 0, "If true, time cost is replaced by the total transition time.", "", &TebLocalPlannerReconfigureConfig::selection_alternative_time_cost)));
-//#line 350 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("selection_alternative_time_cost", "bool", 0, "If true, time cost is replaced by the total transition time.", "", &TebLocalPlannerReconfigureConfig::selection_alternative_time_cost)));
-//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.selection_dropping_probability = 0.0;
-//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.selection_dropping_probability = 1.0;
-//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.selection_dropping_probability = 0.0;
-//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_dropping_probability", "double", 0, "At each planning cycle, TEBs other than the current 'best' one will be randomly dropped with this probability. Prevents becoming 'fixated' on sub-optimal alternative homotopies.", "", &TebLocalPlannerReconfigureConfig::selection_dropping_probability)));
-//#line 354 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("selection_dropping_probability", "double", 0, "At each planning cycle, TEBs other than the current 'best' one will be randomly dropped with this probability. Prevents becoming 'fixated' on sub-optimal alternative homotopies.", "", &TebLocalPlannerReconfigureConfig::selection_dropping_probability)));
-//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.switching_blocking_period = 0.0;
-//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.switching_blocking_period = 60.0;
-//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.switching_blocking_period = 0.0;
-//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("switching_blocking_period", "double", 0, "Specify a time duration in seconds that needs to be expired before a switch to new equivalence class is allowed", "", &TebLocalPlannerReconfigureConfig::switching_blocking_period)));
-//#line 358 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("switching_blocking_period", "double", 0, "Specify a time duration in seconds that needs to be expired before a switch to new equivalence class is allowed", "", &TebLocalPlannerReconfigureConfig::switching_blocking_period)));
-//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.roadmap_graph_no_samples = 1;
-//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.roadmap_graph_no_samples = 100;
-//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.roadmap_graph_no_samples = 15;
-//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("roadmap_graph_no_samples", "int", 0, "Specify the number of samples generated for creating the roadmap graph, if simple_exploration is turend off", "", &TebLocalPlannerReconfigureConfig::roadmap_graph_no_samples)));
-//#line 362 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<int>("roadmap_graph_no_samples", "int", 0, "Specify the number of samples generated for creating the roadmap graph, if simple_exploration is turend off", "", &TebLocalPlannerReconfigureConfig::roadmap_graph_no_samples)));
-//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.roadmap_graph_area_width = 0.1;
-//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.roadmap_graph_area_width = 20.0;
-//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.roadmap_graph_area_width = 5.0;
-//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("roadmap_graph_area_width", "double", 0, "Specify the width of the area in which sampled will be generated between start and goal [m] (the height equals the start-goal distance)", "", &TebLocalPlannerReconfigureConfig::roadmap_graph_area_width)));
-//#line 366 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("roadmap_graph_area_width", "double", 0, "Specify the width of the area in which sampled will be generated between start and goal [m] (the height equals the start-goal distance)", "", &TebLocalPlannerReconfigureConfig::roadmap_graph_area_width)));
-//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.roadmap_graph_area_length_scale = 0.5;
-//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.roadmap_graph_area_length_scale = 2.0;
-//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.roadmap_graph_area_length_scale = 1.0;
-//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("roadmap_graph_area_length_scale", "double", 0, "The length of the rectangular region is determined by the distance between start and goal. This parameter further scales the distance such that the geometric center remains equal!)", "", &TebLocalPlannerReconfigureConfig::roadmap_graph_area_length_scale)));
-//#line 370 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("roadmap_graph_area_length_scale", "double", 0, "The length of the rectangular region is determined by the distance between start and goal. This parameter further scales the distance such that the geometric center remains equal!)", "", &TebLocalPlannerReconfigureConfig::roadmap_graph_area_length_scale)));
-//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.h_signature_prescaler = 0.2;
-//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.h_signature_prescaler = 1.0;
-//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.h_signature_prescaler = 1.0;
-//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("h_signature_prescaler", "double", 0, "Scale number of obstacle value in order to allow huge number of obstacles. Do not choose it extremly low, otherwise obstacles cannot be distinguished from each other (0.2<H<=1)", "", &TebLocalPlannerReconfigureConfig::h_signature_prescaler)));
-//#line 374 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("h_signature_prescaler", "double", 0, "Scale number of obstacle value in order to allow huge number of obstacles. Do not choose it extremly low, otherwise obstacles cannot be distinguished from each other (0.2<H<=1)", "", &TebLocalPlannerReconfigureConfig::h_signature_prescaler)));
-//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.h_signature_threshold = 0.0;
-//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.h_signature_threshold = 1.0;
-//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.h_signature_threshold = 0.1;
-//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("h_signature_threshold", "double", 0, "Two h-signuteres are assumed to be equal, if both the difference of real parts and complex parts are below the specified threshold", "", &TebLocalPlannerReconfigureConfig::h_signature_threshold)));
-//#line 378 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("h_signature_threshold", "double", 0, "Two h-signuteres are assumed to be equal, if both the difference of real parts and complex parts are below the specified threshold", "", &TebLocalPlannerReconfigureConfig::h_signature_threshold)));
-//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.obstacle_heading_threshold = 0.0;
-//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.obstacle_heading_threshold = 1.0;
-//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.obstacle_heading_threshold = 0.45;
-//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_heading_threshold", "double", 0, "Specify the value of the normalized scalar product between obstacle heading and goal heading in order to take them (obstacles) into account for exploration)", "", &TebLocalPlannerReconfigureConfig::obstacle_heading_threshold)));
-//#line 382 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("obstacle_heading_threshold", "double", 0, "Specify the value of the normalized scalar product between obstacle heading and goal heading in order to take them (obstacles) into account for exploration)", "", &TebLocalPlannerReconfigureConfig::obstacle_heading_threshold)));
-//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 394 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.viapoints_all_candidates = 0;
-//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 394 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.viapoints_all_candidates = 1;
-//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 394 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.viapoints_all_candidates = 1;
-//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 394 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("viapoints_all_candidates", "bool", 0, "If true, all trajectories of different topologies are attached to the set of via-points, otherwise only the trajectory sharing the same one as the initial/global plan is attached (no effect in test_optim_node).", "", &TebLocalPlannerReconfigureConfig::viapoints_all_candidates)));
-//#line 386 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 394 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("viapoints_all_candidates", "bool", 0, "If true, all trajectories of different topologies are attached to the set of via-points, otherwise only the trajectory sharing the same one as the initial/global plan is attached (no effect in test_optim_node).", "", &TebLocalPlannerReconfigureConfig::viapoints_all_candidates)));
-//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.visualize_hc_graph = 0;
-//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.visualize_hc_graph = 1;
-//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.visualize_hc_graph = 0;
-//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       HCPlanning.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("visualize_hc_graph", "bool", 0, "Visualize the graph that is created for exploring new homotopy classes", "", &TebLocalPlannerReconfigureConfig::visualize_hc_graph)));
-//#line 390 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("visualize_hc_graph", "bool", 0, "Visualize the graph that is created for exploring new homotopy classes", "", &TebLocalPlannerReconfigureConfig::visualize_hc_graph)));
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       HCPlanning.convertParams();
@@ -1940,26 +2001,53 @@ TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureCon
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       __group_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractGroupDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::HCPLANNING, TebLocalPlannerReconfigureConfig::DEFAULT>(HCPlanning)));
 TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY, TebLocalPlannerReconfigureConfig::DEFAULT> Recovery("Recovery", "tab", 0, 11, true, &TebLocalPlannerReconfigureConfig::DEFAULT::recovery);
-//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 406 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.shrink_horizon_backup = 0;
-//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 406 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.shrink_horizon_backup = 1;
-//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 406 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.shrink_horizon_backup = 1;
-//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 406 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Recovery.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("shrink_horizon_backup", "bool", 0, "Allows the planner to shrink the horizon temporary (50%) in case of automatically detected issues.", "", &TebLocalPlannerReconfigureConfig::shrink_horizon_backup)));
-//#line 398 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 406 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("shrink_horizon_backup", "bool", 0, "Allows the planner to shrink the horizon temporary (50%) in case of automatically detected issues.", "", &TebLocalPlannerReconfigureConfig::shrink_horizon_backup)));
-//#line 402 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 410 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __min__.oscillation_recovery = 0;
-//#line 402 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 410 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __max__.oscillation_recovery = 1;
-//#line 402 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 410 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __default__.oscillation_recovery = 1;
-//#line 402 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 410 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       Recovery.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("oscillation_recovery", "bool", 0, "Try to detect and resolve oscillations between multiple solutions in the same equivalence class (robot frequently switches between left/right/forward/backwards).", "", &TebLocalPlannerReconfigureConfig::oscillation_recovery)));
-//#line 402 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+//#line 410 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
       __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("oscillation_recovery", "bool", 0, "Try to detect and resolve oscillations between multiple solutions in the same equivalence class (robot frequently switches between left/right/forward/backwards).", "", &TebLocalPlannerReconfigureConfig::oscillation_recovery)));
+TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY::DIVERGENCE_DETECTION, TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY> Divergence_Detection("Divergence_Detection", "hide", 11, 12, true, &TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY::divergence_detection);
+//#line 419 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __min__.divergence_detection_enable = 0;
+//#line 419 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __max__.divergence_detection_enable = 1;
+//#line 419 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __default__.divergence_detection_enable = 0;
+//#line 419 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      Divergence_Detection.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("divergence_detection_enable", "bool", 0, "True to enable divergence detection.", "", &TebLocalPlannerReconfigureConfig::divergence_detection_enable)));
+//#line 419 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<bool>("divergence_detection_enable", "bool", 0, "True to enable divergence detection.", "", &TebLocalPlannerReconfigureConfig::divergence_detection_enable)));
+//#line 429 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __min__.divergence_detection_max_chi_squared = 0.0;
+//#line 429 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __max__.divergence_detection_max_chi_squared = 100.0;
+//#line 429 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __default__.divergence_detection_max_chi_squared = 10.0;
+//#line 429 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      Divergence_Detection.abstract_parameters.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("divergence_detection_max_chi_squared", "double", 0, "Maximum acceptable Mahalanobis distance above which it is assumed that the optimization diverged.", "", &TebLocalPlannerReconfigureConfig::divergence_detection_max_chi_squared)));
+//#line 429 "/home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/cfg/TebLocalPlannerReconfigure.cfg"
+      __param_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractParamDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::ParamDescription<double>("divergence_detection_max_chi_squared", "double", 0, "Maximum acceptable Mahalanobis distance above which it is assumed that the optimization diverged.", "", &TebLocalPlannerReconfigureConfig::divergence_detection_max_chi_squared)));
+//#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+      Divergence_Detection.convertParams();
+//#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+      Recovery.groups.push_back(TebLocalPlannerReconfigureConfig::AbstractGroupDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY::DIVERGENCE_DETECTION, TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY>(Divergence_Detection)));
+//#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
+      __group_descriptions__.push_back(TebLocalPlannerReconfigureConfig::AbstractGroupDescriptionConstPtr(new TebLocalPlannerReconfigureConfig::GroupDescription<TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY::DIVERGENCE_DETECTION, TebLocalPlannerReconfigureConfig::DEFAULT::RECOVERY>(Divergence_Detection)));
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"
       Recovery.convertParams();
 //#line 124 "/opt/ros/melodic/lib/python2.7/dist-packages/dynamic_reconfigure/parameter_generator_catkin.py"

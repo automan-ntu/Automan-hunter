@@ -88,6 +88,8 @@ void TebConfig::loadRosParamFromNodeHandle(const ros::NodeHandle& nh)
   nh.param("xy_goal_tolerance", goal_tolerance.xy_goal_tolerance, goal_tolerance.xy_goal_tolerance);
   nh.param("yaw_goal_tolerance", goal_tolerance.yaw_goal_tolerance, goal_tolerance.yaw_goal_tolerance);
   nh.param("free_goal_vel", goal_tolerance.free_goal_vel, goal_tolerance.free_goal_vel);
+  nh.param("trans_stopped_vel", goal_tolerance.trans_stopped_vel, goal_tolerance.trans_stopped_vel);
+  nh.param("theta_stopped_vel", goal_tolerance.theta_stopped_vel, goal_tolerance.theta_stopped_vel);
   nh.param("complete_global_plan", goal_tolerance.complete_global_plan, goal_tolerance.complete_global_plan);
 
   // Obstacles
@@ -170,6 +172,8 @@ void TebConfig::loadRosParamFromNodeHandle(const ros::NodeHandle& nh)
   nh.param("oscillation_omega_eps", recovery.oscillation_omega_eps, recovery.oscillation_omega_eps);
   nh.param("oscillation_recovery_min_duration", recovery.oscillation_recovery_min_duration, recovery.oscillation_recovery_min_duration);
   nh.param("oscillation_filter_duration", recovery.oscillation_filter_duration, recovery.oscillation_filter_duration);
+  nh.param("divergence_detection", recovery.divergence_detection_enable, recovery.divergence_detection_enable);
+  nh.param("divergence_detection_max_chi_squared", recovery.divergence_detection_max_chi_squared, recovery.divergence_detection_max_chi_squared);
 
   checkParameters();
   checkDeprecated(nh);
@@ -211,7 +215,9 @@ void TebConfig::reconfigure(TebLocalPlannerReconfigureConfig& cfg)
   goal_tolerance.xy_goal_tolerance = cfg.xy_goal_tolerance;
   goal_tolerance.yaw_goal_tolerance = cfg.yaw_goal_tolerance;
   goal_tolerance.free_goal_vel = cfg.free_goal_vel;
-  
+  goal_tolerance.trans_stopped_vel = cfg.trans_stopped_vel;
+  goal_tolerance.theta_stopped_vel = cfg.theta_stopped_vel;
+
   // Obstacles
   obstacles.min_obstacle_dist = cfg.min_obstacle_dist;
   obstacles.inflation_dist = cfg.inflation_dist;
@@ -276,9 +282,11 @@ void TebConfig::reconfigure(TebLocalPlannerReconfigureConfig& cfg)
   hcp.visualize_with_time_as_z_axis_scale = cfg.visualize_with_time_as_z_axis_scale;
   
   // Recovery
-  
   recovery.shrink_horizon_backup = cfg.shrink_horizon_backup;
   recovery.oscillation_recovery = cfg.oscillation_recovery;
+  recovery.divergence_detection_enable = cfg.divergence_detection_enable;
+  recovery.divergence_detection_max_chi_squared = cfg.divergence_detection_max_chi_squared;
+
   
   checkParameters();
 }

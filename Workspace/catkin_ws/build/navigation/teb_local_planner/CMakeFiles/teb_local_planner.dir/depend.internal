@@ -2067,6 +2067,7 @@ navigation/teb_local_planner/CMakeFiles/teb_local_planner.dir/src/teb_local_plan
  /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TebLocalPlannerReconfigureConfig.h
  /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TrajectoryMsg.h
  /home/hunter/Workspace/catkin_ws/devel/include/teb_local_planner/TrajectoryPointMsg.h
+ /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
  /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/distance_calculations.h
  /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/equivalence_relations.h
  /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/g2o_types/vertex_pose.h
@@ -2203,7 +2204,6 @@ navigation/teb_local_planner/CMakeFiles/teb_local_planner.dir/src/teb_local_plan
  /opt/ros/melodic/include/mbf_costmap_core/costmap_controller.h
  /opt/ros/melodic/include/mbf_msgs/ExePathResult.h
  /opt/ros/melodic/include/mbf_utility/types.h
- /opt/ros/melodic/include/nav_core/base_local_planner.h
  /opt/ros/melodic/include/nav_msgs/MapMetaData.h
  /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
  /opt/ros/melodic/include/nav_msgs/Odometry.h

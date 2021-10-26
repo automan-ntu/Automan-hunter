@@ -131,8 +131,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/hunter/Workspace/slam_ws/build/gtest/cmake_install.cmake")
-  include("/home/hunter/Workspace/slam_ws/build/A-LOAM/cmake_install.cmake")
-  include("/home/hunter/Workspace/slam_ws/build/loam_velodyne/cmake_install.cmake")
+  include("/home/hunter/Workspace/slam_ws/build/dense_scene/cmake_install.cmake")
 
 endif()
 

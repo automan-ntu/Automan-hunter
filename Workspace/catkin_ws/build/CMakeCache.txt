@@ -130,7 +130,7 @@ CATKIN_SKIP_TESTING:BOOL=OFF
 CATKIN_SYMLINK_INSTALL:BOOL=OFF
 
 //List of ';' separated packages to build
-CATKIN_WHITELIST_PACKAGES:STRING=hunter_move_base
+CATKIN_WHITELIST_PACKAGES:STRING=hunter_description
 
 //Path to a file.
 CHOLMOD_INCLUDE_DIR:PATH=/usr/include/suitesparse
@@ -1360,9 +1360,6 @@ driver_nodelet_LIB_DEPENDS:STATIC=general;rslidar_input;general;/opt/ros/melodic
 //Value Computed by CMake
 dwa_local_planner_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/dwa_local_planner
 
-//The directory containing a CMake configuration file for dwa_local_planner.
-dwa_local_planner_DIR:PATH=dwa_local_planner_DIR-NOTFOUND
-
 //Dependencies for the target
 dwa_local_planner_LIB_DEPENDS:STATIC=general;/opt/ros/melodic/lib/libbase_local_planner.so;general;/opt/ros/melodic/lib/libtrajectory_planner_ros.so;general;/opt/ros/melodic/lib/libcostmap_2d.so;general;/opt/ros/melodic/lib/liblayers.so;general;/opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/melodic/lib/liblaser_geometry.so;general;/opt/ros/melodic/lib/libtf.so;general;/opt/ros/melodic/lib/libvoxel_grid.so;general;/opt/ros/melodic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/aarch64-linux-gnu/libdl.so;general;/opt/ros/melodic/lib/libroslib.so;general;/opt/ros/melodic/lib/librospack.so;general;/usr/lib/aarch64-linux-gnu/libpython2.7.so;general;/usr/lib/aarch64-linux-gnu/libboost_program_options.so;general;/usr/lib/aarch64-linux-gnu/libtinyxml2.so;general;/opt/ros/melodic/lib/liborocos-kdl.so;general;/opt/ros/melodic/lib/liborocos-kdl.so.1.4.0;general;/opt/ros/melodic/lib/libtf2_ros.so;general;/opt/ros/melodic/lib/libactionlib.so;general;/opt/ros/melodic/lib/libmessage_filters.so;general;/opt/ros/melodic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so;general;/opt/ros/melodic/lib/librosconsole.so;general;/opt/ros/melodic/lib/librosconsole_log4cxx.so;general;/opt/ros/melodic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so;general;/opt/ros/melodic/lib/libxmlrpcpp.so;general;/opt/ros/melodic/lib/libtf2.so;general;/opt/ros/melodic/lib/libroscpp_serialization.so;general;/opt/ros/melodic/lib/librostime.so;general;/opt/ros/melodic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so;general;/usr/lib/aarch64-linux-gnu/libboost_atomic.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;
 
@@ -1481,7 +1478,8 @@ hunter_description_SOURCE_DIR:STATIC=/home/hunter/Workspace/catkin_ws/src/hunter
 //Value Computed by CMake
 hunter_local_planner_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/hunter_local_planner
 
-hunter_local_planner_DIR:PATH=
+//The directory containing a CMake configuration file for hunter_local_planner.
+hunter_local_planner_DIR:PATH=/home/hunter/Workspace/catkin_ws/devel/share/hunter_local_planner/cmake
 
 //Dependencies for the target
 hunter_local_planner_LIB_DEPENDS:STATIC=general;amd;general;btf;general;camd;general;ccolamd;general;cholmod;general;colamd;general;cxsparse;general;klu;general;umfpack;general;spqr;general;/opt/ros/melodic/lib/libg2o_csparse_extension.so;general;/opt/ros/melodic/lib/libg2o_core.so;general;/opt/ros/melodic/lib/libg2o_stuff.so;general;/opt/ros/melodic/lib/libg2o_types_slam2d.so;general;/opt/ros/melodic/lib/libg2o_types_slam3d.so;general;/opt/ros/melodic/lib/libg2o_solver_cholmod.so;general;/opt/ros/melodic/lib/libg2o_solver_pcg.so;general;/opt/ros/melodic/lib/libg2o_solver_csparse.so;general;/opt/ros/melodic/lib/libg2o_incremental.so;general;/opt/ros/melodic/lib/libbase_local_planner.so;general;/opt/ros/melodic/lib/libtrajectory_planner_ros.so;general;/opt/ros/melodic/lib/libcostmap_converter.so;general;/opt/ros/melodic/lib/libinteractive_markers.so;general;/opt/ros/melodic/lib/libmbf_utility.so;general;/opt/ros/melodic/lib/libcostmap_2d.so;general;/opt/ros/melodic/lib/liblayers.so;general;/opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/melodic/lib/liblaser_geometry.so;general;/opt/ros/melodic/lib/libtf.so;general;/opt/ros/melodic/lib/libvoxel_grid.so;general;/opt/ros/melodic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/aarch64-linux-gnu/libdl.so;general;/opt/ros/melodic/lib/libroslib.so;general;/opt/ros/melodic/lib/librospack.so;general;/usr/lib/aarch64-linux-gnu/libpython2.7.so;general;/usr/lib/aarch64-linux-gnu/libboost_program_options.so;general;/usr/lib/aarch64-linux-gnu/libtinyxml2.so;general;/opt/ros/melodic/lib/liborocos-kdl.so;general;/opt/ros/melodic/lib/liborocos-kdl.so.1.4.0;general;/opt/ros/melodic/lib/libtf2_ros.so;general;/opt/ros/melodic/lib/libactionlib.so;general;/opt/ros/melodic/lib/libmessage_filters.so;general;/opt/ros/melodic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so;general;/opt/ros/melodic/lib/librosconsole.so;general;/opt/ros/melodic/lib/librosconsole_log4cxx.so;general;/opt/ros/melodic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so;general;/opt/ros/melodic/lib/libxmlrpcpp.so;general;/opt/ros/melodic/lib/libtf2.so;general;/opt/ros/melodic/lib/libroscpp_serialization.so;general;/opt/ros/melodic/lib/librostime.so;general;/opt/ros/melodic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so;general;/usr/lib/aarch64-linux-gnu/libboost_atomic.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;
@@ -1538,16 +1536,10 @@ interactive_markers_DIR:PATH=/opt/ros/melodic/share/interactive_markers/cmake
 laser_geometry_DIR:PATH=/opt/ros/melodic/share/laser_geometry/cmake
 
 //Path to a library.
-lib:FILEPATH=/opt/ros/melodic/lib/librotate_recovery.so
-
-//Value Computed by CMake
-map_msgs_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/navigation_msgs/map_msgs
+lib:FILEPATH=/opt/ros/melodic/lib/libxmlrpcpp.so
 
 //The directory containing a CMake configuration file for map_msgs.
-map_msgs_DIR:PATH=/home/hunter/Workspace/catkin_ws/devel/share/map_msgs/cmake
-
-//Value Computed by CMake
-map_msgs_SOURCE_DIR:STATIC=/home/hunter/Workspace/catkin_ws/src/navigation/navigation_msgs/map_msgs
+map_msgs_DIR:PATH=/opt/ros/melodic/share/map_msgs/cmake
 
 //The directory containing a CMake configuration file for map_server.
 map_server_DIR:PATH=/opt/ros/melodic/share/map_server/cmake
@@ -1576,7 +1568,8 @@ message_runtime_DIR:PATH=/opt/ros/melodic/share/message_runtime/cmake
 //Value Computed by CMake
 move_base_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/move_base
 
-move_base_DIR:PATH=
+//The directory containing a CMake configuration file for move_base.
+move_base_DIR:PATH=/home/hunter/Workspace/catkin_ws/devel/share/move_base/cmake
 
 //Dependencies for the target
 move_base_LIB_DEPENDS:STATIC=general;/opt/ros/melodic/lib/libbase_local_planner.so;general;/opt/ros/melodic/lib/libtrajectory_planner_ros.so;general;/opt/ros/melodic/lib/libclear_costmap_recovery.so;general;/opt/ros/melodic/lib/libnavfn.so;general;/opt/ros/melodic/lib/librotate_recovery.so;general;/opt/ros/melodic/lib/libcostmap_2d.so;general;/opt/ros/melodic/lib/liblayers.so;general;/opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/melodic/lib/liblaser_geometry.so;general;/opt/ros/melodic/lib/libtf.so;general;/opt/ros/melodic/lib/libvoxel_grid.so;general;/opt/ros/melodic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/aarch64-linux-gnu/libdl.so;general;/opt/ros/melodic/lib/libroslib.so;general;/opt/ros/melodic/lib/librospack.so;general;/usr/lib/aarch64-linux-gnu/libpython2.7.so;general;/usr/lib/aarch64-linux-gnu/libboost_program_options.so;general;/usr/lib/aarch64-linux-gnu/libtinyxml2.so;general;/opt/ros/melodic/lib/liborocos-kdl.so;general;/opt/ros/melodic/lib/liborocos-kdl.so.1.4.0;general;/opt/ros/melodic/lib/libtf2_ros.so;general;/opt/ros/melodic/lib/libactionlib.so;general;/opt/ros/melodic/lib/libmessage_filters.so;general;/opt/ros/melodic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so;general;/opt/ros/melodic/lib/librosconsole.so;general;/opt/ros/melodic/lib/librosconsole_log4cxx.so;general;/opt/ros/melodic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so;general;/opt/ros/melodic/lib/libxmlrpcpp.so;general;/opt/ros/melodic/lib/libtf2.so;general;/opt/ros/melodic/lib/libroscpp_serialization.so;general;/opt/ros/melodic/lib/librostime.so;general;/opt/ros/melodic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so;general;/usr/lib/aarch64-linux-gnu/libboost_atomic.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;
@@ -1584,14 +1577,8 @@ move_base_LIB_DEPENDS:STATIC=general;/opt/ros/melodic/lib/libbase_local_planner.
 //Value Computed by CMake
 move_base_SOURCE_DIR:STATIC=/home/hunter/Workspace/catkin_ws/src/navigation/move_base
 
-//Value Computed by CMake
-move_base_msgs_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/navigation_msgs/move_base_msgs
-
 //The directory containing a CMake configuration file for move_base_msgs.
-move_base_msgs_DIR:PATH=/home/hunter/Workspace/catkin_ws/devel/share/move_base_msgs/cmake
-
-//Value Computed by CMake
-move_base_msgs_SOURCE_DIR:STATIC=/home/hunter/Workspace/catkin_ws/src/navigation/navigation_msgs/move_base_msgs
+move_base_msgs_DIR:PATH=/opt/ros/melodic/share/move_base_msgs/cmake
 
 //Value Computed by CMake
 nav_core_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/nav_core
@@ -1790,8 +1777,6 @@ std_srvs_DIR:PATH=/opt/ros/melodic/share/std_srvs/cmake
 
 //Value Computed by CMake
 teb_local_planner_BINARY_DIR:STATIC=/home/hunter/Workspace/catkin_ws/build/navigation/teb_local_planner
-
-teb_local_planner_DIR:PATH=
 
 //Dependencies for the target
 teb_local_planner_LIB_DEPENDS:STATIC=general;amd;general;btf;general;camd;general;ccolamd;general;cholmod;general;colamd;general;cxsparse;general;klu;general;umfpack;general;spqr;general;/opt/ros/melodic/lib/libg2o_csparse_extension.so;general;/opt/ros/melodic/lib/libg2o_core.so;general;/opt/ros/melodic/lib/libg2o_stuff.so;general;/opt/ros/melodic/lib/libg2o_types_slam2d.so;general;/opt/ros/melodic/lib/libg2o_types_slam3d.so;general;/opt/ros/melodic/lib/libg2o_solver_cholmod.so;general;/opt/ros/melodic/lib/libg2o_solver_pcg.so;general;/opt/ros/melodic/lib/libg2o_solver_csparse.so;general;/opt/ros/melodic/lib/libg2o_incremental.so;general;/opt/ros/melodic/lib/libbase_local_planner.so;general;/opt/ros/melodic/lib/libtrajectory_planner_ros.so;general;/opt/ros/melodic/lib/libcostmap_converter.so;general;/opt/ros/melodic/lib/libinteractive_markers.so;general;/opt/ros/melodic/lib/libmbf_utility.so;general;/opt/ros/melodic/lib/libcostmap_2d.so;general;/opt/ros/melodic/lib/liblayers.so;general;/opt/ros/melodic/lib/libdynamic_reconfigure_config_init_mutex.so;general;/opt/ros/melodic/lib/liblaser_geometry.so;general;/opt/ros/melodic/lib/libtf.so;general;/opt/ros/melodic/lib/libvoxel_grid.so;general;/opt/ros/melodic/lib/libclass_loader.so;general;/usr/lib/libPocoFoundation.so;general;/usr/lib/aarch64-linux-gnu/libdl.so;general;/opt/ros/melodic/lib/libroslib.so;general;/opt/ros/melodic/lib/librospack.so;general;/usr/lib/aarch64-linux-gnu/libpython2.7.so;general;/usr/lib/aarch64-linux-gnu/libboost_program_options.so;general;/usr/lib/aarch64-linux-gnu/libtinyxml2.so;general;/opt/ros/melodic/lib/liborocos-kdl.so;general;/opt/ros/melodic/lib/liborocos-kdl.so.1.4.0;general;/opt/ros/melodic/lib/libtf2_ros.so;general;/opt/ros/melodic/lib/libactionlib.so;general;/opt/ros/melodic/lib/libmessage_filters.so;general;/opt/ros/melodic/lib/libroscpp.so;general;/usr/lib/aarch64-linux-gnu/libboost_filesystem.so;general;/opt/ros/melodic/lib/librosconsole.so;general;/opt/ros/melodic/lib/librosconsole_log4cxx.so;general;/opt/ros/melodic/lib/librosconsole_backend_interface.so;general;/usr/lib/aarch64-linux-gnu/liblog4cxx.so;general;/usr/lib/aarch64-linux-gnu/libboost_regex.so;general;/opt/ros/melodic/lib/libxmlrpcpp.so;general;/opt/ros/melodic/lib/libtf2.so;general;/opt/ros/melodic/lib/libroscpp_serialization.so;general;/opt/ros/melodic/lib/librostime.so;general;/opt/ros/melodic/lib/libcpp_common.so;general;/usr/lib/aarch64-linux-gnu/libboost_system.so;general;/usr/lib/aarch64-linux-gnu/libboost_thread.so;general;/usr/lib/aarch64-linux-gnu/libboost_chrono.so;general;/usr/lib/aarch64-linux-gnu/libboost_date_time.so;general;/usr/lib/aarch64-linux-gnu/libboost_atomic.so;general;/usr/lib/aarch64-linux-gnu/libpthread.so;general;/usr/lib/aarch64-linux-gnu/libconsole_bridge.so.0.4;
@@ -2768,7 +2753,7 @@ _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/home/hunter/Workspace/catkin
 __pkg_config_arguments_PC_EIGEN:INTERNAL=eigen3
 __pkg_config_arguments_PC_FLANN:INTERNAL=flann
 __pkg_config_arguments_PC_OPENNI:INTERNAL=libopenni
-__pkg_config_arguments_PC_OPENNI2:INTERNAL=QUIET;libopenni2
+__pkg_config_arguments_PC_OPENNI2:INTERNAL=libopenni2
 __pkg_config_checked_PC_EIGEN:INTERNAL=1
 __pkg_config_checked_PC_FLANN:INTERNAL=1
 __pkg_config_checked_PC_OPENNI:INTERNAL=1

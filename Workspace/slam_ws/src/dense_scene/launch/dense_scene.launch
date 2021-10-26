@@ -1,0 +1,13 @@
+ <launch>
+        <node pkg="dense_scene" type="dense_scene" name="sd"/>
+			<param name="minDisparity" type="int" value="16" />
+			<param name="numDisparities" type="int" value="32" />
+			<param name="SADWindowSize" type="int" value="3" />
+			<param name="P1" type="int" value="4" />
+			<param name="P2" type="int" value="32" />
+			<param name="disp12MaxDiff" type="int" value="16" />
+			<param name="preFilterCap" type="int" value="0" />
+			<param name="uniquenessRatio" type="int" value="10" />
+			<param name="speckleWindowSize" type="int" value="100" />
+			<param name="speckleRange" type="int" value="2" />
+ </launch>

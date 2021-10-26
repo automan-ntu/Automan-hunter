@@ -5,5 +5,4 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
-subdirs("A-LOAM")
-subdirs("loam_velodyne")
+subdirs("dense_scene")
