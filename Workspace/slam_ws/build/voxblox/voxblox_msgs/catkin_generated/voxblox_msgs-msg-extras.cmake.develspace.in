@@ -1,0 +1,2 @@
+set(voxblox_msgs_MESSAGE_FILES "/home/hunter/Workspace/slam_ws/src/voxblox/voxblox_msgs/msg/Block.msg;/home/hunter/Workspace/slam_ws/src/voxblox/voxblox_msgs/msg/Layer.msg;/home/hunter/Workspace/slam_ws/src/voxblox/voxblox_msgs/msg/Mesh.msg;/home/hunter/Workspace/slam_ws/src/voxblox/voxblox_msgs/msg/MeshBlock.msg;/home/hunter/Workspace/slam_ws/src/voxblox/voxblox_msgs/msg/VoxelEvaluationDetails.msg")
+set(voxblox_msgs_SERVICE_FILES "/home/hunter/Workspace/slam_ws/src/voxblox/voxblox_msgs/srv/FilePath.srv")

@@ -142,7 +142,7 @@ realsense2_camera_EXTERNAL_OBJECTS =
 /home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/src/base_realsense_node.cpp.o
 /home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/src/t265_realsense_node.cpp.o
 /home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: realsense-ros/realsense2_camera/CMakeFiles/realsense2_camera.dir/build.make
-/home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: /usr/lib/aarch64-linux-gnu/librealsense2.so.2.35.2
+/home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: /usr/lib/aarch64-linux-gnu/librealsense2.so.2.49.0
 /home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: /opt/ros/melodic/lib/libnodeletlib.so
 /home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: /opt/ros/melodic/lib/libbondcpp.so
 /home/hunter/Workspace/catkin_ws/devel/lib/librealsense2_camera.so: /usr/lib/aarch64-linux-gnu/libuuid.so

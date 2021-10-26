@@ -88,6 +88,16 @@ geometry_msgs/Twist.h
 geometry_msgs/Twist.h
 -
 
+/home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
+geometry_msgs/PoseStamped.h
+-
+geometry_msgs/Twist.h
+-
+costmap_2d/costmap_2d_ros.h
+-
+tf2_ros/buffer.h
+-
+
 /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/distance_calculations.h
 Eigen/Core
 -
@@ -106,8 +116,6 @@ g2o/core/base_binary_edge.h
 g2o/core/base_unary_edge.h
 -
 g2o/core/base_multi_edge.h
--
-cmath
 -
 
 /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/g2o_types/edge_acceleration.h
@@ -219,7 +227,13 @@ iostream
 -
 
 /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/g2o_types/edge_velocity_obstacle_ratio.h
-teb_local_planner/optimal_planner.h
+teb_local_planner/g2o_types/base_teb_edges.h
+-
+teb_local_planner/g2o_types/vertex_timediff.h
+-
+teb_local_planner/g2o_types/vertex_pose.h
+-
+teb_local_planner/robot_footprint_model.h
 -
 
 /home/hunter/Workspace/catkin_ws/src/navigation/teb_local_planner/include/teb_local_planner/g2o_types/edge_via_point.h
@@ -2336,16 +2350,6 @@ boost/shared_ptr.hpp
 tf2_ros/buffer.h
 -
 tf/transform_listener.h
--
-
-/opt/ros/melodic/include/nav_core/base_local_planner.h
-geometry_msgs/PoseStamped.h
--
-geometry_msgs/Twist.h
--
-costmap_2d/costmap_2d_ros.h
--
-tf2_ros/buffer.h
 -
 
 /opt/ros/melodic/include/nav_msgs/MapMetaData.h

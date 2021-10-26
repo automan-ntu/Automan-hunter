@@ -32,9 +32,9 @@
 
 	  <remap from="scan_cloud" to="/points2"/>
 
-	  <remap from="rgb/image"       to="/d435_front/color/image_raw"/>
-  	<remap from="depth/image"     to="/d435_front/aligned_depth_to_color/image_raw"/>
-  	<remap from="rgb/camera_info" to="/d435_front/color/camera_info"/>
+	  <remap from="rgb/image"       to="/d435_rear/color/image_raw"/>
+  	<remap from="depth/image"     to="/d435_rear/aligned_depth_to_color/image_raw"/>
+  	<remap from="rgb/camera_info" to="/d435_rear/color/camera_info"/>
 		
 		<param name="rgb/image_transport"   type="string" value="compressed"/>
 		<param name="depth/image_transport" type="string" value="raw"/>
@@ -70,9 +70,9 @@
       <param name="frame_id"           type="string" value="base_footprint"/>
       <param name="wait_for_transform" type="bool" value="true"/>
     
-			<remap from="rgb/image"       to="/d435_front/color/image_raw"/>
-			<remap from="depth/image"     to="/d435_front/aligned_depth_to_color/image_raw"/>
-  	  <remap from="rgb/camera_info" to="/d435_front/color/camera_info"/>
+			<remap from="rgb/image"       to="/d435_rear/color/image_raw"/>
+			<remap from="depth/image"     to="/d435_rear/aligned_depth_to_color/image_raw"/>
+  	  <remap from="rgb/camera_info" to="/d435_rear/color/camera_info"/>
       <remap from="scan_cloud"            to="/points2"/>
       <remap from="odom"            to="/odom"/>
       

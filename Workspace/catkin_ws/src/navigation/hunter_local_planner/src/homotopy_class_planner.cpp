@@ -830,5 +830,9 @@ bool HomotopyClassPlanner::computeStartOrientation(const TebOptimalPlannerPtr pl
   return true;
 }
 
+void HomotopyClassPlanner::getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt)
+{
+  bestTeb()->getLocalPath(path, time, dt);
+}
 
 } // end namespace

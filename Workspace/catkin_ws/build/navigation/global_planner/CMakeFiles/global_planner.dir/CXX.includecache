@@ -184,6 +184,12 @@ global_planner/quadratic_calculator.h
 global_planner/quadratic_calculator.h
 -
 
+/home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
+geometry_msgs/PoseStamped.h
+-
+costmap_2d/costmap_2d_ros.h
+-
+
 /opt/ros/melodic/include/angles/angles.h
 algorithm
 -
@@ -978,12 +984,6 @@ ros/builtin_message_traits.h
 ros/message_operations.h
 -
 std_msgs/Header.h
--
-
-/opt/ros/melodic/include/nav_core/base_global_planner.h
-geometry_msgs/PoseStamped.h
--
-costmap_2d/costmap_2d_ros.h
 -
 
 /opt/ros/melodic/include/nav_msgs/GetPlan.h

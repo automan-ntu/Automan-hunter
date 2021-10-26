@@ -8,6 +8,7 @@ navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /home/hunt
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/potential_calculator.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/include/global_planner/traceback.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/global_planner/src/plan_node.cpp
+navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/class_loader/class_loader.hpp
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/class_loader/class_loader_core.hpp
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/class_loader/exceptions.hpp
@@ -49,7 +50,6 @@ navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/m
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/geometry_msgs/TransformStamped.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/geometry_msgs/Vector3.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
-navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/nav_core/base_global_planner.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlan.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanRequest.h
 navigation/global_planner/CMakeFiles/planner.dir/src/plan_node.cpp.o: /opt/ros/melodic/include/nav_msgs/GetPlanResponse.h

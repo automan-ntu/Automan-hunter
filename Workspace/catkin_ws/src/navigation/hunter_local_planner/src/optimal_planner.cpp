@@ -1120,6 +1120,17 @@ void TebOptimalPlanner::extractVelocity(const PoseSE2& pose1, const PoseSE2& pos
 
 bool TebOptimalPlanner::getVelocityCommand(double& vx, double& vy, double& omega, int look_ahead_poses) const
 {
+  double t = 0.0;
+  for (int i = 0; i < teb_.sizePoses(); ++i)
+  {
+	if (i >= teb_.sizeTimeDiffs())
+	{
+	  break;
+	}
+	t += teb_.TimeDiff(i);
+  }
+  ROS_WARN("Oscar::The size of local path and time horizon and last pose are: %d, %f, %f", int(teb_.sizePoses()), t, teb_.BackPose().x());
+
   if (teb_.sizePoses()<2)
   {
     ROS_ERROR("TebOptimalPlanner::getVelocityCommand(): The trajectory contains less than 2 poses. Make sure to init and optimize/plan the trajectory fist.");
@@ -1281,6 +1292,31 @@ bool TebOptimalPlanner::isTrajectoryFeasible(base_local_planner::CostmapModel* c
     }
   }
   return true;
+}
+
+void TebOptimalPlanner::getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt)
+{
+  //ROS_WARN("Oscar::the pose is:%f, %f", teb_.BackPose().x(), teb_.BackPose().y());
+  int counter = 0;
+  for(counter; counter < teb_.sizePoses(); ++counter)
+  { 
+    if (counter >= teb_.sizeTimeDiffs())
+    {
+	  geometry_msgs::Pose pose;
+	  teb_.Pose(counter).toPoseMsg(pose);
+	  path.push_back(pose);
+      break;
+    }
+    if (dt > time)
+    { 
+      break;
+    }
+    dt += teb_.TimeDiff(counter);
+
+    geometry_msgs::Pose pose;
+    teb_.Pose(counter).toPoseMsg(pose);
+    path.push_back(pose);
+  }
 }
 
 } // namespace hunter_local_planner

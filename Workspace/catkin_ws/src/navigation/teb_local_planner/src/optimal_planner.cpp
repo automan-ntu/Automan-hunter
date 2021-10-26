@@ -333,6 +333,8 @@ bool TebOptimalPlanner::buildGraph(double weight_multiplier)
     ROS_WARN("Cannot build graph, because it is not empty. Call graphClear()!");
     return false;
   }
+
+  optimizer_->setComputeBatchStatistics(cfg_->recovery.divergence_detection_enable);
   
   // add TEB vertices
   AddTEBVertices();
@@ -1024,8 +1026,26 @@ void TebOptimalPlanner::AddEdgesVelocityObstacleRatio()
   }
 }
 
-void TebOptimalPlanner::computeCurrentCost(double obst_cost_scale, double viapoint_cost_scale, bool alternative_time_cost)
+bool TebOptimalPlanner::hasDiverged() const
 {
+  // Early returns if divergence detection is not active
+  if (!cfg_->recovery.divergence_detection_enable)
+    return false;
+
+  auto stats_vector = optimizer_->batchStatistics();
+
+  // No statistics yet
+  if (stats_vector.empty())
+    return false;
+
+  // Grab the statistics of the final iteration
+  const auto last_iter_stats = stats_vector.back();
+
+  return last_iter_stats.chi2 > cfg_->recovery.divergence_detection_max_chi_squared;
+}
+
+void TebOptimalPlanner::computeCurrentCost(double obst_cost_scale, double viapoint_cost_scale, bool alternative_time_cost)
+{ 
   // check if graph is empty/exist  -> important if function is called between buildGraph and optimizeGraph/clearGraph
   bool graph_exist_flag(false);
   if (optimizer_->edges().empty() && optimizer_->vertices().empty())

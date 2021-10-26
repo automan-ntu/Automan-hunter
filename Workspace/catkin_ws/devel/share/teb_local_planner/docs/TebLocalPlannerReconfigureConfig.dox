@@ -32,6 +32,8 @@ Reads and maintains the following parameters on the ROS server
 - \b "~xy_goal_tolerance" : \b [double] Allowed final euclidean distance to the goal position min: 0.001, default: 0.2, max: 10.0
 - \b "~yaw_goal_tolerance" : \b [double] Allowed final orientation error to the goal orientation min: 0.001, default: 0.1, max: 3.2
 - \b "~free_goal_vel" : \b [bool] Allow the robot's velocity to be nonzero for planning purposes (the robot can arrive at the goal with max speed) min: False, default: False, max: True
+- \b "~trans_stopped_vel" : \b [double] Below what maximum velocity we consider the robot to be stopped in translation min: 0.0, default: 0.1, max: std::numeric_limits<double>::infinity()
+- \b "~theta_stopped_vel" : \b [double] Below what maximum rotation velocity we consider the robot to be stopped in rotation min: 0.0, default: 0.1, max: std::numeric_limits<double>::infinity()
 - \b "~min_obstacle_dist" : \b [double] Minimum desired separation from obstacles min: 0.0, default: 0.5, max: 10.0
 - \b "~inflation_dist" : \b [double] Buffer zone around obstacles with non-zero penalty costs (should be larger than min_obstacle_dist in order to take effect) min: 0.0, default: 0.6, max: 15.0
 - \b "~dynamic_obstacle_inflation_dist" : \b [double] Buffer zone around predicted locations of dynamic obstacles with non-zero penalty costs (should be larger than min_obstacle_dist in order to take effect) min: 0.0, default: 0.6, max: 15.0
@@ -89,4 +91,6 @@ Reads and maintains the following parameters on the ROS server
 - \b "~visualize_hc_graph" : \b [bool] Visualize the graph that is created for exploring new homotopy classes min: False, default: False, max: True
 - \b "~shrink_horizon_backup" : \b [bool] Allows the planner to shrink the horizon temporary (50%) in case of automatically detected issues. min: False, default: True, max: True
 - \b "~oscillation_recovery" : \b [bool] Try to detect and resolve oscillations between multiple solutions in the same equivalence class (robot frequently switches between left/right/forward/backwards). min: False, default: True, max: True
+- \b "~divergence_detection_enable" : \b [bool] True to enable divergence detection. min: False, default: False, max: True
+- \b "~divergence_detection_max_chi_squared" : \b [double] Maximum acceptable Mahalanobis distance above which it is assumed that the optimization diverged. min: 0.0, default: 10.0, max: 100.0
 

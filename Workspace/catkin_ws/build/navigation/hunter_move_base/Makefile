@@ -1644,6 +1644,87 @@ visualization_msgs_generate_messages_eus/fast:
 	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build.make navigation/hunter_move_base/CMakeFiles/visualization_msgs_generate_messages_eus.dir/build
 .PHONY : visualization_msgs_generate_messages_eus/fast
 
+src/Obstacle_Line.o: src/Obstacle_Line.cpp.o
+
+.PHONY : src/Obstacle_Line.o
+
+# target to build an object file
+src/Obstacle_Line.cpp.o:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Line.cpp.o
+.PHONY : src/Obstacle_Line.cpp.o
+
+src/Obstacle_Line.i: src/Obstacle_Line.cpp.i
+
+.PHONY : src/Obstacle_Line.i
+
+# target to preprocess a source file
+src/Obstacle_Line.cpp.i:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Line.cpp.i
+.PHONY : src/Obstacle_Line.cpp.i
+
+src/Obstacle_Line.s: src/Obstacle_Line.cpp.s
+
+.PHONY : src/Obstacle_Line.s
+
+# target to generate assembly for a file
+src/Obstacle_Line.cpp.s:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Line.cpp.s
+.PHONY : src/Obstacle_Line.cpp.s
+
+src/Obstacle_Point.o: src/Obstacle_Point.cpp.o
+
+.PHONY : src/Obstacle_Point.o
+
+# target to build an object file
+src/Obstacle_Point.cpp.o:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Point.cpp.o
+.PHONY : src/Obstacle_Point.cpp.o
+
+src/Obstacle_Point.i: src/Obstacle_Point.cpp.i
+
+.PHONY : src/Obstacle_Point.i
+
+# target to preprocess a source file
+src/Obstacle_Point.cpp.i:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Point.cpp.i
+.PHONY : src/Obstacle_Point.cpp.i
+
+src/Obstacle_Point.s: src/Obstacle_Point.cpp.s
+
+.PHONY : src/Obstacle_Point.s
+
+# target to generate assembly for a file
+src/Obstacle_Point.cpp.s:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Point.cpp.s
+.PHONY : src/Obstacle_Point.cpp.s
+
+src/Obstacle_Polygon.o: src/Obstacle_Polygon.cpp.o
+
+.PHONY : src/Obstacle_Polygon.o
+
+# target to build an object file
+src/Obstacle_Polygon.cpp.o:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Polygon.cpp.o
+.PHONY : src/Obstacle_Polygon.cpp.o
+
+src/Obstacle_Polygon.i: src/Obstacle_Polygon.cpp.i
+
+.PHONY : src/Obstacle_Polygon.i
+
+# target to preprocess a source file
+src/Obstacle_Polygon.cpp.i:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Polygon.cpp.i
+.PHONY : src/Obstacle_Polygon.cpp.i
+
+src/Obstacle_Polygon.s: src/Obstacle_Polygon.cpp.s
+
+.PHONY : src/Obstacle_Polygon.s
+
+# target to generate assembly for a file
+src/Obstacle_Polygon.cpp.s:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/Obstacle_Polygon.cpp.s
+.PHONY : src/Obstacle_Polygon.cpp.s
+
 src/hunter_move_base.o: src/hunter_move_base.cpp.o
 
 .PHONY : src/hunter_move_base.o
@@ -1697,6 +1778,33 @@ src/hunter_move_base_node.s: src/hunter_move_base_node.cpp.s
 src/hunter_move_base_node.cpp.s:
 	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base_node.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base_node.dir/src/hunter_move_base_node.cpp.s
 .PHONY : src/hunter_move_base_node.cpp.s
+
+src/visualization.o: src/visualization.cpp.o
+
+.PHONY : src/visualization.o
+
+# target to build an object file
+src/visualization.cpp.o:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/visualization.cpp.o
+.PHONY : src/visualization.cpp.o
+
+src/visualization.i: src/visualization.cpp.i
+
+.PHONY : src/visualization.i
+
+# target to preprocess a source file
+src/visualization.cpp.i:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/visualization.cpp.i
+.PHONY : src/visualization.cpp.i
+
+src/visualization.s: src/visualization.cpp.s
+
+.PHONY : src/visualization.s
+
+# target to generate assembly for a file
+src/visualization.cpp.s:
+	cd /home/hunter/Workspace/catkin_ws/build && $(MAKE) -f navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/build.make navigation/hunter_move_base/CMakeFiles/hunter_move_base.dir/src/visualization.cpp.s
+.PHONY : src/visualization.cpp.s
 
 # Help Target
 help:
@@ -1810,12 +1918,24 @@ help:
 	@echo "... nav_msgs_generate_messages_eus"
 	@echo "... visualization_msgs_generate_messages_cpp"
 	@echo "... visualization_msgs_generate_messages_eus"
+	@echo "... src/Obstacle_Line.o"
+	@echo "... src/Obstacle_Line.i"
+	@echo "... src/Obstacle_Line.s"
+	@echo "... src/Obstacle_Point.o"
+	@echo "... src/Obstacle_Point.i"
+	@echo "... src/Obstacle_Point.s"
+	@echo "... src/Obstacle_Polygon.o"
+	@echo "... src/Obstacle_Polygon.i"
+	@echo "... src/Obstacle_Polygon.s"
 	@echo "... src/hunter_move_base.o"
 	@echo "... src/hunter_move_base.i"
 	@echo "... src/hunter_move_base.s"
 	@echo "... src/hunter_move_base_node.o"
 	@echo "... src/hunter_move_base_node.i"
 	@echo "... src/hunter_move_base_node.s"
+	@echo "... src/visualization.o"
+	@echo "... src/visualization.i"
+	@echo "... src/visualization.s"
 .PHONY : help
 
 

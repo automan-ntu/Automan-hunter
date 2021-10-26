@@ -392,7 +392,7 @@ protected:
   
   void configureBackupModes(std::vector<geometry_msgs::PoseStamped>& transformed_plan,  int& goal_idx);
 
-
+  void getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt);
   
 private:
   // Definition of member variables

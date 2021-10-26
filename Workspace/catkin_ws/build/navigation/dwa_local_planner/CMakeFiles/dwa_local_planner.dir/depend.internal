@@ -5,6 +5,7 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cp
  /home/hunter/Workspace/catkin_ws/devel/include/dwa_local_planner/DWAPlannerConfig.h
  /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include/dwa_local_planner/dwa_planner.h
  /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/src/dwa_planner.cpp
+ /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
  /opt/ros/melodic/include/angles/angles.h
  /opt/ros/melodic/include/base_local_planner/costmap_model.h
  /opt/ros/melodic/include/base_local_planner/goal_functions.h
@@ -81,7 +82,6 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner.cp
  /opt/ros/melodic/include/kdl/utilities/kdl-config.h
  /opt/ros/melodic/include/kdl/utilities/utility.h
  /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
- /opt/ros/melodic/include/nav_core/base_local_planner.h
  /opt/ros/melodic/include/nav_msgs/MapMetaData.h
  /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
  /opt/ros/melodic/include/nav_msgs/Odometry.h
@@ -324,6 +324,8 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ro
  /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include/dwa_local_planner/dwa_planner.h
  /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/include/dwa_local_planner/dwa_planner_ros.h
  /home/hunter/Workspace/catkin_ws/src/navigation/dwa_local_planner/src/dwa_planner_ros.cpp
+ /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/base_local_planner.h
+ /home/hunter/Workspace/catkin_ws/src/navigation/nav_core/include/nav_core/parameter_magic.h
  /opt/ros/melodic/include/angles/angles.h
  /opt/ros/melodic/include/base_local_planner/costmap_model.h
  /opt/ros/melodic/include/base_local_planner/goal_functions.h
@@ -402,8 +404,6 @@ navigation/dwa_local_planner/CMakeFiles/dwa_local_planner.dir/src/dwa_planner_ro
  /opt/ros/melodic/include/kdl/utilities/kdl-config.h
  /opt/ros/melodic/include/kdl/utilities/utility.h
  /opt/ros/melodic/include/map_msgs/OccupancyGridUpdate.h
- /opt/ros/melodic/include/nav_core/base_local_planner.h
- /opt/ros/melodic/include/nav_core/parameter_magic.h
  /opt/ros/melodic/include/nav_msgs/MapMetaData.h
  /opt/ros/melodic/include/nav_msgs/OccupancyGrid.h
  /opt/ros/melodic/include/nav_msgs/Odometry.h

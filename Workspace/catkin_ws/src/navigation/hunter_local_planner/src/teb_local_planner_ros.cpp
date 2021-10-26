@@ -214,7 +214,7 @@ bool TebLocalPlannerROS::setPlan(const std::vector<geometry_msgs::PoseStamped>& 
   // the local planner checks whether it is required to reinitialize the trajectory or not within each velocity computation step.  
             
   // reset goal_reached_ flag
-  ROS_WARN("Oscar:::::::User Interface."); 
+  //ROS_WARN("Oscar:::::::User Interface."); 
   goal_reached_ = false;
   
   return true;
@@ -302,14 +302,14 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   {
     std::lock_guard<std::mutex> my_lock_guard(goal_reached_mutex_);
     goal_reached_ = true;
-    ROS_WARN("Oscar::goal reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
-    ROS_WARN("Oscar::goal reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());
+    //ROS_WARN("Oscar::goal reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
+    //ROS_WARN("Oscar::goal reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());
     return mbf_msgs::ExePathResult::SUCCESS;
   }
   
-    ROS_WARN("Oscar::goal not reached, the flag is: %d,%d,%d", flag1, flag2, flag3);
+    //ROS_WARN("Oscar::goal not reached, the flag is: %d,%d,%d", flag1, flag2, flag3);
     ROS_WARN("Oscar::goal not reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
-    ROS_WARN("Oscar::goal not reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());  
+    //ROS_WARN("Oscar::goal not reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());  
 
   // check if we should enter any backup mode and apply settings
   configureBackupModes(transformed_plan, goal_idx);
@@ -329,7 +329,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   // Overwrite goal orientation if needed
   if (cfg_.trajectory.global_plan_overwrite_orientation)
   {
-    ROS_WARN("Oscar::Global plan overwrite orientation is True.");
+    //ROS_WARN("Oscar::Global plan overwrite orientation is True.");
     robot_goal_.theta() = estimateLocalGoalOrientation(global_plan_, transformed_plan.back(), goal_idx, tf_plan_to_global);
     // overwrite/update goal orientation of the transformed plan with the actual goal (enable using the plan as initialization)
     tf2::Quaternion q;
@@ -458,7 +458,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
 
 bool TebLocalPlannerROS::isGoalReached()
 {
-  ROS_WARN("Oscar///goal_reached_ is:%d", goal_reached_);
+  //ROS_WARN("Oscar///goal_reached_ is:%d", goal_reached_);
   if (goal_reached_)
   {
     ROS_INFO("GOAL Reached!");
@@ -1202,6 +1202,11 @@ double TebLocalPlannerROS::getNumberFromXMLRPC(XmlRpc::XmlRpcValue& value, const
 void TebLocalPlannerROS::SetGoalNotReached()
 {
   goal_reached_ = false;
+}
+
+void TebLocalPlannerROS::getLocalPath(std::vector<geometry_msgs::Pose>& path, double time, double& dt)
+{
+  planner_->getLocalPath(path, time, dt);
 }
 
 } // end namespace hunter_local_planner
