@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="rslidar_sdk" name="rslidar_sdk_node" type="rslidar_sdk_node" output="screen">
+  </node>
+
+	<include file="$(find hunter_bringup)/launch/sensor_pointcloud_filter.launch" />
+	<include file="$(find hunter_bringup)/launch/sensor_pointcloud_to_laserscan.launch" />
+
+  <!-- rviz -->
+  <node pkg="rviz" name="rviz" type="rviz" args="-d $(find rslidar_sdk)/rviz/rviz.rviz" />
+</launch>
