@@ -829,6 +829,7 @@ namespace hunter_move_base
                     if (!ObstaclesOfInterest(x_max, x_min, y_max, y_min))
                     {
                         ROS_WARN("Oscar::Next Cycle.");
+                        publishDefaultVelocityToSimulator();
                         continue;
                     }
 
