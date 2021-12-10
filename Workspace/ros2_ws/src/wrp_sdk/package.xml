@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package>
+<package format="2">
   <name>wrp_sdk</name>
   <version>0.3.3</version>
   <description>Weston Robot Platform SDK</description>
@@ -13,6 +13,9 @@
   <url type="bugtracker">TODO</url>
   <url type="repository">TODO</url>
 
-  <buildtool_depend>catkin</buildtool_depend> 
-  <export></export>
+  <buildtool_depend>ament_cmake</buildtool_depend> 
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>

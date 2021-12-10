@@ -1,0 +1,124 @@
+[0.187s] DEBUG:colcon:Command line arguments: ['/usr/bin/colcon', 'list', '-p', '--base-paths', '/robot/Automan-hunter/Workspace/ros2_ws']
+[0.187s] DEBUG:colcon:Parsed command line arguments: Namespace(base_paths=['/robot/Automan-hunter/Workspace/ros2_ws'], build_base='build', ignore_user_meta=False, log_base=None, log_level=None, main=<bound method ListVerb.main of <colcon_package_information.verb.list.ListVerb object at 0x7f53830cbca0>>, metas=['./colcon.meta'], names_only=False, packages_above=None, packages_above_and_dependencies=None, packages_above_depth=None, packages_end=None, packages_ignore=None, packages_ignore_regex=None, packages_select=None, packages_select_build_failed=False, packages_select_by_dep=None, packages_select_regex=None, packages_select_test_failures=False, packages_skip=None, packages_skip_build_finished=False, packages_skip_by_dep=None, packages_skip_regex=None, packages_skip_test_passed=False, packages_skip_up_to=None, packages_start=None, packages_up_to=None, packages_up_to_regex=None, paths=None, paths_only=True, topological_graph=False, topological_graph_density=False, topological_graph_dot=False, topological_graph_dot_cluster=False, topological_graph_dot_include_skipped=False, topological_graph_legend=False, topological_order=False, verb_extension=<colcon_package_information.verb.list.ListVerb object at 0x7f53830cbca0>, verb_name='list', verb_parser=<colcon_defaults.argument_parser.defaults.DefaultArgumentsDecorator object at 0x7f5382fddf70>)
+[0.203s] Level 1:colcon.colcon_core.package_discovery:discover_packages(colcon_meta) check parameters
+[0.203s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) check parameters
+[0.203s] Level 1:colcon.colcon_core.package_discovery:discover_packages(ignore) check parameters
+[0.203s] Level 1:colcon.colcon_core.package_discovery:discover_packages(path) check parameters
+[0.203s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) discover
+[0.203s] INFO:colcon.colcon_core.package_discovery:Crawling recursively for packages in '/robot/Automan-hunter/Workspace/ros2_ws'
+[0.203s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extensions ['ignore', 'ignore_ament_install']
+[0.203s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'ignore'
+[0.203s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'ignore_ament_install'
+[0.203s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extensions ['colcon_pkg']
+[0.204s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'colcon_pkg'
+[0.204s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extensions ['colcon_meta']
+[0.204s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'colcon_meta'
+[0.204s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extensions ['ros']
+[0.204s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'ros'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extensions ['cmake', 'python']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'cmake'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'python'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extensions ['python_setup_py']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws) by extension 'python_setup_py'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/log) by extensions ['ignore', 'ignore_ament_install']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/log) by extension 'ignore'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/log) ignored
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extensions ['ignore', 'ignore_ament_install']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'ignore'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'ignore_ament_install'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extensions ['colcon_pkg']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'colcon_pkg'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extensions ['colcon_meta']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'colcon_meta'
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extensions ['ros']
+[0.212s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'ros'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extensions ['cmake', 'python']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'cmake'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'python'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extensions ['python_setup_py']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src) by extension 'python_setup_py'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'ignore'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'ignore_ament_install'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extensions ['colcon_pkg']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'colcon_pkg'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extensions ['colcon_meta']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'colcon_meta'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extensions ['ros']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'ros'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extensions ['cmake', 'python']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'cmake'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'python'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extensions ['python_setup_py']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros) by extension 'python_setup_py'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extensions ['ignore', 'ignore_ament_install']
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extension 'ignore'
+[0.213s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extension 'ignore_ament_install'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extensions ['colcon_pkg']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extension 'colcon_pkg'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extensions ['colcon_meta']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extension 'colcon_meta'
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extensions ['ros']
+[0.214s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base) by extension 'ros'
+[0.216s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base' with type 'ros.catkin' and name 'hunter_base'
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extensions ['ignore', 'ignore_ament_install']
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extension 'ignore'
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extension 'ignore_ament_install'
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extensions ['colcon_pkg']
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extension 'colcon_pkg'
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extensions ['colcon_meta']
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extension 'colcon_meta'
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extensions ['ros']
+[0.216s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup) by extension 'ros'
+[0.216s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_bringup' with type 'ros.catkin' and name 'hunter_bringup'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extensions ['ignore', 'ignore_ament_install']
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extension 'ignore'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extension 'ignore_ament_install'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extensions ['colcon_pkg']
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extension 'colcon_pkg'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extensions ['colcon_meta']
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extension 'colcon_meta'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extensions ['ros']
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description) by extension 'ros'
+[0.217s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_description' with type 'ros.catkin' and name 'hunter_description'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extensions ['ignore', 'ignore_ament_install']
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extension 'ignore'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extension 'ignore_ament_install'
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extensions ['colcon_pkg']
+[0.217s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extension 'colcon_pkg'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extensions ['colcon_meta']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extension 'colcon_meta'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extensions ['ros']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs) by extension 'ros'
+[0.218s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs' with type 'ros.catkin' and name 'hunter_msgs'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extensions ['ignore', 'ignore_ament_install']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extension 'ignore'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extension 'ignore_ament_install'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extensions ['colcon_pkg']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extension 'colcon_pkg'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extensions ['colcon_meta']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extension 'colcon_meta'
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extensions ['ros']
+[0.218s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros) by extension 'ros'
+[0.219s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_ros' with type 'ros.catkin' and name 'hunter_ros'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extensions ['ignore', 'ignore_ament_install']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extension 'ignore'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extension 'ignore_ament_install'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extensions ['colcon_pkg']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extension 'colcon_pkg'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extensions ['colcon_meta']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extension 'colcon_meta'
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extensions ['ros']
+[0.219s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim) by extension 'ros'
+[0.220s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim' with type 'ros.catkin' and name 'hunter_webots_sim'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extensions ['ignore', 'ignore_ament_install']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extension 'ignore'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extension 'ignore_ament_install'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extensions ['colcon_pkg']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extension 'colcon_pkg'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extensions ['colcon_meta']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extension 'colcon_meta'
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extensions ['ros']
+[0.220s] Level 1:colcon.colcon_core.package_identification:_identify(/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk) by extension 'ros'
+[0.220s] DEBUG:colcon.colcon_core.package_identification:Package '/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk' with type 'ros.catkin' and name 'wrp_sdk'
+[0.221s] Level 1:colcon.colcon_core.package_discovery:discover_packages(recursive) using defaults
