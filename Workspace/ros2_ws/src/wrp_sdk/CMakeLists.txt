@@ -1,17 +1,20 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.5)
 project(wrp_sdk)
 
-# Find catkin
-find_package(catkin REQUIRED)
+# Find ament_cmake
+find_package(ament_cmake REQUIRED)
 
 # generate symbols for IDE indexer
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/devel)
 
-## Set compiler to use c++ 11 features
-set(CMAKE_CXX_STANDARD 11)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS OFF)
+## Set compiler to use c++ 14 features
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 ## Put all binary files into /bin and libraries into /lib
 # set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
@@ -44,6 +47,8 @@ if(BUILD_MONITOR AND NOT CURSES_FOUND)
     set(BUILD_MONITOR OFF)
     message(STATUS "Monitor app will not be built due to missing ncurses library, try: sudo apt install libncurses5-dev")
 endif()
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Add libraries
 # set(WRP_SDK_SRC
@@ -78,6 +83,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 	$<INSTALL_INTERFACE:include>
 	PRIVATE src)
 
+#include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 # Add executables
 if(BUILD_TESTS)
     add_subdirectory(tests)
@@ -85,12 +91,14 @@ if(BUILD_TESTS)
 endif()
 
 ## Export catkin targets
-catkin_package(
- INCLUDE_DIRS include
- LIBRARIES ${PROJECT_NAME}
+#catkin_package(
+# INCLUDE_DIRS include
+# LIBRARIES ${PROJECT_NAME}
 #  CATKIN_DEPENDS hunter_msgs roscpp 
 #  DEPENDS system_lib
-)
+#)
+ament_package()
+
 
 ## Use GNUInstallDirs to install libraries into correct
 # locations on all platforms.
@@ -98,9 +106,9 @@ include(GNUInstallDirs)
 
 ## Add catkin install targets
 install(TARGETS ${PROJECT_NAME}
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-  LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
-  ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION})
+  RUNTIME DESTINATION lib/${PROJECT_NAME}
+  LIBRARY DESTINATION lib/${PROJECT_NAME}
+  ARCHIVE DESTINATION lib/${PROJECT_NAME})
 
 # install(DIRECTORY include/${PROJECT_NAME}/
 #   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})

@@ -1,0 +1,28 @@
+[0.009s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+[0.025s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.038s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.038s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.207s] -- Configuring done
+[0.210s] -- Generating done
+[0.211s] -- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk
+[0.230s] [100%] Built target wrp_sdk
+[0.236s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+[0.262s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk
+[0.266s] -- Install configuration: "Release"
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/package_run_dependencies/wrp_sdk
+[0.267s] -- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/parent_prefix_path/wrp_sdk
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.sh
+[0.267s] -- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.dsv
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/path.sh
+[0.267s] -- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/path.dsv
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.bash
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.sh
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.zsh
+[0.267s] -- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.dsv
+[0.267s] -- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.dsv
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/packages/wrp_sdk
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig.cmake
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig-version.cmake
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.xml
+[0.267s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib/wrp_sdk/libwrp_sdk.a
+[0.269s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk

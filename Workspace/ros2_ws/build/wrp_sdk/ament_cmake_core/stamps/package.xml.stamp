@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>wrp_sdk</name>
+  <version>0.3.3</version>
+  <description>Weston Robot Platform SDK</description>
+
+  <author email="ruixiang.du@westonrobot.com">Ruixiang Du</author>
+  <maintainer email="ruixiang.du@westonrobot.com">Ruixiang Du</maintainer>
+
+  <license>BSD</license>
+
+  <url type="website">TODO</url>
+  <url type="bugtracker">TODO</url>
+  <url type="repository">TODO</url>
+
+  <buildtool_depend>ament_cmake</buildtool_depend> 
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

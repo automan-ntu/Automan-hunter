@@ -1,8 +1,0 @@
-prefix=/home/hunter/Workspace/catkin_ws/install
-
-Name: ros_imu
-Description: Description of ros_imu
-Version: 1.0.1
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

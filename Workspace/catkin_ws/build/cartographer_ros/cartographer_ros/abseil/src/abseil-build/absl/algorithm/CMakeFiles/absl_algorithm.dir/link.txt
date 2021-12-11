@@ -1,2 +1,0 @@
-/usr/bin/ar qc libabsl_algorithm.a  CMakeFiles/absl_algorithm.dir/absl_algorithm_header_only_dummy.cc.o
-/usr/bin/ranlib libabsl_algorithm.a

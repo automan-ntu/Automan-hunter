@@ -1,0 +1,297 @@
+[0.000000] (-) TimerEvent: {}
+[0.000366] (-) JobUnselected: {'identifier': 'hunter_base'}
+[0.000464] (-) JobUnselected: {'identifier': 'hunter_bringup'}
+[0.000671] (-) JobUnselected: {'identifier': 'hunter_description'}
+[0.000690] (-) JobUnselected: {'identifier': 'hunter_msgs'}
+[0.000712] (-) JobUnselected: {'identifier': 'hunter_ros'}
+[0.001149] (-) JobUnselected: {'identifier': 'hunter_webots_sim'}
+[0.001214] (wrp_sdk) JobQueued: {'identifier': 'wrp_sdk', 'dependencies': OrderedDict()}
+[0.001235] (wrp_sdk) JobStarted: {'identifier': 'wrp_sdk'}
+[0.006900] (wrp_sdk) JobProgress: {'identifier': 'wrp_sdk', 'progress': 'cmake'}
+[0.007304] (wrp_sdk) JobProgress: {'identifier': 'wrp_sdk', 'progress': 'build'}
+[0.007827] (wrp_sdk) Command: {'cmd': ['/usr/bin/cmake', '--build', '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk', '--', '-j24', '-l24'], 'cwd': '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'yanxin'), ('LC_TIME', 'en_US.UTF-8'), ('SSH_AGENT_PID', '3330'), ('ROS_PACKAGE_PATH', ':/robot/ws_orbslam/ORB_SLAM2/Examples/ROS:/robot/ws_orbslam/ORB_SLAM2_modified/Examples/ROS'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64'), ('HOME', '/home/yanxin'), ('OLDPWD', '/robot/Automan-hunter/Workspace/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'en_US.UTF-8'), ('MANAGERPID', '3148'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('LIBVIRT_DEFAULT_URI', 'qemu:///system'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4039'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'yanxin'), ('JOURNAL_STREAM', '9:67470'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'yanxin'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/yanxin/.local/bin:/home/yanxin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/robot/matlab/bin'), ('SESSION_MANAGER', 'local/yanxin:@/tmp/.ICE-unix/3358,unix/yanxin:/tmp/.ICE-unix/3358'), ('INVOCATION_ID', '5a9975eca5bb474e848f37209558e621'), ('PAPERSIZE', 'letter'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'en_US.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'en_US.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'en_US.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:29f59943-c7d2-4580-82ec-6b8dde36abfe'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_US.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_US.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'en_US.UTF-8'), ('LC_PAPER', 'en_US.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk:/opt/ros/foxy')]), 'shell': False}
+[0.024094] (wrp_sdk) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.037434] (wrp_sdk) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") \n'}
+[0.037518] (wrp_sdk) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.099848] (-) TimerEvent: {}
+[0.184213] (wrp_sdk) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[0.199914] (-) TimerEvent: {}
+[0.225477] (wrp_sdk) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.237919] (wrp_sdk) StdoutLine: {'line': b'-- Generating done\n'}
+[0.239542] (wrp_sdk) StdoutLine: {'line': b'-- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk\n'}
+[0.253211] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_acan\x1b[0m\n'}
+[0.253361] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_scout_base\x1b[0m\n'}
+[0.253442] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_hunter_base\x1b[0m\n'}
+[0.253514] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_asio_can\x1b[0m\n'}
+[0.255322] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_aserial\x1b[0m\n'}
+[0.255423] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_aserial_comm\x1b[0m\n'}
+[0.259232] (wrp_sdk) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o\x1b[0m\n'}
+[0.259340] (wrp_sdk) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_asio_can.dir/test_asio_can.cpp.o\x1b[0m\n'}
+[0.259414] (wrp_sdk) StdoutLine: {'line': b'[ 15%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o\x1b[0m\n'}
+[0.259473] (wrp_sdk) StdoutLine: {'line': b'[ 15%] Built target gtest\n'}
+[0.259527] (wrp_sdk) StdoutLine: {'line': b'[ 18%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_acan.dir/test_acan.cpp.o\x1b[0m\n'}
+[0.262277] (wrp_sdk) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_aserial.dir/test_aserial.cpp.o\x1b[0m\n'}
+[0.262402] (wrp_sdk) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_aserial_comm.dir/test_aserial_comm.cpp.o\x1b[0m\n'}
+[0.262541] (wrp_sdk) StdoutLine: {'line': b'[ 56%] Built target wrp_sdk\n'}
+[0.265467] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gtest_main\x1b[0m\n'}
+[0.267032] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gmock\x1b[0m\n'}
+[0.272375] (wrp_sdk) StdoutLine: {'line': b'[ 59%] \x1b[32mBuilding CXX object unit_tests/googletest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o\x1b[0m\n'}
+[0.275962] (wrp_sdk) StdoutLine: {'line': b'[ 62%] \x1b[32mBuilding CXX object unit_tests/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o\x1b[0m\n'}
+[0.299992] (-) TimerEvent: {}
+[0.400255] (-) TimerEvent: {}
+[0.500630] (-) TimerEvent: {}
+[0.600922] (-) TimerEvent: {}
+[0.695237] (wrp_sdk) StdoutLine: {'line': b'[ 65%] \x1b[32m\x1b[1mLinking CXX static library libgtest_main.a\x1b[0m\n'}
+[0.700995] (-) TimerEvent: {}
+[0.715957] (wrp_sdk) StdoutLine: {'line': b'[ 65%] Built target gtest_main\n'}
+[0.721644] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target scout_sdk_test\x1b[0m\n'}
+[0.731911] (wrp_sdk) StdoutLine: {'line': b'[ 68%] \x1b[32mBuilding CXX object unit_tests/CMakeFiles/scout_sdk_test.dir/gtests/scout_can_protocol_test.cpp.o\x1b[0m\n'}
+[0.779721] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/unit_tests/gtests/scout_can_protocol_test.cpp:18:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kwrp_sdk/platforms/scout/scout_base.hpp: No such file or directory\n'}
+[0.780073] (wrp_sdk) StderrLine: {'line': b'   18 | #include \x1b[01;31m\x1b[K"wrp_sdk/platforms/scout/scout_base.hpp"\x1b[m\x1b[K\n'}
+[0.780208] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.780310] (wrp_sdk) StderrLine: {'line': b'compilation terminated.\n'}
+[0.781044] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [unit_tests/CMakeFiles/scout_sdk_test.dir/build.make:63: unit_tests/CMakeFiles/scout_sdk_test.dir/gtests/scout_can_protocol_test.cpp.o] Error 1\n'}
+[0.781199] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:435: unit_tests/CMakeFiles/scout_sdk_test.dir/all] Error 2\n'}
+[0.781328] (wrp_sdk) StderrLine: {'line': b'make[1]: *** Waiting for unfinished jobs....\n'}
+[0.801075] (-) TimerEvent: {}
+[0.901344] (-) TimerEvent: {}
+[0.970138] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44\x1b[m\x1b[K,\n'}
+[0.970388] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:10\x1b[m\x1b[K:\n'}
+[0.970517] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.970626] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.970720] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.970806] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.970894] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.971001] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.971088] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.971173] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.971260] (wrp_sdk) StderrLine: {'line': b'   37 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K() : pos(0),\n'}
+[0.971347] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.971433] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.971537] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.971631] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.971718] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.971802] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.971888] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.971974] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.972056] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.972135] (wrp_sdk) StderrLine: {'line': b'   46 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),\n'}
+[0.972214] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.974807] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid parse_buffer(uint8_t*, size_t, size_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.974926] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:26:27:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Ksize_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[0.975082] (wrp_sdk) StderrLine: {'line': b'   26 |         for (int i = 0; \x1b[01;35m\x1b[Ki < bytes_received - 1\x1b[m\x1b[K; ++i)\n'}
+[0.975180] (wrp_sdk) StderrLine: {'line': b'      |                         \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.975271] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:14:46:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbufsize\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.975357] (wrp_sdk) StderrLine: {'line': b'   14 | void parse_buffer(uint8_t *buf, \x1b[01;35m\x1b[Kconst size_t bufsize\x1b[m\x1b[K, size_t bytes_received)\n'}
+[0.975458] (wrp_sdk) StderrLine: {'line': b'      |                                 \x1b[01;35m\x1b[K~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[0.976661] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:2\x1b[m\x1b[K:\n'}
+[0.976774] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:111:18:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K\xe2\x80\x99 in namespace \xe2\x80\x98\x1b[01m\x1b[Kasio::posix\x1b[m\x1b[K\xe2\x80\x99 does not name a template type; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstream_descriptor\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[0.977042] (wrp_sdk) StderrLine: {'line': b'  111 |     asio::posix::\x1b[01;31m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K<> stream;\n'}
+[0.977207] (wrp_sdk) StderrLine: {'line': b'      |                  \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.977302] (wrp_sdk) StderrLine: {'line': b'      |                  \x1b[32m\x1b[Kstream_descriptor\x1b[m\x1b[K\n'}
+[0.977375] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44\x1b[m\x1b[K,\n'}
+[0.977453] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:10\x1b[m\x1b[K:\n'}
+[0.977527] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.977598] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.977677] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.977756] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.977841] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.977934] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.978020] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.978209] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.978302] (wrp_sdk) StderrLine: {'line': b'   37 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K() : pos(0),\n'}
+[0.978389] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.978472] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.978555] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.978632] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.978714] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.978794] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.978880] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.978968] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.979050] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.979128] (wrp_sdk) StderrLine: {'line': b'   46 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),\n'}
+[0.979205] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.979286] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:60:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kasio::posix::basic_stream_descriptor\x1b[m\x1b[K\xe2\x80\x99 has not been declared\n'}
+[0.979372] (wrp_sdk) StderrLine: {'line': b'  119 |     void do_read(struct can_frame &rec_frame, asio::posix::\x1b[01;31m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K<> &stream);\n'}
+[0.979458] (wrp_sdk) StderrLine: {'line': b'      |                                                            \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.979630] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:83:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K,\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K...\x1b[m\x1b[K\xe2\x80\x99 before \xe2\x80\x98\x1b[01m\x1b[K<\x1b[m\x1b[K\xe2\x80\x99 token\n'}
+[0.979723] (wrp_sdk) StderrLine: {'line': b'  119 |     void do_read(struct can_frame &rec_frame, asio::posix::basic_stream_descriptor\x1b[01;31m\x1b[K<\x1b[m\x1b[K> &stream);\n'}
+[0.979812] (wrp_sdk) StderrLine: {'line': b'      |                                                                                   \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[0.979904] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid parse_buffer(uint8_t*, size_t, size_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.979982] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:15:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kc\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.980065] (wrp_sdk) StderrLine: {'line': b'   15 |         auto \x1b[01;35m\x1b[Kc\x1b[m\x1b[K = *buf++;\n'}
+[0.980147] (wrp_sdk) StderrLine: {'line': b'      |              \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[0.980230] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:6:46:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbufsize\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.980316] (wrp_sdk) StderrLine: {'line': b'    6 | void parse_buffer(uint8_t *buf, \x1b[01;35m\x1b[Kconst size_t bufsize\x1b[m\x1b[K, size_t bytes_received)\n'}
+[0.980397] (wrp_sdk) StderrLine: {'line': b'      |                                 \x1b[01;35m\x1b[K~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[0.980483] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.980590] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:63:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdata\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.980677] (wrp_sdk) StderrLine: {'line': b"   63 |     uint8_t \x1b[01;35m\x1b[Kdata\x1b[m\x1b[K[8] = {'a', 'b', 'c'};\n"}
+[0.980762] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[0.980841] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.980927] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:39:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kargc\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.981002] (wrp_sdk) StderrLine: {'line': b'   39 | int main(\x1b[01;35m\x1b[Kint argc\x1b[m\x1b[K, char *argv[])\n'}
+[0.981081] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K~~~~^~~~\x1b[m\x1b[K\n'}
+[0.981160] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:39:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kargv\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.981241] (wrp_sdk) StderrLine: {'line': b'   39 | int main(int argc, \x1b[01;35m\x1b[Kchar *argv[]\x1b[m\x1b[K)\n'}
+[0.981318] (wrp_sdk) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[0.982110] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kvoid parse_buffer(uint8_t*, size_t, size_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.982222] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:20:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kc\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.982312] (wrp_sdk) StderrLine: {'line': b'   20 |         auto \x1b[01;35m\x1b[Kc\x1b[m\x1b[K = *buf++;\n'}
+[0.982399] (wrp_sdk) StderrLine: {'line': b'      |              \x1b[01;35m\x1b[K^\x1b[m\x1b[K\n'}
+[0.982479] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:14:46:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbufsize\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.982567] (wrp_sdk) StderrLine: {'line': b'   14 | void parse_buffer(uint8_t *buf, \x1b[01;35m\x1b[Kconst size_t bufsize\x1b[m\x1b[K, size_t bytes_received)\n'}
+[0.982656] (wrp_sdk) StderrLine: {'line': b'      |                                 \x1b[01;35m\x1b[K~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[0.984228] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.984331] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kdata\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.984414] (wrp_sdk) StderrLine: {'line': b"   35 |     uint8_t \x1b[01;35m\x1b[Kdata\x1b[m\x1b[K[8] = {'a','b','c'};\n"}
+[0.984502] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~~\x1b[m\x1b[K\n'}
+[0.984609] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:25:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kargc\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.984692] (wrp_sdk) StderrLine: {'line': b'   25 | int main(\x1b[01;35m\x1b[Kint argc\x1b[m\x1b[K, char *argv[])\n'}
+[0.984775] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;35m\x1b[K~~~~^~~~\x1b[m\x1b[K\n'}
+[0.984850] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:25:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kargv\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.984935] (wrp_sdk) StderrLine: {'line': b'   25 | int main(int argc, \x1b[01;35m\x1b[Kchar *argv[]\x1b[m\x1b[K)\n'}
+[0.985018] (wrp_sdk) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[0.985745] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:21\x1b[m\x1b[K,\n'}
+[0.985854] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:18\x1b[m\x1b[K,\n'}
+[0.985950] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11\x1b[m\x1b[K:\n'}
+[0.986037] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:111:18:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K\xe2\x80\x99 in namespace \xe2\x80\x98\x1b[01m\x1b[Kasio::posix\x1b[m\x1b[K\xe2\x80\x99 does not name a template type; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstream_descriptor\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[0.986128] (wrp_sdk) StderrLine: {'line': b'  111 |     asio::posix::\x1b[01;31m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K<> stream;\n'}
+[0.986281] (wrp_sdk) StderrLine: {'line': b'      |                  \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.986377] (wrp_sdk) StderrLine: {'line': b'      |                  \x1b[32m\x1b[Kstream_descriptor\x1b[m\x1b[K\n'}
+[0.986460] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:60:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kasio::posix::basic_stream_descriptor\x1b[m\x1b[K\xe2\x80\x99 has not been declared\n'}
+[0.986543] (wrp_sdk) StderrLine: {'line': b'  119 |     void do_read(struct can_frame &rec_frame, asio::posix::\x1b[01;31m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K<> &stream);\n'}
+[0.986626] (wrp_sdk) StderrLine: {'line': b'      |                                                            \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.986709] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:83:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K,\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K...\x1b[m\x1b[K\xe2\x80\x99 before \xe2\x80\x98\x1b[01m\x1b[K<\x1b[m\x1b[K\xe2\x80\x99 token\n'}
+[0.986792] (wrp_sdk) StderrLine: {'line': b'  119 |     void do_read(struct can_frame &rec_frame, asio::posix::basic_stream_descriptor\x1b[01;31m\x1b[K<\x1b[m\x1b[K> &stream);\n'}
+[0.986873] (wrp_sdk) StderrLine: {'line': b'      |                                                                                   \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[0.987578] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44\x1b[m\x1b[K,\n'}
+[0.987689] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:22\x1b[m\x1b[K,\n'}
+[0.987781] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:18\x1b[m\x1b[K,\n'}
+[0.987870] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11\x1b[m\x1b[K:\n'}
+[0.987963] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.988046] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.988133] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.988216] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.988295] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.988381] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.988466] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.988556] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.988636] (wrp_sdk) StderrLine: {'line': b'   37 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K() : pos(0),\n'}
+[0.988720] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.988806] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.988894] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.989056] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.989138] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.989212] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.989291] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.989453] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.989539] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.989637] (wrp_sdk) StderrLine: {'line': b'   46 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),\n'}
+[0.989724] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.989816] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_base.hpp:19\x1b[m\x1b[K,\n'}
+[0.989904] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_scout_base.cpp:11\x1b[m\x1b[K:\n'}
+[0.989985] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:111:18:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K\xe2\x80\x99 in namespace \xe2\x80\x98\x1b[01m\x1b[Kasio::posix\x1b[m\x1b[K\xe2\x80\x99 does not name a template type; did you mean \xe2\x80\x98\x1b[01m\x1b[Kstream_descriptor\x1b[m\x1b[K\xe2\x80\x99?\n'}
+[0.990071] (wrp_sdk) StderrLine: {'line': b'  111 |     asio::posix::\x1b[01;31m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K<> stream;\n'}
+[0.990150] (wrp_sdk) StderrLine: {'line': b'      |                  \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.990232] (wrp_sdk) StderrLine: {'line': b'      |                  \x1b[32m\x1b[Kstream_descriptor\x1b[m\x1b[K\n'}
+[0.990314] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:60:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kasio::posix::basic_stream_descriptor\x1b[m\x1b[K\xe2\x80\x99 has not been declared\n'}
+[0.990398] (wrp_sdk) StderrLine: {'line': b'  119 |     void do_read(struct can_frame &rec_frame, asio::posix::\x1b[01;31m\x1b[Kbasic_stream_descriptor\x1b[m\x1b[K<> &stream);\n'}
+[0.990485] (wrp_sdk) StderrLine: {'line': b'      |                                                            \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.990569] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:83:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kexpected \xe2\x80\x98\x1b[01m\x1b[K,\x1b[m\x1b[K\xe2\x80\x99 or \xe2\x80\x98\x1b[01m\x1b[K...\x1b[m\x1b[K\xe2\x80\x99 before \xe2\x80\x98\x1b[01m\x1b[K<\x1b[m\x1b[K\xe2\x80\x99 token\n'}
+[0.990843] (wrp_sdk) StderrLine: {'line': b'  119 |     void do_read(struct can_frame &rec_frame, asio::posix::basic_stream_descriptor\x1b[01;31m\x1b[K<\x1b[m\x1b[K> &stream);\n'}
+[0.990935] (wrp_sdk) StderrLine: {'line': b'      |                                                                                   \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[0.991019] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44\x1b[m\x1b[K,\n'}
+[0.991106] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_base.hpp:20\x1b[m\x1b[K,\n'}
+[0.991188] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_scout_base.cpp:11\x1b[m\x1b[K:\n'}
+[0.991274] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.991359] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.991450] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.991534] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.991613] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.991695] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.991771] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.991850] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.991931] (wrp_sdk) StderrLine: {'line': b'   37 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K() : pos(0),\n'}
+[0.992008] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.992084] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:\x1b[m\x1b[K In constructor \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.992164] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::MsgBuffer::pos\x1b[m\x1b[K\xe2\x80\x99 will be initialized after [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.992246] (wrp_sdk) StderrLine: {'line': b'   35 |     ssize_t \x1b[01;35m\x1b[Kpos\x1b[m\x1b[K;\n'}
+[0.992326] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.992406] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  \xe2\x80\x98\x1b[01m\x1b[Kssize_t westonrobot::MsgBuffer::len\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.992492] (wrp_sdk) StderrLine: {'line': b'   34 |     ssize_t \x1b[01;35m\x1b[Klen\x1b[m\x1b[K;\n'}
+[0.992581] (wrp_sdk) StderrLine: {'line': b'      |             \x1b[01;35m\x1b[K^~~\x1b[m\x1b[K\n'}
+[0.992660] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[K  when initialized here [\x1b[01;35m\x1b[K-Wreorder\x1b[m\x1b[K]\n'}
+[0.992738] (wrp_sdk) StderrLine: {'line': b'   46 |     \x1b[01;35m\x1b[KMsgBuffer\x1b[m\x1b[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),\n'}
+[0.992820] (wrp_sdk) StderrLine: {'line': b'      |     \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[0.994330] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:18\x1b[m\x1b[K,\n'}
+[0.994419] (wrp_sdk) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11\x1b[m\x1b[K:\n'}
+[0.994486] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void westonrobot::MobileBase::ParseCANFrame(can_frame*)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.994553] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:68:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Krx_frame\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.994625] (wrp_sdk) StderrLine: {'line': b'   68 |   virtual void ParseCANFrame(\x1b[01;35m\x1b[Kcan_frame *rx_frame\x1b[m\x1b[K){};\n'}
+[0.994688] (wrp_sdk) StderrLine: {'line': b'      |                              \x1b[01;35m\x1b[K~~~~~~~~~~~^~~~~~~~\x1b[m\x1b[K\n'}
+[0.994749] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void westonrobot::MobileBase::ParseUARTBuffer(uint8_t*, size_t, size_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.994811] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:69:41:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbuf\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.994871] (wrp_sdk) StderrLine: {'line': b'   69 |   virtual void ParseUARTBuffer(\x1b[01;35m\x1b[Kuint8_t *buf\x1b[m\x1b[K, const size_t bufsize,\n'}
+[0.994931] (wrp_sdk) StderrLine: {'line': b'      |                                \x1b[01;35m\x1b[K~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[0.994992] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:69:59:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbufsize\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.995057] (wrp_sdk) StderrLine: {'line': b'   69 |   virtual void ParseUARTBuffer(uint8_t *buf, \x1b[01;35m\x1b[Kconst size_t bufsize\x1b[m\x1b[K,\n'}
+[0.995116] (wrp_sdk) StderrLine: {'line': b'      |                                              \x1b[01;35m\x1b[K~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[0.995177] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:70:39:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbytes_received\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.995237] (wrp_sdk) StderrLine: {'line': b'   70 |                                \x1b[01;35m\x1b[Ksize_t bytes_received\x1b[m\x1b[K){};\n'}
+[0.995295] (wrp_sdk) StderrLine: {'line': b'      |                                \x1b[01;35m\x1b[K~~~~~~~^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.995730] (wrp_sdk) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11\x1b[m\x1b[K:\n'}
+[0.995800] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvirtual void westonrobot::HunterBase::ParseUARTBuffer(uint8_t*, size_t, size_t)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.995862] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:57:33:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbuf\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.995921] (wrp_sdk) StderrLine: {'line': b'   57 |   void ParseUARTBuffer(\x1b[01;35m\x1b[Kuint8_t *buf\x1b[m\x1b[K, const size_t bufsize,\n'}
+[0.995981] (wrp_sdk) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[0.996041] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:57:51:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbufsize\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.996105] (wrp_sdk) StderrLine: {'line': b'   57 |   void ParseUARTBuffer(uint8_t *buf, \x1b[01;35m\x1b[Kconst size_t bufsize\x1b[m\x1b[K,\n'}
+[0.996163] (wrp_sdk) StderrLine: {'line': b'      |                                      \x1b[01;35m\x1b[K~~~~~~~~~~~~~^~~~~~~\x1b[m\x1b[K\n'}
+[0.996225] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:58:31:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused parameter \xe2\x80\x98\x1b[01m\x1b[Kbytes_received\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-parameter\x1b[m\x1b[K]\n'}
+[0.996295] (wrp_sdk) StderrLine: {'line': b'   58 |                        \x1b[01;35m\x1b[Ksize_t bytes_received\x1b[m\x1b[K) override{};\n'}
+[0.996358] (wrp_sdk) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~~~~~~^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.997479] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:\x1b[m\x1b[K In function \xe2\x80\x98\x1b[01m\x1b[Kint main(int, char**)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[0.997554] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:19:11:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kunused variable \xe2\x80\x98\x1b[01m\x1b[Kbaud_rate\x1b[m\x1b[K\xe2\x80\x99 [\x1b[01;35m\x1b[K-Wunused-variable\x1b[m\x1b[K]\n'}
+[0.997617] (wrp_sdk) StderrLine: {'line': b'   19 |   int32_t \x1b[01;35m\x1b[Kbaud_rate\x1b[m\x1b[K = 0;\n'}
+[0.997691] (wrp_sdk) StderrLine: {'line': b'      |           \x1b[01;35m\x1b[K^~~~~~~~~\x1b[m\x1b[K\n'}
+[1.001400] (-) TimerEvent: {}
+[1.101628] (-) TimerEvent: {}
+[1.150830] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_acan.dir/build.make:63: tests/CMakeFiles/test_acan.dir/test_acan.cpp.o] Error 1\n'}
+[1.151102] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:326: tests/CMakeFiles/test_acan.dir/all] Error 2\n'}
+[1.165897] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_hunter_base.dir/build.make:63: tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o] Error 1\n'}
+[1.166088] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:299: tests/CMakeFiles/test_hunter_base.dir/all] Error 2\n'}
+[1.167953] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_scout_base.dir/build.make:63: tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o] Error 1\n'}
+[1.168110] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:272: tests/CMakeFiles/test_scout_base.dir/all] Error 2\n'}
+[1.201687] (-) TimerEvent: {}
+[1.301897] (-) TimerEvent: {}
+[1.378186] (wrp_sdk) StdoutLine: {'line': b'[ 71%] \x1b[32m\x1b[1mLinking CXX executable test_aserial\x1b[0m\n'}
+[1.395422] (wrp_sdk) StderrLine: {'line': b'/usr/bin/ld: cannot find -lwrpsdk\n'}
+[1.395597] (wrp_sdk) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[1.396205] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_aserial.dir/build.make:84: tests/test_aserial] Error 1\n'}
+[1.396337] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:407: tests/CMakeFiles/test_aserial.dir/all] Error 2\n'}
+[1.401961] (-) TimerEvent: {}
+[1.476415] (wrp_sdk) StdoutLine: {'line': b'[ 75%] \x1b[32m\x1b[1mLinking CXX executable test_aserial_comm\x1b[0m\n'}
+[1.494059] (wrp_sdk) StderrLine: {'line': b'/usr/bin/ld: cannot find -lwrpsdk\n'}
+[1.494219] (wrp_sdk) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[1.494878] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_aserial_comm.dir/build.make:84: tests/test_aserial_comm] Error 1\n'}
+[1.495000] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:380: tests/CMakeFiles/test_aserial_comm.dir/all] Error 2\n'}
+[1.502031] (-) TimerEvent: {}
+[1.602216] (-) TimerEvent: {}
+[1.702411] (-) TimerEvent: {}
+[1.802616] (-) TimerEvent: {}
+[1.902825] (-) TimerEvent: {}
+[1.996617] (wrp_sdk) StdoutLine: {'line': b'[ 78%] \x1b[32m\x1b[1mLinking CXX executable test_asio_can\x1b[0m\n'}
+[2.002895] (-) TimerEvent: {}
+[2.014446] (wrp_sdk) StderrLine: {'line': b'/usr/bin/ld: cannot find -lwrpsdk\n'}
+[2.014615] (wrp_sdk) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[2.015318] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_asio_can.dir/build.make:84: tests/test_asio_can] Error 1\n'}
+[2.015445] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:353: tests/CMakeFiles/test_asio_can.dir/all] Error 2\n'}
+[2.102972] (-) TimerEvent: {}
+[2.179781] (wrp_sdk) StdoutLine: {'line': b'[ 81%] \x1b[32m\x1b[1mLinking CXX static library libgmock.a\x1b[0m\n'}
+[2.197843] (wrp_sdk) StdoutLine: {'line': b'[ 81%] Built target gmock\n'}
+[2.198293] (wrp_sdk) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[2.199484] (wrp_sdk) CommandEnded: {'returncode': 2}
+[2.203041] (-) TimerEvent: {}
+[2.229182] (wrp_sdk) JobEnded: {'identifier': 'wrp_sdk', 'rc': 2}
+[2.239439] (-) EventReactorShutdown: {}

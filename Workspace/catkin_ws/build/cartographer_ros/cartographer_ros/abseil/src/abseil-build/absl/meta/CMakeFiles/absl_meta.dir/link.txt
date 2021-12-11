@@ -1,2 +1,0 @@
-/usr/bin/ar qc libabsl_meta.a  CMakeFiles/absl_meta.dir/absl_meta_header_only_dummy.cc.o
-/usr/bin/ranlib libabsl_meta.a

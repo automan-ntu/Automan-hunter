@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp
 linux/can.h
 -
 atomic
@@ -24,11 +24,11 @@ functional
 iostream
 -
 asio.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/asio.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/asio.hpp
 asio/posix/basic_stream_descriptor.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/asio/posix/basic_stream_descriptor.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/asio/posix/basic_stream_descriptor.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp
 atomic
 -
 chrono
@@ -42,13 +42,13 @@ deque
 functional
 -
 asio.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/asio.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/asio.hpp
 wrp_sdk/asyncio/device_error.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/wrp_sdk/asyncio/device_error.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/wrp_sdk/asyncio/device_error.hpp
 wrp_sdk/asyncio/msg_buffer.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/wrp_sdk/asyncio/msg_buffer.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/wrp_sdk/asyncio/msg_buffer.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/device_error.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/device_error.hpp
 string
 -
 cstring
@@ -56,7 +56,7 @@ cstring
 stdexcept
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp
 sys/types.h
 -
 cstdint
@@ -66,7 +66,7 @@ cstring
 cassert
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp
 string
 -
 cstdint
@@ -76,11 +76,11 @@ thread
 mutex
 -
 wrp_sdk/asyncio/async_can.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/wrp_sdk/asyncio/async_can.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/wrp_sdk/asyncio/async_can.hpp
 wrp_sdk/asyncio/async_serial.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/wrp_sdk/asyncio/async_serial.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/wrp_sdk/asyncio/async_serial.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp
 string
 -
 cstdint
@@ -90,35 +90,35 @@ thread
 mutex
 -
 wrp_sdk/platforms/common/mobile_base.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/common/mobile_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/common/mobile_base.hpp
 wrp_sdk/platforms/hunter/hunter_protocol.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_protocol.h
 wrp_sdk/platforms/hunter/hunter_can_parser.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_can_parser.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_can_parser.h
 wrp_sdk/platforms/hunter/hunter_types.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_types.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_types.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_can_parser.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_can_parser.h
 stdint.h
 -
 stdbool.h
 -
 wrp_sdk/platforms/hunter/hunter_protocol.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/wrp_sdk/platforms/hunter/hunter_protocol.h
 linux/can.h
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_protocol.h
 stdint.h
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_types.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_types.hpp
 cstdint
 -
 iostream
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_base.hpp
 string
 -
 cstdint
@@ -130,39 +130,39 @@ mutex
 functional
 -
 wrp_sdk/asyncio/async_can.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/asyncio/async_can.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/asyncio/async_can.hpp
 wrp_sdk/asyncio/async_serial.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/asyncio/async_serial.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/asyncio/async_serial.hpp
 wrp_sdk/platforms/scout/scout_protocol.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_protocol.h
 wrp_sdk/platforms/scout/scout_can_parser.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_can_parser.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_can_parser.h
 wrp_sdk/platforms/scout/scout_uart_parser.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_uart_parser.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_uart_parser.h
 wrp_sdk/platforms/scout/scout_types.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_types.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_types.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_can_parser.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_can_parser.h
 stdint.h
 -
 stdbool.h
 -
 wrp_sdk/platforms/scout/scout_protocol.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_protocol.h
 linux/can.h
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_protocol.h
 stdint.h
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_types.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_types.hpp
 cstdint
 -
 iostream
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_uart_parser.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_uart_parser.h
 stdint.h
 -
 string.h
@@ -170,11 +170,11 @@ string.h
 stdbool.h
 -
 wrp_sdk/platforms/scout/scout_protocol.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_protocol.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/wrp_sdk/platforms/scout/scout_protocol.h
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/async_can.cpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/async_can.cpp
 wrp_sdk/asyncio/async_can.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/wrp_sdk/asyncio/async_can.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/wrp_sdk/asyncio/async_can.hpp
 net/if.h
 -
 poll.h
@@ -190,25 +190,25 @@ cassert
 iostream
 -
 asyncio_utils.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/async_serial.cpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/async_serial.cpp
 cassert
 -
 iostream
 -
 wrp_sdk/asyncio/async_serial.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/wrp_sdk/asyncio/async_serial.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/wrp_sdk/asyncio/async_serial.hpp
 asyncio_utils.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
 linux/serial.h
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.cpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.cpp
 asyncio_utils.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/asyncio_utils.hpp
 string
 -
 algorithm
@@ -216,9 +216,9 @@ algorithm
 iostream
 -
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/hunter_base.cpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/hunter_base.cpp
 wrp_sdk/platforms/hunter/hunter_base.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/wrp_sdk/platforms/hunter/hunter_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/wrp_sdk/platforms/hunter/hunter_base.hpp
 algorithm
 -
 array
@@ -238,11 +238,11 @@ string
 thread
 -
 stopwatch.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/stopwatch.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/stopwatch.h
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/mobile_base.cpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/mobile_base.cpp
 wrp_sdk/platforms/common/mobile_base.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/wrp_sdk/platforms/common/mobile_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/wrp_sdk/platforms/common/mobile_base.hpp
 cstring
 -
 iostream
@@ -250,11 +250,11 @@ iostream
 algorithm
 -
 stopwatch.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/stopwatch.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/stopwatch.h
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/scout_base.cpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/scout_base.cpp
 wrp_sdk/platforms/scout/scout_base.hpp
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/wrp_sdk/platforms/scout/scout_base.hpp
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/wrp_sdk/platforms/scout/scout_base.hpp
 string
 -
 cstring
@@ -274,9 +274,9 @@ ratio
 thread
 -
 stopwatch.h
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/stopwatch.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/platforms/stopwatch.h
 
-/home/hunter/Workspace/catkin_ws/src/wrp_sdk/src/stopwatch.h
+/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/src/stopwatch.h
 array
 -
 chrono

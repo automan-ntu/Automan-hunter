@@ -1,2 +1,0 @@
-/usr/bin/ar qc libstr_format_extension_internal.a  CMakeFiles/str_format_extension_internal.dir/internal/str_format/extension.cc.o CMakeFiles/str_format_extension_internal.dir/internal/str_format/output.cc.o
-/usr/bin/ranlib libstr_format_extension_internal.a

@@ -1,2 +1,2 @@
 - setup-file:
-    local-name: /home/hunter/Workspace/catkin_ws/devel/setup.sh
+    local-name: /robot/Automan-hunter/Workspace/catkin_ws/devel/setup.sh

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libabsl_numeric.a  CMakeFiles/absl_numeric.dir/absl_numeric_header_only_dummy.cc.o
-/usr/bin/ranlib libabsl_numeric.a

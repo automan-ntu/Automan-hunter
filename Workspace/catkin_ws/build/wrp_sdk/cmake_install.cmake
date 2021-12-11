@@ -1,8 +1,8 @@
-# Install script for directory: /home/hunter/Workspace/catkin_ws/src/wrp_sdk
+# Install script for directory: /robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/hunter/Workspace/catkin_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/robot/Automan-hunter/Workspace/catkin_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,18 +38,18 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/hunter/Workspace/catkin_ws/build/wrp_sdk/catkin_generated/installspace/wrp_sdk.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/robot/Automan-hunter/Workspace/catkin_ws/build/wrp_sdk/catkin_generated/installspace/wrp_sdk.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk/cmake" TYPE FILE FILES
-    "/home/hunter/Workspace/catkin_ws/build/wrp_sdk/catkin_generated/installspace/wrp_sdkConfig.cmake"
-    "/home/hunter/Workspace/catkin_ws/build/wrp_sdk/catkin_generated/installspace/wrp_sdkConfig-version.cmake"
+    "/robot/Automan-hunter/Workspace/catkin_ws/build/wrp_sdk/catkin_generated/installspace/wrp_sdkConfig.cmake"
+    "/robot/Automan-hunter/Workspace/catkin_ws/build/wrp_sdk/catkin_generated/installspace/wrp_sdkConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk" TYPE FILE FILES "/home/hunter/Workspace/catkin_ws/src/wrp_sdk/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk" TYPE FILE FILES "/robot/Automan-hunter/Workspace/catkin_ws/src/wrp_sdk/package.xml")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
@@ -59,12 +59,21 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwrp_sdk.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/hunter/Workspace/catkin_ws/devel/lib/libwrp_sdk.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/robot/Automan-hunter/Workspace/catkin_ws/devel/lib/libwrp_sdk.so")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwrp_sdk.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwrp_sdk.so")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libwrp_sdk.so")
     endif()
   endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+endif()
+
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for each subdirectory.
+  include("/robot/Automan-hunter/Workspace/catkin_ws/build/wrp_sdk/tests/cmake_install.cmake")
+
 endif()
 

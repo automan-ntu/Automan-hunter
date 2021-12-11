@@ -1,8 +1,0 @@
-prefix=/home/hunter/Workspace/catkin_ws/devel
-
-Name: realsense2_description
-Description: Description of realsense2_description
-Version: 2.2.14
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

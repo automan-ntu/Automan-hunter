@@ -1,0 +1,2 @@
+Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24

@@ -1,8 +1,0 @@
-prefix=/home/hunter/Workspace/catkin_ws/devel
-
-Name: hunter_navigation
-Description: Description of hunter_navigation
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

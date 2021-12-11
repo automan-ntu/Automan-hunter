@@ -1,8 +1,0 @@
-prefix=/home/hunter/Workspace/catkin_ws/install
-
-Name: hunter_description
-Description: Description of hunter_description
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

@@ -1,0 +1,11 @@
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+CMake Error at CMakeLists.txt:6 (find_package):
+  find_package called with incorrect number of arguments
+
+
+-- Configuring incomplete, errors occurred!
+See also "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/CMakeFiles/CMakeOutput.log".
+See also "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/CMakeFiles/CMakeError.log".
+make: *** [Makefile:660: cmake_check_build_system] Error 1

@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC -O3 -DNDEBUG  -shared -Wl,-soname,libultrasonic_ros.so -o /home/hunter/Workspace/catkin_ws/devel/lib/libultrasonic_ros.so CMakeFiles/ultrasonic_ros.dir/src/ultrasonic_ros.cpp.o CMakeFiles/ultrasonic_ros.dir/src/w200d_ultrasonic.cpp.o 

@@ -1,0 +1,10 @@
+libdir=/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib
+includedir=/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include
+
+Name: gtest_main
+Description: GoogleTest (with main() function)
+Version: 1.9.0
+URL: https://github.com/google/googletest
+Requires: gtest
+Libs: -L${libdir} -lgtest_main -pthread
+Cflags: -I${includedir} -DGTEST_HAS_PTHREAD=1 -pthread

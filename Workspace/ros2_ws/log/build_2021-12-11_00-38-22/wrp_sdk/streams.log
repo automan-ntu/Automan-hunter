@@ -1,0 +1,262 @@
+[0.008s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+[0.023s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.036s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.036s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.183s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[0.224s] -- Configuring done
+[0.237s] -- Generating done
+[0.238s] -- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk
+[0.252s] [35m[1mScanning dependencies of target test_acan[0m
+[0.252s] [35m[1mScanning dependencies of target test_scout_base[0m
+[0.252s] [35m[1mScanning dependencies of target test_hunter_base[0m
+[0.252s] [35m[1mScanning dependencies of target test_asio_can[0m
+[0.254s] [35m[1mScanning dependencies of target test_aserial[0m
+[0.254s] [35m[1mScanning dependencies of target test_aserial_comm[0m
+[0.258s] [ 12%] [32mBuilding CXX object tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o[0m
+[0.258s] [ 15%] [32mBuilding CXX object tests/CMakeFiles/test_asio_can.dir/test_asio_can.cpp.o[0m
+[0.258s] [ 15%] [32mBuilding CXX object tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o[0m
+[0.258s] [ 15%] Built target gtest
+[0.258s] [ 18%] [32mBuilding CXX object tests/CMakeFiles/test_acan.dir/test_acan.cpp.o[0m
+[0.261s] [ 25%] [32mBuilding CXX object tests/CMakeFiles/test_aserial.dir/test_aserial.cpp.o[0m
+[0.261s] [ 25%] [32mBuilding CXX object tests/CMakeFiles/test_aserial_comm.dir/test_aserial_comm.cpp.o[0m
+[0.261s] [ 56%] Built target wrp_sdk
+[0.264s] [35m[1mScanning dependencies of target gtest_main[0m
+[0.266s] [35m[1mScanning dependencies of target gmock[0m
+[0.271s] [ 59%] [32mBuilding CXX object unit_tests/googletest/googlemock/gtest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.o[0m
+[0.275s] [ 62%] [32mBuilding CXX object unit_tests/googletest/googlemock/CMakeFiles/gmock.dir/src/gmock-all.cc.o[0m
+[0.694s] [ 65%] [32m[1mLinking CXX static library libgtest_main.a[0m
+[0.715s] [ 65%] Built target gtest_main
+[0.721s] [35m[1mScanning dependencies of target scout_sdk_test[0m
+[0.731s] [ 68%] [32mBuilding CXX object unit_tests/CMakeFiles/scout_sdk_test.dir/gtests/scout_can_protocol_test.cpp.o[0m
+[0.779s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/unit_tests/gtests/scout_can_protocol_test.cpp:18:10:[m[K [01;31m[Kfatal error: [m[Kwrp_sdk/platforms/scout/scout_base.hpp: No such file or directory
+[0.779s]    18 | #include [01;31m[K"wrp_sdk/platforms/scout/scout_base.hpp"[m[K
+[0.779s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.779s] compilation terminated.
+[0.780s] make[2]: *** [unit_tests/CMakeFiles/scout_sdk_test.dir/build.make:63: unit_tests/CMakeFiles/scout_sdk_test.dir/gtests/scout_can_protocol_test.cpp.o] Error 1
+[0.780s] make[1]: *** [CMakeFiles/Makefile2:435: unit_tests/CMakeFiles/scout_sdk_test.dir/all] Error 2
+[0.780s] make[1]: *** Waiting for unfinished jobs....
+[0.969s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44[m[K,
+[0.969s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:10[m[K:
+[0.969s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer()[m[K’:
+[0.969s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.970s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.970s]       |             [01;35m[K^~~[m[K
+[0.970s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.970s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.970s]       |             [01;35m[K^~~[m[K
+[0.970s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.970s]    37 |     [01;35m[KMsgBuffer[m[K() : pos(0),
+[0.970s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.970s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)[m[K’:
+[0.970s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.970s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.971s]       |             [01;35m[K^~~[m[K
+[0.971s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.971s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.971s]       |             [01;35m[K^~~[m[K
+[0.971s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.971s]    46 |     [01;35m[KMsgBuffer[m[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),
+[0.971s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.974s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:[m[K In function ‘[01m[Kvoid parse_buffer(uint8_t*, size_t, size_t)[m[K’:
+[0.974s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:26:27:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[0.974s]    26 |         for (int i = 0; [01;35m[Ki < bytes_received - 1[m[K; ++i)
+[0.974s]       |                         [01;35m[K~~^~~~~~~~~~~~~~~~~~~~[m[K
+[0.974s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:14:46:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbufsize[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.974s]    14 | void parse_buffer(uint8_t *buf, [01;35m[Kconst size_t bufsize[m[K, size_t bytes_received)
+[0.974s]       |                                 [01;35m[K~~~~~~~~~~~~~^~~~~~~[m[K
+[0.976s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:2[m[K:
+[0.976s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:111:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kbasic_stream_descriptor[m[K’ in namespace ‘[01m[Kasio::posix[m[K’ does not name a template type; did you mean ‘[01m[Kstream_descriptor[m[K’?
+[0.976s]   111 |     asio::posix::[01;31m[Kbasic_stream_descriptor[m[K<> stream;
+[0.976s]       |                  [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.976s]       |                  [32m[Kstream_descriptor[m[K
+[0.976s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44[m[K,
+[0.976s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:10[m[K:
+[0.976s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer()[m[K’:
+[0.976s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.976s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.977s]       |             [01;35m[K^~~[m[K
+[0.977s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.977s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.977s]       |             [01;35m[K^~~[m[K
+[0.977s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.977s]    37 |     [01;35m[KMsgBuffer[m[K() : pos(0),
+[0.977s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.977s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)[m[K’:
+[0.977s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.977s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.978s]       |             [01;35m[K^~~[m[K
+[0.978s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.978s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.978s]       |             [01;35m[K^~~[m[K
+[0.978s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.978s]    46 |     [01;35m[KMsgBuffer[m[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),
+[0.978s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.978s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:60:[m[K [01;31m[Kerror: [m[K‘[01m[Kasio::posix::basic_stream_descriptor[m[K’ has not been declared
+[0.978s]   119 |     void do_read(struct can_frame &rec_frame, asio::posix::[01;31m[Kbasic_stream_descriptor[m[K<> &stream);
+[0.978s]       |                                                            [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.978s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:83:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K...[m[K’ before ‘[01m[K<[m[K’ token
+[0.979s]   119 |     void do_read(struct can_frame &rec_frame, asio::posix::basic_stream_descriptor[01;31m[K<[m[K> &stream);
+[0.979s]       |                                                                                   [01;31m[K^[m[K
+[0.979s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:[m[K In function ‘[01m[Kvoid parse_buffer(uint8_t*, size_t, size_t)[m[K’:
+[0.979s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:15:14:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kc[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.979s]    15 |         auto [01;35m[Kc[m[K = *buf++;
+[0.979s]       |              [01;35m[K^[m[K
+[0.979s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:6:46:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbufsize[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.979s]     6 | void parse_buffer(uint8_t *buf, [01;35m[Kconst size_t bufsize[m[K, size_t bytes_received)
+[0.979s]       |                                 [01;35m[K~~~~~~~~~~~~~^~~~~~~[m[K
+[0.979s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[0.979s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:63:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdata[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.979s]    63 |     uint8_t [01;35m[Kdata[m[K[8] = {'a', 'b', 'c'};
+[0.980s]       |             [01;35m[K^~~~[m[K
+[0.980s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[0.980s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:39:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargc[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.980s]    39 | int main([01;35m[Kint argc[m[K, char *argv[])
+[0.980s]       |          [01;35m[K~~~~^~~~[m[K
+[0.980s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:39:26:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargv[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.980s]    39 | int main(int argc, [01;35m[Kchar *argv[][m[K)
+[0.980s]       |                    [01;35m[K~~~~~~^~~~~~[m[K
+[0.981s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:[m[K In function ‘[01m[Kvoid parse_buffer(uint8_t*, size_t, size_t)[m[K’:
+[0.981s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:20:14:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kc[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.981s]    20 |         auto [01;35m[Kc[m[K = *buf++;
+[0.981s]       |              [01;35m[K^[m[K
+[0.981s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:14:46:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbufsize[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.981s]    14 | void parse_buffer(uint8_t *buf, [01;35m[Kconst size_t bufsize[m[K, size_t bytes_received)
+[0.981s]       |                                 [01;35m[K~~~~~~~~~~~~~^~~~~~~[m[K
+[0.983s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[0.983s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:35:13:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kdata[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.983s]    35 |     uint8_t [01;35m[Kdata[m[K[8] = {'a','b','c'};
+[0.983s]       |             [01;35m[K^~~~[m[K
+[0.983s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:25:14:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargc[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.984s]    25 | int main([01;35m[Kint argc[m[K, char *argv[])
+[0.984s]       |          [01;35m[K~~~~^~~~[m[K
+[0.984s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:25:26:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kargv[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.984s]    25 | int main(int argc, [01;35m[Kchar *argv[][m[K)
+[0.984s]       |                    [01;35m[K~~~~~~^~~~~~[m[K
+[0.985s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:21[m[K,
+[0.985s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:18[m[K,
+[0.985s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11[m[K:
+[0.985s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:111:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kbasic_stream_descriptor[m[K’ in namespace ‘[01m[Kasio::posix[m[K’ does not name a template type; did you mean ‘[01m[Kstream_descriptor[m[K’?
+[0.985s]   111 |     asio::posix::[01;31m[Kbasic_stream_descriptor[m[K<> stream;
+[0.985s]       |                  [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.985s]       |                  [32m[Kstream_descriptor[m[K
+[0.985s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:60:[m[K [01;31m[Kerror: [m[K‘[01m[Kasio::posix::basic_stream_descriptor[m[K’ has not been declared
+[0.985s]   119 |     void do_read(struct can_frame &rec_frame, asio::posix::[01;31m[Kbasic_stream_descriptor[m[K<> &stream);
+[0.985s]       |                                                            [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.986s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:83:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K...[m[K’ before ‘[01m[K<[m[K’ token
+[0.986s]   119 |     void do_read(struct can_frame &rec_frame, asio::posix::basic_stream_descriptor[01;31m[K<[m[K> &stream);
+[0.986s]       |                                                                                   [01;31m[K^[m[K
+[0.986s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44[m[K,
+[0.987s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:22[m[K,
+[0.987s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:18[m[K,
+[0.987s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11[m[K:
+[0.987s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer()[m[K’:
+[0.987s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.987s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.987s]       |             [01;35m[K^~~[m[K
+[0.987s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.987s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.987s]       |             [01;35m[K^~~[m[K
+[0.987s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.987s]    37 |     [01;35m[KMsgBuffer[m[K() : pos(0),
+[0.988s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.988s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)[m[K’:
+[0.988s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.988s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.988s]       |             [01;35m[K^~~[m[K
+[0.988s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.988s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.988s]       |             [01;35m[K^~~[m[K
+[0.988s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.988s]    46 |     [01;35m[KMsgBuffer[m[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),
+[0.989s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.989s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_base.hpp:19[m[K,
+[0.989s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_scout_base.cpp:11[m[K:
+[0.989s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:111:18:[m[K [01;31m[Kerror: [m[K‘[01m[Kbasic_stream_descriptor[m[K’ in namespace ‘[01m[Kasio::posix[m[K’ does not name a template type; did you mean ‘[01m[Kstream_descriptor[m[K’?
+[0.989s]   111 |     asio::posix::[01;31m[Kbasic_stream_descriptor[m[K<> stream;
+[0.989s]       |                  [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.989s]       |                  [32m[Kstream_descriptor[m[K
+[0.989s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:60:[m[K [01;31m[Kerror: [m[K‘[01m[Kasio::posix::basic_stream_descriptor[m[K’ has not been declared
+[0.989s]   119 |     void do_read(struct can_frame &rec_frame, asio::posix::[01;31m[Kbasic_stream_descriptor[m[K<> &stream);
+[0.989s]       |                                                            [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.990s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_can.hpp:119:83:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K,[m[K’ or ‘[01m[K...[m[K’ before ‘[01m[K<[m[K’ token
+[0.990s]   119 |     void do_read(struct can_frame &rec_frame, asio::posix::basic_stream_descriptor[01;31m[K<[m[K> &stream);
+[0.990s]       |                                                                                   [01;31m[K^[m[K
+[0.990s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/async_serial.hpp:44[m[K,
+[0.990s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/scout/scout_base.hpp:20[m[K,
+[0.990s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_scout_base.cpp:11[m[K:
+[0.990s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer()[m[K’:
+[0.990s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.990s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.990s]       |             [01;35m[K^~~[m[K
+[0.990s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.991s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.991s]       |             [01;35m[K^~~[m[K
+[0.991s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:37:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.991s]    37 |     [01;35m[KMsgBuffer[m[K() : pos(0),
+[0.991s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.991s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:[m[K In constructor ‘[01m[Kwestonrobot::MsgBuffer::MsgBuffer(const uint8_t*, ssize_t)[m[K’:
+[0.991s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:35:13:[m[K [01;35m[Kwarning: [m[K‘[01m[Kwestonrobot::MsgBuffer::pos[m[K’ will be initialized after [[01;35m[K-Wreorder[m[K]
+[0.991s]    35 |     ssize_t [01;35m[Kpos[m[K;
+[0.991s]       |             [01;35m[K^~~[m[K
+[0.991s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:34:13:[m[K [01;35m[Kwarning: [m[K  ‘[01m[Kssize_t westonrobot::MsgBuffer::len[m[K’ [[01;35m[K-Wreorder[m[K]
+[0.991s]    34 |     ssize_t [01;35m[Klen[m[K;
+[0.991s]       |             [01;35m[K^~~[m[K
+[0.991s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/asyncio/msg_buffer.hpp:46:5:[m[K [01;35m[Kwarning: [m[K  when initialized here [[01;35m[K-Wreorder[m[K]
+[0.992s]    46 |     [01;35m[KMsgBuffer[m[K(const uint8_t *bytes, ssize_t nbytes) : pos(0),
+[0.992s]       |     [01;35m[K^~~~~~~~~[m[K
+[0.993s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:18[m[K,
+[0.993s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11[m[K:
+[0.993s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:[m[K In member function ‘[01m[Kvirtual void westonrobot::MobileBase::ParseCANFrame(can_frame*)[m[K’:
+[0.993s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:68:41:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Krx_frame[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.993s]    68 |   virtual void ParseCANFrame([01;35m[Kcan_frame *rx_frame[m[K){};
+[0.993s]       |                              [01;35m[K~~~~~~~~~~~^~~~~~~~[m[K
+[0.994s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:[m[K In member function ‘[01m[Kvirtual void westonrobot::MobileBase::ParseUARTBuffer(uint8_t*, size_t, size_t)[m[K’:
+[0.994s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:69:41:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbuf[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.994s]    69 |   virtual void ParseUARTBuffer([01;35m[Kuint8_t *buf[m[K, const size_t bufsize,
+[0.994s]       |                                [01;35m[K~~~~~~~~~^~~[m[K
+[0.994s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:69:59:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbufsize[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.994s]    69 |   virtual void ParseUARTBuffer(uint8_t *buf, [01;35m[Kconst size_t bufsize[m[K,
+[0.994s]       |                                              [01;35m[K~~~~~~~~~~~~~^~~~~~~[m[K
+[0.994s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/common/mobile_base.hpp:70:39:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbytes_received[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.994s]    70 |                                [01;35m[Ksize_t bytes_received[m[K){};
+[0.994s]       |                                [01;35m[K~~~~~~~^~~~~~~~~~~~~~[m[K
+[0.995s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11[m[K:
+[0.995s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:[m[K In member function ‘[01m[Kvirtual void westonrobot::HunterBase::ParseUARTBuffer(uint8_t*, size_t, size_t)[m[K’:
+[0.995s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:57:33:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbuf[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.995s]    57 |   void ParseUARTBuffer([01;35m[Kuint8_t *buf[m[K, const size_t bufsize,
+[0.995s]       |                        [01;35m[K~~~~~~~~~^~~[m[K
+[0.995s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:57:51:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbufsize[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.995s]    57 |   void ParseUARTBuffer(uint8_t *buf, [01;35m[Kconst size_t bufsize[m[K,
+[0.995s]       |                                      [01;35m[K~~~~~~~~~~~~~^~~~~~~[m[K
+[0.995s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/wrp_sdk/platforms/hunter/hunter_base.hpp:58:31:[m[K [01;35m[Kwarning: [m[Kunused parameter ‘[01m[Kbytes_received[m[K’ [[01;35m[K-Wunused-parameter[m[K]
+[0.995s]    58 |                        [01;35m[Ksize_t bytes_received[m[K) override{};
+[0.995s]       |                        [01;35m[K~~~~~~~^~~~~~~~~~~~~~[m[K
+[0.996s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[0.996s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:19:11:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Kbaud_rate[m[K’ [[01;35m[K-Wunused-variable[m[K]
+[0.996s]    19 |   int32_t [01;35m[Kbaud_rate[m[K = 0;
+[0.996s]       |           [01;35m[K^~~~~~~~~[m[K
+[1.150s] make[2]: *** [tests/CMakeFiles/test_acan.dir/build.make:63: tests/CMakeFiles/test_acan.dir/test_acan.cpp.o] Error 1
+[1.150s] make[1]: *** [CMakeFiles/Makefile2:326: tests/CMakeFiles/test_acan.dir/all] Error 2
+[1.165s] make[2]: *** [tests/CMakeFiles/test_hunter_base.dir/build.make:63: tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o] Error 1
+[1.165s] make[1]: *** [CMakeFiles/Makefile2:299: tests/CMakeFiles/test_hunter_base.dir/all] Error 2
+[1.167s] make[2]: *** [tests/CMakeFiles/test_scout_base.dir/build.make:63: tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o] Error 1
+[1.167s] make[1]: *** [CMakeFiles/Makefile2:272: tests/CMakeFiles/test_scout_base.dir/all] Error 2
+[1.377s] [ 71%] [32m[1mLinking CXX executable test_aserial[0m
+[1.394s] /usr/bin/ld: cannot find -lwrpsdk
+[1.394s] collect2: error: ld returned 1 exit status
+[1.395s] make[2]: *** [tests/CMakeFiles/test_aserial.dir/build.make:84: tests/test_aserial] Error 1
+[1.395s] make[1]: *** [CMakeFiles/Makefile2:407: tests/CMakeFiles/test_aserial.dir/all] Error 2
+[1.475s] [ 75%] [32m[1mLinking CXX executable test_aserial_comm[0m
+[1.493s] /usr/bin/ld: cannot find -lwrpsdk
+[1.493s] collect2: error: ld returned 1 exit status
+[1.494s] make[2]: *** [tests/CMakeFiles/test_aserial_comm.dir/build.make:84: tests/test_aserial_comm] Error 1
+[1.494s] make[1]: *** [CMakeFiles/Makefile2:380: tests/CMakeFiles/test_aserial_comm.dir/all] Error 2
+[1.996s] [ 78%] [32m[1mLinking CXX executable test_asio_can[0m
+[2.013s] /usr/bin/ld: cannot find -lwrpsdk
+[2.013s] collect2: error: ld returned 1 exit status
+[2.014s] make[2]: *** [tests/CMakeFiles/test_asio_can.dir/build.make:84: tests/test_asio_can] Error 1
+[2.014s] make[1]: *** [CMakeFiles/Makefile2:353: tests/CMakeFiles/test_asio_can.dir/all] Error 2
+[2.179s] [ 81%] [32m[1mLinking CXX static library libgmock.a[0m
+[2.197s] [ 81%] Built target gmock
+[2.197s] make: *** [Makefile:141: all] Error 2
+[2.198s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24

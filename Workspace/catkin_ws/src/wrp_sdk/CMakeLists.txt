@@ -33,7 +33,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 ## Optionally built modules: ON/OFF
-set(BUILD_TESTS OFF)
+set(BUILD_TESTS ON)
 set(BUILD_MONITOR ON)
 
 # Disable monitor if ncurses library is not found
@@ -44,6 +44,8 @@ if(BUILD_MONITOR AND NOT CURSES_FOUND)
     set(BUILD_MONITOR OFF)
     message(STATUS "Monitor app will not be built due to missing ncurses library, try: sudo apt install libncurses5-dev")
 endif()
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # Add libraries
 # set(WRP_SDK_SRC
@@ -81,7 +83,7 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 # Add executables
 if(BUILD_TESTS)
     add_subdirectory(tests)
-    add_subdirectory(unit_tests)
+    #add_subdirectory(unit_tests)
 endif()
 
 ## Export catkin targets

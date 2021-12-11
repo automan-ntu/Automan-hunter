@@ -1,2 +1,0 @@
-/usr/bin/ar qc libabsl_optional.a  CMakeFiles/absl_optional.dir/optional.cc.o
-/usr/bin/ranlib libabsl_optional.a

@@ -1,2 +1,0 @@
-/usr/bin/ar qc libtest_instance_tracker_lib.a  CMakeFiles/test_instance_tracker_lib.dir/internal/test_instance_tracker.cc.o
-/usr/bin/ranlib libtest_instance_tracker_lib.a

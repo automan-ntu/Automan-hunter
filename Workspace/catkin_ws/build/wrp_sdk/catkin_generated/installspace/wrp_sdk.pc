@@ -1,4 +1,4 @@
-prefix=/home/hunter/Workspace/catkin_ws/install
+prefix=/robot/Automan-hunter/Workspace/catkin_ws/install
 
 Name: wrp_sdk
 Description: Description of wrp_sdk

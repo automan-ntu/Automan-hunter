@@ -1,0 +1,52 @@
+-- The C compiler identification is GNU 9.3.0
+-- The CXX compiler identification is GNU 9.3.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Setting build type to 'Release' as none was specified.
+-- Looking for cbreak in /usr/lib/x86_64-linux-gnu/libncurses.so
+-- Looking for cbreak in /usr/lib/x86_64-linux-gnu/libncurses.so - found
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk
+[35m[1mScanning dependencies of target wrp_sdk[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/wrp_sdk.dir/src/platforms/mobile_base.cpp.o[0m
+[ 20%] [32mBuilding CXX object CMakeFiles/wrp_sdk.dir/src/platforms/hunter_base.cpp.o[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/wrp_sdk.dir/src/asyncio_utils.cpp.o[0m
+[ 40%] [32mBuilding CXX object CMakeFiles/wrp_sdk.dir/src/platforms/scout_base.cpp.o[0m
+[ 50%] [32mBuilding C object CMakeFiles/wrp_sdk.dir/src/platforms/scout_can_parser.c.o[0m
+[ 60%] [32mBuilding C object CMakeFiles/wrp_sdk.dir/src/platforms/scout_uart_parser.c.o[0m
+[ 70%] [32mBuilding CXX object CMakeFiles/wrp_sdk.dir/src/async_serial.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/wrp_sdk.dir/src/async_can.cpp.o[0m
+[ 90%] [32mBuilding C object CMakeFiles/wrp_sdk.dir/src/platforms/hunter_can_parser.c.o[0m
+[100%] [32m[1mLinking CXX static library libwrp_sdk.a[0m
+[100%] Built target wrp_sdk
+-- Install configuration: "Release"
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib/wrp_sdk/libwrp_sdk.a
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/package_run_dependencies/wrp_sdk
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/parent_prefix_path/wrp_sdk
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.sh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/path.sh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/path.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.bash
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.sh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.zsh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/packages/wrp_sdk
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig.cmake
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig-version.cmake
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.xml

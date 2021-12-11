@@ -1,0 +1,69 @@
+[0.009s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+[0.024s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.037s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.185s] -- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") 
+[0.186s] -- Looking for pthread.h
+[0.227s] -- Looking for pthread.h - found
+[0.228s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.267s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.267s] -- Check if compiler accepts -pthread
+[0.307s] -- Check if compiler accepts -pthread - yes
+[0.308s] -- Found Threads: TRUE  
+[0.348s] -- Configuring done
+[0.360s] -- Generating done
+[0.362s] -- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk
+[0.374s] [35m[1mScanning dependencies of target test_hunter_base[0m
+[0.374s] [35m[1mScanning dependencies of target test_acan[0m
+[0.374s] [35m[1mScanning dependencies of target test_aserial[0m
+[0.375s] [35m[1mScanning dependencies of target test_scout_base[0m
+[0.375s] [35m[1mScanning dependencies of target test_asio_can[0m
+[0.376s] [35m[1mScanning dependencies of target test_aserial_comm[0m
+[0.376s] [35m[1mScanning dependencies of target gtest[0m
+[0.380s] [  3%] [32mBuilding CXX object tests/CMakeFiles/test_aserial.dir/test_aserial.cpp.o[0m
+[0.380s] [ 15%] [32mBuilding CXX object tests/CMakeFiles/test_acan.dir/test_acan.cpp.o[0m
+[0.380s] [ 18%] [32mBuilding CXX object tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o[0m
+[0.380s] [ 40%] Built target wrp_sdk
+[0.381s] [ 43%] [32mBuilding CXX object tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o[0m
+[0.381s] [ 46%] [32mBuilding CXX object tests/CMakeFiles/test_asio_can.dir/test_asio_can.cpp.o[0m
+[0.382s] [ 50%] [32mBuilding CXX object tests/CMakeFiles/test_aserial_comm.dir/test_aserial_comm.cpp.o[0m
+[0.391s] [ 53%] [32mBuilding CXX object unit_tests/googletest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o[0m
+[0.401s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:10:10:[m[K [01;31m[Kfatal error: [m[Kwrp_sdk/asyncio/async_serial.hpp: No such file or directory
+[0.401s]    10 | #include [01;31m[K"wrp_sdk/asyncio/async_serial.hpp"[m[K
+[0.401s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.401s] compilation terminated.
+[0.401s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:2:10:[m[K [01;31m[Kfatal error: [m[Kwrp_sdk/asyncio/async_can.hpp: No such file or directory
+[0.401s]     2 | #include [01;31m[K"wrp_sdk/asyncio/async_can.hpp"[m[K
+[0.401s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.401s] compilation terminated.
+[0.401s] make[2]: *** [tests/CMakeFiles/test_aserial.dir/build.make:63: tests/CMakeFiles/test_aserial.dir/test_aserial.cpp.o] Error 1
+[0.402s] make[1]: *** [CMakeFiles/Makefile2:407: tests/CMakeFiles/test_aserial.dir/all] Error 2
+[0.402s] make[1]: *** Waiting for unfinished jobs....
+[0.402s] make[2]: *** [tests/CMakeFiles/test_acan.dir/build.make:63: tests/CMakeFiles/test_acan.dir/test_acan.cpp.o] Error 1
+[0.402s] make[1]: *** [CMakeFiles/Makefile2:326: tests/CMakeFiles/test_acan.dir/all] Error 2
+[0.403s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:10:10:[m[K [01;31m[Kfatal error: [m[Kwrp_sdk/asyncio/async_serial.hpp: No such file or directory
+[0.403s]    10 | #include [01;31m[K"wrp_sdk/asyncio/async_serial.hpp"[m[K
+[0.403s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.403s] compilation terminated.
+[0.403s] make[2]: *** [tests/CMakeFiles/test_aserial_comm.dir/build.make:63: tests/CMakeFiles/test_aserial_comm.dir/test_aserial_comm.cpp.o] Error 1
+[0.404s] make[1]: *** [CMakeFiles/Makefile2:380: tests/CMakeFiles/test_aserial_comm.dir/all] Error 2
+[0.416s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_scout_base.cpp:11:10:[m[K [01;31m[Kfatal error: [m[Kwrp_sdk/platforms/scout/scout_base.hpp: No such file or directory
+[0.416s]    11 | #include [01;31m[K"wrp_sdk/platforms/scout/scout_base.hpp"[m[K
+[0.416s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.416s] compilation terminated.
+[0.417s] make[2]: *** [tests/CMakeFiles/test_scout_base.dir/build.make:63: tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o] Error 1
+[0.417s] make[1]: *** [CMakeFiles/Makefile2:272: tests/CMakeFiles/test_scout_base.dir/all] Error 2
+[0.428s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11:10:[m[K [01;31m[Kfatal error: [m[Kwrp_sdk/platforms/hunter/hunter_base.hpp: No such file or directory
+[0.429s]    11 | #include [01;31m[K"wrp_sdk/platforms/hunter/hunter_base.hpp"[m[K
+[0.429s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.429s] compilation terminated.
+[0.429s] make[2]: *** [tests/CMakeFiles/test_hunter_base.dir/build.make:63: tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o] Error 1
+[0.429s] make[1]: *** [CMakeFiles/Makefile2:299: tests/CMakeFiles/test_hunter_base.dir/all] Error 2
+[2.069s] [ 56%] [32m[1mLinking CXX executable test_asio_can[0m
+[2.086s] /usr/bin/ld: cannot find -lwrpsdk
+[2.086s] collect2: error: ld returned 1 exit status
+[2.087s] make[2]: *** [tests/CMakeFiles/test_asio_can.dir/build.make:84: tests/test_asio_can] Error 1
+[2.087s] make[1]: *** [CMakeFiles/Makefile2:353: tests/CMakeFiles/test_asio_can.dir/all] Error 2
+[4.828s] [ 59%] [32m[1mLinking CXX static library libgtest.a[0m
+[4.848s] [ 59%] Built target gtest
+[4.849s] make: *** [Makefile:141: all] Error 2
+[4.850s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24

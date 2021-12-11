@@ -1,8 +1,0 @@
-prefix=/home/hunter/Workspace/catkin_ws/devel
-
-Name: rslidar_sync
-Description: Description of rslidar_sync
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

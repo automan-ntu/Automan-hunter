@@ -1,0 +1,122 @@
+[0.000000] (-) TimerEvent: {}
+[0.000357] (-) JobUnselected: {'identifier': 'hunter_base'}
+[0.000454] (-) JobUnselected: {'identifier': 'hunter_bringup'}
+[0.000638] (-) JobUnselected: {'identifier': 'hunter_description'}
+[0.000674] (-) JobUnselected: {'identifier': 'hunter_msgs'}
+[0.000688] (-) JobUnselected: {'identifier': 'hunter_ros'}
+[0.000700] (-) JobUnselected: {'identifier': 'hunter_webots_sim'}
+[0.000727] (wrp_sdk) JobQueued: {'identifier': 'wrp_sdk', 'dependencies': OrderedDict()}
+[0.001167] (wrp_sdk) JobStarted: {'identifier': 'wrp_sdk'}
+[0.006714] (wrp_sdk) JobProgress: {'identifier': 'wrp_sdk', 'progress': 'cmake'}
+[0.007101] (wrp_sdk) JobProgress: {'identifier': 'wrp_sdk', 'progress': 'build'}
+[0.007620] (wrp_sdk) Command: {'cmd': ['/usr/bin/cmake', '--build', '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk', '--', '-j24', '-l24'], 'cwd': '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'yanxin'), ('LC_TIME', 'en_US.UTF-8'), ('SSH_AGENT_PID', '3330'), ('ROS_PACKAGE_PATH', ':/robot/ws_orbslam/ORB_SLAM2/Examples/ROS:/robot/ws_orbslam/ORB_SLAM2_modified/Examples/ROS'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib::/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64'), ('HOME', '/home/yanxin'), ('OLDPWD', '/robot/Automan-hunter/Workspace/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'en_US.UTF-8'), ('MANAGERPID', '3148'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('LIBVIRT_DEFAULT_URI', 'qemu:///system'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '4039'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'yanxin'), ('JOURNAL_STREAM', '9:67470'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'yanxin'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/yanxin/.local/bin:/home/yanxin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/robot/matlab/bin'), ('SESSION_MANAGER', 'local/yanxin:@/tmp/.ICE-unix/3358,unix/yanxin:/tmp/.ICE-unix/3358'), ('INVOCATION_ID', '5a9975eca5bb474e848f37209558e621'), ('PAPERSIZE', 'letter'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'en_US.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'en_US.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'en_US.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:29f59943-c7d2-4580-82ec-6b8dde36abfe'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_US.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'en_US.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'en_US.UTF-8'), ('LC_PAPER', 'en_US.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk:/opt/ros/foxy')]), 'shell': False}
+[0.025377] (wrp_sdk) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.038569] (wrp_sdk) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.099861] (-) TimerEvent: {}
+[0.186219] (wrp_sdk) StdoutLine: {'line': b'-- Found PythonInterp: /usr/bin/python3 (found version "3.8.10") \n'}
+[0.199922] (-) TimerEvent: {}
+[0.227251] (wrp_sdk) StdoutLine: {'line': b'-- Configuring done\n'}
+[0.239020] (wrp_sdk) StdoutLine: {'line': b'-- Generating done\n'}
+[0.240491] (wrp_sdk) StdoutLine: {'line': b'-- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk\n'}
+[0.253836] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_asio_can\x1b[0m\n'}
+[0.253965] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_acan\x1b[0m\n'}
+[0.254032] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_scout_base\x1b[0m\n'}
+[0.254079] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_hunter_base\x1b[0m\n'}
+[0.255403] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_aserial\x1b[0m\n'}
+[0.255467] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target test_aserial_comm\x1b[0m\n'}
+[0.255534] (wrp_sdk) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target gtest\x1b[0m\n'}
+[0.259816] (wrp_sdk) StdoutLine: {'line': b'[  3%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_acan.dir/test_acan.cpp.o\x1b[0m\n'}
+[0.259939] (wrp_sdk) StdoutLine: {'line': b'[  6%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_asio_can.dir/test_asio_can.cpp.o\x1b[0m\n'}
+[0.260377] (wrp_sdk) StdoutLine: {'line': b'[  9%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o\x1b[0m\n'}
+[0.260504] (wrp_sdk) StdoutLine: {'line': b'[ 40%] Built target wrp_sdk\n'}
+[0.261527] (wrp_sdk) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o\x1b[0m\n'}
+[0.261602] (wrp_sdk) StdoutLine: {'line': b'[ 46%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_aserial.dir/test_aserial.cpp.o\x1b[0m\n'}
+[0.261830] (wrp_sdk) StdoutLine: {'line': b'[ 50%] \x1b[32mBuilding CXX object unit_tests/googletest/googlemock/gtest/CMakeFiles/gtest.dir/src/gtest-all.cc.o\x1b[0m\n'}
+[0.262933] (wrp_sdk) StdoutLine: {'line': b'[ 53%] \x1b[32mBuilding CXX object tests/CMakeFiles/test_aserial_comm.dir/test_aserial_comm.cpp.o\x1b[0m\n'}
+[0.281004] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_acan.cpp:2:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kwrp_sdk/asyncio/async_can.hpp: No such file or directory\n'}
+[0.281171] (wrp_sdk) StderrLine: {'line': b'    2 | #include \x1b[01;31m\x1b[K"wrp_sdk/asyncio/async_can.hpp"\x1b[m\x1b[K\n'}
+[0.281236] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.281284] (wrp_sdk) StderrLine: {'line': b'compilation terminated.\n'}
+[0.281662] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_acan.dir/build.make:63: tests/CMakeFiles/test_acan.dir/test_acan.cpp.o] Error 1\n'}
+[0.281800] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:326: tests/CMakeFiles/test_acan.dir/all] Error 2\n'}
+[0.281861] (wrp_sdk) StderrLine: {'line': b'make[1]: *** Waiting for unfinished jobs....\n'}
+[0.282999] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial_comm.cpp:10:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kwrp_sdk/asyncio/async_serial.hpp: No such file or directory\n'}
+[0.283047] (wrp_sdk) StderrLine: {'line': b'   10 | #include \x1b[01;31m\x1b[K"wrp_sdk/asyncio/async_serial.hpp"\x1b[m\x1b[K\n'}
+[0.283091] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.283133] (wrp_sdk) StderrLine: {'line': b'compilation terminated.\n'}
+[0.283595] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_aserial_comm.dir/build.make:63: tests/CMakeFiles/test_aserial_comm.dir/test_aserial_comm.cpp.o] Error 1\n'}
+[0.283668] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:380: tests/CMakeFiles/test_aserial_comm.dir/all] Error 2\n'}
+[0.283801] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_aserial.cpp:10:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kwrp_sdk/asyncio/async_serial.hpp: No such file or directory\n'}
+[0.283850] (wrp_sdk) StderrLine: {'line': b'   10 | #include \x1b[01;31m\x1b[K"wrp_sdk/asyncio/async_serial.hpp"\x1b[m\x1b[K\n'}
+[0.283892] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.283933] (wrp_sdk) StderrLine: {'line': b'compilation terminated.\n'}
+[0.284532] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_aserial.dir/build.make:63: tests/CMakeFiles/test_aserial.dir/test_aserial.cpp.o] Error 1\n'}
+[0.284616] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:407: tests/CMakeFiles/test_aserial.dir/all] Error 2\n'}
+[0.294486] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_hunter_base.cpp:11:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kwrp_sdk/platforms/hunter/hunter_base.hpp: No such file or directory\n'}
+[0.294550] (wrp_sdk) StderrLine: {'line': b'   11 | #include \x1b[01;31m\x1b[K"wrp_sdk/platforms/hunter/hunter_base.hpp"\x1b[m\x1b[K\n'}
+[0.294595] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.294643] (wrp_sdk) StderrLine: {'line': b'compilation terminated.\n'}
+[0.295270] (wrp_sdk) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/tests/test_scout_base.cpp:11:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kwrp_sdk/platforms/scout/scout_base.hpp: No such file or directory\n'}
+[0.295318] (wrp_sdk) StderrLine: {'line': b'   11 | #include \x1b[01;31m\x1b[K"wrp_sdk/platforms/scout/scout_base.hpp"\x1b[m\x1b[K\n'}
+[0.295363] (wrp_sdk) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[0.295424] (wrp_sdk) StderrLine: {'line': b'compilation terminated.\n'}
+[0.295464] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_hunter_base.dir/build.make:63: tests/CMakeFiles/test_hunter_base.dir/test_hunter_base.cpp.o] Error 1\n'}
+[0.295503] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:299: tests/CMakeFiles/test_hunter_base.dir/all] Error 2\n'}
+[0.295902] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_scout_base.dir/build.make:63: tests/CMakeFiles/test_scout_base.dir/test_scout_base.cpp.o] Error 1\n'}
+[0.295970] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:272: tests/CMakeFiles/test_scout_base.dir/all] Error 2\n'}
+[0.299978] (-) TimerEvent: {}
+[0.400144] (-) TimerEvent: {}
+[0.500378] (-) TimerEvent: {}
+[0.600621] (-) TimerEvent: {}
+[0.700870] (-) TimerEvent: {}
+[0.801116] (-) TimerEvent: {}
+[0.901358] (-) TimerEvent: {}
+[1.001600] (-) TimerEvent: {}
+[1.101850] (-) TimerEvent: {}
+[1.202098] (-) TimerEvent: {}
+[1.302331] (-) TimerEvent: {}
+[1.402552] (-) TimerEvent: {}
+[1.502756] (-) TimerEvent: {}
+[1.602938] (-) TimerEvent: {}
+[1.703144] (-) TimerEvent: {}
+[1.803320] (-) TimerEvent: {}
+[1.903489] (-) TimerEvent: {}
+[1.962945] (wrp_sdk) StdoutLine: {'line': b'[ 56%] \x1b[32m\x1b[1mLinking CXX executable test_asio_can\x1b[0m\n'}
+[1.980227] (wrp_sdk) StderrLine: {'line': b'/usr/bin/ld: cannot find -lwrpsdk\n'}
+[1.980341] (wrp_sdk) StderrLine: {'line': b'collect2: error: ld returned 1 exit status\n'}
+[1.981041] (wrp_sdk) StderrLine: {'line': b'make[2]: *** [tests/CMakeFiles/test_asio_can.dir/build.make:84: tests/test_asio_can] Error 1\n'}
+[1.981147] (wrp_sdk) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:353: tests/CMakeFiles/test_asio_can.dir/all] Error 2\n'}
+[2.003560] (-) TimerEvent: {}
+[2.103717] (-) TimerEvent: {}
+[2.203854] (-) TimerEvent: {}
+[2.303985] (-) TimerEvent: {}
+[2.404116] (-) TimerEvent: {}
+[2.504261] (-) TimerEvent: {}
+[2.604437] (-) TimerEvent: {}
+[2.704575] (-) TimerEvent: {}
+[2.804706] (-) TimerEvent: {}
+[2.904841] (-) TimerEvent: {}
+[3.004972] (-) TimerEvent: {}
+[3.105103] (-) TimerEvent: {}
+[3.205234] (-) TimerEvent: {}
+[3.305364] (-) TimerEvent: {}
+[3.405495] (-) TimerEvent: {}
+[3.505641] (-) TimerEvent: {}
+[3.605775] (-) TimerEvent: {}
+[3.705907] (-) TimerEvent: {}
+[3.806038] (-) TimerEvent: {}
+[3.906169] (-) TimerEvent: {}
+[4.006302] (-) TimerEvent: {}
+[4.106433] (-) TimerEvent: {}
+[4.206563] (-) TimerEvent: {}
+[4.306695] (-) TimerEvent: {}
+[4.406826] (-) TimerEvent: {}
+[4.506959] (-) TimerEvent: {}
+[4.607088] (-) TimerEvent: {}
+[4.667031] (wrp_sdk) StdoutLine: {'line': b'[ 59%] \x1b[32m\x1b[1mLinking CXX static library libgtest.a\x1b[0m\n'}
+[4.687429] (wrp_sdk) StdoutLine: {'line': b'[ 59%] Built target gtest\n'}
+[4.687887] (wrp_sdk) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[4.689093] (wrp_sdk) CommandEnded: {'returncode': 2}
+[4.707179] (-) TimerEvent: {}
+[4.718805] (wrp_sdk) JobEnded: {'identifier': 'wrp_sdk', 'rc': 2}
+[4.729080] (-) EventReactorShutdown: {}
