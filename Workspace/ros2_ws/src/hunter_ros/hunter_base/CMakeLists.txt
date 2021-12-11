@@ -2,23 +2,24 @@ cmake_minimum_required(VERSION 3.5)
 project(hunter_base)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-add_compile_options(-std=c++17)
-## Set compiler to use c++ 17 features
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+  add_compile_options(-Wall -Wextra -Wpedantic)
+endif()
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  hunter_msgs
-  roscpp
-  sensor_msgs
-  std_msgs
-  tf2
-  tf2_ros
-  wrp_sdk
-)
+find_package(ament_cmake REQUIRED)
+find_package(hunter_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(wrp_sdk REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -109,12 +110,14 @@ add_subdirectory(ascent)
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
- INCLUDE_DIRS include
- LIBRARIES hunter_messenger
+#catkin_package(
+# INCLUDE_DIRS include
+# LIBRARIES hunter_messenger
 #  CATKIN_DEPENDS hunter_msgs wrp_sdk roscpp sensor_msgs std_msgs tf2 tf2_ros 
 #  DEPENDS system_lib
 )
+ament_export_include_directories(include)
+ament_export_libraries(hunter_messenger)
 
 ###########
 ## Build ##
@@ -122,10 +125,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-include_directories(
-  include
-  ${catkin_INCLUDE_DIRS}
-)
+include_directories(include ${Boost_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -135,16 +135,16 @@ include_directories(
 add_library(hunter_messenger STATIC 
     src/hunter_messenger.cpp 
     src/bicycle_model.cpp)
-target_link_libraries(hunter_messenger ${catkin_LIBRARIES} ascent)
+ament_target_dependencies(hunter_messenger rclcpp std_msgs ascent)
 
 add_executable(hunter_base_node src/hunter_base_node.cpp)
-target_link_libraries(hunter_base_node hunter_messenger ${catkin_LIBRARIES})
+ament_target_dependencies(hunter_base_node hunter_messenger rclcpp std_msgs)
 
 add_executable(hunter_base_sim_node src/hunter_base_sim_node.cpp)
-target_link_libraries(hunter_base_sim_node hunter_messenger ${catkin_LIBRARIES})
+ament_target_dependencies(hunter_base_sim_node hunter_messenger rclcpp std_msgs)
 
 add_executable(hunter_status_node src/hunter_status_node.cpp)
-target_link_libraries(hunter_status_node hunter_messenger ${catkin_LIBRARIES})
+ament_target_dependencies(hunter_status_node hunter_messenger rclcpp std_msgs)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -225,3 +225,5 @@ target_link_libraries(hunter_status_node hunter_messenger ${catkin_LIBRARIES})
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+ament_package()

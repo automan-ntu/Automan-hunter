@@ -97,6 +97,9 @@ endif()
 #  CATKIN_DEPENDS hunter_msgs roscpp 
 #  DEPENDS system_lib
 #)
+ament_export_include_directories(include)
+ament_export_libraries(${PROJECT_NAME})
+
 ament_package()
 
 
