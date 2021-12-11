@@ -51,8 +51,8 @@ class SystemPropagator {
 
 class HunterROSMessenger {
  public:
-  explicit HunterROSMessenger(ros::NodeHandle *nh);
-  HunterROSMessenger(HunterBase *hunter, ros::NodeHandle *nh);
+  explicit HunterROSMessenger(rclcpp::Node *node);
+  HunterROSMessenger(HunterBase *hunter, rclcpp::Node *node);
 
   std::string odom_frame_;
   std::string base_frame_;
@@ -70,15 +70,15 @@ class HunterROSMessenger {
 
  private:
   HunterBase *hunter_;
-  ros::NodeHandle *nh_;
+  rclcpp::Node *node_;
 
   std::mutex twist_mutex_;
   geometry_msgs::Twist current_twist_;
 
-  ros::Publisher odom_publisher_;
-  ros::Publisher status_publisher_;
-  ros::Subscriber motion_cmd_subscriber_;
-  ros::Subscriber integrator_reset_subscriber_;
+  rclcpp::Publisher odom_publisher_;
+  rclcpp::Publisher status_publisher_;
+  rclcpp::Publisher motion_cmd_subscriber_;
+  rclcpp::Publisher integrator_reset_subscriber_;
   tf2_ros::TransformBroadcaster tf_broadcaster_;
 
   // control inputs
@@ -102,8 +102,8 @@ class HunterROSMessenger {
   double ConvertInnerAngleToCentral(double angle);
   double ConvertCentralAngleToInner(double angle);
 
-  void TwistCmdCallback(const geometry_msgs::Twist::ConstPtr &msg);
-  void ResetOdomIntegratorCallback(const std_msgs::Bool::ConstPtr &msg);
+  void TwistCmdCallback(const geometry_msgs::msg::Twist::ConstPtr &msg);
+  void ResetOdomIntegratorCallback(const std_msgs::msg::Bool::ConstPtr &msg);
   void PublishOdometryToROS(double linear, double angular, double dt);
 };
 }  // namespace westonrobot
