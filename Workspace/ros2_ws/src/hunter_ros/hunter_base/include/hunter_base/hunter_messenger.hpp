@@ -10,9 +10,9 @@
 #ifndef HUNTER_MESSENGER_HPP
 #define HUNTER_MESSENGER_HPP
 
-#include <nav_msgs/msg/Odometry.h>
+#include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <std_msgs/msg/Bool.h>
+#include <std_msgs/msg/bool.hpp>
 
 #include <string>
 
