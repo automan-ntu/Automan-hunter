@@ -38,6 +38,14 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk/environment" TYPE FILE FILES "/opt/ros/foxy/lib/python3.8/site-packages/ament_package/template/environment_hook/library_path.sh")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk/environment" TYPE FILE FILES "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/ament_cmake_environment_hooks/library_path.dsv")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/ament_index/resource_index/package_run_dependencies" TYPE FILE FILES "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/ament_cmake_index/share/ament_index/resource_index/package_run_dependencies/wrp_sdk")
 endif()
 
@@ -86,6 +94,14 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk/cmake" TYPE FILE FILES "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/ament_cmake_export_include_directories/ament_cmake_export_include_directories-extras.cmake")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk/cmake" TYPE FILE FILES "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/ament_cmake_export_libraries/ament_cmake_export_libraries-extras.cmake")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/wrp_sdk/cmake" TYPE FILE FILES
     "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/ament_cmake_core/wrp_sdkConfig.cmake"
     "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/ament_cmake_core/wrp_sdkConfig-version.cmake"
@@ -97,7 +113,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/wrp_sdk" TYPE STATIC_LIBRARY FILES "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/libwrp_sdk.a")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE STATIC_LIBRARY FILES "/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk/libwrp_sdk.a")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

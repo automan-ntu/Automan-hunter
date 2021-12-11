@@ -1,3 +1,5 @@
+/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/library_path.sh
+/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/library_path.dsv
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/package_run_dependencies/wrp_sdk
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/parent_prefix_path/wrp_sdk
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.sh
@@ -10,7 +12,9 @@
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.dsv
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.dsv
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/packages/wrp_sdk
+/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/ament_cmake_export_include_directories-extras.cmake
+/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/ament_cmake_export_libraries-extras.cmake
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig.cmake
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig-version.cmake
 /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.xml
-/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib/wrp_sdk/libwrp_sdk.a
+/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib/libwrp_sdk.a

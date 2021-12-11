@@ -1,2 +1,3 @@
 source;share/wrp_sdk/environment/ament_prefix_path.sh
+source;share/wrp_sdk/environment/library_path.sh
 source;share/wrp_sdk/environment/path.sh
