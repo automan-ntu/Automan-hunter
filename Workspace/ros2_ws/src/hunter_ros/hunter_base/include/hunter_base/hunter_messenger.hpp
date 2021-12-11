@@ -73,7 +73,7 @@ class HunterROSMessenger {
   rclcpp::Node *node_;
 
   std::mutex twist_mutex_;
-  geometry_msgs::Twist current_twist_;
+  geometry_msgs::msg::Twist current_twist_;
 
   rclcpp::Publisher odom_publisher_;
   rclcpp::Publisher status_publisher_;
