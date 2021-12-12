@@ -51,8 +51,8 @@ class SystemPropagator {
 
 class HunterROSMessenger {
  public:
-  explicit HunterROSMessenger(rclcpp::Node *node);
-  HunterROSMessenger(HunterBase *hunter, rclcpp::Node *node);
+  explicit HunterROSMessenger(rclcpp::Node::SharedPtr *node);
+  HunterROSMessenger(HunterBase *hunter, rclcpp::Node::SharedPtr *node);
 
   std::string odom_frame_;
   std::string base_frame_;
@@ -70,15 +70,15 @@ class HunterROSMessenger {
 
  private:
   HunterBase *hunter_;
-  rclcpp::Node *node_;
+  rclcpp::Node::SharedPtr *node_;
 
   std::mutex twist_mutex_;
   geometry_msgs::msg::Twist current_twist_;
 
-  rclcpp::Publisher odom_publisher_;
-  rclcpp::Publisher status_publisher_;
-  rclcpp::Publisher motion_cmd_subscriber_;
-  rclcpp::Publisher integrator_reset_subscriber_;
+  rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_publisher_;
+  rclcpp::Publisher<hunter_msgs::HunterStatus>::SharedPtr status_publisher_;
+  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr motion_cmd_subscriber_;
+  rclcpp::Publisher<std_msgs::msg::Bool> integrator_reset_subscriber_;
   tf2_ros::TransformBroadcaster tf_broadcaster_;
 
   // control inputs
@@ -96,8 +96,8 @@ class HunterROSMessenger {
 
   SystemPropagator<BicycleKinematics> model_;
 
-  ros::Time last_time_;
-  ros::Time current_time_;
+  rclcpp::Time last_time_;
+  rclcpp::Time current_time_;
 
   double ConvertInnerAngleToCentral(double angle);
   double ConvertCentralAngleToInner(double angle);

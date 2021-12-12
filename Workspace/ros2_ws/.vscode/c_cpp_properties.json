@@ -8,7 +8,9 @@
       "includePath": [
         "/opt/ros/foxy/include/**",
         "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/**",
+        "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/**",
         "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_webots_sim/include/**",
+        "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs/msg/**",
         "/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/**",
         "/usr/include/**"
       ],

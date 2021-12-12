@@ -14,8 +14,8 @@ int main(int argc, char **argv) {
   // setup ROS node
   rclcpp::init(argc, argv);
   auto n = rclcpp::Node::make_shared("hunter_base");
-  auto node = rclcpp::Node::make_shared("")
-  auto private_node = rclcpp::Node::make_share("~")
+  auto node = rclcpp::Node::make_shared("");
+  auto private_node = rclcpp::Node::make_shared("~");
 
   // instantiate a robot object
   HunterBase robot;
@@ -32,16 +32,16 @@ int main(int argc, char **argv) {
                            false);
   private_node.param<int>("control_rate", messenger.sim_control_rate_, 50); */
 
-  private_node.declare_parameter("port_name", "can0");
-  private_node.set_parameter(rclcpp::Parameter("port_name", port_name));
-  private_node.declare_parameter("odom_frame", "odom");
-  private_node.set_parameter(rclcpp::Parameter("odom_frame", messenger.odom_frame_));
-  private_node.declare_parameter("base_frame", "base_link");
-  private_node.set_parameter(rclcpp::Parameter("base_frame", messenger.base_frame_));
-  private_node.declare_parameter("simulated_robot", false);
-  private_node.set_parameter(rclcpp::Parameter("simulated_robot", messenger.simulated_robot_));
-  private_node.declare_parameter("control_rate", 50);
-  private_node.set_parameter(rclcpp::Parameter("control_rate", messenger.sim_control_rate_));
+  private_node->declare_parameter("port_name", "can0");
+  private_node->set_parameter(rclcpp::Parameter("port_name", port_name));
+  private_node->declare_parameter("odom_frame", "odom");
+  private_node->set_parameter(rclcpp::Parameter("odom_frame", messenger.odom_frame_));
+  private_node->declare_parameter("base_frame", "base_link");
+  private_node->set_parameter(rclcpp::Parameter("base_frame", messenger.base_frame_));
+  private_node->declare_parameter("simulated_robot", false);
+  private_node->set_parameter(rclcpp::Parameter("simulated_robot", messenger.simulated_robot_));
+  private_node->declare_parameter("control_rate", 50);
+  private_node->set_parameter(rclcpp::Parameter("control_rate", messenger.sim_control_rate_));
 
   // connect to robot and setup ROS subscription
   if (port_name.find("can") != std::string::npos) {
@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
   int cnt = 0;
   while (rclcpp::ok()) {
     messenger.PublishStateToROS();
-    rclcpp::spin_some();
+    rclcpp::spin_some(private_node);
     rate_50hz.sleep();
     // if(++cnt == 390) break;
   }

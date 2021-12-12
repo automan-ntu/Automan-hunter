@@ -15,7 +15,7 @@
 
 #include "hunter_base/hunter_messenger.hpp"
 
-#include <tf/transform_broadcaster.h>
+#include <tf2_ros/transform_broadcaster.h>
 
 #include <cmath>
 
@@ -23,11 +23,11 @@
 #include "hunter_msgs/HunterStatus.h"
 
 namespace westonrobot {
-HunterROSMessenger::HunterROSMessenger(ros::NodeHandle *nh)
-    : hunter_(nullptr), nh_(nh) {}
+HunterROSMessenger::HunterROSMessenger(rclcpp::Node::SharedPtr *node)
+    : hunter_(nullptr), node_(node) {}
 
-HunterROSMessenger::HunterROSMessenger(HunterBase *hunter, ros::NodeHandle *nh)
-    : hunter_(hunter), nh_(nh) {}
+HunterROSMessenger::HunterROSMessenger(HunterBase *hunter, rclcpp::Node::SharedPtr *node)
+    : hunter_(hunter), node_(node) {}
 
 void HunterROSMessenger::SetupSubscription() {
   // odometry publisher
