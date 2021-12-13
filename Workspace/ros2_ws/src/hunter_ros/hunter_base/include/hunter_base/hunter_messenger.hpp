@@ -77,8 +77,8 @@ class HunterROSMessenger {
 
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_publisher_;
   rclcpp::Publisher<hunter_msgs::HunterStatus>::SharedPtr status_publisher_;
-  rclcpp::Publisher<geometry_msgs::msg::Twist>::SharedPtr motion_cmd_subscriber_;
-  rclcpp::Publisher<std_msgs::msg::Bool> integrator_reset_subscriber_;
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr motion_cmd_subscriber_;
+  rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr integrator_reset_subscriber_;
   tf2_ros::TransformBroadcaster tf_broadcaster_;
 
   // control inputs

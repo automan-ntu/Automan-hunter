@@ -31,25 +31,25 @@ HunterROSMessenger::HunterROSMessenger(HunterBase *hunter, rclcpp::Node::SharedP
 
 void HunterROSMessenger::SetupSubscription() {
   // odometry publisher
-  odom_publisher_ = nh_->advertise<nav_msgs::Odometry>(odom_frame_, 50);
-  status_publisher_ =
-      nh_->advertise<hunter_msgs::HunterStatus>("/hunter_status", 10);
+  auto odom_publisher_ = node_->create_pulisher<nav_msgs::msg::Odometry>(odom_frame_, 50);
+  auto status_publisher_ =
+      node_->create_publisher<hunter_msgs::HunterStatus>("/hunter_status", 10);
 
   // cmd subscriber
-  motion_cmd_subscriber_ = nh_->subscribe<geometry_msgs::Twist>(
-      "/cmd_vel", 5, &HunterROSMessenger::TwistCmdCallback, this);
-  integrator_reset_subscriber_ = nh_->subscribe<std_msgs::Bool>(
+  auto motion_cmd_subscriber_ = node_->create_subcription<geometry_msgs::msg::Twist>(
+      "/cmd_vel", 5, std::bind(&HunterROSMessenger::TwistCmdCallback, this, _1));
+  auto integrator_reset_subscriber_ = node_->create_subcription<std_msgs::msg::Bool>(
       "/reset_odom_integrator", 5,
-      &HunterROSMessenger::ResetOdomIntegratorCallback, this);
+      std::bind(&HunterROSMessenger::ResetOdomIntegratorCallback, this, _1));
 }
 
 void HunterROSMessenger::ResetOdomIntegratorCallback(
-    const std_msgs::Bool::ConstPtr &msg) {
+    const std_msgs::msg::Bool::ConstPtr &msg) {
   if (msg->data) ResetOdometry();
 }
 
 void HunterROSMessenger::TwistCmdCallback(
-    const geometry_msgs::Twist::ConstPtr &msg) {
+    const geometry_msgs::msg::Twist::ConstPtr &msg) {
   double steer_cmd = msg->angular.z;
   if(steer_cmd > HunterParams::max_steer_angle_central)
     steer_cmd = HunterParams::max_steer_angle_central;
@@ -109,7 +109,7 @@ double HunterROSMessenger::ConvertCentralAngleToInner(double angle) {
 }
 
 void HunterROSMessenger::PublishStateToROS() {
-  current_time_ = ros::Time::now();
+  current_time_ = rclcpp::Time::now();
   double dt = (current_time_ - last_time_).toSec();
 
   static bool init_run = true;
@@ -152,7 +152,7 @@ void HunterROSMessenger::PublishStateToROS() {
     status_msg.motor_states[i].temperature = state.motor_states[i].temperature;
   }
 
-  status_publisher_.publish(status_msg);
+  status_publisher_->publish(status_msg);
 
   // publish odometry and tf
   PublishOdometryToROS(state.linear_velocity, status_msg.steering_angle, dt);
@@ -162,7 +162,7 @@ void HunterROSMessenger::PublishStateToROS() {
 }
 
 void HunterROSMessenger::PublishSimStateToROS(double linear, double angular) {
-  current_time_ = ros::Time::now();
+  current_time_ = rclcpp::Time::now();
   double dt = 1.0 / sim_control_rate_;
 
   // publish hunter state message
@@ -185,7 +185,7 @@ void HunterROSMessenger::PublishSimStateToROS(double linear, double angular) {
     status_msg.motor_states[i].temperature = 0;
   }
 
-  status_publisher_.publish(status_msg);
+  status_publisher_->publish(status_msg);
 
   // publish odometry and tf
   PublishOdometryToROS(linear, angular, dt);
@@ -211,10 +211,10 @@ void HunterROSMessenger::PublishOdometryToROS(double linear, double angular,
   position_y_ = state[1];
   theta_ = state[2];
 
-  geometry_msgs::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_);
+  geometry_msgs::msg::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_);
 
   // publish tf transformation
-  geometry_msgs::TransformStamped tf_msg;
+  geometry_msgs::msg::TransformStamped tf_msg;
   tf_msg.header.stamp = current_time_;
   tf_msg.header.frame_id = odom_frame_;
   tf_msg.child_frame_id = base_frame_;
@@ -227,7 +227,7 @@ void HunterROSMessenger::PublishOdometryToROS(double linear, double angular,
   tf_broadcaster_.sendTransform(tf_msg);
 
   // publish odometry and tf messages
-  nav_msgs::Odometry odom_msg;
+  nav_msgs::msg::Odometry odom_msg;
   odom_msg.header.stamp = current_time_;
   odom_msg.header.frame_id = odom_frame_;
   odom_msg.child_frame_id = base_frame_;
@@ -245,6 +245,6 @@ void HunterROSMessenger::PublishOdometryToROS(double linear, double angular,
 //             << " , pose: (" << position_x_ << "," << position_y_ << ","
 //             << theta_ << ")" << std::endl;
 
-  odom_publisher_.publish(odom_msg);
+  odom_publisher_->publish(odom_msg);
 }
 }  // namespace westonrobot
