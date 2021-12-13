@@ -20,7 +20,7 @@
 #include <cmath>
 
 #include "hunter_base/hunter_messenger.hpp"
-#include "hunter_msgs/HunterStatus.h"
+#include "hunter_msgs/msg/HunterStatus.hpp"
 
 namespace westonrobot {
 HunterROSMessenger::HunterROSMessenger(rclcpp::Node::SharedPtr *node)
@@ -33,7 +33,7 @@ void HunterROSMessenger::SetupSubscription() {
   // odometry publisher
   auto odom_publisher_ = node_->create_pulisher<nav_msgs::msg::Odometry>(odom_frame_, 50);
   auto status_publisher_ =
-      node_->create_publisher<hunter_msgs::HunterStatus>("/hunter_status", 10);
+      node_->create_publisher<hunter_msgs::msg::HunterStatus>("/hunter_status", 10);
 
   // cmd subscriber
   auto motion_cmd_subscriber_ = node_->create_subcription<geometry_msgs::msg::Twist>(
@@ -122,7 +122,7 @@ void HunterROSMessenger::PublishStateToROS() {
   auto state = hunter_->GetHunterState();
 
   // publish hunter state message
-  hunter_msgs::HunterStatus status_msg;
+  hunter_msgs::msg::HunterStatus status_msg;
 
   status_msg.header.stamp = current_time_;
 
