@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.5)
 project(hunter_msgs)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
@@ -7,10 +7,12 @@ project(hunter_msgs)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-  message_generation
-  std_msgs
-)
+
+find_package(ament_cmake REQUIRED)
+find_package(rosidl_default_generators REQUIRED)
+find_package(message_generation REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(message_package REQUIRED)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -46,10 +48,16 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-add_message_files(
-  FILES
-  HunterMotorState.msg
-  HunterStatus.msg
+#add_message_files(
+#  FILES
+#  HunterMotorState.msg
+#  HunterStatus.msg
+#)
+
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/HunterStatus.msg"
+  "msg/HunterMotorState.msg"
+  DEPENDENCIES std_msgs
 )
 
 ## Generate services in the 'srv' folder
@@ -67,12 +75,12 @@ add_message_files(
 # )
 
 ## Generate added messages and services with any dependencies listed here
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
+#generate_messages(
+#  DEPENDENCIES
+#  std_msgs
+#)
 
-catkin_package(CATKIN_DEPENDS std_msgs message_runtime)
+#catkin_package(CATKIN_DEPENDS std_msgs message_runtime)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -103,13 +111,13 @@ catkin_package(CATKIN_DEPENDS std_msgs message_runtime)
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
+#catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES hunter_msgs
 #  CATKIN_DEPENDS message_generation std_msgs
 #  DEPENDS system_lib
-)
-
+#)
+ament_export_dependencies(message_generation std_msgs)
 ###########
 ## Build ##
 ###########
@@ -117,8 +125,7 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
-  ${catkin_INCLUDE_DIRS}
+ include
 )
 
 ## Declare a C++ library
@@ -150,6 +157,7 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+ament_package()
 
 #############
 ## Install ##
