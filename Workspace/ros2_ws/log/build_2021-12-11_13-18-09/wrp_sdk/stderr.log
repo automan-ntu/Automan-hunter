@@ -1,5 +1,0 @@
-CMake Error at CMakeLists.txt:6 (find_package):
-  find_package called with incorrect number of arguments
-
-
-make: *** [Makefile:660: cmake_check_build_system] Error 1

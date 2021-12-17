@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.5)
 project("ascent"
 		VERSION 0.5.0
 		DESCRIPTION "An extremely fast and flexible C++ simulation engine and differential equation solver."
@@ -63,3 +63,4 @@ option(BUILD_EXAMPLES "Build example projects" TRUE)
 if((CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME) AND BUILD_EXAMPLES)
    add_subdirectory(examples)
 endif()
+set(AMENT_EXTENSIONS_ament_package ${AMENT_EXTENSIONS_ament_package} PARENT_SCOPE)

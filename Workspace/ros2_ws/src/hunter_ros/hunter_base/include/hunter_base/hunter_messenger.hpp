@@ -10,13 +10,13 @@
 #ifndef HUNTER_MESSENGER_HPP
 #define HUNTER_MESSENGER_HPP
 
-#include <nav_msgs/msg/odometry.hpp>
 #include <rclcpp/rclcpp.hpp>
+
 #include <std_msgs/msg/bool.hpp>
+#include <nav_msgs/msg/odometry.hpp>
 
 #include <string>
 
-// #include <tf/transform_broadcaster.h>
 #include <tf2_ros/transform_broadcaster.h>
 
 #include "wrp_sdk/platforms/hunter/hunter_base.hpp"
@@ -25,7 +25,6 @@
 #include "ascent/Utility.h"
 #include "hunter_base/bicycle_model.hpp"
 #include "hunter_base/hunter_params.hpp"
-// #include "hunter_base/system_propagator.hpp"
 
 namespace westonrobot {
 template <typename SystemModel>
@@ -76,7 +75,7 @@ class HunterROSMessenger {
   geometry_msgs::msg::Twist current_twist_;
 
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_publisher_;
-  rclcpp::Publisher<hunter_msgs::HunterStatus>::SharedPtr status_publisher_;
+  rclcpp::Publisher<hunter_msgs::msg::HunterStatus>::SharedPtr status_publisher_;
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr motion_cmd_subscriber_;
   rclcpp::Subscription<std_msgs::msg::Bool>::SharedPtr integrator_reset_subscriber_;
   tf2_ros::TransformBroadcaster tf_broadcaster_;

@@ -100,7 +100,6 @@ endif()
 ament_export_include_directories(include)
 ament_export_libraries(${PROJECT_NAME})
 
-ament_package()
 
 
 ## Use GNUInstallDirs to install libraries into correct
@@ -113,6 +112,9 @@ install(TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib)
 
+install(DIRECTORY include/${PROJECT_NAME}
+  DESTINATION include/${PROJECT_NAME}
+)
 # install(DIRECTORY include/${PROJECT_NAME}/
 #   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
 
@@ -124,3 +126,5 @@ install(TARGETS ${PROJECT_NAME}
 
 # install(DIRECTORY scripts
 #   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+
+ament_package()

@@ -13,12 +13,11 @@
  * Copyright (c) 2019 Ruixiang Du (rdu)
  */
 
-#include "hunter_base/hunter_messenger.hpp"
+
 
 #include <tf2_ros/transform_broadcaster.h>
 
 #include <cmath>
-
 #include "hunter_base/hunter_messenger.hpp"
 #include "hunter_msgs/msg/HunterStatus.hpp"
 

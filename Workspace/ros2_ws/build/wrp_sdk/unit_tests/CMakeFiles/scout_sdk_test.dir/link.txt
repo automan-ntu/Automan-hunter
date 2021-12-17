@@ -1,1 +1,0 @@
-/usr/bin/c++  -O3 -DNDEBUG   CMakeFiles/scout_sdk_test.dir/gtests/scout_can_protocol_test.cpp.o  -o scout_sdk_test  googletest/googlemock/gtest/libgtest.a googletest/googlemock/gtest/libgtest_main.a -lwrpsdk googletest/googlemock/gtest/libgtest.a -pthread 
