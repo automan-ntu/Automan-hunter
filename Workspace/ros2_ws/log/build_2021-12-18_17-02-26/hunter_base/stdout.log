@@ -1,4 +1,0 @@
-[35m[1mScanning dependencies of target hunter_base_node[0m
-[35m[1mScanning dependencies of target hunter_messenger[0m
-[ 20%] [32mBuilding CXX object CMakeFiles/hunter_base_node.dir/src/hunter_base_node.cpp.o[0m
-[ 40%] [32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o[0m

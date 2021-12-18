@@ -1,3 +1,0 @@
- <launch>
-        <node pkg="social_distance" type="social_distance" name="sd"/>
- </launch>

@@ -1,6 +1,0 @@
-<launch>
-    <include file="$(find hunter_bringup)/launch/hunter_sim_nav_indoor.launch" />
-    
-    <!-- rc to can -->
-    <include file="$(find rc_ctrl)/launch/hunter_rc_ctrl.launch" />
-</launch>

@@ -1,3 +1,0 @@
-[35m[1mScanning dependencies of target hunter_base_node[0m
-[ 33%] [32mBuilding CXX object CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o[0m
-[ 66%] [32m[1mLinking CXX executable hunter_base_node[0m

@@ -1,6 +1,0 @@
-wrp_sdk's path: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk
-/usr/bin/ld: cannot find -lwrp_sdk
-collect2: error: ld returned 1 exit status
-make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:152: hunter_base_node] Error 1
-make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hunter_base_node.dir/all] Error 2
-make: *** [Makefile:141: all] Error 2
