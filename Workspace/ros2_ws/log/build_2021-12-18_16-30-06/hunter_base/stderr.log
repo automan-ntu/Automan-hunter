@@ -1,0 +1,9 @@
+wrp_sdk's path: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk
+In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_node.cpp:9[m[K:
+[01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:32:10:[m[K [01;31m[Kfatal error: [m[Khunter_msgs/msg/hunter_status.hpp: No such file or directory
+   32 | #include [01;31m[K"hunter_msgs/msg/hunter_status.hpp"[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:63: CMakeFiles/hunter_base_node.dir/src/hunter_base_node.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hunter_base_node.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

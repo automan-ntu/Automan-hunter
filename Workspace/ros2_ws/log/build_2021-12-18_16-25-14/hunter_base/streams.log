@@ -1,0 +1,11 @@
+[0.011s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24
+[0.043s] [ 33%] [32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o[0m
+[0.114s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17[m[K:
+[0.114s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:25:10:[m[K [01;31m[Kfatal error: [m[K/wrp_sdk/platforms/hunter/hunter_base.hpp: No such file or directory
+[0.114s]    25 | #include [01;31m[K"/wrp_sdk/platforms/hunter/hunter_base.hpp"[m[K
+[0.114s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[0.114s] compilation terminated.
+[0.115s] make[2]: *** [CMakeFiles/hunter_messenger.dir/build.make:63: CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o] Error 1
+[0.115s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/hunter_messenger.dir/all] Error 2
+[0.115s] make: *** [Makefile:141: all] Error 2
+[0.116s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24

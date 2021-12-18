@@ -1,0 +1,121 @@
+[0.000000] (-) TimerEvent: {}
+[0.000348] (-) JobUnselected: {'identifier': 'hunter_bringup'}
+[0.000542] (-) JobUnselected: {'identifier': 'hunter_description'}
+[0.000581] (-) JobUnselected: {'identifier': 'hunter_msgs'}
+[0.000596] (-) JobUnselected: {'identifier': 'wrp_sdk'}
+[0.000610] (hunter_base) JobQueued: {'identifier': 'hunter_base', 'dependencies': OrderedDict([('hunter_msgs', '/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs'), ('wrp_sdk', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk')])}
+[0.000629] (hunter_base) JobStarted: {'identifier': 'hunter_base'}
+[0.009267] (hunter_base) JobProgress: {'identifier': 'hunter_base', 'progress': 'cmake'}
+[0.009670] (hunter_base) JobProgress: {'identifier': 'hunter_base', 'progress': 'build'}
+[0.010099] (hunter_base) Command: {'cmd': ['/usr/bin/cmake', '--build', '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base', '--', '-j24', '-l24'], 'cwd': '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('LANGUAGE', 'en_US:en'), ('USER', 'yanxin'), ('LC_TIME', 'en_US.UTF-8'), ('SSH_AGENT_PID', '2747'), ('ROS_PACKAGE_PATH', ':/robot/ws_orbslam/ORB_SLAM2/Examples/ROS:/robot/ws_orbslam/ORB_SLAM2_modified/Examples/ROS'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64'), ('HOME', '/home/yanxin'), ('OLDPWD', '/robot/Automan-hunter/Workspace/ros2_ws/src'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/usr/share/applications/terminator.desktop'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'en_US.UTF-8'), ('MANAGERPID', '2569'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('TERMINATOR_DBUS_NAME', 'net.tenshu.Terminator23558193cd9818af7fe4d2c2f5bd9d00f'), ('LIBVIRT_DEFAULT_URI', 'qemu:///system'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '10735'), ('MANDATORY_PATH', '/usr/share/gconf/ubuntu.mandatory.path'), ('IM_CONFIG_PHASE', '1'), ('COLCON_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'yanxin'), ('JOURNAL_STREAM', '9:62190'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('DEFAULTS_PATH', '/usr/share/gconf/ubuntu.default.path'), ('USERNAME', 'yanxin'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/foxy/bin:/home/yanxin/.local/bin:/home/yanxin/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/cuda/bin:/usr/local/cuda/bin:/robot/matlab/bin'), ('SESSION_MANAGER', 'local/yanxin:@/tmp/.ICE-unix/2775,unix/yanxin:/tmp/.ICE-unix/2775'), ('INVOCATION_ID', '37a51763c5424619bab2f3ddf4dce9d4'), ('PAPERSIZE', 'letter'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'en_US.UTF-8'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('TERMINATOR_DBUS_PATH', '/net/tenshu/Terminator2'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'en_US.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk:/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs:/opt/ros/foxy'), ('SHELL', '/bin/bash'), ('LC_NAME', 'en_US.UTF-8'), ('TERMINATOR_UUID', 'urn:uuid:eb9bf78f-11cd-4f42-b019-1f72fac1eee8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'en_US.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('LC_IDENTIFICATION', 'en_US.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base'), ('LC_ALL', 'en_US.UTF-8'), ('CUDA_HOME', '/usr/local/cuda'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib/python3.8/site-packages:/opt/ros/foxy/lib/python3.8/site-packages'), ('LC_NUMERIC', 'en_US.UTF-8'), ('LC_PAPER', 'en_US.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6003'), ('CMAKE_PREFIX_PATH', '/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk:/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs:/opt/ros/foxy')]), 'shell': False}
+[0.037967] (hunter_base) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target hunter_base_node\x1b[0m\n'}
+[0.048322] (hunter_base) StdoutLine: {'line': b'[ 16%] \x1b[32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o\x1b[0m\n'}
+[0.059994] (hunter_base) StdoutLine: {'line': b'[ 33%] \x1b[32mBuilding CXX object CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o\x1b[0m\n'}
+[0.099722] (-) TimerEvent: {}
+[0.199914] (-) TimerEvent: {}
+[0.300133] (-) TimerEvent: {}
+[0.400347] (-) TimerEvent: {}
+[0.500583] (-) TimerEvent: {}
+[0.600821] (-) TimerEvent: {}
+[0.701058] (-) TimerEvent: {}
+[0.801337] (-) TimerEvent: {}
+[0.901573] (-) TimerEvent: {}
+[1.001813] (-) TimerEvent: {}
+[1.102048] (-) TimerEvent: {}
+[1.202280] (-) TimerEvent: {}
+[1.302519] (-) TimerEvent: {}
+[1.402761] (-) TimerEvent: {}
+[1.502989] (-) TimerEvent: {}
+[1.510385] (hunter_base) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25\x1b[m\x1b[K,\n'}
+[1.510524] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17\x1b[m\x1b[K,\n'}
+[1.510611] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27\x1b[m\x1b[K,\n'}
+[1.510659] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17\x1b[m\x1b[K:\n'}
+[1.510701] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.510748] (hunter_base) StderrLine: {'line': b'   54 |       \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K pointer operator->() const noexcept\n'}
+[1.510790] (hunter_base) StderrLine: {'line': b'      |       \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.510828] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.510866] (hunter_base) StderrLine: {'line': b'  113 |       \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K pointer operator->() const\n'}
+[1.510904] (hunter_base) StderrLine: {'line': b'      |       \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.513607] (hunter_base) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17\x1b[m\x1b[K,\n'}
+[1.513688] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26\x1b[m\x1b[K,\n'}
+[1.513740] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27\x1b[m\x1b[K,\n'}
+[1.513793] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17\x1b[m\x1b[K:\n'}
+[1.513834] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.513874] (hunter_base) StderrLine: {'line': b'   25 |    constexpr \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K value_t cx(long double v) { return static_cast<value_t>(v); }\n'}
+[1.513913] (hunter_base) StderrLine: {'line': b'      |              \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.513951] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.513989] (hunter_base) StderrLine: {'line': b'   26 |    constexpr \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }\n'}
+[1.514027] (hunter_base) StderrLine: {'line': b'      |              \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.537336] (hunter_base) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25\x1b[m\x1b[K,\n'}
+[1.537419] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17\x1b[m\x1b[K,\n'}
+[1.537471] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27\x1b[m\x1b[K,\n'}
+[1.537516] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23\x1b[m\x1b[K,\n'}
+[1.537591] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10\x1b[m\x1b[K:\n'}
+[1.537638] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.537679] (hunter_base) StderrLine: {'line': b'   54 |       \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K pointer operator->() const noexcept\n'}
+[1.537718] (hunter_base) StderrLine: {'line': b'      |       \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.537758] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.537799] (hunter_base) StderrLine: {'line': b'  113 |       \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K pointer operator->() const\n'}
+[1.537838] (hunter_base) StderrLine: {'line': b'      |       \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.540562] (hunter_base) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17\x1b[m\x1b[K,\n'}
+[1.540666] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26\x1b[m\x1b[K,\n'}
+[1.540717] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27\x1b[m\x1b[K,\n'}
+[1.540762] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23\x1b[m\x1b[K,\n'}
+[1.540803] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10\x1b[m\x1b[K:\n'}
+[1.540841] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.540881] (hunter_base) StderrLine: {'line': b'   25 |    constexpr \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K value_t cx(long double v) { return static_cast<value_t>(v); }\n'}
+[1.540919] (hunter_base) StderrLine: {'line': b'      |              \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.540956] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Ktype qualifiers ignored on function return type [\x1b[01;35m\x1b[K-Wignored-qualifiers\x1b[m\x1b[K]\n'}
+[1.540995] (hunter_base) StderrLine: {'line': b'   26 |    constexpr \x1b[01;35m\x1b[Kconst\x1b[m\x1b[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }\n'}
+[1.541034] (hunter_base) StderrLine: {'line': b'      |              \x1b[01;35m\x1b[K^~~~~\x1b[m\x1b[K\n'}
+[1.579243] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid westonrobot::HunterBaseRos::Run()\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.579372] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:47:104:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kno matching function for call to \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::HunterROSMessenger::HunterROSMessenger(westonrobot::HunterBase&, westonrobot::HunterBaseRos*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.579428] (hunter_base) StderrLine: {'line': b'   47 |     std::unique_ptr<HunterROSMessenger> messenger = new std::unique_ptr<HunterROSMessenger(robot_, this\x1b[01;31m\x1b[K)\x1b[m\x1b[K>;\n'}
+[1.579481] (hunter_base) StderrLine: {'line': b'      |                                                                                                        \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[1.579522] (hunter_base) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23\x1b[m\x1b[K,\n'}
+[1.579563] (hunter_base) StderrLine: {'line': b'                 from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10\x1b[m\x1b[K:\n'}
+[1.579601] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:58:3:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[Kcandidate: \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::HunterROSMessenger::HunterROSMessenger(westonrobot::HunterBase*, rclcpp::Node*)\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.579647] (hunter_base) StderrLine: {'line': b'   58 |   \x1b[01;36m\x1b[KHunterROSMessenger\x1b[m\x1b[K(HunterBase *hunter, rclcpp::Node *node);\n'}
+[1.579684] (hunter_base) StderrLine: {'line': b'      |   \x1b[01;36m\x1b[K^~~~~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[1.579728] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:58:34:\x1b[m\x1b[K \x1b[01;36m\x1b[Knote: \x1b[m\x1b[K  no known conversion for argument 1 from \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::HunterBase\x1b[m\x1b[K\xe2\x80\x99 to \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::HunterBase*\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.579770] (hunter_base) StderrLine: {'line': b'   58 |   HunterROSMessenger(\x1b[01;36m\x1b[KHunterBase *hunter\x1b[m\x1b[K, rclcpp::Node *node);\n'}
+[1.579809] (hunter_base) StderrLine: {'line': b'      |                      \x1b[01;36m\x1b[K~~~~~~~~~~~~^~~~~~\x1b[m\x1b[K\n'}
+[1.579847] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:47:105:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 1 is invalid\n'}
+[1.579885] (hunter_base) StderrLine: {'line': b'   47 |     std::unique_ptr<HunterROSMessenger> messenger = new std::unique_ptr<HunterROSMessenger(robot_, this)\x1b[01;31m\x1b[K>\x1b[m\x1b[K;\n'}
+[1.579922] (hunter_base) StderrLine: {'line': b'      |                                                                                                         \x1b[01;31m\x1b[K^\x1b[m\x1b[K\n'}
+[1.579958] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:47:105:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Ktemplate argument 2 is invalid\n'}
+[1.579998] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:54:19:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[Kbase operand of \xe2\x80\x98\x1b[01m\x1b[K->\x1b[m\x1b[K\xe2\x80\x99 has non-pointer type \xe2\x80\x98\x1b[01m\x1b[Kwestonrobot::HunterBase\x1b[m\x1b[K\xe2\x80\x99\n'}
+[1.580040] (hunter_base) StderrLine: {'line': b'   54 |         if (robot_\x1b[01;31m\x1b[K->\x1b[m\x1b[KConnect(port_name_)) {\n'}
+[1.580078] (hunter_base) StderrLine: {'line': b'      |                   \x1b[01;31m\x1b[K^~\x1b[m\x1b[K\n'}
+[1.603054] (-) TimerEvent: {}
+[1.661531] (hunter_base) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17\x1b[m\x1b[K:\n'}
+[1.661682] (hunter_base) StderrLine: {'line': b'/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp: In instantiation of \xe2\x80\x98\x1b[01m\x1b[Kasc::state_t westonrobot::SystemPropagator<SystemModel>::Propagate(asc::state_t, typename SystemModel::control_t, double, double, double) [with SystemModel = westonrobot::BicycleKinematics; asc::state_t = std::vector<double, std::allocator<double> >; typename SystemModel::control_t = westonrobot::BicycleKinematics::CtrlInput]\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[1.661751] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:173:73:\x1b[m\x1b[K   required from here\n'}
+[1.661797] (hunter_base) StderrLine: {'line': b'\x1b[01m\x1b[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:45:31:\x1b[m\x1b[K \x1b[01;31m\x1b[Kerror: \x1b[m\x1b[K\xe2\x80\x98\x1b[01m\x1b[KSystemMosdel\x1b[m\x1b[K\xe2\x80\x99 was not declared in this scope\n'}
+[1.661845] (hunter_base) StderrLine: {'line': b'   45 |       integrator_(\x1b[01;31m\x1b[KSystemMosdel(u)\x1b[m\x1b[K, x, t, dt);\n'}
+[1.661891] (hunter_base) StderrLine: {'line': b'      |                   \x1b[01;31m\x1b[K~~~~~~~~~~~~^~~\x1b[m\x1b[K\n'}
+[1.703130] (-) TimerEvent: {}
+[1.803323] (-) TimerEvent: {}
+[1.903557] (-) TimerEvent: {}
+[1.942839] (hunter_base) StderrLine: {'line': b'make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:76: CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o] Error 1\n'}
+[1.943035] (hunter_base) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hunter_base_node.dir/all] Error 2\n'}
+[1.943088] (hunter_base) StderrLine: {'line': b'make[1]: *** Waiting for unfinished jobs....\n'}
+[2.003642] (-) TimerEvent: {}
+[2.103862] (-) TimerEvent: {}
+[2.204089] (-) TimerEvent: {}
+[2.304316] (-) TimerEvent: {}
+[2.404546] (-) TimerEvent: {}
+[2.504789] (-) TimerEvent: {}
+[2.605017] (-) TimerEvent: {}
+[2.705235] (-) TimerEvent: {}
+[2.805459] (-) TimerEvent: {}
+[2.905685] (-) TimerEvent: {}
+[3.005914] (-) TimerEvent: {}
+[3.106144] (-) TimerEvent: {}
+[3.189734] (hunter_base) StderrLine: {'line': b'make[2]: *** [CMakeFiles/hunter_messenger.dir/build.make:63: CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o] Error 1\n'}
+[3.189922] (hunter_base) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/hunter_messenger.dir/all] Error 2\n'}
+[3.189999] (hunter_base) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[3.191315] (hunter_base) CommandEnded: {'returncode': 2}
+[3.206229] (-) TimerEvent: {}
+[3.216303] (hunter_base) JobEnded: {'identifier': 'hunter_base', 'rc': 2}
+[3.226593] (-) EventReactorShutdown: {}

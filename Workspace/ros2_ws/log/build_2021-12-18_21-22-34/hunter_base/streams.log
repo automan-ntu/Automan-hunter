@@ -1,0 +1,27 @@
+[0.011s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24
+[0.029s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.042s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.174s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.196s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.198s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.264s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.296s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.297s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.391s] -- Found sensor_msgs: 2.0.4 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[0.467s] -- Found nav_msgs: 2.0.4 (/opt/ros/foxy/share/nav_msgs/cmake)
+[0.514s] -- Found tf2: 0.13.12 (/opt/ros/foxy/share/tf2/cmake)
+[0.520s] -- Found tf2_ros: 0.13.12 (/opt/ros/foxy/share/tf2_ros/cmake)
+[0.734s] -- Found hunter_msgs: 0.0.0 (/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/share/hunter_msgs/cmake)
+[0.758s] -- Found wrp_sdk: 0.3.3 (/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake)
+[0.759s] wrp_sdk's path: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk
+[0.798s] -- Configuring done
+[0.805s] -- Generating done
+[0.806s] -- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base
+[0.831s] [ 50%] Built target hunter_messenger
+[0.837s] [ 66%] [32m[1mLinking CXX executable hunter_base_node[0m
+[0.872s] /usr/bin/ld: cannot find -lwrp_sdk
+[0.872s] collect2: error: ld returned 1 exit status
+[0.873s] make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:152: hunter_base_node] Error 1
+[0.873s] make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hunter_base_node.dir/all] Error 2
+[0.873s] make: *** [Makefile:141: all] Error 2
+[0.874s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24

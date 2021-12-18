@@ -1,0 +1,28 @@
+[0.011s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24
+[0.028s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.042s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.168s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.189s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.191s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.257s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.289s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.290s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.384s] -- Found sensor_msgs: 2.0.4 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[0.460s] -- Found nav_msgs: 2.0.4 (/opt/ros/foxy/share/nav_msgs/cmake)
+[0.508s] -- Found tf2: 0.13.12 (/opt/ros/foxy/share/tf2/cmake)
+[0.514s] -- Found tf2_ros: 0.13.12 (/opt/ros/foxy/share/tf2_ros/cmake)
+[0.728s] -- Found hunter_msgs: 0.0.0 (/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/share/hunter_msgs/cmake)
+[0.751s] -- Found wrp_sdk: 0.3.3 (/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake)
+[0.753s] wrp_sdk's path: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk
+[0.754s] CMake Error at /opt/ros/foxy/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:77 (message):
+[0.754s]   ament_target_dependencies() the passed package name 'hunter_messenger' was
+[0.754s]   not found before
+[0.754s] Call Stack (most recent call first):
+[0.754s]   CMakeLists.txt:53 (ament_target_dependencies)
+[0.754s] 
+[0.755s] 
+[0.755s] -- Configuring incomplete, errors occurred!
+[0.755s] See also "/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base/CMakeFiles/CMakeOutput.log".
+[0.755s] See also "/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base/CMakeFiles/CMakeError.log".
+[0.758s] make: *** [Makefile:296: cmake_check_build_system] Error 1
+[0.759s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24

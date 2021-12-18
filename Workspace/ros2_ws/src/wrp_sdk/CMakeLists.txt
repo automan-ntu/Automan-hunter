@@ -16,14 +16,6 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
-## Put all binary files into /bin and libraries into /lib
-# set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
-# set(LIBRARY_OUTPUT_PATH ${CMAKE_BINARY_DIR}/lib)
-# set(ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-
-## Chosse build type
-# set(CMAKE_BUILD_TYPE Release)
-# set(CMAKE_BUILD_TYPE Debug)
 
 set(default_build_type "Release")
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
@@ -50,20 +42,6 @@ endif()
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-# Add libraries
-# set(WRP_SDK_SRC
-#     src/async_serial.cpp
-#     src/async_can.cpp
-#     src/asyncio_utils.cpp
-#     # agilex mobile platforms
-#     src/platforms/mobile_base.cpp
-#     src/platforms/hunter_base.cpp
-#     src/platforms/hunter_can_parser.c
-#     src/platforms/scout_base.cpp
-#     src/platforms/scout_can_parser.c
-#     src/platforms/scout_uart_parser.c
-# )
-# add_library(${PROJECT_NAME} STATIC ${WRP_SDK_SRC})
 add_library(${PROJECT_NAME} 
     src/async_serial.cpp
     src/async_can.cpp
@@ -97,8 +75,10 @@ endif()
 #  CATKIN_DEPENDS hunter_msgs roscpp 
 #  DEPENDS system_lib
 #)
-ament_export_include_directories(include)
+ament_export_include_directories(include/wrp_sdk)
 ament_export_libraries(${PROJECT_NAME})
+ament_target_dependencies(${PROJECT_NAME})
+ament_export_targets(${PROJECT_NAME}_export HAS_LIBRARY_TARGET)
 
 
 
@@ -107,24 +87,20 @@ ament_export_libraries(${PROJECT_NAME})
 include(GNUInstallDirs)
 
 ## Add catkin install targets
-install(TARGETS ${PROJECT_NAME}
-  RUNTIME DESTINATION lib/${PROJECT_NAME}
+install(
+  TARGETS ${PROJECT_NAME}
+  EXPORT ${PROJECT_NAME}_export
+  RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib)
+  ARCHIVE DESTINATION lib
+  INCLUDES DESTINATION include)
 
 install(DIRECTORY include/${PROJECT_NAME}
   DESTINATION include/${PROJECT_NAME}
+  #DIRECTORY include/
+  #DESTINATION include/
+  FILES_MATCHING PATTERN "*"
+  PATTERN ".git" EXCLUDE
 )
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
-
-# install(DIRECTORY asio/asio
-#   DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION})
-
-# install(FILES asio/asio.hpp
-#   DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION})
-
-# install(DIRECTORY scripts
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
 
 ament_package()

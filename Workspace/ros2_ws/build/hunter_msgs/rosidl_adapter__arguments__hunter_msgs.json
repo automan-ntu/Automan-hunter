@@ -1,0 +1,7 @@
+{
+  "package_name": "hunter_msgs",
+  "non_idl_tuples": [
+    "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs:msg/HunterStatus.msg",
+    "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_msgs:msg/HunterMotorState.msg"
+  ]
+}

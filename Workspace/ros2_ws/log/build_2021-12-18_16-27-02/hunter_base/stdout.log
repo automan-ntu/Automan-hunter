@@ -1,0 +1,41 @@
+-- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found sensor_msgs: 2.0.4 (/opt/ros/foxy/share/sensor_msgs/cmake)
+-- Found nav_msgs: 2.0.4 (/opt/ros/foxy/share/nav_msgs/cmake)
+-- Found tf2: 0.13.12 (/opt/ros/foxy/share/tf2/cmake)
+-- Found tf2_ros: 0.13.12 (/opt/ros/foxy/share/tf2_ros/cmake)
+-- Found hunter_msgs: 0.0.0 (/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/share/hunter_msgs/cmake)
+-- Found wrp_sdk: 0.3.3 (/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base
+[35m[1mScanning dependencies of target hunter_messenger[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o[0m
+[ 66%] [32m[1mLinking CXX static library libhunter_messenger.a[0m
+[100%] Built target hunter_messenger
+-- Install configuration: ""
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/include/hunter_base/hunter_base
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/include/hunter_base/hunter_base/bicycle_model.hpp
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/include/hunter_base/hunter_base/hunter_messenger.hpp
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/include/hunter_base/hunter_base/hunter_params.hpp
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/ament_index/resource_index/package_run_dependencies/hunter_base
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/ament_index/resource_index/parent_prefix_path/hunter_base
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/environment/ament_prefix_path.sh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/environment/ament_prefix_path.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/environment/path.sh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/environment/path.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/local_setup.bash
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/local_setup.sh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/local_setup.zsh
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/local_setup.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/package.dsv
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/ament_index/resource_index/packages/hunter_base
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/cmake/hunter_baseConfig.cmake
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/cmake/hunter_baseConfig-version.cmake
+-- Installing: /robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base/share/hunter_base/package.xml

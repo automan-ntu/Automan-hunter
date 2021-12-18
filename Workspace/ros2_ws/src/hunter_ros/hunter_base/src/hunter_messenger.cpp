@@ -13,42 +13,38 @@
  * Copyright (c) 2019 Ruixiang Du (rdu)
  */
 
-
-
-#include <tf2_ros/transform_broadcaster.h>
-
 #include <cmath>
 #include "hunter_base/hunter_messenger.hpp"
-#include "hunter_msgs/msg/HunterStatus.hpp"
+
 
 namespace westonrobot {
-HunterROSMessenger::HunterROSMessenger(rclcpp::Node::SharedPtr *node)
-    : hunter_(nullptr), node_(node) {}
 
-HunterROSMessenger::HunterROSMessenger(HunterBase *hunter, rclcpp::Node::SharedPtr *node)
+HunterROSMessenger::HunterROSMessenger(HunterBase *hunter, rclcpp::Node *node)
     : hunter_(hunter), node_(node) {}
 
 void HunterROSMessenger::SetupSubscription() {
   // odometry publisher
-  auto odom_publisher_ = node_->create_pulisher<nav_msgs::msg::Odometry>(odom_frame_, 50);
-  auto status_publisher_ =
+  odom_publisher_ = node_->create_publisher<nav_msgs::msg::Odometry>(odom_frame_, 50);
+  status_publisher_ =
       node_->create_publisher<hunter_msgs::msg::HunterStatus>("/hunter_status", 10);
 
   // cmd subscriber
-  auto motion_cmd_subscriber_ = node_->create_subcription<geometry_msgs::msg::Twist>(
-      "/cmd_vel", 5, std::bind(&HunterROSMessenger::TwistCmdCallback, this, _1));
-  auto integrator_reset_subscriber_ = node_->create_subcription<std_msgs::msg::Bool>(
+  motion_cmd_subscriber_ = node_->create_subscription<geometry_msgs::msg::Twist>(
+      "/cmd_vel", 5, std::bind(&HunterROSMessenger::TwistCmdCallback, this, std::placeholders::_1));
+  integrator_reset_subscriber_ = node_->create_subscription<std_msgs::msg::Bool>(
       "/reset_odom_integrator", 5,
-      std::bind(&HunterROSMessenger::ResetOdomIntegratorCallback, this, _1));
+      std::bind(&HunterROSMessenger::ResetOdomIntegratorCallback, this, std::placeholders::_1));
+
+  tf_broadcaster_ = std::make_shared<tf2_ros::TransformBroadcaster>(node_);
 }
 
 void HunterROSMessenger::ResetOdomIntegratorCallback(
-    const std_msgs::msg::Bool::ConstPtr &msg) {
+    const std_msgs::msg::Bool::SharedPtr msg) {
   if (msg->data) ResetOdometry();
 }
 
 void HunterROSMessenger::TwistCmdCallback(
-    const geometry_msgs::msg::Twist::ConstPtr &msg) {
+    const geometry_msgs::msg::Twist::SharedPtr msg) {
   double steer_cmd = msg->angular.z;
   if(steer_cmd > HunterParams::max_steer_angle_central)
     steer_cmd = HunterParams::max_steer_angle_central;
@@ -56,7 +52,7 @@ void HunterROSMessenger::TwistCmdCallback(
       steer_cmd = - HunterParams::max_steer_angle_central;
 
   // TODO add cmd limits here
-  if (!simulated_robot_) {
+  if (true) {
     double phi_i = ConvertCentralAngleToInner(msg->angular.z);
     // std::cout << "set steering angle: " << phi_i << std::endl;
     hunter_->SetMotionCommand(msg->linear.x, phi_i);
@@ -65,13 +61,6 @@ void HunterROSMessenger::TwistCmdCallback(
     current_twist_ = *msg.get();
   }
   // ROS_INFO("cmd received:%f, %f", msg->linear.x, msg->angular.z);
-}
-
-void HunterROSMessenger::GetCurrentMotionCmdForSim(double &linear,
-                                                   double &angular) {
-  std::lock_guard<std::mutex> guard(twist_mutex_);
-  linear = current_twist_.linear.x;
-  angular = current_twist_.angular.z;
 }
 
 double HunterROSMessenger::ConvertInnerAngleToCentral(double angle) {
@@ -108,8 +97,8 @@ double HunterROSMessenger::ConvertCentralAngleToInner(double angle) {
 }
 
 void HunterROSMessenger::PublishStateToROS() {
-  current_time_ = rclcpp::Time::now();
-  double dt = (current_time_ - last_time_).toSec();
+  current_time_ = node_->get_clock()->now();
+  double dt = (current_time_ - last_time_).seconds();
 
   static bool init_run = true;
   if (init_run) {
@@ -160,41 +149,17 @@ void HunterROSMessenger::PublishStateToROS() {
   last_time_ = current_time_;
 }
 
-void HunterROSMessenger::PublishSimStateToROS(double linear, double angular) {
-  current_time_ = rclcpp::Time::now();
-  double dt = 1.0 / sim_control_rate_;
-
-  // publish hunter state message
-  hunter_msgs::HunterStatus status_msg;
-
-  status_msg.header.stamp = current_time_;
-
-  // TODO should receive update from simulator
-  status_msg.linear_velocity = linear;
-  status_msg.steering_angle = angular;
-
-  status_msg.base_state = 0x00;
-  status_msg.control_mode = 0x01;
-  status_msg.fault_code = 0x00;
-  status_msg.battery_voltage = 29.5;
-
-  for (int i = 0; i < 3; ++i) {
-    status_msg.motor_states[i].current = 0;
-    status_msg.motor_states[i].rpm = 0;
-    status_msg.motor_states[i].temperature = 0;
-  }
-
-  status_publisher_->publish(status_msg);
-
-  // publish odometry and tf
-  PublishOdometryToROS(linear, angular, dt);
-}
-
 void HunterROSMessenger::ResetOdometry() {
   position_x_ = 0.0;
   position_y_ = 0.0;
   theta_ = 0.0;
 }
+
+geometry_msgs::msg::Quaternion HunterROSMessenger::createQuaternionMsgFromYaw(double yaw) {
+    tf2::Quaternion q;
+    q.setRPY(0, 0, yaw);
+    return tf2::toMsg(q);
+  }
 
 void HunterROSMessenger::PublishOdometryToROS(double linear, double angular,
                                               double dt) {
@@ -210,7 +175,7 @@ void HunterROSMessenger::PublishOdometryToROS(double linear, double angular,
   position_y_ = state[1];
   theta_ = state[2];
 
-  geometry_msgs::msg::Quaternion odom_quat = tf::createQuaternionMsgFromYaw(theta_);
+  geometry_msgs::msg::Quaternion odom_quat = createQuaternionMsgFromYaw(theta_);
 
   // publish tf transformation
   geometry_msgs::msg::TransformStamped tf_msg;
@@ -223,7 +188,7 @@ void HunterROSMessenger::PublishOdometryToROS(double linear, double angular,
   tf_msg.transform.translation.z = 0.0;
   tf_msg.transform.rotation = odom_quat;
 
-  tf_broadcaster_.sendTransform(tf_msg);
+  tf_broadcaster_->sendTransform(tf_msg);
 
   // publish odometry and tf messages
   nav_msgs::msg::Odometry odom_msg;

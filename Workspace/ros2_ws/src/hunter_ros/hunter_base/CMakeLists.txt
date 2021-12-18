@@ -13,48 +13,67 @@ find_package(rclcpp REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(geometry_msgs REQUIRED)
 
 find_package(hunter_msgs REQUIRED)
-find_package(wrp_sdk REQUIRED)
-#add_subdirectory(ascent)
+find_package(wrp_sdk REQUIRED )
 
-#ament_export_include_directories(include)
-#ament_export_libraries(hunter_messenger)
+#message("wrp_sdk's path: " ${wrp_sdk_INCLUDE_DIRS})
+#add_library(hunter_messenger  
+#    src/hunter_messenger.cpp 
+#    src/bicycle_model.cpp
+#  )
+#target_include_directories(hunter_messenger PUBLIC
+#    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include/>
+#    $<INSTALL_INTERFACE:include/>
+#    PRIVATE ${wrp_sdk_INCLUDE_DIRS}
+#    ${PROJECT_SOURCE_DIR}/ascent/include
+#  )
+#ament_target_dependencies(hunter_messenger
+#                      wrp_sdk
+#                      hunter_msgs
+#                      nav_msgs 
+#                      rclcpp 
+#                      std_msgs
+#                      geometry_msgs
+#                      )
 
-include_directories(include)
-include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include/"
-                    "${CMAKE_CURRENT_SOURCE_DIR}/ascent/include"
-                    )
+add_executable(hunter_base_node 
+              src/hunter_base_node.cpp
+              src/hunter_base_ros.cpp
+              src/hunter_messenger.cpp 
+              src/bicycle_model.cpp
+              )
+#target_link_libraries(hunter_base_node wrp_sdk)
 
-add_library(hunter_messenger STATIC 
-    src/hunter_messenger.cpp 
-    src/bicycle_model.cpp
-    )  
+target_include_directories(hunter_base_node PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include/>
+    $<INSTALL_INTERFACE:include/>
+    PRIVATE ${wrp_sdk_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/ascent/include
+  )
 
-target_link_libraries(hunter_messenger 
+ament_target_dependencies(hunter_base_node
                       hunter_msgs
-                      nav_msgs 
-                      rclcpp 
-                      std_msgs
-                      )
-
-add_executable(hunter_base_node src/hunter_base_node.cpp)
-
-target_link_libraries(hunter_base_node 
-                      hunter_messenger
                       wrp_sdk 
                       rclcpp 
                       std_msgs
+                      geometry_msgs
+                      nav_msgs
+                      tf2 
+                      tf2_ros
                       )
 
-add_executable(hunter_status_node src/hunter_status_node.cpp)
-target_link_libraries(hunter_status_node 
-                      hunter_messenger 
-                      wrp_sdk 
-                      rclcpp 
-                      std_msgs
-                      )
+#add_executable(hunter_status_node src/hunter_status_node.cpp)
+#ament_target_dependencies(hunter_status_node 
+#                      wrp_sdk 
+#                      rclcpp 
+#                      std_msgs
+#                      )
+install(TARGETS hunter_base_node
+  DESTINATION lib/${PROJECT_NAME})
 
 install(DIRECTORY include/${PROJECT_NAME}
   DESTINATION include/${PROJECT_NAME}

@@ -1,0 +1,124 @@
+[0.011s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24
+[0.036s] [35m[1mScanning dependencies of target hunter_base_node[0m
+[0.045s] [ 16%] [32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o[0m
+[0.063s] [ 33%] [32mBuilding CXX object CMakeFiles/hunter_base_node.dir/src/hunter_base_node.cpp.o[0m
+[0.064s] [ 50%] [32mBuilding CXX object CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o[0m
+[1.535s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25[m[K,
+[1.536s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17[m[K,
+[1.536s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+[1.536s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+[1.536s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10[m[K:
+[1.536s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.536s]    54 |       [01;35m[Kconst[m[K pointer operator->() const noexcept
+[1.536s]       |       [01;35m[K^~~~~[m[K
+[1.536s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.536s]   113 |       [01;35m[Kconst[m[K pointer operator->() const
+[1.536s]       |       [01;35m[K^~~~~[m[K
+[1.538s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17[m[K,
+[1.539s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26[m[K,
+[1.539s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+[1.539s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+[1.539s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10[m[K:
+[1.539s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.539s]    25 |    constexpr [01;35m[Kconst[m[K value_t cx(long double v) { return static_cast<value_t>(v); }
+[1.539s]       |              [01;35m[K^~~~~[m[K
+[1.539s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.539s]    26 |    constexpr [01;35m[Kconst[m[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }
+[1.539s]       |              [01;35m[K^~~~~[m[K
+[1.540s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25[m[K,
+[1.540s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17[m[K,
+[1.540s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+[1.540s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17[m[K:
+[1.540s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.540s]    54 |       [01;35m[Kconst[m[K pointer operator->() const noexcept
+[1.540s]       |       [01;35m[K^~~~~[m[K
+[1.540s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.540s]   113 |       [01;35m[Kconst[m[K pointer operator->() const
+[1.540s]       |       [01;35m[K^~~~~[m[K
+[1.543s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17[m[K,
+[1.543s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26[m[K,
+[1.543s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+[1.543s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17[m[K:
+[1.543s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.543s]    25 |    constexpr [01;35m[Kconst[m[K value_t cx(long double v) { return static_cast<value_t>(v); }
+[1.544s]       |              [01;35m[K^~~~~[m[K
+[1.544s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.544s]    26 |    constexpr [01;35m[Kconst[m[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }
+[1.544s]       |              [01;35m[K^~~~~[m[K
+[1.570s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10[m[K:
+[1.570s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:39:8:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kint[m[K’
+[1.570s]    39 |   std::[01;31m[Kint[m[K control_rate_;
+[1.571s]       |        [01;31m[K^~~[m[K
+[1.575s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:[m[K In member function ‘[01m[Kvoid westonrobot::HunterBaseRos::LoadParameters()[m[K’:
+[1.575s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:29:47:[m[K [01;31m[Kerror: [m[K‘[01m[Kcontrol_rate_[m[K’ was not declared in this scope
+[1.575s]    29 |   this->get_parameter_or<int>("control_rate", [01;31m[Kcontrol_rate_[m[K, 50);
+[1.576s]       |                                               [01;31m[K^~~~~~~~~~~~~[m[K
+[1.576s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:[m[K In member function ‘[01m[Kvoid westonrobot::HunterBaseRos::Run()[m[K’:
+[1.577s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:47:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kwestonrobot::HunterROSMessenger[m[K’ is not a template
+[1.577s]    47 |     std::unique_ptr<[01;31m[KHunterROSMessenger[m[K<HunterBase>> messenger =
+[1.577s]       |                     [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.577s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25[m[K,
+[1.577s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17[m[K,
+[1.577s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+[1.577s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+[1.577s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_node.cpp:18[m[K:
+[1.577s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.577s]    54 |       [01;35m[Kconst[m[K pointer operator->() const noexcept
+[1.577s]       |       [01;35m[K^~~~~[m[K
+[1.578s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.578s]   113 |       [01;35m[Kconst[m[K pointer operator->() const
+[1.578s]       |       [01;35m[K^~~~~[m[K
+[1.580s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:48:29:[m[K [01;31m[Kerror: [m[K‘[01m[Kwestonrobot::HunterROSMessenger[m[K’ is not a template
+[1.580s]    48 |             std::unique_ptr<[01;31m[KHunterROSMessenger[m[K<HunterBase>>(
+[1.580s]       |                             [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.580s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:49:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kwestonrobot::HunterROSMessenger[m[K’ is not a template
+[1.581s]    49 |                 new [01;31m[KHunterROSMessenger[m[K<HunterBase>(robot_, this));
+[1.581s]       |                     [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.581s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17[m[K,
+[1.581s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26[m[K,
+[1.581s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+[1.581s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+[1.581s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_node.cpp:18[m[K:
+[1.581s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.581s]    25 |    constexpr [01;35m[Kconst[m[K value_t cx(long double v) { return static_cast<value_t>(v); }
+[1.582s]       |              [01;35m[K^~~~~[m[K
+[1.582s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.582s]    26 |    constexpr [01;35m[Kconst[m[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }
+[1.582s]       |              [01;35m[K^~~~~[m[K
+[1.582s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:49:64:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[Kwestonrobot::HunterROSMessenger::HunterROSMessenger(westonrobot::HunterBase&, westonrobot::HunterBaseRos*)[m[K’
+[1.582s]    49 |                 new HunterROSMessenger<HunterBase>(robot_, this[01;31m[K)[m[K);
+[1.582s]       |                                                                [01;31m[K^[m[K
+[1.582s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+[1.582s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10[m[K:
+[1.582s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:59:3:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kwestonrobot::HunterROSMessenger::HunterROSMessenger(westonrobot::HunterBase*, rclcpp::Node*)[m[K’
+[1.582s]    59 |   [01;36m[KHunterROSMessenger[m[K(HunterBase *hunter, rclcpp::Node *node);
+[1.583s]       |   [01;36m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.583s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:59:34:[m[K [01;36m[Knote: [m[K  no known conversion for argument 1 from ‘[01m[Kwestonrobot::HunterBase[m[K’ to ‘[01m[Kwestonrobot::HunterBase*[m[K’
+[1.583s]    59 |   HunterROSMessenger([01;36m[KHunterBase *hunter[m[K, rclcpp::Node *node);
+[1.583s]       |                      [01;36m[K~~~~~~~~~~~~^~~~~~[m[K
+[1.583s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:58:12:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kwestonrobot::HunterROSMessenger::HunterROSMessenger(rclcpp::Node*)[m[K’
+[1.583s]    58 |   explicit [01;36m[KHunterROSMessenger[m[K(rclcpp::Node *node);
+[1.583s]       |            [01;36m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.583s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:58:12:[m[K [01;36m[Knote: [m[K  candidate expects 1 argument, 2 provided
+[1.583s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:56:19:[m[K [01;31m[Kerror: [m[Kbase operand of ‘[01m[K->[m[K’ has non-pointer type ‘[01m[Kwestonrobot::HunterBase[m[K’
+[1.583s]    56 |         if (robot_[01;31m[K->[m[KConnect(port_name_)) {
+[1.583s]       |                   [01;31m[K^~[m[K
+[1.615s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_node.cpp:18[m[K:
+[1.615s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:39:8:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kint[m[K’
+[1.615s]    39 |   std::[01;31m[Kint[m[K control_rate_;
+[1.615s]       |        [01;31m[K^~~[m[K
+[1.695s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17[m[K:
+[1.695s] /robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp: In instantiation of ‘[01m[Kasc::state_t westonrobot::SystemPropagator<SystemModel>::Propagate(asc::state_t, typename SystemModel::control_t, double, double, double) [with SystemModel = westonrobot::BicycleKinematics; asc::state_t = std::vector<double, std::allocator<double> >; typename SystemModel::control_t = westonrobot::BicycleKinematics::CtrlInput][m[K’:
+[1.695s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:173:73:[m[K   required from here
+[1.695s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:45:31:[m[K [01;31m[Kerror: [m[K‘[01m[KSystemMosdel[m[K’ was not declared in this scope
+[1.695s]    45 |       integrator_([01;31m[KSystemMosdel(u)[m[K, x, t, dt);
+[1.695s]       |                   [01;31m[K~~~~~~~~~~~~^~~[m[K
+[1.920s] make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:76: CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o] Error 1
+[1.920s] make[2]: *** Waiting for unfinished jobs....
+[1.962s] make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:63: CMakeFiles/hunter_base_node.dir/src/hunter_base_node.cpp.o] Error 1
+[1.962s] make[1]: *** [CMakeFiles/Makefile2:80: CMakeFiles/hunter_base_node.dir/all] Error 2
+[1.962s] make[1]: *** Waiting for unfinished jobs....
+[3.232s] make[2]: *** [CMakeFiles/hunter_messenger.dir/build.make:63: CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o] Error 1
+[3.232s] make[1]: *** [CMakeFiles/Makefile2:107: CMakeFiles/hunter_messenger.dir/all] Error 2
+[3.232s] make: *** [Makefile:141: all] Error 2
+[3.234s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24

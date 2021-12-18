@@ -1,0 +1,81 @@
+[0.010s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake /robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base -DCMAKE_INSTALL_PREFIX=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base
+[0.042s] -- The C compiler identification is GNU 9.3.0
+[0.073s] -- The CXX compiler identification is GNU 9.3.0
+[0.075s] -- Check for working C compiler: /usr/bin/cc
+[0.117s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.117s] -- Detecting C compiler ABI info
+[0.161s] -- Detecting C compiler ABI info - done
+[0.168s] -- Detecting C compile features
+[0.168s] -- Detecting C compile features - done
+[0.170s] -- Check for working CXX compiler: /usr/bin/c++
+[0.215s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[0.216s] -- Detecting CXX compiler ABI info
+[0.260s] -- Detecting CXX compiler ABI info - done
+[0.268s] -- Detecting CXX compile features
+[0.268s] -- Detecting CXX compile features - done
+[0.269s] -- Found ament_cmake: 0.9.9 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.284s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.10", minimum required is "3") 
+[0.284s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.423s] -- Found rclcpp: 2.4.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.451s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.455s] -- Found rosidl_adapter: 1.2.1 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.504s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[0.518s] -- Found FastRTPS: /opt/ros/foxy/include  
+[0.563s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.598s] -- Found rmw_implementation_cmake: 1.0.3 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.599s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.600s] -- Looking for pthread.h
+[0.641s] -- Looking for pthread.h - found
+[0.641s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[0.680s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[0.680s] -- Looking for pthread_create in pthreads
+[0.713s] -- Looking for pthread_create in pthreads - not found
+[0.713s] -- Looking for pthread_create in pthread
+[0.750s] -- Looking for pthread_create in pthread - found
+[0.751s] -- Found Threads: TRUE  
+[0.852s] -- Found sensor_msgs: 2.0.4 (/opt/ros/foxy/share/sensor_msgs/cmake)
+[0.932s] -- Found nav_msgs: 2.0.4 (/opt/ros/foxy/share/nav_msgs/cmake)
+[0.981s] -- Found tf2: 0.13.12 (/opt/ros/foxy/share/tf2/cmake)
+[0.988s] -- Found tf2_ros: 0.13.12 (/opt/ros/foxy/share/tf2_ros/cmake)
+[1.213s] -- Found hunter_msgs: 0.0.0 (/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/share/hunter_msgs/cmake)
+[1.237s] -- Found wrp_sdk: 0.3.3 (/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake)
+[1.239s] wrp_sdk's path: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/
+[1.239s] hunter_msgs's path: /opt/ros/foxy/include/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/include
+[1.277s] -- Configuring done
+[1.286s] -- Generating done
+[1.287s] -- Build files have been written to: /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base
+[1.291s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake /robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base -DCMAKE_INSTALL_PREFIX=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_base
+[1.293s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24
+[1.317s] [35m[1mScanning dependencies of target hunter_messenger[0m
+[1.343s] [ 14%] [32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o[0m
+[1.344s] [ 28%] [32mBuilding CXX object CMakeFiles/hunter_messenger.dir/src/bicycle_model.cpp.o[0m
+[1.416s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_messenger.cpp:17[m[K:
+[1.416s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:25:10:[m[K [01;31m[Kfatal error: [m[K/wrp_sdk/platforms/hunter/hunter_base.hpp: No such file or directory
+[1.416s]    25 | #include [01;31m[K"/wrp_sdk/platforms/hunter/hunter_base.hpp"[m[K
+[1.416s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.416s] compilation terminated.
+[1.417s] make[2]: *** [CMakeFiles/hunter_messenger.dir/build.make:63: CMakeFiles/hunter_messenger.dir/src/hunter_messenger.cpp.o] Error 1
+[1.417s] make[2]: *** Waiting for unfinished jobs....
+[1.564s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25[m[K,
+[1.564s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17[m[K,
+[1.564s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/bicycle_model.hpp:19[m[K,
+[1.564s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/bicycle_model.cpp:10[m[K:
+[1.564s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.564s]    54 |       [01;35m[Kconst[m[K pointer operator->() const noexcept
+[1.564s]       |       [01;35m[K^~~~~[m[K
+[1.564s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.564s]   113 |       [01;35m[Kconst[m[K pointer operator->() const
+[1.564s]       |       [01;35m[K^~~~~[m[K
+[1.580s] In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17[m[K,
+[1.580s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26[m[K,
+[1.580s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/bicycle_model.hpp:19[m[K,
+[1.580s]                  from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/bicycle_model.cpp:10[m[K:
+[1.581s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.581s]    25 |    constexpr [01;35m[Kconst[m[K value_t cx(long double v) { return static_cast<value_t>(v); }
+[1.581s]       |              [01;35m[K^~~~~[m[K
+[1.581s] [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+[1.581s]    26 |    constexpr [01;35m[Kconst[m[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }
+[1.581s]       |              [01;35m[K^~~~~[m[K
+[1.613s] make[1]: *** [CMakeFiles/Makefile2:109: CMakeFiles/hunter_messenger.dir/all] Error 2
+[1.613s] make: *** [Makefile:141: all] Error 2
+[1.614s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base' returned '2': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy LD_LIBRARY_PATH=/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/lib:/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib:/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64 /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/hunter_base -- -j24 -l24

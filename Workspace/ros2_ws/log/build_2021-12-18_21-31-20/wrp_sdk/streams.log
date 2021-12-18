@@ -1,0 +1,54 @@
+[0.009s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+[0.039s] [100%] Built target wrp_sdk
+[0.045s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --build /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk -- -j24 -l24
+[0.072s] Invoking command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk
+[0.076s] -- Install configuration: "Release"
+[0.076s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/library_path.sh
+[0.076s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/library_path.dsv
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/lib/libwrp_sdk.a
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/hunter
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/hunter/hunter_base.hpp
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/hunter/hunter_types.hpp
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/hunter/hunter_can_parser.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/hunter/hunter_protocol.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/tracer
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/tracer/tracer_can_parser.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/tracer/tracer_protocol.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/tracer/tracer_base.hpp
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/tracer/tracer_types.hpp
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/scout
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/scout/scout_can_parser.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/scout/scout_protocol.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/scout/scout_base.hpp
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/scout/scout_types.hpp
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/scout/scout_uart_parser.h
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/common
+[0.077s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/platforms/common/mobile_base.hpp
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/asyncio
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/asyncio/device_error.hpp
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/asyncio/async_serial.hpp
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/asyncio/async_can.hpp
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/wrp_sdk/wrp_sdk/asyncio/msg_buffer.hpp
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/package_run_dependencies/wrp_sdk
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/parent_prefix_path/wrp_sdk
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.sh
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/ament_prefix_path.dsv
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/path.sh
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/environment/path.dsv
+[0.078s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.bash
+[0.079s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.sh
+[0.079s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.zsh
+[0.079s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/local_setup.dsv
+[0.079s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.dsv
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/ament_index/resource_index/packages/wrp_sdk
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdk_exportExport.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdk_exportExport-release.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/ament_cmake_export_include_directories-extras.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/ament_cmake_export_libraries-extras.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/ament_cmake_export_targets-extras.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/cmake/wrp_sdkConfig-version.cmake
+[0.080s] -- Up-to-date: /robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/share/wrp_sdk/package.xml
+[0.080s] Invoked command in '/robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/opt/ros/foxy /usr/bin/cmake --install /robot/Automan-hunter/Workspace/ros2_ws/build/wrp_sdk

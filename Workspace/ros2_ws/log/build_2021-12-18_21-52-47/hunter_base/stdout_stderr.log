@@ -1,0 +1,33 @@
+[35m[1mScanning dependencies of target hunter_base_node[0m
+[ 33%] [32mBuilding CXX object CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o[0m
+In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Recorder.h:25[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:17[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10[m[K:
+[01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:54:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   54 |       [01;35m[Kconst[m[K pointer operator->() const noexcept
+      |       [01;35m[K^~~~~[m[K
+[01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/containers/stack.h:113:7:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+  113 |       [01;35m[Kconst[m[K pointer operator->() const
+      |       [01;35m[K^~~~~[m[K
+In file included from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/integrators/RK2.h:17[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Ascent.h:26[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_messenger.hpp:27[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/hunter_base/hunter_base_ros.hpp:23[m[K,
+                 from [01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/src/hunter_base_ros.cpp:10[m[K:
+[01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:25:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   25 |    constexpr [01;35m[Kconst[m[K value_t cx(long double v) { return static_cast<value_t>(v); }
+      |              [01;35m[K^~~~~[m[K
+[01m[K/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/ascent/include/ascent/Utility.h:26:14:[m[K [01;35m[Kwarning: [m[Ktype qualifiers ignored on function return type [[01;35m[K-Wignored-qualifiers[m[K]
+   26 |    constexpr [01;35m[Kconst[m[K value_t operator"" _v(long double v) { return static_cast<value_t>(v); }
+      |              [01;35m[K^~~~~[m[K
+[ 66%] [32m[1mLinking CXX executable hunter_base_node[0m
+/usr/bin/ld: CMakeFiles/hunter_base_node.dir/src/hunter_base_ros.cpp.o: in function `westonrobot::HunterBaseRos::Run()':
+hunter_base_ros.cpp:(.text+0xb94): undefined reference to `westonrobot::HunterROSMessenger::HunterROSMessenger(westonrobot::HunterBase*, rclcpp::Node*)'
+/usr/bin/ld: hunter_base_ros.cpp:(.text+0xcc2): undefined reference to `westonrobot::HunterROSMessenger::SetupSubscription()'
+/usr/bin/ld: hunter_base_ros.cpp:(.text+0xd48): undefined reference to `westonrobot::HunterROSMessenger::PublishStateToROS()'
+collect2: error: ld returned 1 exit status
+make[2]: *** [CMakeFiles/hunter_base_node.dir/build.make:192: hunter_base_node] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/hunter_base_node.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

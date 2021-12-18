@@ -7,7 +7,7 @@
  * Copyright (c) 2019 Ruixiang Du (rdu)
  */
 
-#include "wrp_sdk/platforms/hunter/hunter_base.hpp"
+#include "wrp_sdk/wrp_sdk/platforms/hunter/hunter_base.hpp"
 
 using namespace westonrobot;
 

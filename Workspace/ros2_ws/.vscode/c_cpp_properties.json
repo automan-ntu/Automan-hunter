@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/robot/Automan-hunter/Workspace/ros2_ws/install/wrp_sdk/include/**",
+        "/robot/Automan-hunter/Workspace/ros2_ws/install/hunter_msgs/include/**",
+        "/opt/ros/foxy/include/**",
+        "/robot/Automan-hunter/Workspace/ros2_ws/src/hunter_ros/hunter_base/include/**",
+        "/robot/Automan-hunter/Workspace/ros2_ws/src/wrp_sdk/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
