@@ -5,4 +5,4 @@
 # This file includes the relevant testing commands required for 
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
-subdirs("navigation/hunter_move_base")
+subdirs("darknet_ros/darknet_ros")

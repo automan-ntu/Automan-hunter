@@ -70,8 +70,8 @@ private:
 };
 
 socialDistance::socialDistance():
-depth_sub_(nh_, "/d435_front/aligned_depth_to_color/image_raw", 10),
-img_sub_(nh_, "/d435_front/color/image_raw", 10),
+depth_sub_(nh_, "/d435_rear/aligned_depth_to_color/image_raw", 10),
+img_sub_(nh_, "/d435_rear/color/image_raw", 10),
 sync(sync_pol(10), depth_sub_, img_sub_)
 {
     nh_.param("minimum_probability", minimum_probability_, minimum_probability_);
