@@ -67,7 +67,7 @@ namespace hunter_move_base
 
         /* we dont want the hunter drive automatically*/
     	//as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
-
+        as_pilot_ = new MoveBaseActionServer(ros::NodeHandle(), "AGV_flag", boost::bind(&MoveBase::executeCb, this, _1), false);
         as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
 
         ros::NodeHandle private_nh("~");
@@ -1233,11 +1233,16 @@ namespace hunter_move_base
 
     void MoveBase::executeCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal)
     {
+        ROS_ERROR("111111");
+
         if (!isQuaternionValid(move_base_goal->target_pose.pose.orientation))
         {
+            ROS_ERROR("222222");
             as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on goal because it was sent with an invalid quaternion");
             return;
         }
+
+        return;
 
         geometry_msgs::PoseStamped goal = goalToGlobalFrame(move_base_goal->target_pose);
 
