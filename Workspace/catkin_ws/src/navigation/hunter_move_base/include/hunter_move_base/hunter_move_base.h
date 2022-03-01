@@ -282,7 +282,7 @@ namespace hunter_move_base
 		// variables	
         tf2_ros::Buffer &tf_;
 
-        MoveBaseActionServer *as_;
+        MoveBaseActionServer *as_, *as_pilot_;
 
         boost::shared_ptr<nav_core::BaseLocalPlanner> tc_;
         costmap_2d::Costmap2DROS *planner_costmap_ros_, *controller_costmap_ros_;
