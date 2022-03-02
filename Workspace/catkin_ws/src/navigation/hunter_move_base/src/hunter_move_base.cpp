@@ -209,7 +209,7 @@ namespace hunter_move_base
         dynamic_reconfigure::Server<hunter_move_base::MoveBaseConfig>::CallbackType cb = boost::bind(&MoveBase::reconfigureCB, this, _1, _2);
         dsrv_->setCallback(cb);
 
-        costmap_model_ = std::make_shared<base_local_planner::CostmapModel>(*planner_costmap_ros_->getCostmap());
+        costmap_model_ = std::make_shared<base_local_planner::CostmapModel>(*controller_costmap_ros_->getCostmap());
 
         // load costmap converter for obstacle classifying
         ros::NodeHandle nh_("~/" + name_);
@@ -903,7 +903,9 @@ namespace hunter_move_base
 		                        double robot_inscribed_radius = 0.0; 
 		                        double robot_circumscribed_radius = 0.0;
 		                        costmap_2d::calculateMinAndMaxDistances(footprint, robot_inscribed_radius, robot_circumscribed_radius);*/
-		                        footprint_cost = costmap_model_->footprintCost(px, py, theta, footprint);
+								//clear_costmaps_srv_;		                        
+								footprint_cost = costmap_model_->footprintCost(px, py, theta, footprint);
+								ROS_WARN("the footprintcost is%f",footprint_cost);
 		                    }
 
 		                    double critical_cost = 1.0; //1.0 * costmap_2d::INSCRIBED_INFLATED_OBSTACLE;
@@ -919,6 +921,9 @@ namespace hunter_move_base
 
 		                    if (central_cost >= critical_cost || footprint_cost < 0.0)
 		                    {
+								
+								ROS_WARN(" the critical_cost is %f",critical_cost);							
+								ROS_WARN(" IM here, the central_cost is %f, the footprint_cost is %f ",central_cost,footprint_cost);
 								ROS_WARN("Oscar::The goal point is: %d", int(it - pose_list.begin()));
 		                        //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
 		                        //ROS_WARN("Oscar::Px and Py and Index is:%f, %f, %d", px, py, (int)(it - pose_list.begin()));
@@ -1034,25 +1039,27 @@ namespace hunter_move_base
 						}
 					}
 
-					ROS_WARN("The long index is %d, %d, The lat index is: %d, %d", safe_stop_vec_.front(), safe_stop_vec_.back(), power_steering_vec_.front(), power_steering_vec_.back());
+					
+					//ROS_WARN("The long index is %d, %d, The lat index is: %d, %d", safe_stop_vec_.front(), safe_stop_vec_.back(), power_steering_vec_.front(), power_steering_vec_.back());
 
 					if (long_index > 0)
 					{
 						if (safe_stop)
 						{
+							ROS_WARN("safestop on");
 							planner_goal_ = predicted_goal_pose;					
 						}
 						else
 						{
 							planner_goal_ = prev_goal_pose_;
 						}
-                        ROS_WARN("Oscar::LONG->The planner goal pose is:%f,%f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
+                        //ROS_WARN("Oscar::LONG->The planner goal pose is:%f,%f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
 					}
 					else if (lat_index > 0)
 					{
 						ROS_WARN("real pwersteering on");						
 						planner_goal_ = global_goal_;
-						ROS_WARN("Oscar::LAT->The planner goal pose is:%f, %f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
+						//ROS_WARN("Oscar::LAT->The planner goal pose is:%f, %f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
 					}
 					else
 					{
