@@ -53,6 +53,8 @@ namespace hunter_move_base
 {
 
     MoveBase::MoveBase(tf2_ros::Buffer &tf) : tf_(tf),
+											  as_agv_(NULL),
+											  as_copilot_(NULL),
                                               as_(NULL),
                                               planner_costmap_ros_(NULL), controller_costmap_ros_(NULL),
                                               bgp_loader_("nav_core", "nav_core::BaseGlobalPlanner"),
@@ -61,15 +63,15 @@ namespace hunter_move_base
                                               costmap_converter_loader_("costmap_converter", "costmap_converter::BaseCostmapToPolygons"),
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
-                                              new_global_plan_(false), adas_trigger_(false), step_size_(5), buffer_size_(2), predict_time_(4.0), 
+                                              new_global_plan_(false), adas_trigger_(false), AGV_flag_(false), global_goal_flag_(false), step_size_(5), buffer_size_(2), predict_time_(4.0), 
 											  target_margin_(8), critical_margin_(5), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
     {
 
         /* we dont want the hunter drive automatically*/
-    	//as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
-        as_pilot_ = new MoveBaseActionServer(ros::NodeHandle(), "AGV_flag", boost::bind(&MoveBase::executeCb, this, _1), false);
-
-        as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
+    	as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::executeCb, this, _1), false);
+        //as_ = new MoveBaseActionServer(ros::NodeHandle(), "move_base", boost::bind(&MoveBase::SetGoalPoint, this, _1), false);
+		as_copilot_ = new MoveBaseActionServer(ros::NodeHandle(), "CoPilot", boost::bind(&MoveBase::copilotCb, this, _1), false);
+		as_agv_ = new MoveBaseActionServer(ros::NodeHandle(), "AGV", boost::bind(&MoveBase::agv, this, _1), false);
 
         ros::NodeHandle private_nh("~");
         ros::NodeHandle nh;
@@ -200,6 +202,8 @@ namespace hunter_move_base
 
         //we're all set up now so we can start the action server
         as_->start();
+		as_agv_->start();
+		as_copilot_->start();
 
         dsrv_ = new dynamic_reconfigure::Server<hunter_move_base::MoveBaseConfig>(ros::NodeHandle("~"));
         dynamic_reconfigure::Server<hunter_move_base::MoveBaseConfig>::CallbackType cb = boost::bind(&MoveBase::reconfigureCB, this, _1, _2);
@@ -727,8 +731,8 @@ namespace hunter_move_base
         while (n.ok())
         {
             //check if we should run the planner (the mutex is locked)
-            while (wait_for_wake || !runPlanner_)
-            {
+            while ((wait_for_wake || !runPlanner_) && !AGV_flag_) //copilot
+            {	//ROS_WARN("We are here 1");
                 ros::Time start_time_ = ros::Time::now();
                 if (user_goal_reached_)
                 {
@@ -1002,10 +1006,12 @@ namespace hunter_move_base
 
 					if (std::fabs(force_human_avg) > 1.0)
 					{
+						ROS_WARN("pwersteering on");						
 						power_steering = true;
 					}
 
 					power_steering_vec_.push_back(power_steering);
+
 
 					// Start to evaluate whether ADAS is needed.
 					int long_index = 0;
@@ -1044,6 +1050,7 @@ namespace hunter_move_base
 					}
 					else if (lat_index > 0)
 					{
+						ROS_WARN("real pwersteering on");						
 						planner_goal_ = global_goal_;
 						ROS_WARN("Oscar::LAT->The planner goal pose is:%f, %f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
 					}
@@ -1136,12 +1143,16 @@ namespace hunter_move_base
                 }
 
                 ROS_WARN("Oscar***User goal haven't reached.");
+            }
 
+			while ((wait_for_wake || !runPlanner_) && AGV_flag_) //agv
+			{	//ROS_WARN("We are here 2");
                 //if we should not be running the planner then suspend this thread
                 ROS_DEBUG_NAMED("move_base_plan_thread", "Planner thread is suspending");
                 planner_cond_.wait(lock);
                 wait_for_wake = false;
-            }
+			}
+
             ros::Time start_time = ros::Time::now();
 
             //time to plan! get a copy of the goal and unlock the mutex
@@ -1151,8 +1162,8 @@ namespace hunter_move_base
 
             //run planner
             planner_plan_->clear();
-            bool n_ok = n.ok();
-            bool makePlann = makePlan(temp_goal, *planner_plan_);
+            //bool n_ok = n.ok();
+            //bool makePlann = makePlan(temp_goal, *planner_plan_);
             bool gotPlan = n.ok() && makePlan(temp_goal, *planner_plan_);
 
             if (gotPlan)
@@ -1194,8 +1205,9 @@ namespace hunter_move_base
                     //we'll move into our obstacle clearing mode
                     state_ = CLEARING;
                     runPlanner_ = false; // proper solution for issue #523
-                    publishZeroVelocity();
-                    recovery_trigger_ = PLANNING_R;
+                    //publishZeroVelocity();
+                    publishZeroVelocityToSimulator();
+					recovery_trigger_ = PLANNING_R;
                 }
                 lock.unlock();
             }
@@ -1207,7 +1219,7 @@ namespace hunter_move_base
             if (planner_frequency_ > 0)
             {
                 double time_interval = ros::Time::now().toSec() - start_time.toSec();
-                ROS_WARN("Oscar::The time of planthread is:%.9f", time_interval);
+                //ROS_WARN("Oscar::The time of planthread is:%.9f", time_interval);
                 ros::Duration sleep_time = (start_time + ros::Duration(1.0 / planner_frequency_)) - ros::Time::now();
                 //ROS_WARN("OScar::The planner frequency and sleep_time is:, %.3lf, %.9f", planner_frequency_, sleep_time.toSec());
                 if (sleep_time > ros::Duration(0.0))
@@ -1221,36 +1233,64 @@ namespace hunter_move_base
 
     void MoveBase::SetGoalPoint(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal)
     {
+		ROS_WARN("99999");
         if (!isQuaternionValid(move_base_goal->target_pose.pose.orientation))
         {
             as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on goal because it was sent with an invalid quaternion");
             return;
         }
-
+		global_goal_flag_ = true;
         global_goal_ = goalToGlobalFrame(move_base_goal->target_pose);
         global_goal_pub_.publish(global_goal_);
-        as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Set Global Goal.");
+        as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Set Global Goal for copilot.");
     }
+
+    void MoveBase::copilotCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal)
+    {
+		boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
+		AGV_flag_ = false;
+		lock.unlock();
+		ROS_WARN("Activate Co-Pilot mode, AGV_flag is:%f", AGV_flag_);
+		as_copilot_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Activate copilot.");
+	}
+
+    void MoveBase::agv(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal)
+    {
+		boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
+		AGV_flag_ = true;
+		lock.unlock();
+		as_agv_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Activate AGV.");
+	}
 
     void MoveBase::executeCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal)
     {
-        ROS_ERROR("11111");
-
         if (!isQuaternionValid(move_base_goal->target_pose.pose.orientation))
         {
-            ROS_ERROR("22222");
+            ROS_WARN("22222");
             as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on goal because it was sent with an invalid quaternion");
             return;
         }
+        boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
+        global_goal_ = goalToGlobalFrame(move_base_goal->target_pose);
+		lock.unlock();
+        global_goal_pub_.publish(global_goal_);
 
-        return;
-
+        ROS_WARN("11111");
+		while (!AGV_flag_)
+		{
+			ROS_WARN("Aborting on goal because we are in COPILOT mode.");
+			ros::Duration(1).sleep();
+			as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on AGV goal because we are in COPILOT mode.");
+			return;
+		}		
+		ROS_WARN("Go!");
         geometry_msgs::PoseStamped goal = goalToGlobalFrame(move_base_goal->target_pose);
 
-        publishZeroVelocity();
+		publishZeroVelocityToSimulator();
+        //publishZeroVelocity();
         //we have a goal so start the planner
-        boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
-        planner_goal_ = goal;
+		lock.lock();
+		planner_goal_ = goal;
         runPlanner_ = true;
         user_goal_reached_ = false;
         planner_cond_.notify_one();
@@ -1287,7 +1327,7 @@ namespace hunter_move_base
             if (as_->isPreemptRequested())
             {
                 if (as_->isNewGoalAvailable())
-                {
+                {   ROS_WARN("New Goal!");
                     //if we're active and a new goal is available, we'll accept it, but we won't shut anything down
                     move_base_msgs::MoveBaseGoal new_goal = *as_->acceptNewGoal();
 
@@ -1311,6 +1351,7 @@ namespace hunter_move_base
                     lock.unlock();
 
                     //publish the goal point to the visualizer
+					ROS_WARN("move_base has received a goal of x: %.2f, y: %.2f", goal.pose.position.x, goal.pose.position.y);
                     ROS_DEBUG_NAMED("move_base", "move_base has received a goal of x: %.2f, y: %.2f", goal.pose.position.x, goal.pose.position.y);
                     current_goal_pub_.publish(goal);
 
@@ -1336,7 +1377,8 @@ namespace hunter_move_base
 
             //we also want to check if we've changed global frames because we need to transform our goal pose
             if (goal.header.frame_id != planner_costmap_ros_->getGlobalFrameID())
-            {
+            {	ROS_WARN("goal frame id is:%f", goal.header.frame_id);
+				ROS_WARN("planner frame id is:%f", planner_costmap_ros_->getGlobalFrameID());
                 goal = goalToGlobalFrame(goal);
 
                 //we want to go back to the planning state for the next execution cycle
@@ -1374,7 +1416,7 @@ namespace hunter_move_base
             //check if execution of the goal has completed in some way
 
             ros::WallDuration t_diff = ros::WallTime::now() - start;
-            ROS_WARN("Oscar::Full control cycle time: %.9f\n", t_diff.toSec());
+            //ROS_WARN("Oscar::Full control cycle time: %.9f\n", t_diff.toSec());
             ROS_DEBUG_NAMED("move_base", "Full control cycle time: %.9f\n", t_diff.toSec());
 
             r.sleep();
@@ -1430,8 +1472,9 @@ namespace hunter_move_base
         if (!controller_costmap_ros_->isCurrent())
         {
             ROS_WARN("[%s]:Sensor data is out of date, we're not going to allow commanding of the base for safety", ros::this_node::getName().c_str());
-            publishZeroVelocity();
-            return false;
+            //publishZeroVelocity();
+            publishZeroVelocityToSimulator();
+			return false;
         }
 
         //if we have a new plan then grab it and give it to the controller
@@ -1461,7 +1504,6 @@ namespace hunter_move_base
                 lock.lock();
                 runPlanner_ = false;
                 lock.unlock();
-
                 as_->setAborted(move_base_msgs::MoveBaseResult(), "Failed to pass global plan to the controller.");
                 return true;
             }
@@ -1472,7 +1514,7 @@ namespace hunter_move_base
         }
         else
         {
-            ROS_WARN("Oscar//////No new global plan.");
+            //ROS_WARN("Oscar//////No new global plan.");
         }
 
         //the move_base state machine, handles the control logic for navigation
@@ -1505,8 +1547,7 @@ namespace hunter_move_base
                 runPlanner_ = false;
                 user_goal_reached_ = true;
                 lock.unlock();
-
-                as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Goal reached.");
+				as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Set Global Goal for copilot.");
                 return true;
             }
 
@@ -1514,8 +1555,9 @@ namespace hunter_move_base
             if (oscillation_timeout_ > 0.0 &&
                 last_oscillation_reset_ + ros::Duration(oscillation_timeout_) < ros::Time::now())
             {
-                publishZeroVelocity();
-                state_ = CLEARING;
+                //publishZeroVelocity();
+				publishZeroVelocityToSimulator();
+				state_ = CLEARING;
                 recovery_trigger_ = OSCILLATION_R;
             }
 
@@ -1527,13 +1569,14 @@ namespace hunter_move_base
                     ROS_DEBUG_NAMED("move_base", "Got a valid command from the local planner: %.3lf, %.3lf, %.3lf",
                                     cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
 
-                    ROS_WARN("Oscar::Teb_ the velocity is:%.3lf, %.3lf, %.3lf",
-                             cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
+                    //ROS_WARN("Oscar::Teb_ the velocity is:%.3lf, %.3lf, %.3lf",
+                    //         cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
 
                     last_valid_control_ = ros::Time::now();
                     //make sure that we send the velocity command to the base
-                    vel_pub_.publish(cmd_vel);
-                    if (recovery_trigger_ == CONTROLLING_R)
+                    //vel_pub_.publish(cmd_vel);
+                    vel_to_sim_pub_.publish(cmd_vel);
+					if (recovery_trigger_ == CONTROLLING_R)
                         recovery_index_ = 0;
                 }
                 else
@@ -1545,8 +1588,9 @@ namespace hunter_move_base
                     if (ros::Time::now() > attempt_end)
                     {
                         //we'll move into our obstacle clearing mode
-                        publishZeroVelocity();
-                        state_ = CLEARING;
+                        //publishZeroVelocity();
+						publishZeroVelocityToSimulator();
+						state_ = CLEARING;
                         recovery_trigger_ = CONTROLLING_R;
                     }
                     else
@@ -1555,7 +1599,8 @@ namespace hunter_move_base
                         last_valid_plan_ = ros::Time::now();
                         planning_retries_ = 0;
                         state_ = PLANNING;
-                        publishZeroVelocity();
+                        //publishZeroVelocity();
+						publishZeroVelocityToSimulator();
 
                         //enable the planner thread in case it isn't running on a clock
                         boost::unique_lock<boost::recursive_mutex> lock(planner_mutex_);
@@ -1806,8 +1851,8 @@ namespace hunter_move_base
         state_ = PLANNING;
         recovery_index_ = 0;
         recovery_trigger_ = PLANNING_R;
-        publishZeroVelocity();
-
+        //publishZeroVelocity();
+		publishZeroVelocityToSimulator();
         //if we shutdown our costmaps when we're deactivated... we'll do that now
         if (shutdown_costmaps_)
         {
@@ -1965,7 +2010,7 @@ namespace hunter_move_base
 					double dt = 0.0;
           			tc_->getLocalPath(local_path, time, dt);
 
-					ROS_WARN("Oscar::The size of local path is:%d, the period of local path is:%f, the last pose is:%f", local_path.size(), dt, local_path.back().position.x);
+					//ROS_WARN("Oscar::The size of local path is:%d, the period of local path is:%f, the last pose is:%f", local_path.size(), dt, local_path.back().position.x);
 
                     last_valid_control_ = ros::Time::now();
                     tc_->SetGoalNotReached();

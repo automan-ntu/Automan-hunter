@@ -223,6 +223,10 @@ namespace hunter_move_base
 
         void executeCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal);
 
+		void copilotCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal);
+
+    	void agv(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal);
+
         bool isQuaternionValid(const geometry_msgs::Quaternion &q);
 
         bool getRobotPose(geometry_msgs::PoseStamped &global_pose, costmap_2d::Costmap2DROS *costmap);
@@ -282,7 +286,7 @@ namespace hunter_move_base
 		// variables	
         tf2_ros::Buffer &tf_;
 
-        MoveBaseActionServer *as_, *as_pilot_;
+        MoveBaseActionServer *as_, *as_agv_,*as_copilot_;
 
         boost::shared_ptr<nav_core::BaseLocalPlanner> tc_;
         costmap_2d::Costmap2DROS *planner_costmap_ros_, *controller_costmap_ros_;
@@ -349,6 +353,7 @@ namespace hunter_move_base
         base_local_planner::OdometryHelperRos odom_helper_;
         double predict_time_;
         bool adas_trigger_;
+		bool AGV_flag_, global_goal_flag_;
         int target_margin_;
 		int critical_margin_;
         int step_size_;
