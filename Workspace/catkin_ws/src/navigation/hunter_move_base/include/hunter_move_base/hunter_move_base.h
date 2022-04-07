@@ -215,8 +215,6 @@ namespace hunter_move_base
 
         void goalCB(const geometry_msgs::PoseStamped::ConstPtr &goal);
 
-        //void triggerCB(const sensor_msgs::Joy::ConstPtr& joy_ptr);
-
         void triggerCB(const geometry_msgs::Twist::ConstPtr &twist_ptr);
 
         void planThread();
@@ -226,6 +224,8 @@ namespace hunter_move_base
 		void copilotCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal);
 
     	void agv(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal);
+
+		void remotedriveCb(const move_base_msgs::MoveBaseGoalConstPtr &move_base_goal);//remotedrive
 
         bool isQuaternionValid(const geometry_msgs::Quaternion &q);
 
@@ -286,7 +286,7 @@ namespace hunter_move_base
 		// variables	
         tf2_ros::Buffer &tf_;
 
-        MoveBaseActionServer *as_, *as_agv_,*as_copilot_;
+        MoveBaseActionServer *as_, *as_agv_,*as_copilot_, *as_remotedrive_;
 
         boost::shared_ptr<nav_core::BaseLocalPlanner> tc_;
         costmap_2d::Costmap2DROS *planner_costmap_ros_, *controller_costmap_ros_;
@@ -353,11 +353,12 @@ namespace hunter_move_base
         base_local_planner::OdometryHelperRos odom_helper_;
         double predict_time_;
         bool adas_trigger_;
-		bool AGV_flag_, global_goal_flag_;
+		bool AGV_flag_, global_goal_flag_,Remotedrive_flag_;
         int target_margin_;
 		int critical_margin_;
         int step_size_;
 		int buffer_size_;
+		int alarm_counter_, alarm_threshold_;
         std::list<geometry_msgs::Twist> cmd_buffer_;
 		std::list<bool> safe_stop_vec_;
 		std::list<bool> power_steering_vec_;
@@ -384,8 +385,8 @@ namespace hunter_move_base
         ObstContainer Obstacles_human_path_;
         ObstContainer Obstacles_auto_path_;
         HunterVisualizationPtr vis_;
-        unsigned int padding_size_x_ = 10.0;//10;
-        unsigned int padding_size_y_ = 10.0;//10;
+        unsigned int padding_size_x_ = 4.0;//10;
+        unsigned int padding_size_y_ = 4.0;//10;
 
 		// APF
 		double sigma_ = 300.0;

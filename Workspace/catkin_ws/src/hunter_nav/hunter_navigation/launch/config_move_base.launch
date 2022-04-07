@@ -14,7 +14,7 @@
         <param name="planner_patience" value="10.0" />
 
         <param name="base_local_planner" value="hunter_local_planner/TebLocalPlannerROS" />
-        <param name="controller_frequency" value="30.0" />
+        <param name="controller_frequency" value="8.0" />
         <param name="controller_patience" value="15.0" />
 
         <param name="clearing_rotation_allowed" value="false" />
