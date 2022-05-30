@@ -155,8 +155,9 @@ void HunterROSMessenger::PublishStateToROS() {
   status_publisher_.publish(status_msg);
 
   // publish odometry and tf
+  if (odom_frame_ != "None"){
   PublishOdometryToROS(state.linear_velocity, status_msg.steering_angle, dt);
-
+  }
   // record time for next integration
   last_time_ = current_time_;
 }

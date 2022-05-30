@@ -1,7 +1,16 @@
 <launch>
 
+    <!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find hunter_navigation)/maps/map.yaml" output="screen">
+        <param name="frame_id" value="map"/>
+    </node> -->
+
     <!-- localization -->
-    <include file="$(find hunter_cartographer)/launch/hunter_2d_localization.launch" />
+    <include file="$(find aloam_velodyne)/launch/aloam_hunter_localization.launch" />
+    <remap from="/odom" to="/odom_aloam_high_freq" />
+    <!-- <remap from="/odom" to="/zed2i/zed_node/odom" /> -->
+    <!-- <remap from="/odom" to="/aft_mapped_to_init" /> -->
+    <!-- <include file="$(find hunter_cartographer)/launch/hunter_3d_localization.launch" /> -->
+    <include file="$(find hunter_navigation)/launch/config_amcl.launch" />
 
     <!-- motion planning & control -->
     <include file="$(find hunter_navigation)/launch/config_move_base.launch" />

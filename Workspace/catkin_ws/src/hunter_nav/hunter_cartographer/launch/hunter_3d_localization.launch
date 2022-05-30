@@ -16,7 +16,7 @@
 
 <launch>
   <!-- <param name="/use_sim_time" value="true" /> -->
-  <arg name="load_state_filename" default="$(find hunter_cartographer)/maps/map_rrc.pbstream"/>
+  <arg name="load_state_filename" default="$(find hunter_cartographer)/maps/map.bag.pbstream"/>
 
   <!-- <param name="robot_description"
     textfile="$(find cartographer_ros)/urdf/backpack_3d.urdf" /> -->
@@ -30,11 +30,16 @@
           -configuration_basename hunter_3d_localization.lua
           -load_state_filename $(arg load_state_filename)"
       output="screen">
-    <!-- <remap from="points2_1" to="horizontal_laser_3d" />
-    <remap from="points2" to="vertical_laser_3d" /> -->
+    <remap from="/imu" to="/zed2i/zed_node/imu/data" />
+    <!-- <remap from="/odom" to="/aft_mapped_to_init_high_frec" />    -->
+    <!-- <remap from="/odom" to="/odom_aloam" /> -->
+
   </node>
 
-  <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
-      type="cartographer_occupancy_grid_node" args="-resolution 0.05" />
+  <!-- <node name="cartographer_occupancy_grid_node" pkg="cartographer_ros"
+      type="cartographer_occupancy_grid_node" args="-resolution 0.05" /> --> 
+
+  <arg name="global_map" default="$(find hunter_cartographer)/maps/map.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server" args="$(arg global_map)" />
 
 </launch>

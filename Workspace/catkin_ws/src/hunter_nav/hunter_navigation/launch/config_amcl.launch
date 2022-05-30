@@ -1,9 +1,11 @@
 <launch>
 
     <!--  ****** Maps *****  -->
-    <node name="map_server" pkg="map_server" type="map_server" args="$(find hunter_navigation)/maps/wroffice_local.yaml" output="screen">
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find hunter_cartographer)/maps/map_rrc_dry_run.yaml" output="screen">
         <param name="frame_id" value="map"/>
     </node>
+
+    <node pkg="tf2_ros" type="static_transform_publisher" name="odom" args="0 0 0 0 0 0 1 odom_aloam base_link " />
 
     <node pkg="amcl" type="amcl" name="amcl" output="screen">
         <rosparam file="$(find hunter_navigation)/cfg/amcl_params.yaml" command="load" />

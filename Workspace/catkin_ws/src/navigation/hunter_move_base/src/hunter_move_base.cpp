@@ -64,8 +64,8 @@ namespace hunter_move_base
                                               costmap_converter_loader_("costmap_converter", "costmap_converter::BaseCostmapToPolygons"),
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
-                                              new_global_plan_(false), adas_trigger_(false), AGV_flag_(false),Remotedrive_flag_(true), global_goal_flag_(false), 
-											  step_size_(5), buffer_size_(2), predict_time_(4.0), alarm_counter_(0), alarm_threshold_(5), 
+                                              new_global_plan_(false), adas_trigger_(false), AGV_flag_(true),Remotedrive_flag_(false), global_goal_flag_(false), 
+											  step_size_(5), buffer_size_(2), predict_time_(4.0), alarm_counter_(0), alarm_threshold_(8), 
 											  target_margin_(8), critical_margin_(5), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
     {
 
@@ -915,11 +915,9 @@ namespace hunter_move_base
 		                        new_pt.y = py + (footprint[i].x * sin_th + footprint[i].y * cos_th);
 		                        oriented_footprint.push_back(new_pt);
 		                        }
-
 		                        geometry_msgs::Point robot_position;
 		                        robot_position.x = px;
 		                        robot_position.y = py;
-
 		                        double robot_inscribed_radius = 0.0; 
 		                        double robot_circumscribed_radius = 0.0;
 		                        costmap_2d::calculateMinAndMaxDistances(footprint, robot_inscribed_radius, robot_circumscribed_radius);*/
@@ -1316,6 +1314,8 @@ namespace hunter_move_base
 			//Actionlib_msgs::goalid goal;
 			//cancel_pub_.publish (goal); 
 			//resetState();
+			global_goal_ = goalToGlobalFrame(move_base_goal->target_pose);			
+			global_goal_pub_.publish(global_goal_);			
 			ros::Duration(1).sleep();
 			as_->setAborted(move_base_msgs::MoveBaseResult(), "Aborting on AGV goal because we are in COPILOT mode.");
 			//as_->setSucceeded(move_base_msgs::MoveBaseResult(), "Success");
@@ -1342,6 +1342,9 @@ namespace hunter_move_base
         current_goal_pub_.publish(goal);
 
         ros::Rate r(controller_frequency_);
+
+		alarm_threshold_ = 2 * controller_frequency_;
+
         if (shutdown_costmaps_)
         {
             ROS_DEBUG_NAMED("move_base", "Starting up costmaps that were shut down previously");
@@ -1378,7 +1381,7 @@ namespace hunter_move_base
                 c_freq_change_ = false;
             }
 
-            ROS_WARN("Oscar::Control frequency is : %.9f", controller_frequency_);
+            //ROS_WARN("Oscar::Control frequency is : %.9f", controller_frequency_);
 
             if (as_->isPreemptRequested())
             {
@@ -1589,7 +1592,7 @@ namespace hunter_move_base
         //if we are in a planning state, then we'll attempt to make a plan
         case PLANNING:
         {
-            ROS_INFO("Oscar//////////executeCycle,We are in Planning case.");
+            //ROS_INFO("Oscar//////////executeCycle,We are in Planning case.");
             boost::recursive_mutex::scoped_lock lock(planner_mutex_);
             runPlanner_ = true;
             planner_cond_.notify_one();
@@ -1599,7 +1602,7 @@ namespace hunter_move_base
 
         //if we're controlling, we'll attempt to find valid velocity commands
         case CONTROLLING:
-            ROS_INFO("Oscar//////////executeCycle,We are in Controlling case.");
+            //ROS_INFO("Oscar//////////executeCycle,We are in Controlling case.");
             ROS_DEBUG_NAMED("move_base", "In controlling state.");
 
             //check to see if we've reached our goal
@@ -1644,6 +1647,11 @@ namespace hunter_move_base
 				    {    
 						ROS_WARN("Oscar::Ask Driver To Take Over.");				
 						publishZeroVelocityToSimulator();
+						
+						if (alarm_counter_ % alarm_threshold_ == 0)						
+						{
+							planner_costmap_ros_->resetLayers();
+						}
 					}
 					else
 					{
@@ -2105,7 +2113,6 @@ namespace hunter_move_base
                     }*/
 
                     /*double ave_lon = sum_lon / cmd_buffer_.size();
-
                     if (ave_lon <= 0)
                     {
                     cmd_vel.linear.x = sum_lon / cmd_buffer_.size();
@@ -2114,7 +2121,6 @@ namespace hunter_move_base
                     {
                       cmd_vel.linear.x = 0.0;
                     }
-
                     cmd_vel.angular.z = sum_rot / cmd_buffer_.size();
 					*/
 
@@ -2569,4 +2575,4 @@ namespace hunter_move_base
 		// make sure force max in case of multiple obstacles
 		force_rej = std::min(std::sqrt(std::pow(force_rej_x,2) + std::pow(force_rej_y, 2)), force_max_);
    }
-};
+}; 

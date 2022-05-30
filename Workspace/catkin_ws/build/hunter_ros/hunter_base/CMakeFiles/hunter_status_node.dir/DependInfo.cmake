@@ -10,7 +10,6 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
-  "ASIO_ENABLE_OLD_SERVICES -DASIO_HAS_POSIX_STREAM_DESCRIPTOR"
   "ROSCONSOLE_BACKEND_LOG4CXX"
   "ROS_BUILD_SHARED_LIBS=1"
   "ROS_PACKAGE_NAME=\"hunter_base\""
@@ -30,7 +29,6 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
   "/home/hunter/Workspace/catkin_ws/build/hunter_ros/hunter_base/CMakeFiles/hunter_messenger.dir/DependInfo.cmake"
-  "/home/hunter/Workspace/catkin_ws/build/wrp_sdk/CMakeFiles/wrp_sdk.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
