@@ -1309,7 +1309,7 @@ namespace hunter_move_base
 
 		if (!AGV_flag_)
 		{
-			ROS_WARN("Aborting on goal because we are in Co-Pilot or Remote Drive mode.");
+			ROS_WARN("We are in Co-Pilot or Remote Drive mode, set the goal and terminate this thread.");
 			//cancel_pub_ = nh.advertise<actionlib_msgs::goalid> ("Move_base/cancel", 1);
 			//Actionlib_msgs::goalid goal;
 			//cancel_pub_.publish (goal); 
