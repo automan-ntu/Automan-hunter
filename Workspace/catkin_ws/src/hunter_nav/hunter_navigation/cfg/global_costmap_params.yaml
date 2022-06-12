@@ -22,7 +22,7 @@ global_costmap:
     track_unknown_space: false
     combination_method: 1
 
-  transform_tolerance: 0.5
+  transform_tolerance: 2.0 #0.5
   plugins:
     - {name: static_layer,            type: "costmap_2d::StaticLayer"}
     - {name: obstacle_layer,          type: "costmap_2d::ObstacleLayer"}

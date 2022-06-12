@@ -65,7 +65,7 @@ namespace hunter_move_base
                                               planner_plan_(NULL), latest_plan_(NULL), controller_plan_(NULL),
                                               runPlanner_(false), user_goal_reached_(true), setup_(false), p_freq_change_(false), c_freq_change_(false),
                                               new_global_plan_(false), adas_trigger_(false), AGV_flag_(true),Remotedrive_flag_(false), global_goal_flag_(false), 
-											  step_size_(5), buffer_size_(2), predict_time_(4.0), alarm_counter_(0), alarm_threshold_(8), 
+											  step_size_(5), buffer_size_(2), predict_time_(4.0), alarm_counter_(0), alarm_threshold_(16), 
 											  target_margin_(8), critical_margin_(5), x0_(1.0), x1_(1.5), y0_(0), y1_(0.5), weight_(10.0)
     {
 
@@ -751,19 +751,16 @@ namespace hunter_move_base
 					continue;
 				} //remote drive
 				
-				ROS_WARN("We are here 1");
 				//user_goal_reached_= true;
                 ros::Time start_time_ = ros::Time::now();
                 if (user_goal_reached_)
                 {
-                    //ROS_WARN("Oscar***We are here when no user goal.");
                     if (!planner_costmap_ros_ || !costmap_model_)
                     {
                         //ROS_WARN("Oscar::Planner_costmap_ros has not been built. Continue.");
                         ros::Duration(3).sleep();
                         continue;
                     };
-
                     ros::Time start_time_ADAS = ros::Time::now();
 
                     // classify and visualize the obstacles
@@ -777,7 +774,7 @@ namespace hunter_move_base
 
                     if (!adas_trigger_)
                     {
-                        ROS_WARN("Oscar::Waiting for Human Driver.");
+                        //ROS_WARN("Oscar::Waiting for Human Driver.");
                         publishDefaultVelocityToSimulator();
                         if (planner_frequency_ > 0)
                         {
@@ -791,7 +788,7 @@ namespace hunter_move_base
                     geometry_msgs::PoseStamped current_robot_pose;
                     planner_costmap_ros_->getRobotPose(current_robot_pose);
                     robot_pose_ = PoseSE2(current_robot_pose.pose);
-                    ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.y(), robot_pose_.theta());
+                    //ROS_WARN("Oscar::The robot pose is:%f,%f,%f", robot_pose_.x(), robot_pose_.y(), robot_pose_.theta());
 
                     geometry_msgs::PoseStamped robot_velo_tf;
                     odom_helper_.getRobotVel(robot_velo_tf);
@@ -818,7 +815,7 @@ namespace hunter_move_base
 
 					// to be deledted
 					const PoseSE2 predict_pose = PoseSE2(pose_list.back().pose);
-                    ROS_WARN("Oscar::The predicted pose is:%f,%f,%f", predict_pose.x(), predict_pose.y(), predict_pose.theta());
+                    //ROS_WARN("Oscar::The predicted pose is:%f,%f,%f", predict_pose.x(), predict_pose.y(), predict_pose.theta());
 					//
 
                     //boundary of interest of obstacles
@@ -853,7 +850,7 @@ namespace hunter_move_base
 					Obstacles_human_path_.clear();
                     if (!ObstaclesOfInterest(x_max, x_min, y_max, y_min))
                     {
-                        ROS_WARN("Oscar::Next Cycle.");
+                        //ROS_WARN("Oscar::Next Cycle.");
                         publishDefaultVelocityToSimulator();
                         continue;
                     }
@@ -923,7 +920,7 @@ namespace hunter_move_base
 		                        costmap_2d::calculateMinAndMaxDistances(footprint, robot_inscribed_radius, robot_circumscribed_radius);*/
 								//clear_costmaps_srv_;		                        
 								footprint_cost = costmap_model_->footprintCost(px, py, theta, footprint);
-								ROS_WARN("the footprintcost is%f",footprint_cost);
+								//ROS_WARN("the footprintcost is%f",footprint_cost);
 		                    }
 
 		                    double critical_cost = 1.0; //1.0 * costmap_2d::INSCRIBED_INFLATED_OBSTACLE;
@@ -940,9 +937,9 @@ namespace hunter_move_base
 		                    if (central_cost >= critical_cost || footprint_cost < 0.0)
 		                    {
 								
-								ROS_WARN(" the critical_cost is %f",critical_cost);							
-								ROS_WARN(" IM here, the central_cost is %f, the footprint_cost is %f ",central_cost,footprint_cost);
-								ROS_WARN("Oscar::The goal point is: %d", int(it - pose_list.begin()));
+								//ROS_WARN(" the critical_cost is %f",critical_cost);							
+								//ROS_WARN(" IM here, the central_cost is %f, the footprint_cost is %f ",central_cost,footprint_cost);
+								//ROS_WARN("Oscar::The goal point is: %d", int(it - pose_list.begin()));
 		                        //ROS_WARN("Oscar::The velo is:%.3f,%.3f,%.3f", robot_velo_.linear.x, robot_velo_.linear.y, robot_velo_.angular.z);
 		                        //ROS_WARN("Oscar::Px and Py and Index is:%f, %f, %d", px, py, (int)(it - pose_list.begin()));
 		                        //ROS_WARN("Oscar:::::::The cell cost and critical cost is:%f, %f", footprint_cost, critical_cost);
@@ -962,13 +959,13 @@ namespace hunter_move_base
 									if (UpdateGoalPose(*it) || initial_flag)
 									{
 										predicted_goal_pose = *(it);
-		                                ROS_WARN("Oscar::Goal Point has been changed, select %d point as the goal: %f, %f", int(it - pose_list.begin()), predicted_goal_pose.pose.position.x,
-																															predicted_goal_pose.pose.position.y);
+		                                //ROS_WARN("Oscar::Goal Point has been changed, select %d point as the goal: %f, %f", int(it - pose_list.begin()), predicted_goal_pose.pose.position.x,
+										//																					predicted_goal_pose.pose.position.y);
 									}
 									else
 									{
 										predicted_goal_pose = prev_goal_pose_;
-		                                ROS_WARN("Oscar::Same Goal point as before.");
+		                                //ROS_WARN("Oscar::Same Goal point as before.");
 									}						
 								}
 								safe_stop = true;
@@ -989,7 +986,7 @@ namespace hunter_move_base
 						*/
 
 						double force_rej_weighted = force_rej * std::pow(decay_rate_, int(it - pose_list.begin()));
-						ROS_WARN("Oscar::force_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - pose_list.begin())));
+						//ROS_WARN("Oscar::force_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - pose_list.begin())));
 						force_human_vec.push_back(force_rej_weighted);
 						// APF calculated
 
@@ -1029,7 +1026,7 @@ namespace hunter_move_base
 
 					if (std::fabs(force_human_avg) > 1.0)
 					{
-						ROS_WARN("pwersteering on");						
+						//ROS_WARN("pwersteering on");						
 						power_steering = true;
 					}
 
@@ -1075,13 +1072,15 @@ namespace hunter_move_base
 					}
 					else if (lat_index > 0)
 					{
-						ROS_WARN("real pwersteering on");						
+						ROS_WARN("Power steering on");
 						planner_goal_ = global_goal_;
 						//ROS_WARN("Oscar::LAT->The planner goal pose is:%f, %f", planner_goal_.pose.position.x, planner_goal_.pose.position.y);
 					}
 					else
 					{
-						ROS_WARN("Oscar::Driver is doing good, well play, the final pose is:%f,%f", pose_list.back().pose.position.x, pose_list.back().pose.position.y);
+						//ROS_WARN("Oscar::Driver is doing good, well play, the final pose is:%f,%f", pose_list.back().pose.position.x, pose_list.back().pose.position.y);
+                        safe_stop_vec_.clear();
+                        power_steering_vec_.clear();		
                         publishDefaultVelocityToSimulator();
                         if (planner_frequency_ > 0)
                         {
@@ -1090,7 +1089,7 @@ namespace hunter_move_base
 						continue;
 					}
 
-                    ROS_WARN("Oscar::Start Plan.");
+                    //ROS_WARN("Oscar::Start Plan.");
 
                     if (shutdown_costmaps_)
                     {
@@ -1154,7 +1153,7 @@ namespace hunter_move_base
                     //check if execution of the goal has completed in some way
 
                     ros::WallDuration t_diff = ros::WallTime::now() - start;
-                    ROS_WARN("Oscar::move_base, Full control cycle time: %.9f\n", t_diff.toSec());
+                    //ROS_WARN("Oscar::move_base, Full control cycle time: %.9f\n", t_diff.toSec());
 
                     //setup sleep interface if needed
                     if (planner_frequency_ > 0)
@@ -1171,13 +1170,12 @@ namespace hunter_move_base
             }
 
 			while ((wait_for_wake || !runPlanner_) && AGV_flag_) //agv
-			{	//ROS_WARN("We are here 2");
+			{	
                 //if we should not be running the planner then suspend this thread
                 ROS_DEBUG_NAMED("move_base_plan_thread", "Planner thread is suspending");
                 planner_cond_.wait(lock);
                 wait_for_wake = false;
 			}
-
             ros::Time start_time = ros::Time::now();
 
             //time to plan! get a copy of the goal and unlock the mutex
@@ -1215,7 +1213,7 @@ namespace hunter_move_base
             }
             //if we didn't get a plan and we are in the planning state (the robot isn't moving)
             else if (state_ == PLANNING)
-            {
+            {            
                 ROS_DEBUG_NAMED("move_base_plan_thread", "No Plan...");
                 ros::Time attempt_end = last_valid_plan_ + ros::Duration(planner_patience_);
 
@@ -1236,7 +1234,6 @@ namespace hunter_move_base
                 }
                 lock.unlock();
             }
-
             //take the mutex for the next iteration
             lock.lock();
 
@@ -1275,6 +1272,7 @@ namespace hunter_move_base
 		AGV_flag_ = false;
 		Remotedrive_flag_ = false;
 		user_goal_reached_ = true;
+        planner_cond_.notify_one();
 		as_copilot_->setSucceeded(move_base_msgs::MoveBaseResult(), "Successfully Activate copilot.");
 	}
 
@@ -1436,8 +1434,9 @@ namespace hunter_move_base
 
             //we also want to check if we've changed global frames because we need to transform our goal pose
             if (goal.header.frame_id != planner_costmap_ros_->getGlobalFrameID())
-            {	ROS_WARN("goal frame id is:%f", goal.header.frame_id);
-				ROS_WARN("planner frame id is:%f", planner_costmap_ros_->getGlobalFrameID());
+            {	
+                //ROS_WARN("goal frame id is:%f", goal.header.frame_id);
+				//ROS_WARN("planner frame id is:%f", planner_costmap_ros_->getGlobalFrameID());
                 goal = goalToGlobalFrame(goal);
 
                 //we want to go back to the planning state for the next execution cycle
@@ -2092,7 +2091,7 @@ namespace hunter_move_base
 					double dt = 0.0;
           			tc_->getLocalPath(local_path, time, dt);
 
-					//ROS_WARN("Oscar::The size of local path is:%d, the period of local path is:%f, the last pose is:%f", local_path.size(), dt, local_path.back().position.x);
+                    //ROS_WARN("Oscar::The size of local path is:%d, the period of local path is:%f, the last pose is:%f", local_path.size(), dt, local_path.back().position.x);
 
                     last_valid_control_ = ros::Time::now();
                     tc_->SetGoalNotReached();
@@ -2124,8 +2123,8 @@ namespace hunter_move_base
                     cmd_vel.angular.z = sum_rot / cmd_buffer_.size();
 					*/
 
-                    ROS_WARN("Oscar::move_base:Got a new command from the local planner: %.3lf, %.3lf, %.3lf",
-                             cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
+                    // ROS_WARN("Oscar::move_base:Got a new command from the local planner: %.3lf, %.3lf, %.3lf",
+                    //          cmd_vel.linear.x, cmd_vel.linear.y, cmd_vel.angular.z);
 
 					if (long_flag)
 					{
@@ -2140,7 +2139,7 @@ namespace hunter_move_base
 							double force_rej = 0.0;
 							CalculateAPF(*it, force_rej);
 							double force_rej_weighted = force_rej * std::pow(decay_rate_, int(it - local_path.begin()));
-							ROS_WARN("Oscar::autoforce_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - local_path.begin())));
+							//ROS_WARN("Oscar::autoforce_rej_weighted:%f, weight:%f", force_rej_weighted, std::pow(decay_rate_, int(it - local_path.begin())));
 							force_auto_vec.push_back(force_rej_weighted);
 						}
 
@@ -2169,9 +2168,9 @@ namespace hunter_move_base
 
 						apf_human = std::min(std::fabs(apf_human / force_human_vec.size()), force_max_);
 						apf_auto  = std::min(std::fabs(apf_auto / force_auto_vec.size()), force_max_);
-						ROS_WARN("Oscar::apf_human:%f, apf_auto:%f", apf_human, apf_auto);
+						//ROS_WARN("Oscar::apf_human:%f, apf_auto:%f", apf_human, apf_auto);
 						cmd_vel.linear.z = double(LAT);
-						ROS_WARN("Oscar::cmd_vel.linear.z is:%f, and automation is:%f", cmd_vel.linear.z, double(LAT));
+						//ROS_WARN("Oscar::cmd_vel.linear.z is:%f, and automation is:%f", cmd_vel.linear.z, double(LAT));
 						cmd_vel.angular.x = apf_human;
 						cmd_vel.angular.y = apf_auto;
 						vel_to_sim_pub_.publish(cmd_vel);
@@ -2418,11 +2417,16 @@ namespace hunter_move_base
                 Obstacles_human_path_.push_back(*obs);
             }
         }
-        ROS_WARN("Oscar::there are %d obstacles need to be considered.", (int)Obstacles_human_path_.size());
+
 		if (Obstacles_human_path_.size() < 1)
 		{
 			return false;
 		}
+        else
+        {
+            ROS_WARN("Oscar::there are %d obstacles need to be considered.", (int)Obstacles_human_path_.size());
+        }
+        
         return true;
    }
 
@@ -2486,7 +2490,7 @@ namespace hunter_move_base
 			  double y_var_inv = x_var / (x_var * y_var - std::pow(xy_cov, 2));
 			  double xy_cov_inv = - xy_cov / (x_var * y_var - std::pow(xy_cov, 2));
 
-			  ROS_WARN("Oscar::x_var_inv:%f, y_var_inv:%f, xy_cov_inv:%f", x_var_inv, y_var_inv, xy_cov_inv);
+			  //ROS_WARN("Oscar::x_var_inv:%f, y_var_inv:%f, xy_cov_inv:%f", x_var_inv, y_var_inv, xy_cov_inv);
 
 			  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2) * x_var_inv + 
 						2 * (predict_pose.x() - x_mean) * (predict_pose.y() - y_mean) * xy_cov_inv +
@@ -2500,7 +2504,7 @@ namespace hunter_move_base
 			{
 			  dist_mh = std::sqrt(std::pow(predict_pose.x() - x_mean, 2)/x_var + std::pow(predict_pose.y() - y_mean, 2)/y_var);
 			  dist_critical = std::sqrt(std::pow(closest_pt.coeffRef(0) - x_mean, 2)/x_var + std::pow(closest_pt.coeffRef(1) - y_mean, 2)/y_var);
-			  ROS_WARN("Oscar::Standard Ellipse Obstacle.");
+			  //ROS_WARN("Oscar::Standard Ellipse Obstacle.");
 			}
 
 			unsigned int cell_x_obs, cell_y_obs;
@@ -2513,8 +2517,8 @@ namespace hunter_move_base
 			  }
 			}
 
-			ROS_WARN("Oscar::The obstacle locates at %f, %f, pose are:%f, %f, x_var:%f, y_var:%f, xy_cov:%f, cov_det:%f, mahal:%f, critical:%f",
-					x_mean, y_mean, predict_pose.x(), predict_pose.y(), x_var, y_var, xy_cov, cov_det, dist_mh, dist_critical);
+			//ROS_WARN("Oscar::The obstacle locates at %f, %f, pose are:%f, %f, x_var:%f, y_var:%f, xy_cov:%f, cov_det:%f, mahal:%f, critical:%f",
+			//		x_mean, y_mean, predict_pose.x(), predict_pose.y(), x_var, y_var, xy_cov, cov_det, dist_mh, dist_critical);
 			//ROS_WARN("Oscar::The obstacle cell is %d, %d", cell_x_obs, cell_y_obs);
 
 			//Mahalanobis distance based APF
@@ -2534,7 +2538,7 @@ namespace hunter_move_base
 
 			if (cos_theta > 0)
 			{
-				ROS_WARN("Oscar::The obstacle is already passed, next one.");
+				//ROS_WARN("Oscar::The obstacle is already passed, next one.");
 				continue;
 			}
 
@@ -2569,10 +2573,10 @@ namespace hunter_move_base
 			force_rej_x += force_x;
 			force_rej_y += force_y;
 
-			ROS_WARN("Oscar::::::The force in each direction is: %f, %f", force_rej_x, force_rej_y);
+			//ROS_WARN("Oscar::::::The force in each direction is: %f, %f", force_rej_x, force_rej_y);
    		}
 
 		// make sure force max in case of multiple obstacles
 		force_rej = std::min(std::sqrt(std::pow(force_rej_x,2) + std::pow(force_rej_y, 2)), force_max_);
    }
-}; 
+};

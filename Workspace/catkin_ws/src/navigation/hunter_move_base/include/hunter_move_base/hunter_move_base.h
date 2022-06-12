@@ -385,13 +385,13 @@ namespace hunter_move_base
         ObstContainer Obstacles_human_path_;
         ObstContainer Obstacles_auto_path_;
         HunterVisualizationPtr vis_;
-        unsigned int padding_size_x_ = 4.0;//10;
-        unsigned int padding_size_y_ = 4.0;//10;
+        unsigned int padding_size_x_ = 10.0;//10;
+        unsigned int padding_size_y_ = 7.0;//10;
 
 		// APF
 		double sigma_ = 300.0;
 		double force_max_ = 5.0;
-		double decay_rate_ = 0.97;
+		double decay_rate_ = 0.99;
     };
 };
 #endif

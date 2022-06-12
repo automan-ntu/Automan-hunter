@@ -1129,7 +1129,7 @@ bool TebOptimalPlanner::getVelocityCommand(double& vx, double& vy, double& omega
 	}
 	t += teb_.TimeDiff(i);
   }
-  ROS_WARN("Oscar::The size of local path and time horizon and last pose are: %d, %f, %f", int(teb_.sizePoses()), t, teb_.BackPose().x());
+  //ROS_WARN("Oscar::The size of local path and time horizon and last pose are: %d, %f, %f", int(teb_.sizePoses()), t, teb_.BackPose().x());
 
   if (teb_.sizePoses()<2)
   {

@@ -308,7 +308,7 @@ uint32_t TebLocalPlannerROS::computeVelocityCommands(const geometry_msgs::PoseSt
   }
   
     //ROS_WARN("Oscar::goal not reached, the flag is: %d,%d,%d", flag1, flag2, flag3);
-    ROS_WARN("Oscar::goal not reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
+    //ROS_WARN("Oscar::goal not reached, the goal pose is: %f, %f", global_goal.pose.position.x, global_goal.pose.position.y);
     //ROS_WARN("Oscar::goal not reached, current pose is:%f,%f", robot_pose_.x(), robot_pose_.y());  
 
   // check if we should enter any backup mode and apply settings
